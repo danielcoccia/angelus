@@ -62,7 +62,28 @@ Route::post('cad-pessoa/inserir', 'PessoaController@store');
 Route::get('pesquisar-pessoa', 'PessoaController@index');
 Route::post('pesquisar-pessoa/show', 'PessoaController@show');
 Route::get('pessoa/alterar/{id}', 'PessoaController@edit');
+Route::put('pessoa-atualizar/{id}', 'PessoaController@update');
+Route::get('/pessoa/excluir/{id}', 'PessoaController@destroy');
 
 
 Route::get('cad-entidade', 'EntidadeController@create');
 Route::post('cad-entidade/inserir', 'EntidadeController@store');
+Route::get('gerenciar-entidade', 'EntidadeController@index');
+Route::post('pesquisar-entidade', 'EntidadeController@show');
+Route::get('entidade/alterar/{id}', 'EntidadeController@edit');
+Route::put('entidade-atualizar/{id}', 'EntidadeController@update');
+Route::get('/entidade/excluir/{id}', 'EntidadeController@destroy');
+
+Route::get('gerenciar-usuario', 'UsuarioController@index');
+Route::get('usuario-incluir', 'UsuarioController@create');
+Route::get('cadastrar-usuarios/configurar/{id}', 'UsuarioController@configurarUsuario');
+Route::post('/cad-usuario/inserir', 'UsuarioController@store');
+Route::get('/usuario/excluir/{id}', 'UsuarioController@destroy');
+Route::get('/usuario/alterar/{id}', 'UsuarioController@edit');
+Route::put('usuario-atualizar/{id}', 'UsuarioController@update');
+
+Route::get('gerenciar-itemCatalogo', 'ItemCatalogoController@index');
+Route::get('item-catalogo-incluir', 'ItemCatalogoController@create');
+Route::post('cad-item-material/inserir', 'ItemCatalogoController@store');
+
+

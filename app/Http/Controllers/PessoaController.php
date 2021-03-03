@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\ModelGenero;
 use App\Models\ModelPessoa;
+use App\Models\ModelEntidade;
 use Illuminate\Support\Facades\Http;
 
 class PessoaController extends Controller
@@ -23,7 +24,7 @@ class PessoaController extends Controller
     {
 
         $result= $this->objPessoa->all();
-        return view('/usuario/pesquisar-pessoa',['result'=>$result]);
+        return view('/pessoa/pesquisar-pessoa',['result'=>$result]);
     }
 
     /**
@@ -35,9 +36,13 @@ class PessoaController extends Controller
     {           
         //$response = Http::get('https://viacep.com.br/ws/01001000/json/');
         //$data = $response->json();
+        // $entidade = new ModelEntidade();
+        // $resultEntidade = $entidade->all();
+
+        $resultEntidade = DB::select("select id, nome_fantasia||' - '||cnpj nome  from entidade");
 
         $result= $this->objGenero->all();
-        return view('/usuario/cad-pessoa',['result'=>$result]);
+        return view('/pessoa/cad-pessoa',['result'=>$result, 'resultEntidade'=> $resultEntidade]);
     }
 
     /**
@@ -50,12 +55,12 @@ class PessoaController extends Controller
     {
         $nome = $request->input('nome');
         $identidade = $request->input('identidade');
-        $cpf = $request->input('cpf');
+        $cpf = preg_replace("/[^0-9]/", "", $request->input('cpf'));
         $email = $request->input('email');
         $genero = $request->input('genero');
         $dt_nascimento = $request->input('dt_nascimento');
         $entidade = $request->input('entidade');
-        $celular = $request->input('celular');
+        $celular = preg_replace("/[^0-9]/", "", $request->input('celular'));
         $cep = str_replace('-','',$request->input('cep'));
         $estado = $request->input('estado');
         $cidade = $request->input('cidade');
@@ -86,8 +91,8 @@ class PessoaController extends Controller
             'gia' =>$gia
         ]);
 
-        $result= $this->objGenero->all();
-        return view('/usuario/cad-pessoa',['result'=>$result]);         
+        $result= $this->objPessoa->all();
+        return view('/pessoa/pesquisar-pessoa',['result'=>$result]);
 
     }
 
@@ -106,12 +111,10 @@ class PessoaController extends Controller
         $result =DB::table('pessoa')
                                     ->where('nome', 'like' ,'%'.$nome.'%')
                                     ->where('identidade', 'like' , '%'.$identidade.'%')
-                                    ->where('cpf', 'like' , '%'.$cpf.'%')->get();
+                                    ->where('cpf', 'like' , '%'.$cpf.'%')
+                                    ->get();
 
-
-        //$result = DB::select( DB::raw("SELECT * FROM pessoa WHERE nome like '$nome%'  or identidade like '%$identidade%' or cpf like '$cpf' ") );
-        //$results = DB::statement("select * from pessoa where nome like '%?%' or identidade = '%?%' or cpf = '%?%' " , [$nome, $identidade, $cpf]);        
-        return view('/usuario/pesquisar-pessoa',['result'=>$result]);
+        return view('/pessoa/pesquisar-pessoa',['result'=>$result]);
     }
 
     /**
@@ -123,8 +126,11 @@ class PessoaController extends Controller
     public function edit($id)
     {
         $result =DB::table('pessoa')->where('id',$id)->get();
+        $resultGenero= $this->objGenero->all();
 
-        return view('/usuario/edit-pessoa',compact('result'));
+        $resultEntidade = DB::select("select id, nome_fantasia||' - '||cnpj nome  from entidade");
+
+        return view('/pessoa/edit-pessoa',compact('result','resultGenero','resultEntidade'));
         //$result= $this->objPessoa->find($id);
         //return view('/usuario/edit-pessoa')->with(compact('result', 'result'));
         
@@ -140,9 +146,52 @@ class PessoaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $nome = $request->input('nome');
+        $identidade = $request->input('identidade');
+        $cpf = $request->input('cpf');
+        $email = $request->input('email');
+        $genero = $request->input('genero');
+        $dt_nascimento = $request->input('dt_nascimento');
+        $entidade = $request->input('entidade');
+        $celular = $request->input('celular');
+        $cep = str_replace('-','',$request->input('cep'));
+        $estado = $request->input('estado');
+        $cidade = $request->input('cidade');
+        $bairro = $request->input('bairro');
+        $logradouro = $request->input('logradouro');
+        $numero = $request->input('numero');
+        $complemento = $request->input('complemento');
+        $ibge = $request->input('ibge');
+        $gia = $request->input('gia');
+
+        DB::table('pessoa')
+        ->where('id', $id)
+        ->update([
+            'nome' => $nome,
+            'identidade' => $identidade,
+            'cpf' => $cpf,
+            'email' => $email,
+            'id_genero' => $genero,
+            'data_nascimento' => $dt_nascimento,
+            'id_entidade' => $entidade,
+            'celular' => $celular,
+            'cep' => $cep,
+            'uf' => $estado,
+            'localidade' => $cidade,
+            'bairro' => $bairro,
+            'logradouro' => $logradouro,
+            'numero' => $numero,
+            'complemento' => $complemento,
+            'ibge' => $ibge,
+            'gia' =>$gia
+        ]);
+            
+        
+        $result= $this->objPessoa->all();
+        return view('/pessoa/pesquisar-pessoa',['result'=>$result]);
     }
 
+ 
     /**
      * Remove the specified resource from storage.
      *
@@ -151,6 +200,8 @@ class PessoaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleted = DB::delete('delete from pessoa where id =?' , [$id]);
+        $result= $this->objPessoa->all();
+        return view('/pessoa/pesquisar-pessoa',['result'=>$result]);
     }
 }

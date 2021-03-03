@@ -32,21 +32,21 @@
                                         <div class="form-group row">
                                             <label for="cnpj" class="col-sm-2 col-form-label">cnpj</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" id="cnpj" name="cnpj">
+                                                <input class="form-control mascara_cnpj" type="text" id="cnpj" name="cnpj" required="required" placeholder="Ex.: 00.000.000/0000-00">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="nome_fantasia" class="col-sm-2 col-form-label">Nome Fantasia</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="" id="nome_fantasia" name="nome_fantasia">
+                                                <input class="form-control" type="text" value="" id="nome_fantasia" name="nome_fantasia" required="required">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="rz_social" class="col-sm-2 col-form-label">Razao Social </label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="" id="rz_social" name="rz_social">
+                                                <input class="form-control" type="text" value="" id="rz_social" name="rz_social" required="required">
                                             </div>
                                         </div>
 
@@ -74,7 +74,7 @@
                                         <div class="form-group row">
                                             <label for="telefone_contato" class="col-sm-2 col-form-label">Telefone Contato</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="" id="telefone_contato" name="telefone_contato">
+                                                <input class="form-control mascara_celular" type="text" value="" id="telefone_contato" name="telefone_contato" placeholder="Ex.: 61 99999-9999">
                                             </div>
                                         </div>
 
@@ -89,7 +89,7 @@
                                         <div class="row mt-10">
                                             <div class="col-md-4">
                                                 <label for="cep" class="form-label">Cep</label>
-                                                <input type="text" class="form-control cep-mask"  id="cep" name="cep">                                            
+                                                <input type="text" class="form-control cep-mask"  id="cep" name="cep" required="required" placeholder="Ex.:00000-000">
 
                                             </div>                                            
                                         </div>
@@ -140,6 +140,8 @@
 @endsection
 
 @section('footerScript')
+            <script src="{{ URL::asset('/js/pages/mascaras.init.js')}}"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
             <script src="{{ URL::asset('/js/pages/busca-cep.init.js')}}"></script>            
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 @endsection

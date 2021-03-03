@@ -101,7 +101,14 @@ Contact: themesbrand@gmail.com
 File: Datatables
 */
 $(document).ready(function () {
-  $('#datatable').DataTable(); //Buttons examples
+
+  $('#datatable').DataTable({
+
+    "language": {
+            "url": "http://cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json"
+        }
+
+  }); //Buttons examples
 
   var table = $('#datatable-buttons').DataTable({
     lengthChange: false,

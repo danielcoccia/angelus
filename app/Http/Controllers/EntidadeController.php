@@ -4,39 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\ModelEntidade;
+use Illuminate\Support\Facades\Http;
 
 
 class EntidadeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    private $objEntidade;
+
+    public function __construct(){
+        $this->objEntidade = new ModelEntidade();        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        
+        $result= $this->objEntidade->all();
+        return view('/entidade/gerenciar-entidade',['result'=>$result]);
+    }
+
     public function create()
     {        
         return view('/entidade/cad-entidade');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
-        $cnpj = $request->input('cnpj');
+        $cnpj = preg_replace("/[^0-9]/", "", $request->input('cnpj'));
         $nome_fantasia = $request->input('nome_fantasia');
         $rz_social = $request->input('rz_social');
         $insc_estadual = $request->input('insc_estadual');
@@ -74,51 +68,61 @@ class EntidadeController extends Controller
             'gia' =>$gia
         ]);
 
-        return view('/entidade/cad-entidade');
+        $result= $this->objEntidade->all();
+        return view('/entidade/gerenciar-entidade',['result'=>$result]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $cnpj = $request->input('cnpj');
+        $nome_fantasia = $request->input('nome_fantasia');    
+        
+        $result =DB::table('entidade')
+                            ->where('cnpj', 'like' ,'%'.$cnpj.'%')
+                            ->where('nome_fantasia', 'like' , '%'.$nome_fantasia.'%')
+                            ->get();
+        
+        return view('/entidade/gerenciar-entidade',['result'=>$result]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
-        //
+        $result =DB::table('entidade')->where('id',$id)->get();
+        return view('/entidade/edit-entidade',compact('result'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
-    }
+        DB::table('entidade')
+        ->where('id', $id)
+        ->update([
+            'cnpj' => $request->input('cnpj'),
+            'nome_fantasia' => $request->input('nome_fantasia'),
+            'razao_social' => $request->input('rz_social'),
+            'inscricao_estadual' => $request->input('insc_estadual'),
+            'email_contato' => $request->input('email_entidaede'),
+            'nome_contato' => $request->input('nome_contato'),
+            // 'telefone_contato' $request->input('telefone_contato'),
+            'site' => $request->input('site'),
+            'cep' => str_replace('-','',$request->input('cep')),
+            'uf' => $request->input('estado'),
+            'localidade' => $request->input('cidade'),
+            'bairro' => $request->input('bairro'),
+            'logradouro' => $request->input('logradouro'),
+            'numero' => $request->input('numero'),
+            'complemento' => $request->input('complemento'),
+            'ibge' => $request->input('ibge'),
+            'gia' => $request->input('gia')
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+        $result= $this->objEntidade->all();
+        return view('/entidade/gerenciar-entidade',['result'=>$result]);
+    }
+   
     public function destroy($id)
     {
-        //
+        $deleted = DB::delete('delete from entidade where id =?' , [$id]);
+        $result= $this->objEntidade->all();
+        return view('/entidade/gerenciar-entidade',['result'=>$result]);
     }
 }

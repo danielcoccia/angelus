@@ -95,8 +95,6 @@
                                 </form>
                             </div>
                         </div>
-
-                
     
                         <div class="dropdown d-inline-block ml-1">
                             <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"

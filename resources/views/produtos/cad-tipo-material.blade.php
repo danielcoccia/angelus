@@ -100,8 +100,7 @@
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
            
             <!-- Datatable init js -->
-            <script src="{{ URL::asset('/js/pages/cad-tipo-material.init.js')}}"></script>
-            <script src="{{ URL::asset('/js/pages/teste.js')}}"></script>
+            <script src="{{ URL::asset('/js/pages/cad-tipo-material.init.js')}}"></script>            
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
 
 @endsection

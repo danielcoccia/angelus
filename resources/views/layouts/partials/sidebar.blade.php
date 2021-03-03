@@ -9,29 +9,48 @@
                     <ul class="metismenu list-unstyled" id="side-menu">
                         <li class="menu-title">Menu Principal</li>
                          <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+<!--                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="mdi mdi-account-multiple-plus-outline"></i>
                                 <span>Pessoa</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="/pesquisar-pessoa">Pesquisar</a></li>
+                                <li><a href="/pesquisar-pessoa">Gerenciar</a></li>
                                 <li><a href="/cad-pessoa">Cadastrar</a></li>
-                                <li><a href="/usuario/alterar-usuario">Alterar</a></li>                               
-                                
-                            </ul>
+                            </ul> -->
+                            <a href="/pesquisar-pessoa" class="waves-effect">
+                                <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                <span>Pessoa</span>
+                            </a>
                         </li>
 
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <!-- <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="mdi mdi-account-multiple-plus-outline"></i>
                                 <span>Entidade</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="/pesq-entidade">Pesquisar</a></li>
+                                <li><a href="/gerenciar-entidade">Gerenciar</a></li>
                                 <li><a href="/cad-entidade">Cadastrar</a></li>
-                                <li><a href="/alterar-entidade">Alterar</a></li>                               
-                                
-                            </ul>
+                            </ul> -->
+                             <a href="/gerenciar-entidade" class="waves-effect">
+                                <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                <span>Entidade</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/gerenciar-usuario" class="waves-effect">
+                                <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                <span>Usuario</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-title">Item</li>
+                        <li>
+                            <a href="/gerenciar-itemCatalogo" class="waves-effect">
+                                <i class="di mdi-layers-triple"></i>
+                                <span>Item Catalogo</span>
+                            </a>
                         </li>
 
                         <li class="menu-title">Cadastros</li>
