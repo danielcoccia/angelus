@@ -45,7 +45,7 @@
                             </a>
                         </li>
 
-                        <li class="menu-title">Item</li>
+                        <li class="menu-title">Catalogo</li>
                         <li>
                             <a href="/gerenciar-itemCatalogo" class="waves-effect">
                                 <i class="di mdi-layers-triple"></i>
