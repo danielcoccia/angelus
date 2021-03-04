@@ -44,9 +44,9 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="categoria_item" class="col-sm-2 col-form-label">Categoria</label>
+                                            <label for="categoria_item" class="col-sm-2 col-form-label">Categoria*</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control select2" id="categoria_item" name="categoria_item">
+                                                <select class="form-control select2" id="categoria_item" name="categoria_item" required="required">
                                                     <option value="">Selecione</option>
                                                     <?php $__currentLoopData = $resultCategoria; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $resultCategorias): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($resultCategorias->id); ?>"><?php echo e($resultCategorias->nome); ?></option>
@@ -58,36 +58,36 @@
                                         <div class="form-group row">
                                             <label for="val_minimo" class="col-sm-2 col-form-label">Valor Minimo*</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" id="val_minimo" name="val_minimo">
+                                                <input class="form-control" type="text" id="val_minimo" name="val_minimo" required="required">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="val_medio" class="col-sm-2 col-form-label">Valor Medio</label>
+                                            <label for="val_medio" class="col-sm-2 col-form-label">Valor Médio*</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" id="val_medio" name="val_medio">                                                
+                                                <input class="form-control" type="text" id="val_medio" name="val_medio" required="required">                                                
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="val_maximo" class="col-sm-2 col-form-label">Valor Máximo</label>
+                                            <label for="val_maximo" class="col-sm-2 col-form-label">Valor Máximo*</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="" id="val_maximo" name="val_maximo">
+                                                <input class="form-control" type="text" value="" id="val_maximo" name="val_maximo" required="required">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="item_composicao" class="col-sm-2 col-form-label">Item Composição</label>
+                                            <label for="composicao" class="col-sm-2 col-form-label">Item Composição</label>
                                             <div class="col-sm-10">
-                                                <input  type="checkbox"  id="item_composicao" name="item_composicao">                                                                                                 
+                                                <input  type="checkbox"  id="composicao" name="omposicao">                                                                                                 
                                             </div>
                                         </div>
 
 
                                         <div class="form-group row">
-                                            <label for="item_ativo" class="col-sm-2 col-form-label">Ativo</label>
+                                            <label for="ativo" class="col-sm-2 col-form-label">Ativo</label>
                                             <div class="col-sm-10">
-                                                <input  type="checkbox" value="" id="item_ativo" name="item_ativo">
+                                                <input  type="checkbox" id="ativo" name="ativo">
                                             </div>
                                         </div>
 

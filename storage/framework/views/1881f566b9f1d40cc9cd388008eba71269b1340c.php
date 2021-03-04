@@ -1,6 +1,7 @@
 <?php $__env->startSection('title'); ?> Data Tables <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
+
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -19,13 +20,14 @@
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>id</th>
-                                                <th>Ativo</th>
-                                                <th>Bloqueado</th>
-                                                <th>Data Ativação</th>         
-                                                <th>Ação</th>
-
-                                                                                                
+                                                <th>Id</th>
+                                                <th>Nome</th>
+                                                <th>Categoria</th>
+                                                <th>Valor Mínimo</th>
+                                                <th>Valor Medio</th>
+                                                <th>Valor Máximo</th>
+                                                <th>Item Composição</th>
+                                                <th>Ativo</th>                           
                                             </tr>
                                         </thead>
 
@@ -33,14 +35,18 @@
                                           <?php $__currentLoopData = $result; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $results): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                              <tr>
                                                 <td><?php echo e($results->id); ?></td>
+                                                <td><?php echo e($results->nome); ?></td>
+                                                <td><?php echo e($results->nome_categoria); ?></td>
+                                                <td><?php echo e($results->valor_minimo); ?></td>
+                                                <td><?php echo e($results->valor_medio); ?></td>
+                                                <td><?php echo e($results->valor_maximo); ?></td>                                                
+                                                <td><?php echo e($results->composicao ? 'sim' : 'não'); ?></td>
                                                 <td><?php echo e($results->ativo ? 'sim' : 'não'); ?></td>
-                                                <td><?php echo e($results->bloqueado ? 'sim' : 'não'); ?></td>
-                                                <td><?php echo e($results->data_ativacao); ?></td>
                                                 <td>
-                                                    <a href="/usuario/alterar/<?php echo e($results->id); ?>">
+                                                    <a href="/item-catalogo/alterar/<?php echo e($results->id); ?>">
                                                         <input class="btn btn-warning" type="button" value="Alterar">
                                                     </a>
-                                                    <a href="/usuario/excluir/<?php echo e($results->id); ?>">
+                                                    <a href="/item-catalogo/excluir/<?php echo e($results->id); ?>">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
                                                     </a>
                                                 </td>
@@ -76,4 +82,6 @@
             <script src="<?php echo e(URL::asset('/js/pages/form-advanced.init.js')); ?>"></script>
 
 <?php $__env->stopSection(); ?>
+
+
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/angelus/resources/views/item/gerenciar-item-catalogo.blade.php ENDPATH**/ ?>

@@ -65,7 +65,6 @@ Route::get('pessoa/alterar/{id}', 'PessoaController@edit');
 Route::put('pessoa-atualizar/{id}', 'PessoaController@update');
 Route::get('/pessoa/excluir/{id}', 'PessoaController@destroy');
 
-
 Route::get('cad-entidade', 'EntidadeController@create');
 Route::post('cad-entidade/inserir', 'EntidadeController@store');
 Route::get('gerenciar-entidade', 'EntidadeController@index');
@@ -85,5 +84,10 @@ Route::put('usuario-atualizar/{id}', 'UsuarioController@update');
 Route::get('gerenciar-itemCatalogo', 'ItemCatalogoController@index');
 Route::get('item-catalogo-incluir', 'ItemCatalogoController@create');
 Route::post('cad-item-material/inserir', 'ItemCatalogoController@store');
+Route::get('/item-catalogo/alterar/{id}', 'ItemCatalogoController@edit');
+Route::put('item-catalogo-atualizar/{id}', 'ItemCatalogoController@update');
+Route::get('/item-catalogo/excluir/{id}', 'ItemCatalogoController@destroy');
+
+Route::get('gerenciar-composicao', 'ComposicaoItemController@index');
 
 

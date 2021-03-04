@@ -3,6 +3,7 @@
 @section('title') Data Tables @endsection
 
 @section('content')
+
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -21,13 +22,14 @@
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>id</th>
-                                                <th>Ativo</th>
-                                                <th>Bloqueado</th>
-                                                <th>Data Ativação</th>         
-                                                <th>Ação</th>
-
-                                                                                                
+                                                <th>Id</th>
+                                                <th>Nome</th>
+                                                <th>Categoria</th>
+                                                <th>Valor Mínimo</th>
+                                                <th>Valor Medio</th>
+                                                <th>Valor Máximo</th>
+                                                <th>Item Composição</th>
+                                                <th>Ativo</th>                           
                                             </tr>
                                         </thead>
 
@@ -35,14 +37,18 @@
                                           @foreach($result as $results)
                                              <tr>
                                                 <td>{{$results->id}}</td>
+                                                <td>{{$results->nome}}</td>
+                                                <td>{{$results->nome_categoria}}</td>
+                                                <td>{{$results->valor_minimo}}</td>
+                                                <td>{{$results->valor_medio}}</td>
+                                                <td>{{$results->valor_maximo}}</td>                                                
+                                                <td>{{$results->composicao ? 'sim' : 'não' }}</td>
                                                 <td>{{$results->ativo ? 'sim' : 'não' }}</td>
-                                                <td>{{$results->bloqueado ? 'sim' : 'não' }}</td>
-                                                <td>{{$results->data_ativacao}}</td>
                                                 <td>
-                                                    <a href="/usuario/alterar/{{$results->id}}">
+                                                    <a href="/item-catalogo/alterar/{{$results->id}}">
                                                         <input class="btn btn-warning" type="button" value="Alterar">
                                                     </a>
-                                                    <a href="/usuario/excluir/{{$results->id}}">
+                                                    <a href="/item-catalogo/excluir/{{$results->id}}">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
                                                     </a>
                                                 </td>
@@ -78,3 +84,4 @@
             <script src="{{ URL::asset('/js/pages/form-advanced.init.js')}}"></script>
 
 @endsection
+

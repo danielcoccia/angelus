@@ -51,6 +51,11 @@
                                 <i class="di mdi-layers-triple"></i>
                                 <span>Item Catalogo</span>
                             </a>
+
+                            <a href="/gerenciar-composicao" class="waves-effect">
+                                <i class="di mdi-layers-triple"></i>
+                                <span>Composição</span>
+                            </a>
                         </li>
 
                         <li class="menu-title">Cadastros</li>

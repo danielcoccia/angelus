@@ -22,9 +22,26 @@ class ItemCatalogoController extends Controller
         $this->objTipoMaterial = new ModelTipoMaterial();
     }
 
+    private function getListaItemMatAll(){
+        $lista = DB::select("
+            select 
+                i.id,
+                i.nome,
+                c.nome nome_categoria,
+                i.valor_minimo,
+                i.valor_medio,
+                i.valor_maximo,
+                i.composicao,
+                i.ativo
+            from item_catalogo_material i
+            left join tipo_categoria_material c on i.id_categoria_material =c.id 
+        ");
+        return $lista;
+    }
+
     public function index()
     {     
-        $result= $this->objItemCatalogo->all();
+        $result= $this->getListaItemMatAll();
         return view('item/gerenciar-item-catalogo',['result'=>$result]);
     }
 
@@ -39,20 +56,20 @@ class ItemCatalogoController extends Controller
     public function store(Request $request)
     {
         $ativo = isset($request->ativo) ? 1 : 0;
-        $item_composicao = isset($request->item_composicao) ? 1 : 0;
+        $composicao = isset($request->composicao) ? 1 : 0;
 
         DB::table('item_catalogo_material')->insert([
-            'id' => '1',
+            'id' => '6',
             'nome' => $request->input('nome_item'),
             'id_categoria_material' => $request->input('categoria_item'),
             'valor_minimo' => $request->input('val_minimo'),
             'valor_medio' => $request->input('val_medio'),
             'valor_maximo' => $request->input('val_maximo'),
-            'composicao' => $item_composicao,
+            'composicao' => $composicao,
             'ativo' => $ativo,
         ]);
 
-        $result= $this->objItemCatalogo->all();
+        $result= $result= $this->getListaItemMatAll();
         return view('item/gerenciar-item-catalogo',['result'=>$result]);
     }
 
@@ -65,18 +82,39 @@ class ItemCatalogoController extends Controller
   
     public function edit($id)
     {
-        //
+        $resultCategoria = $this->objTipoMaterial->all();
+        $result =DB::table('item_catalogo_material')->where('id',$id)->get();
+        return view('item/editar-item-catalogo', compact('resultCategoria', 'result'));
     }
 
    
     public function update(Request $request, $id)
-    {
-        //
+    {     
+        $ativo = isset($request->ativo) ? 1 : 0;
+        $composicao = isset($request->composicao) ? 1 : 0;
+        
+        DB::table('item_catalogo_material')
+            ->where('id', $id)
+            ->update([
+                'nome' => $request->input('nome_item'),
+                'id_categoria_material' => $request->input('categoria_item'),
+                'valor_minimo' => $request->input('val_minimo'),
+                'valor_medio' => $request->input('val_medio'),
+                'valor_maximo' => $request->input('val_maximo'),
+                'composicao' => $composicao,
+                'ativo' => $ativo,
+            ]);
+
+        $result= $result= $this->getListaItemMatAll();;
+        return view('item/gerenciar-item-catalogo', ['result'=>$result]);
+
     }
 
    
     public function destroy($id)
     {
-        //
+        DB::delete('delete from item_catalogo_material where id = ?' , [$id]);
+        $result= $result= $this->getListaItemMatAll();;
+        return view('item/gerenciar-item-catalogo', ['result'=>$result]);
     }
 }
