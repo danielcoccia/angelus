@@ -1,4 +1,4 @@
-<?php $__env->startSection('title'); ?> Data Tables <?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?>  <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
  <!-- start page title -->

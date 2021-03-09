@@ -7,117 +7,46 @@
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
-                        <li class="menu-title">Menu Principal</li>
-                         <li>
-<!--                             <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="mdi mdi-account-multiple-plus-outline"></i>
-                                <span>Pessoa</span>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="mdi mdi-account-badge-horizontal-outline "></i>
+                                <span>Controle e Acesso</span>
                             </a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="/pesquisar-pessoa">Gerenciar</a></li>
-                                <li><a href="/cad-pessoa">Cadastrar</a></li>
-                            </ul> -->
-                            <a href="/pesquisar-pessoa" class="waves-effect">
-                                <i class="mdi mdi-account-multiple-plus-outline"></i>
-                                <span>Pessoa</span>
-                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="/pesquisar-pessoa" class="waves-effect"><span>Pessoa</span></a></li>
+                                <li><a href="/gerenciar-entidade" class="waves-effect"><span>Entidade</span></a></li>
+                                <li><a href="/gerenciar-usuario" class="waves-effect"><span>Usuario</span></a></li>
+                            </ul>
                         </li>
 
                         <li>
-                            <!-- <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="mdi mdi-account-multiple-plus-outline"></i>
-                                <span>Entidade</span>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="mdi mdi-playlist-edit "></i>
+                                <span>Catalogo</span>
                             </a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="/gerenciar-entidade">Gerenciar</a></li>
-                                <li><a href="/cad-entidade">Cadastrar</a></li>
-                            </ul> -->
-                             <a href="/gerenciar-entidade" class="waves-effect">
-                                <i class="mdi mdi-account-multiple-plus-outline"></i>
-                                <span>Entidade</span>
-                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="/gerenciar-itemCatalogo" class="waves-effect"><span>Item Catalogo</span></a></li>
+                                <li><a href="/gerenciar-composicao" class="waves-effect"><span>Composição</span></a></li>
+                            </ul>
                         </li>
 
                         <li>
-                            <a href="/gerenciar-usuario" class="waves-effect">
-                                <i class="mdi mdi-account-multiple-plus-outline"></i>
-                                <span>Usuario</span>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="mdi mdi-image-filter-none"></i>
+                                <span>Cadastro Geral</span>
                             </a>
-                        </li>
-
-                        <li class="menu-title">Catalogo</li>
-                        <li>
-                            <a href="/gerenciar-itemCatalogo" class="waves-effect">
-                                <i class="di mdi-layers-triple"></i>
-                                <span>Item Catalogo</span>
-                            </a>
-
-                            <a href="/gerenciar-composicao" class="waves-effect">
-                                <i class="di mdi-layers-triple"></i>
-                                <span>Composição</span>
-                            </a>
-                        </li>
-
-                        <li class="menu-title">Cadastros</li>
-                        <li>
-                            <a href="/produtos/cad-inicial-prod" class="waves-effect">
-                                <i class="di mdi-layers-triple"></i>
-                                <span>Cadastro Inicial</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/cad-tipo-material" class="waves-effect">
-                                <i class="di mdi-layers-triple"></i>
-                                <span>Tipo Material</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/cad-embalagem" class="waves-effect">
-                                <i class="di mdi-layers-triple"></i>
-                                <span>Embalagem</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/cad-tipo-estoque" class="waves-effect">
-                                <i class="di mdi-layers-triple"></i>
-                                <span>Cadastro Tipo Estoque</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/cad-genero" class="waves-effect">
-                                <i class="di mdi-layers-triple"></i>
-                                <span>Genero</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="cad-pagamento" class="waves-effect">
-                                <i class="di mdi-layers-triple"></i>
-                                <span>Pagamento </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="cad-sit-doacao" class="waves-effect">
-                                <i class="di mdi-layers-triple"></i>
-                                <span>Tipo Situação Doação </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/produtos/cad-tipo-sit-item" class="waves-effect">
-                                <i class="di mdi-layers-triple"></i>
-                                <span>Tipo Situação Item </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/produtos/cad-unidade-medida" class="waves-effect">
-                                <i class="di mdi-layers-triple"></i>
-                                <span>Unidade de Medida  </span>
-                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="/produtos/cad-inicial-prod" class="waves-effect"><span>Inicial</span></a></li>
+                                <li><a href="cad-tipo-material" class="waves-effect"><span>Tipo Material</span></a></li>
+                                <li><a href="cad-embalagem" class="waves-effect"><span>Embalagem</span></a></li>
+                                <li><a href="cad-tipo-estoque" class="waves-effect"><span>Tipo Estoque</span></a></li>
+                                <li><a href="cad-genero" class="waves-effect"><span>Genero</span></a></li>
+                                <li><a href="cad-pagamento" class="waves-effect"><span>Pagamento</span></a></li>
+                                <li><a href="cad-sit-doacao" class="waves-effect"><span>Situação Doação </span></a></li>
+                                <li><a href="/produtos/cad-tipo-sit-item" class="waves-effect"><span>Tipo Situação Item </span></a></li>
+                                <li><a href="/unidade-medida" class="waves-effect"><span>Unidade de Medida  </span></a></li>
+                            </ul>
                         </li>
 
 

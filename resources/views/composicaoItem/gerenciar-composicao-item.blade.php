@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Data Tables @endsection
+@section('title') @endsection
 
 @section('content')
 
@@ -8,7 +8,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <a href="/item-catalogo-incluir">
+                                    <a href="/item-composicao-incluir">
                                             <input class="btn btn-primary" type="button" value="Incluir Composição de Item do Catalogo">
                                     </a>
                     <br><br><hr>
@@ -45,11 +45,14 @@
                                                 <td>{{$results->composicao ? 'sim' : 'não' }}</td>
                                                 <td>{{$results->ativo ? 'sim' : 'não' }}</td>
                                                 <td>
-                                                    <a href="/item-catalogo/alterar/{{$results->id}}">
+<!--                                                     <a href="/item-catalogo/alterar/{{$results->id}}">
                                                         <input class="btn btn-warning" type="button" value="Alterar">
                                                     </a>
                                                     <a href="/item-catalogo/excluir/{{$results->id}}">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
+                                                    </a> -->
+                                                    <a href="/item-composicao/incluir/{{$results->id}}">
+                                                        <input class="btn btn-primary" type="button" value="incluir">
                                                     </a>
                                                 </td>
                                             </tr>
