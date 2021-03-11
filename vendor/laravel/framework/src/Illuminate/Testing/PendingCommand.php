@@ -5,10 +5,12 @@ namespace Illuminate\Testing;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Mockery;
 use Mockery\Exception\NoMatchingExpectationException;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -103,7 +105,7 @@ class PendingCommand
      * Specify an expected choice question with expected answers that will be asked/shown when the command runs.
      *
      * @param  string  $question
-     * @param  string  $answer
+     * @param  string|array  $answer
      * @param  array  $answers
      * @param  bool  $strict
      * @return $this
@@ -127,6 +129,27 @@ class PendingCommand
     public function expectsOutput($output)
     {
         $this->test->expectedOutput[] = $output;
+
+        return $this;
+    }
+
+    /**
+     * Specify a table that should be printed when the command runs.
+     *
+     * @param  array  $headers
+     * @param  \Illuminate\Contracts\Support\Arrayable|array  $rows
+     * @param  string  $tableStyle
+     * @param  array  $columnStyles
+     * @return $this
+     */
+    public function expectsTable($headers, $rows, $tableStyle = 'default', array $columnStyles = [])
+    {
+        $this->test->expectedTables[] = [
+            'headers' => (array) $headers,
+            'rows' => $rows instanceof Arrayable ? $rows->toArray() : $rows,
+            'tableStyle' => $tableStyle,
+            'columnStyles' => $columnStyles,
+        ];
 
         return $this;
     }
@@ -158,15 +181,17 @@ class PendingCommand
      * Execute the command.
      *
      * @return int
+     *
+     * @throws \Mockery\Exception\NoMatchingExpectationException
      */
     public function run()
     {
         $this->hasExecuted = true;
 
-        $this->mockConsoleOutput();
+        $mock = $this->mockConsoleOutput();
 
         try {
-            $exitCode = $this->app->make(Kernel::class)->call($this->command, $this->parameters);
+            $exitCode = $this->app->make(Kernel::class)->call($this->command, $this->parameters, $mock);
         } catch (NoMatchingExpectationException $e) {
             if ($e->getMethodName() === 'askQuestion') {
                 $this->test->fail('Unexpected question "'.$e->getActualArguments()[0]->getQuestion().'" was asked.');
@@ -218,7 +243,7 @@ class PendingCommand
     /**
      * Mock the application's console output.
      *
-     * @return void
+     * @return \Mockery\MockInterface
      */
     protected function mockConsoleOutput()
     {
@@ -247,6 +272,8 @@ class PendingCommand
         $this->app->bind(OutputStyle::class, function () use ($mock) {
             return $mock;
         });
+
+        return $mock;
     }
 
     /**
@@ -260,6 +287,8 @@ class PendingCommand
                 ->shouldAllowMockingProtectedMethods()
                 ->shouldIgnoreMissing();
 
+        $this->applyTableOutputExpectations($mock);
+
         foreach ($this->test->expectedOutput as $i => $output) {
             $mock->shouldReceive('doWrite')
                 ->once()
@@ -271,6 +300,36 @@ class PendingCommand
         }
 
         return $mock;
+    }
+
+    /**
+     * Apply the output table expectations to the mock.
+     *
+     * @param  \Mockery\MockInterface  $mock
+     * @return void
+     */
+    private function applyTableOutputExpectations($mock)
+    {
+        foreach ($this->test->expectedTables as $consoleTable) {
+            $table = (new Table($output = new BufferedOutput))
+                ->setHeaders($consoleTable['headers'])
+                ->setRows($consoleTable['rows'])
+                ->setStyle($consoleTable['tableStyle']);
+
+            foreach ($consoleTable['columnStyles'] as $columnIndex => $columnStyle) {
+                $table->setColumnStyle($columnIndex, $columnStyle);
+            }
+
+            $table->render();
+
+            $lines = array_filter(
+                preg_split("/\n/", $output->fetch())
+            );
+
+            foreach ($lines as $line) {
+                $this->expectsOutput($line);
+            }
+        }
     }
 
     /**

@@ -104,6 +104,7 @@
     'command.view.cache' => 'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider',
     'command.view.clear' => 'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider',
     'command.cache.table' => 'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider',
+    'command.cast.make' => 'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider',
     'command.channel.make' => 'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider',
     'command.component.make' => 'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider',
     'command.console.make' => 'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider',
