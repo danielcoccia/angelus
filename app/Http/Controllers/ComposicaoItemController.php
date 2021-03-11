@@ -93,13 +93,21 @@ class ComposicaoItemController extends Controller
    
     public function store(Request $request)
     {
-        DB::table('composicao_item_catalogo')->insert([            
-            'id_item_catalogo' => $request->input('idItem'),            
-            'id_item_catalogo_composto' => $request->input('itemComposto'),
-            'id_tipo_embalagem' => $request->input('embalagem'),
-            'id_tipo_unidade_medida' =>$request->input('unidade_medida'),
-            'quantidade' => $request->input('qtd'),
-        ]);
+
+        try {            
+            DB::table('composicao_item_catalogo')->insert([            
+                'id_item_catalogo' => $request->input('idItem'),            
+                'id_item_catalogo_composto' => $request->input('itemComposto'),
+                'id_tipo_embalagem' => $request->input('embalagem'),
+                'id_tipo_unidade_medida' =>$request->input('unidade_medida'),
+                'quantidade' => $request->input('qtd'),
+            ]);
+        } catch (QueryException $e) {
+            flash()->error('Mensagem para o usuário');
+            return redirect()->back();
+        }
+
+        
 
         return $this->create($request->input('idItem'));
     }
