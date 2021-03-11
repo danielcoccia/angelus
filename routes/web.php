@@ -57,6 +57,10 @@ Route::get('cad-sit-doacao', 'SitDoacaoController@index');
 Route::post('cad-sit-doacao/inserir', 'SitDoacaoController@store');
 Route::get('cad-sit-doacao/excluir/{id}', 'SitDoacaoController@destroy');
 
+Route::get('unidade-medida', 'UnidadeMedidaController@index');
+Route::post('unidade-medida/inserir', 'UnidadeMedidaController@store');
+Route::get('unidade-medida/excluir/{id}', 'UnidadeMedidaController@destroy');
+
 Route::get('cad-pessoa', 'PessoaController@create');
 Route::post('cad-pessoa/inserir', 'PessoaController@store');
 Route::get('pesquisar-pessoa', 'PessoaController@index');
@@ -89,5 +93,6 @@ Route::put('item-catalogo-atualizar/{id}', 'ItemCatalogoController@update');
 Route::get('/item-catalogo/excluir/{id}', 'ItemCatalogoController@destroy');
 
 Route::get('gerenciar-composicao', 'ComposicaoItemController@index');
-
-
+Route::get('item-composicao/incluir/{id}', 'ComposicaoItemController@create');
+Route::post('item-composicao/inserir', 'ComposicaoItemController@store');
+Route::get('/item-composicao/excluir/{id}/{idComposicao}', 'ComposicaoItemController@destroy');

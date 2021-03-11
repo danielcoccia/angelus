@@ -1,4 +1,4 @@
-<?php $__env->startSection('title'); ?> Data Tables <?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?> <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
 
@@ -6,7 +6,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <a href="/item-catalogo-incluir">
+                                    <a href="/item-composicao-incluir">
                                             <input class="btn btn-primary" type="button" value="Incluir Composição de Item do Catalogo">
                                     </a>
                     <br><br><hr>
@@ -43,11 +43,14 @@
                                                 <td><?php echo e($results->composicao ? 'sim' : 'não'); ?></td>
                                                 <td><?php echo e($results->ativo ? 'sim' : 'não'); ?></td>
                                                 <td>
-                                                    <a href="/item-catalogo/alterar/<?php echo e($results->id); ?>">
+<!--                                                     <a href="/item-catalogo/alterar/<?php echo e($results->id); ?>">
                                                         <input class="btn btn-warning" type="button" value="Alterar">
                                                     </a>
                                                     <a href="/item-catalogo/excluir/<?php echo e($results->id); ?>">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
+                                                    </a> -->
+                                                    <a href="/item-composicao/incluir/<?php echo e($results->id); ?>">
+                                                        <input class="btn btn-primary" type="button" value="incluir">
                                                     </a>
                                                 </td>
                                             </tr>

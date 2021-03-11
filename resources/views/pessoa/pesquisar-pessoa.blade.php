@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Data Tables @endsection
+@section('title')  @endsection
 
 @section('content')
  <!-- start page title -->
