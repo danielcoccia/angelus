@@ -18,10 +18,9 @@ class UsuarioController extends Controller
         
     }
 
-    public function index()
-    {   
-        //$result= $this->objUsuario->all();
-         $result=DB::select("select 
+    public function getUsuarios(){
+
+        $result= DB::select("select 
                         u.id,
                         u.id_pessoa,
                         p.cpf,
@@ -31,7 +30,16 @@ class UsuarioController extends Controller
                         u.data_ativacao
                         from usuario u 
                         left join pessoa p on u.id_pessoa = p.id                        
-                    ");  
+                    ");
+
+        return $result;
+    }
+
+
+    public function index()
+    {   
+        //$result= $this->objUsuario->all();
+        $result = $this->getUsuarios();
         return view('usuario/gerenciar-usuario', compact('result'));
     }
    
@@ -58,7 +66,7 @@ class UsuarioController extends Controller
         
         $this->inserirTipoEstque($keys_request,$request->input('idPessoa'));
 
-        $result= $this->objUsuario->all();
+        $result = $this->getUsuarios();
         return view('usuario/gerenciar-usuario', compact('result'));
     }
     
@@ -118,7 +126,7 @@ class UsuarioController extends Controller
         
         $this->inserirTipoEstque($keys_request,$request->input('idPessoa'));
 
-        $result= $this->objUsuario->all();
+        $result = $this->getUsuarios();
         return view('usuario/gerenciar-usuario', compact('result'));
 
     }
@@ -129,7 +137,7 @@ class UsuarioController extends Controller
         DB::delete('delete from usuario_tipo_estoque where id_usuario =?' , [$id]);
         $deleted = DB::delete('delete from usuario where id =?' , [$id]);
         
-        $result= $this->objUsuario->all();
+        $result = $this->getUsuarios();
         return view('usuario/gerenciar-usuario', compact('result'));
     }
 
@@ -153,8 +161,8 @@ class UsuarioController extends Controller
         DB::table('usuario')->insert([
             'id_pessoa' => $request->input('idPessoa'),
             'ativo' => $ativo,
-            'data_criacao' => date("d/m/y"),
-            'data_ativacao' => date("d/m/y"),
+            'data_criacao' => date("y/m/d"),
+            'data_ativacao' => date("y/m/d"),
             'bloqueado' => $bloqueado,
             'hash_senha' => $senha_inicial,
         ]);
@@ -258,16 +266,9 @@ class UsuarioController extends Controller
             ->update([
                 'hash_senha' => $senha,
             ]);
-        
-        //return view('usuario.gerenciar-usuario');
             return redirect()
                     ->back()
                     ->with('mensagem', 'Senha gera com sucesso!') ;
     }
-
-
-    
-
-
 }
 
