@@ -18,7 +18,7 @@ class TipoPagamentoController extends Controller
     public function index()
     {
         $result= $this->objTpPagamento->all();
-        return view('produtos/cad-pagamento', ['result'=>$result]);
+        return view('/cadastro-geral/cad-pagamento', ['result'=>$result]);
     }
 
     /**
@@ -42,7 +42,7 @@ class TipoPagamentoController extends Controller
          $pagamento = $request->input('pagamento');        
         DB::insert('insert into tipo_pagamento (nome) values (?)', [$pagamento]);
         $result= $this->objTpPagamento->all();
-        return view('/produtos/cad-pagamento',['result'=>$result]);
+        return view('/cadastro-geral/cad-pagamento',['result'=>$result]);
     }
 
     /**
@@ -89,6 +89,6 @@ class TipoPagamentoController extends Controller
     {
        $deleted = DB::delete('delete from tipo_pagamento where id= ?', [$id] );
        $result= $this->objTpPagamento->all();
-       return view('/produtos/cad-pagamento',['result'=>$result]);
+       return view('/cadastro-geral/cad-pagamento',['result'=>$result]);
     }
 }

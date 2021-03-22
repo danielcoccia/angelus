@@ -19,7 +19,7 @@ class UnidadeMedidaController extends Controller
     public function index()
     {
         $result = $this->objUnidade->all();
-        return view('produtos/gerenciar-unidade-medida', compact('result'));
+        return view('/cadastro-geral/gerenciar-unidade-medida', compact('result'));
     }
 
     public function create()
@@ -35,7 +35,7 @@ class UnidadeMedidaController extends Controller
         ]);
 
         $result = $this->objUnidade->all();
-        return view('produtos/gerenciar-unidade-medida', compact('result'));
+        return view('/cadastro-geral/gerenciar-unidade-medida', compact('result'));
     }
 
     public function show($id)
@@ -57,6 +57,6 @@ class UnidadeMedidaController extends Controller
     {
        $deleted = DB::delete('delete from tipo_unidade_medida where id= ?', [$id] );
        $result = $this->objUnidade->all();
-       return view('produtos/gerenciar-unidade-medida', compact('result'));
+       return view('/cadastro-geral/gerenciar-unidade-medida', compact('result'));
     }
 }

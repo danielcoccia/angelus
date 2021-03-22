@@ -19,7 +19,7 @@ class GeneroController extends Controller
     {
 
         $result= $this->objGenero->all();        
-        return view('/produtos/cad-genero',['result'=>$result]);
+        return view('/cadastro-geral/cad-genero',['result'=>$result]);
     }
 
     public function create()
@@ -36,7 +36,7 @@ class GeneroController extends Controller
         DB::insert('insert into tipo_genero (nome,sigla) values (?,?)', [$genero,$siglaGenero]);
         
         $result= $this->objGenero->all();
-        return view('/produtos/cad-genero',['result'=>$result]);
+        return view('/cadastro-geral/cad-genero',['result'=>$result]);
     }
 
 
@@ -61,6 +61,6 @@ class GeneroController extends Controller
     {
        $deleted = DB::delete('delete from tipo_genero where id =?' , [$id]);
        $result= $this->objGenero->all();
-       return view('/produtos/cad-genero',['result'=>$result]);
+       return view('/cadastro-geral/cad-genero',['result'=>$result]);
     }
 }

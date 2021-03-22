@@ -17,7 +17,7 @@ class SitDoacaoController extends Controller
     public function index()
     {
         $result= $this->objSitDoacao->all();
-        return view('produtos/cad-sit-doacao', ['result'=>$result]);
+        return view('/cadastro-geral/cad-sit-doacao', ['result'=>$result]);
     }
 
     /**
@@ -41,7 +41,7 @@ class SitDoacaoController extends Controller
         $doacao = $request->input('doacao');        
         DB::insert('insert into tipo_situacao_doacao (nome) values (?)', [$doacao]);
         $result= $this->objSitDoacao->all();
-        return view('/produtos/cad-sit-doacao',['result'=>$result]);
+        return view('/cadastro-geral/cad-sit-doacao',['result'=>$result]);
     }
     
 
@@ -89,7 +89,7 @@ class SitDoacaoController extends Controller
     {
         $deleted = DB::delete('delete from tipo_situacao_doacao where id =?' , [$id]);
         $result= $this->objSitDoacao->all();
-        return view('/produtos/cad-sit-doacao',['result'=>$result]);
+        return view('/cadastro-geral/cad-sit-doacao',['result'=>$result]);
 
     }
 }

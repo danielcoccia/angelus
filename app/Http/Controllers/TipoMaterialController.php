@@ -22,7 +22,7 @@ class TipoMaterialController extends Controller
     public function index()
     {
         $result= $this->objTpMat->all();
-        return view('/produtos/cad-tipo-material',['result'=>$result]);
+        return view('/cadastro-geral/cad-tipo-material',['result'=>$result]);
     }
 
     /**
@@ -52,7 +52,7 @@ class TipoMaterialController extends Controller
         $tipoMat = $request->input('tipoMat');        
         DB::insert('insert into tipo_categoria_material (nome) values (?)', [$tipoMat]);
         $result= $this->objTpMat->all();
-        return view('/produtos/cad-tipo-material',['result'=>$result]);
+        return view('/cadastro-geral/cad-tipo-material',['result'=>$result]);
          
     }
 
@@ -100,6 +100,6 @@ class TipoMaterialController extends Controller
     {
         $deleted = DB::delete('delete from tipo_categoria_material where id =?' , [$id]);
         $result= $this->objTpMat->all();
-        return view('/produtos/cad-tipo-material',['result'=>$result]);
+        return view('/cadastro-geral/cad-tipo-material',['result'=>$result]);
     }
 }

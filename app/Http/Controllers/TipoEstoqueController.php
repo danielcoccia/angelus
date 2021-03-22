@@ -19,7 +19,7 @@ class TipoEstoqueController extends Controller
     {   
 
         $result= $this->objtpEstoque->all();        
-        return view('/produtos/cad-tipo-estoque',['result'=>$result]);
+        return view('/cadastro-geral/cad-tipo-estoque',['result'=>$result]);
     }
 
     
@@ -34,7 +34,7 @@ class TipoEstoqueController extends Controller
         $tp_estoque = $request->input('tp_estoque');        
         DB::insert('insert into tipo_estoque (nome) values (?)', [$tp_estoque]);
         $result= $this->objtpEstoque->all();
-        return view('/produtos/cad-tipo-estoque',['result'=>$result]);
+        return view('/cadastro-geral/cad-tipo-estoque',['result'=>$result]);
     }
 
     
@@ -60,6 +60,6 @@ class TipoEstoqueController extends Controller
     {
         $deleted = DB::delete('delete from tipo_estoque where id =?' , [$id]);
         $result= $this->objtpEstoque->all();
-        return view('/produtos/cad-tipo-estoque',['result'=>$result]);
+        return view('/cadastro-geral/cad-tipo-estoque',['result'=>$result]);
     }
 }

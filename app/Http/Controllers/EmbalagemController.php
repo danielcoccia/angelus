@@ -18,7 +18,7 @@ class EmbalagemController extends Controller
     {
         
         $result= $this->objEmbalagem->all();        
-        return view('/produtos/cad-embalagem',['result'=>$result]);
+        return view('/cadastro-geral/cad-embalagem',['result'=>$result]);
     }
 
    
@@ -33,7 +33,7 @@ class EmbalagemController extends Controller
         $sigla = $request->input('sigla');        
         DB::insert('insert into tipo_embalagem (nome,sigla) values (?,?)', [$nome,$sigla]);
         $result= $this->objEmbalagem->all();
-        return view('/produtos/cad-embalagem',['result'=>$result]);
+        return view('/cadastro-geral/cad-embalagem',['result'=>$result]);
     }
 
    
@@ -58,6 +58,6 @@ class EmbalagemController extends Controller
     {
         $deleted = DB::delete('delete from tipo_embalagem where id =?' , [$id]);
         $result= $this->objEmbalagem->all();
-        return view('/produtos/cad-embalagem',['result'=>$result]);
+        return view('/cadastro-geral/cad-embalagem',['result'=>$result]);
     }
 }
