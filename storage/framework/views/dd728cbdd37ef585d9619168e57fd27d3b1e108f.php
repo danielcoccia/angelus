@@ -11,12 +11,12 @@
                                 <a href="/" class="logo logo-admin"><img src="<?php echo e(URL::asset('/images/logo-dark.png')); ?>" height="30" alt="logo"></a>
                             </h3>
                             <div class="p-3">
-                                <h4 class="text-muted font-size-18 mb-1 text-center">Angelus !</h4>
-                                <p class="text-muted text-center"></p>
+                                <h4 class="text-muted font-size-18 mb-1 text-center">Welcome Back !</h4>
+                                <p class="text-muted text-center">Sign in to continue to Lexa.</p>
                                 <form method="POST" class="form-horizontal mt-4" action="<?php echo e(route('login')); ?>">
                                        <?php echo csrf_field(); ?>
                                     <div class="form-group">
-                                        <label for="username">Usuario</label>
+                                        <label for="username">E-Mail Address</label>
                                          <input id="email" type="email" class="form-control <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -40,7 +40,7 @@ unset($__errorArgs, $__bag); ?>
 
                                     </div>
                                     <div class="form-group">
-                                        <label for="userpassword">Senha</label>
+                                        <label for="userpassword">Password</label>
                                         <input id="password" type="password" class="form-control <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -48,7 +48,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="current-password" placeholder="Senha">
+unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="current-password" placeholder="Password">
                                         <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -75,17 +75,17 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                     <div class="form-group mb-0 row">
                                         <div class="col-12 mt-4">
-                                            <a href="<?php echo e(route('password.request')); ?>" class="text-muted"><i class="mdi mdi-lock"></i>Esqueceu a Senha?</a>
+                                            <a href="<?php echo e(route('password.request')); ?>" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="mt-5 text-center">
+                    <div class="mt-5 text-center">
                         <p>Don't have an account ? <a href="/register" class="text-primary"> Signup Now </a></p>
                         <p>© <?php echo e(date('Y', strtotime('-2 year'))); ?> - <?php echo e(date('Y')); ?> Lexa. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>

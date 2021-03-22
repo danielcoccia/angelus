@@ -8,6 +8,7 @@ use App\Models\ModelGenero;
 use App\Models\ModelPessoa;
 use App\Models\ModelEntidade;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\PessoaController;
 
 class PessoaController extends Controller
 {
@@ -15,14 +16,13 @@ class PessoaController extends Controller
     private $objGenero;
     private $objPessoa;
     
-    public function __construct(){
+    public function __construct(){        
         $this->objGenero = new ModelGenero();
         $this->objPessoa = new ModelPessoa();
     }
 
     public function index()
-    {
-
+    {   
         $result= $this->objPessoa->all();
         return view('/pessoa/pesquisar-pessoa',['result'=>$result]);
     }

@@ -21,20 +21,20 @@
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>id</th>
+                                                <th>Nome</th>
+                                                <th>Cpf</th>
                                                 <th>Ativo</th>
                                                 <th>Bloqueado</th>
-                                                <th>Data Ativação</th>         
+                                                <th>Data Ativação</th>
                                                 <th>Ação</th>
-
-                                                                                                
                                             </tr>
                                         </thead>
 
                                         <tbody>
                                           @foreach($result as $results)
                                              <tr>
-                                                <td>{{$results->id}}</td>
+                                                <td>{{$results->nome}}</td>
+                                                <td>{{$results->cpf}}</td>
                                                 <td>{{$results->ativo ? 'sim' : 'não' }}</td>
                                                 <td>{{$results->bloqueado ? 'sim' : 'não' }}</td>
                                                 <td>{{$results->data_ativacao}}</td>
@@ -45,9 +45,24 @@
                                                     <a href="/usuario/excluir/{{$results->id}}">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
                                                     </a>
+                                                     <a href="/usuario/gerar-Senha/{{$results->id_pessoa}}">
+                                                        <input class="btn btn-primary" type="button" value="Gerar Senha">
+                                                    </a>
                                                 </td>
                                             </tr>
                                             @endforeach     
+
+                                            @if(session('mensagem'))
+                                                <div class="alert alert-success">
+                                                    <p>{{session('mensagem')}}</p>
+                                                </div>
+                                            @endif
+
+                                            @if(session('mensagemErro'))
+                                                <div class="alert alert-success">
+                                                    <p>{{session('mensagemErro')}}</p>
+                                                </div>
+                                            @endif
                                         </tbody>
                                     </table>
 

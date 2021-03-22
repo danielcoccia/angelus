@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\ModelUsuario;
 use App\Models\ModelPessoa;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -19,7 +20,18 @@ class UsuarioController extends Controller
 
     public function index()
     {   
-        $result= $this->objUsuario->all();
+        //$result= $this->objUsuario->all();
+         $result=DB::select("select 
+                        u.id,
+                        u.id_pessoa,
+                        p.cpf,
+                        p.nome,
+                        u.ativo,
+                        u.bloqueado,
+                        u.data_ativacao
+                        from usuario u 
+                        left join pessoa p on u.id_pessoa = p.id                        
+                    ");  
         return view('usuario/gerenciar-usuario', compact('result'));
     }
    
@@ -36,7 +48,9 @@ class UsuarioController extends Controller
              
         $keys_request = array_keys($request->input());
 
-        $this->inserirUsuario($request);
+        $senha_inicial = $this->gerarSenhaInicial($request->input('idPessoa'));
+
+        $this->inserirUsuario($request, $senha_inicial);
 
         $this->excluirUsuarioPerfis($request->input('idPessoa'));
 
@@ -131,17 +145,18 @@ class UsuarioController extends Controller
         return view('/usuario/configurar-usuario', compact('result', 'resultPerfil','resultEstoque'));
     }
 
-    public function inserirUsuario($request)
+    public function inserirUsuario($request , $senha_inicial)
     {
         $ativo = isset($request->ativo) ? 1 : 0;
         $bloqueado = isset($request->bloqueado) ? 1 : 0;
-        
-        DB::table('usuario')->insert([            
-            'id_pessoa' => $request->input('idPessoa'),            
+
+        DB::table('usuario')->insert([
+            'id_pessoa' => $request->input('idPessoa'),
             'ativo' => $ativo,
             'data_criacao' => date("d/m/y"),
-            'data_ativacao' => date("d/m/y"),            
+            'data_ativacao' => date("d/m/y"),
             'bloqueado' => $bloqueado,
+            'hash_senha' => $senha_inicial,
         ]);
     }
 
@@ -195,5 +210,64 @@ class UsuarioController extends Controller
         }
     }
 
+    public function gerarSenhaInicial($id_pessoa){        
+       
+       $resultPessoa = DB::select("select SUBSTRING(cpf , 1,3) id from pessoa where id =$id_pessoa");
+
+       return Hash::make('angelus'.$resultPessoa[0]->id);        
+    }
+
+    public function alteraSenha(){
+       return view('login.alterar-senha');
+    }
+
+    public function gravaSenha(Request $request){
+        //dd($request);
+       $id_usuario = (session()->get('usuario.id_usuario'));
+       $senhaAtual = $request->input('senhaAtual');
+       $resultSenhaAtualHash = DB::select("select hash_senha from usuario where id = $id_usuario");
+
+       
+        if ( Hash::check($senhaAtual, $resultSenhaAtualHash[0]->hash_senha))
+        {
+            $senha_nova = Hash::make($request->input('senhaNova'));
+
+            DB::table('usuario')
+            ->where('id', $id_usuario)
+            ->update([
+                'hash_senha' => $senha_nova,
+            ]);
+
+             //return view('login.alterar-senha')->with('mensagem', 'Senha Alterada com sucesso!');
+             return redirect()
+                    ->back()
+                    ->with('mensagem', 'Senha Alterada com sucesso!') ;
+        } 
+        return redirect()
+                    ->back()
+                    ->with('mensagemErro', 'Senha atual incorreta!') ;
+       //return view('login.alterar-senha')->withErrors(['Senha atual incorreta']);
+    }
+
+    public function gerarSenha($id_pessoa){
+
+        $senha = $this->gerarSenhaInicial($id_pessoa);
+
+        DB::table('usuario')
+            ->where('id_pessoa', $id_pessoa)
+            ->update([
+                'hash_senha' => $senha,
+            ]);
+        
+        //return view('usuario.gerenciar-usuario');
+            return redirect()
+                    ->back()
+                    ->with('mensagem', 'Senha gera com sucesso!') ;
+    }
+
+
+    
+
 
 }
+

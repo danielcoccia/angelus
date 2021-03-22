@@ -19,20 +19,20 @@
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>id</th>
+                                                <th>Nome</th>
+                                                <th>Cpf</th>
                                                 <th>Ativo</th>
                                                 <th>Bloqueado</th>
-                                                <th>Data Ativação</th>         
+                                                <th>Data Ativação</th>
                                                 <th>Ação</th>
-
-                                                                                                
                                             </tr>
                                         </thead>
 
                                         <tbody>
                                           <?php $__currentLoopData = $result; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $results): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                              <tr>
-                                                <td><?php echo e($results->id); ?></td>
+                                                <td><?php echo e($results->nome); ?></td>
+                                                <td><?php echo e($results->cpf); ?></td>
                                                 <td><?php echo e($results->ativo ? 'sim' : 'não'); ?></td>
                                                 <td><?php echo e($results->bloqueado ? 'sim' : 'não'); ?></td>
                                                 <td><?php echo e($results->data_ativacao); ?></td>
@@ -43,9 +43,18 @@
                                                     <a href="/usuario/excluir/<?php echo e($results->id); ?>">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
                                                     </a>
+                                                     <a href="/usuario/gerar-Senha/<?php echo e($results->id_pessoa); ?>">
+                                                        <input class="btn btn-primary" type="button" value="Gerar Senha">
+                                                    </a>
                                                 </td>
                                             </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>     
+
+                                             <?php if(session('mensagem')): ?>
+                                                <div class="alert alert-success">
+                                                    <p><?php echo e(session('mensagem')); ?></p>
+                                                </div>
+                                            <?php endif; ?>
                                         </tbody>
                                     </table>
 

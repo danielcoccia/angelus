@@ -51,7 +51,7 @@
                                         <div class="form-group row">
                                             <label for="cpf" class="col-sm-2 col-form-label">Cpf*</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control cpf-mascara" required="required" placeholder="Ex.: 000.000.000-00" type="text" value="" id="cpf" name="cpf">
+                                                <input class="form-control mascara_cpf" required="required" placeholder="Ex.: 000.000.000-00" type="text" value="" id="cpf" name="cpf">
                                                 <!-- <input type="text" class="form-control " placeholder="Ex.: 000.000.000-00"> -->
                                             </div>
                                         </div>
