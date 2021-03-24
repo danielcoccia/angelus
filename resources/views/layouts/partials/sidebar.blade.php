@@ -28,7 +28,7 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="/gerenciar-itemCatalogo" class="waves-effect"><span>Item Catalogo</span></a></li>
                                 <li><a href="/gerenciar-composicao" class="waves-effect"><span>Composição</span></a></li>
-                                <li><a href="/gerenciar-cadastro-inicial" class="waves-effect"><span>Cadastro Inicial</span></a></li>
+                                <!-- <li><a href="/gerenciar-cadastro-inicial" class="waves-effect"><span>Cadastro Inicial</span></a></li> -->
                             </ul>
                         </li>
 
@@ -39,14 +39,17 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <!-- <li><a href="/produtos/cad-inicial-prod" class="waves-effect"><span>Inicial</span></a></li> -->
-                                <li><a href="/cad-tipo-material" class="waves-effect"><span>Tipo Material</span></a></li>
+                                <li><a href="/cad-cat-material" class="waves-effect"><span>Categoria Material</span></a></li>
                                 <li><a href="/cad-embalagem" class="waves-effect"><span>Embalagem</span></a></li>
                                 <li><a href="/cad-tipo-estoque" class="waves-effect"><span>Tipo Estoque</span></a></li>
                                 <li><a href="/cad-genero" class="waves-effect"><span>Genero</span></a></li>
                                 <li><a href="/cad-pagamento" class="waves-effect"><span>Pagamento</span></a></li>
-                                <li><a href="/cad-sit-doacao" class="waves-effect"><span>Situação Doação </span></a></li>
-                                <!-- <li><a href="/produtos/cad-tipo-sit-item" class="waves-effect"><span>Tipo Situação Item </span></a></li> -->
+                                <li><a href="/cad-sit-doacao" class="waves-effect"><span>Situação Doação </span></a></li>                                
                                 <li><a href="/unidade-medida" class="waves-effect"><span>Unidade de Medida  </span></a></li>
+                                <li><a href="/marca" class="waves-effect"><span>Marca</span></a></li>
+                                <li><a href="/tamanho" class="waves-effect"><span>Tamanho</span></a></li>
+                                <li><a href="/cor" class="waves-effect"><span>Cor</span></a></li>
+                                <li><a href="/fase-etaria" class="waves-effect"><span>Fase Etária</span></a></li>
                             </ul>
                         </li>
 

@@ -1,15 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\ModelItemCatalogo;
-use App\Models\ModelTipoMaterial;
+use App\Models\ModelCatMaterial;
 use Illuminate\Support\Facades\Http;
-
-
-
 
 class ItemCatalogoController extends Controller
 {
@@ -19,7 +15,7 @@ class ItemCatalogoController extends Controller
 
     public function __construct(){
         $this->objItemCatalogo = new ModelItemCatalogo();
-        $this->objTipoMaterial = new ModelTipoMaterial();
+        $this->objTipoMaterial = new ModelCatMaterial();
     }
 
     private function getListaItemMatAll(){
@@ -58,8 +54,7 @@ class ItemCatalogoController extends Controller
         $ativo = isset($request->ativo) ? 1 : 0;
         $composicao = isset($request->composicao) ? 1 : 0;
 
-        DB::table('item_catalogo_material')->insert([
-            'id' => '6',
+        DB::table('item_catalogo_material')->insert([            
             'nome' => $request->input('nome_item'),
             'id_categoria_material' => $request->input('categoria_item'),
             'valor_minimo' => $request->input('val_minimo'),
@@ -109,7 +104,6 @@ class ItemCatalogoController extends Controller
         return view('item/gerenciar-item-catalogo', ['result'=>$result]);
 
     }
-
    
     public function destroy($id)
     {

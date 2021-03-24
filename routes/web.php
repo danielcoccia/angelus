@@ -34,12 +34,9 @@ Route::get('/logout', 'LexaAdmin@logout');
 Route::get('/', 'LoginController@index');
 Route::post('/login/valida', 'LoginController@valida');
 
-
-
-Route::get('cad-tipo-material', 'TipoMaterialController@index')->middleware('validaUsuario');
-Route::post('cad-tipo-material/inserir', 'TipoMaterialController@store')->middleware('validaUsuario');
-Route::get('cad-tipo-material/excluir/{id}', 'TipoMaterialController@destroy')->middleware('validaUsuario');
-
+Route::get('cad-cat-material', 'CatMaterialController@index')->middleware('validaUsuario');
+Route::post('cad-cat-material/inserir', 'CatMaterialController@store')->middleware('validaUsuario');
+Route::get('cad-cat-material/excluir/{id}', 'CatMaterialController@destroy')->middleware('validaUsuario');
 
 Route::get('cad-embalagem', 'EmbalagemController@index')->middleware('validaUsuario');
 Route::post('cad-embalagem/inserir', 'EmbalagemController@store')->middleware('validaUsuario');
@@ -93,8 +90,6 @@ Route::get('/usuario/alterar-senha', 'UsuarioController@alteraSenha')->middlewar
 Route::post('/usuario/gravaSenha', 'UsuarioController@gravaSenha')->middleware('validaUsuario');
 
 
-
-
 Route::get('gerenciar-itemCatalogo', 'ItemCatalogoController@index')->middleware('validaUsuario');
 Route::get('item-catalogo-incluir', 'ItemCatalogoController@create')->middleware('validaUsuario');
 Route::post('cad-item-material/inserir', 'ItemCatalogoController@store')->middleware('validaUsuario');
@@ -106,3 +101,23 @@ Route::get('gerenciar-composicao', 'ComposicaoItemController@index')->middleware
 Route::get('item-composicao/incluir/{id}', 'ComposicaoItemController@create')->middleware('validaUsuario');
 Route::post('item-composicao/inserir', 'ComposicaoItemController@store')->middleware('validaUsuario');
 Route::get('/item-composicao/excluir/{id}/{idComposicao}', 'ComposicaoItemController@destroy')->middleware('validaUsuario');
+
+Route::get('gerenciar-cadastro-inicial', 'CadastroInicialController@index')->middleware('validaUsuario');
+Route::get('gerenciar-cadastro-inicial/incluir', 'CadastroInicialController@create')->middleware('validaUsuario');
+
+
+Route::get('/marca', 'MarcaController@index')->middleware('validaUsuario');
+Route::post('/marca/inserir', 'MarcaController@store')->middleware('validaUsuario');
+Route::get('/marca/excluir/{id}', 'MarcaController@destroy')->middleware('validaUsuario');
+
+Route::get('/tamanho', 'TamanhoController@index')->middleware('validaUsuario');
+Route::post('/tamanho/inserir', 'TamanhoController@store')->middleware('validaUsuario');
+Route::get('/tamanho/excluir/{id}', 'TamanhoController@destroy')->middleware('validaUsuario');
+
+Route::get('/cor', 'CorController@index')->middleware('validaUsuario');
+Route::post('/cor/inserir', 'CorController@store')->middleware('validaUsuario');
+Route::get('/cor/excluir/{id}', 'CorController@destroy')->middleware('validaUsuario');
+
+Route::get('/fase-etaria', 'FaseEtariaController@index')->middleware('validaUsuario');
+Route::post('/fase-etaria/inserir', 'FaseEtariaController@store')->middleware('validaUsuario');
+Route::get('/fase-etaria/excluir/{id}', 'FaseEtariaController@destroy')->middleware('validaUsuario');

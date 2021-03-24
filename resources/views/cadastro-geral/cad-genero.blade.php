@@ -1,57 +1,42 @@
 @extends('layouts.master')
 
-@section('title') Form Elements @endsection
+@section('title')  @endsection
 
 @section('content')
- <!-- start page title -->
-                    <div class="row">
- <!--                @component('common-components.breadcrumb')
-                     @slot('title') Cadastro de Usuario  @endslot                     
-                     @slot('li1') Lexa  @endslot
-                     @slot('li2') Forms  @endslot
-                     @slot('li3') Form Elements @endslot
-                @endcomponent
-                 -->
-                   
+ 
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="card-title">Cadastro Genero</h4>
+                    <hr>                                    
+                    <form class="form-horizontal mt-4" method="POST" action="/cad-genero/inserir">
+                    @csrf
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="genero" class="col-sm-2 col-form-label">Novo Genero</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" value="" id="genero" name="genero" required oninvalid="this.setCustomValidity('Campo requerido')">
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <label for="siglaGenero" class="col-sm-2 col-form-label">Sigla</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" maxlength="1" value="" id="siglaGenero" name="siglaGenero" required oninvalid="this.setCustomValidity('Campo requerido')">
+                            </div>
+                        </div>
                     </div>
-                    <!-- end page title -->
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-
-                                    <h4 class="card-title">Cadastro Genero</h4>
-                                    <hr>
-                                    <!-- <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->
-                                    <form class="form-horizontal mt-4" method="POST" action="/cad-genero/inserir">
-                                    @csrf
-                                    <div class="form-group row">
-                                        <label for="genero" class="col-sm-2 col-form-label">Novo Genero</label>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" type="text" value="" id="genero" name="genero">
-                                        </div>
-
-                                        <label for="siglaGenero" class="col-sm-2 col-form-label">Sigla</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="text" maxlength="1" value="" id="siglaGenero" name="siglaGenero">
-                                            </div>
-                                    </div>                                   
-                                  
-
-                                    <div class="col-12 mt-3" style="text-align: right;">
-                                        <button type="submit" class="btn btn-primary">CADASTRAR</button>
-                                        <button type="button" class="btn btn-primary">LIMPAR</button>                                        
-                                    </div>
-                                    
-                                    <br><br><hr>
+                    <div class="col-4 mt-3" style="text-align: right;">
+                        <button type="submit" class="btn btn-primary">CADASTRAR</button>                        
+                    </div>                    
+                    <br><br><hr>
                     <h4 class="card-title">Lista de Generos</h4>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-body">
-
-                                    
+                                <div class="card-body">                                    
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
@@ -78,20 +63,15 @@
                                             @endforeach                       
                                         </tbody>
                                     </table>
-
                                 </div>
                             </div>
-                        </div>
-                        <!-- end col -->
-                    </div>
-                        <!-- end col -->
-                    </div>
-                                    
-                </div>
+                        </div>                        
+                    </div>                        
+                </div>                                    
             </div>
-            <!-- end col -->
-        </div>
-        <!-- end row -->
+        </div>            
+    </div>
+        
 @endsection
 
 @section('footerScript')

@@ -8,32 +8,45 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">Cadastro de Unidade de Medida</h4>
+                    <h4 class="card-title">Cadastro de Cores</h4>
                     <hr>                    
-                    <form class="form-horizontal mt-4" method="POST" action="/unidade-medida/inserir">
-                    @csrf                    
+                    <form class="form-horizontal mt-4" method="POST" action="/cor/inserir">
+                    @csrf                                 
                         <div class="form-group">
-                            <div class="row">
-                                <label for="unidade_med" class="col-sm-2 col-form-label">Nova Unidade</label>
-                                <div class="col-sm-4">
-                                    <input class="form-control" type="text" id="unidade_med" name="unidade_med" required oninvalid="this.setCustomValidity('Campo requerido')">
-                                </div>
-                            </div>                            
-
-                            <div class="row mt-3">
-                                <label for="sigla" class="col-sm-2 col-form-label">Sigla</label>
-                                <div class="col-sm-4">
-                                    <input class="form-control" type="text" id="sigla" name="sigla" required oninvalid="this.setCustomValidity('Campo requerido')">
+                            <div class="row">                                
+                                <label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
+                                <div class="col-4">                                    
+                                        <select class="form-control select2" id="categoria" name="categoria" required oninvalid="this.setCustomValidity('Campo requerido')">
+                                                <option>Selecione </option>
+                                            @Foreach ($resultCategoria as $resultCategorias)
+                                                <option value="{{$resultCategorias->id}}">{{$resultCategorias->nome}} </option>
+                                            @endForeach
+                                        </select>                                    
                                 </div>
                             </div>
-                        </div>                      
 
-                        <div class="col-6 mt-3" style="text-align: right;">
-                            <button type="submit" class="btn btn-primary">CADASTRAR</button>                        
+                            <div class="row mt-3">
+                                <label for="cor" class="col-sm-2 col-form-label">Cor</label>
+                                <div class="col-4">
+                                    <input class="form-control" type="text" id="cor" name="cor" required oninvalid="this.setCustomValidity('Campo requerido')">
+                                </div>
+                            </div>
+
+                            <!-- <div class="row mt-3">
+                                <label for="sigla" class="col-sm-2 col-form-label">Ativo</label>
+                                <div class="col-4">
+                                    <input class="" type="checkbox" id="ativo_marca" name="ativo_marca" checked="">                                
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mt-3" style="text-align: right;">
+                                <button type="submit" class="btn btn-primary">CADASTRAR</button>                        
+                            </div>    
                         </div>
                     </form>
                     <br><br><hr>
-                    <h4 class="card-title">Lista de Unidade de Medida</h4>
+                    <h4 class="card-title">Lista de Cores</h4>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -43,9 +56,8 @@
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Unidade de Medida</th>
-                                                <th>Silga</th>
-                                                <th>Ação</th>
+                                                <th>Cor</th>
+                                                <th>Categoria</th>
                                             </tr>
                                         </thead>
 
@@ -53,11 +65,11 @@
                                             @Foreach ($result as $results)
                                             <tr>
                                                 <td>{{$results->id}}</td>
-                                                <td>{{$results->nome}}</td>
-                                                <td>{{$results->sigla}}</td>
+                                                <td>{{$results->cor}}</td>
+                                                <td>{{$results->categoria}}</td>
                                                 <td>
                                                     <input class="btn btn-warning" type="reset" value="Alterar">
-                                                    <a href="/unidade-medida/excluir/{{$results->id}}">
+                                                    <a href="/cor/excluir/{{$results->id}}">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
                                                     </a>
                                                 </td>
