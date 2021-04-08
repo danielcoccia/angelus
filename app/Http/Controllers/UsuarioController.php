@@ -64,7 +64,7 @@ class UsuarioController extends Controller
 
         $this->inserirperfilUsuario($keys_request,$request->input('idPessoa'));
         
-        $this->inserirTipoEstque($keys_request,$request->input('idPessoa'));
+        $this->inserirUsuarioDeposito($keys_request,$request->input('idPessoa'));
 
         $result = $this->getUsuarios();
         return view('usuario/gerenciar-usuario', compact('result'));
@@ -80,7 +80,7 @@ class UsuarioController extends Controller
         
         $resultPerfil = DB::select("select id, nome from tipo_perfil");
 
-        $resultEstoque = DB::select("select id, nome from tipo_estoque");
+        $resultDeposito = $this->getDeposito();
         
         $resultUsuario = DB::table('usuario')->where('id', $idUsuario)->get();
 
@@ -88,20 +88,20 @@ class UsuarioController extends Controller
 
         $resultPerfisUsuario = DB::select("select * from usuario_perfil where id_usuario =".$idUsuario);
 
-        $resultPerfisUsuarioArray = array();;
+        $resultPerfisUsuarioArray = array();
         foreach ($resultPerfisUsuario as $resultPerfisUsuarios) {
             $resultPerfisUsuarioArray[] = $resultPerfisUsuarios->id_tp_perfil;
         }
 
-        $resultTpEstoqueUsuario = DB::select("select * from usuario_tipo_estoque where id_usuario =".$idUsuario);
+        $resultDepositoUsuario = DB::select("select * from usuario_deposito where id_usuario =".$idUsuario);
 
-        $resultTpEstoqueUsuarioArray = array();
-        foreach ($resultTpEstoqueUsuario as $resultTpEstoqueUsuarios) {
-            $resultTpEstoqueUsuarioArray[] = $resultTpEstoqueUsuarios->id_tp_estoque;
+        $resultDepositoUsuarioArray = array();
+        foreach ($resultDepositoUsuario as $resultDepositoUsuarios) {
+            $resultDepositoUsuarioArray[] = $resultDepositoUsuarios->id_deposito;
         }
 
 
-        return view('/usuario/alterar-configurar-usuario', compact('result', 'resultPerfil','resultEstoque','resultUsuario', 'resultPerfisUsuarioArray', 'resultTpEstoqueUsuarioArray'));
+        return view('/usuario/alterar-configurar-usuario', compact('result', 'resultPerfil','resultDeposito','resultUsuario', 'resultPerfisUsuarioArray', 'resultDepositoUsuarioArray'));
     }
 
     public function update(Request $request, $id)
@@ -122,11 +122,12 @@ class UsuarioController extends Controller
 
         $this->excluirUsuarioPerfis($request->input('idPessoa'));
 
-        $this->inserirperfilUsuario($keys_request,$request->input('idPessoa'));
+        $this->inserirPerfilUsuario($keys_request,$request->input('idPessoa'));
         
-        $this->inserirTipoEstque($keys_request,$request->input('idPessoa'));
+        $this->inserirUsuarioDeposito($keys_request,$request->input('idPessoa'));
 
         $result = $this->getUsuarios();
+        
         return view('usuario/gerenciar-usuario', compact('result'));
 
     }
@@ -134,11 +135,21 @@ class UsuarioController extends Controller
     public function destroy($id)
     {   
         DB::delete('delete from usuario_perfil where id_usuario =?' , [$id]);
-        DB::delete('delete from usuario_tipo_estoque where id_usuario =?' , [$id]);
+        DB::delete('delete from usuario_deposito where id_usuario =?' , [$id]);
         $deleted = DB::delete('delete from usuario where id =?' , [$id]);
         
         $result = $this->getUsuarios();
         return view('usuario/gerenciar-usuario', compact('result'));
+    }
+
+    public function getDeposito(){
+        $sql = "select  
+                d.id,
+                d.nome||'-'||e.nome nome                
+                from deposito d
+                join tipo_estoque e on d.id_tp_estoque = e.id";
+        
+        return DB::select($sql);
     }
 
     public function configurarUsuario($id)
@@ -146,11 +157,11 @@ class UsuarioController extends Controller
 
         $resultPerfil = DB::select("select id, nome from tipo_perfil");
 
-        $resultEstoque = DB::select("select id, nome from tipo_estoque");
+        $resultDeposito = $this->getDeposito();
 
         $result =DB::table('pessoa')->where('id', $id)->get();
 
-        return view('/usuario/configurar-usuario', compact('result', 'resultPerfil','resultEstoque'));
+        return view('/usuario/configurar-usuario', compact('result', 'resultPerfil','resultDeposito'));
     }
 
     public function inserirUsuario($request , $senha_inicial)
@@ -172,11 +183,11 @@ class UsuarioController extends Controller
     {
         $idUsuario = DB::select("select id from usuario where id_pessoa =".$idPessoa);
 
-        DB::delete('delete from usuario_tipo_estoque where id_usuario =?' , [$idUsuario[0]->id]);
+        DB::delete('delete from usuario_deposito where id_usuario =?' , [$idUsuario[0]->id]);
         DB::delete('delete from usuario_perfil where id_usuario =?' , [$idUsuario[0]->id]);
     }
 
-    public function inserirperfilUsuario($perfil,$idPessoa)
+    public function inserirPerfilUsuario($perfil,$idPessoa)
     {
         $idUsuario = DB::select("select id from usuario where id_pessoa =".$idPessoa);
         $resultPerfil = DB::select("select id, nome from tipo_perfil");
@@ -198,19 +209,40 @@ class UsuarioController extends Controller
         }        
     }
 
-    public function inserirTipoEstque($tpEstoque,$idPessoa)
-    {
+    // public function inserirTipoEstque($tpEstoque,$idPessoa)
+    // {
+    //     $idUsuario = DB::select("select id from usuario where id_pessoa =".$idPessoa);
+    //     $resultEstoque = DB::select("select id, nome from tipo_estoque");
+
+    //      foreach ($tpEstoque as $tpEstoques) {
+    //         foreach ($resultEstoque as $resultEstoques) {                
+
+    //             if($resultEstoques->nome ==  str_replace("_", " ",$tpEstoques) ){
+
+    //                 DB::table('usuario_tipo_estoque')->insert([            
+    //                         'id_usuario' => $idUsuario[0]->id,
+    //                         'id_tp_estoque' => $resultEstoques->id,
+                            
+    //                 ]);
+    //             }        
+    //         }
+    //     }
+    // }
+
+    public function inserirUsuarioDeposito($deposito,$idPessoa){
+
+
         $idUsuario = DB::select("select id from usuario where id_pessoa =".$idPessoa);
-        $resultEstoque = DB::select("select id, nome from tipo_estoque");
+        $resultDeposito = $this->getDeposito();
+        //dd($resultDeposito);
+         foreach ($deposito as $depositos) {
+            foreach ($resultDeposito as $resultDepositos) {                
 
-         foreach ($tpEstoque as $tpEstoques) {
-            foreach ($resultEstoque as $resultEstoques) {                
+                if($resultDepositos->nome ==  str_replace("_", " ",$depositos) ){
 
-                if($resultEstoques->nome ==  str_replace("_", " ",$tpEstoques) ){
-
-                    DB::table('usuario_tipo_estoque')->insert([            
+                    DB::table('usuario_deposito')->insert([            
                             'id_usuario' => $idUsuario[0]->id,
-                            'id_tp_estoque' => $resultEstoques->id,
+                            'id_deposito' => $resultDepositos->id,
                             
                     ]);
                 }        

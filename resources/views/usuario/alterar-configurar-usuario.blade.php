@@ -82,13 +82,13 @@
                                     <hr>    
                                 <div class="table-responsive">                            
                                 <table class="table table-bordered table-striped mb-0">
-                                  @foreach($resultEstoque as $resultEstoques)
+                                  @foreach($resultDeposito as $resultDepositos)
                                     <tr>
                                         <td>
-                                            {{$resultEstoques->nome}}
+                                            {{$resultDepositos->nome}}
                                         </td>
                                         <td>
-                                            <input type="checkbox" id="{{$resultEstoques->nome}}" name="{{$resultEstoques->nome}}" value="{{$resultEstoques->id}}" {{in_array($resultEstoques->id,$resultTpEstoqueUsuarioArray) ? 'checked' : ''}}>                                            
+                                            <input type="checkbox" id="{{$resultDepositos->nome}}" name="{{$resultDepositos->nome}}" value="{{$resultDepositos->id}}" {{in_array($resultDepositos->id,$resultDepositoUsuarioArray) ? 'checked' : ''}}>                                            
                                         </td>
                                     </tr>
                                     @endforeach

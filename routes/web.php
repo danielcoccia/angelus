@@ -121,3 +121,17 @@ Route::get('/cor/excluir/{id}', 'CorController@destroy')->middleware('validaUsua
 Route::get('/fase-etaria', 'FaseEtariaController@index')->middleware('validaUsuario');
 Route::post('/fase-etaria/inserir', 'FaseEtariaController@store')->middleware('validaUsuario');
 Route::get('/fase-etaria/excluir/{id}', 'FaseEtariaController@destroy')->middleware('validaUsuario');
+
+Route::get('/deposito', 'DepositoController@index')->middleware('validaUsuario');
+Route::post('/deposito/inserir', 'DepositoController@store')->middleware('validaUsuario');
+Route::get('/deposito/excluir/{id}', 'DepositoController@destroy')->middleware('validaUsuario');
+
+
+Route::get('/combo/catItem/{id}', 'CadastroInicialController@getCategoria')->middleware('validaUsuario');
+
+// Route::get('/combo/marcaItem/{id}', 'CadastroInicialController@getCategoria')->middleware('validaUsuario');
+Route::get('/combo/tamanho/{id}', 'CadastroInicialController@getTamanho')->middleware('validaUsuario');
+Route::get('/combo/embalagem/{id}', 'CadastroInicialController@getEmbalagem')->middleware('validaUsuario');
+
+
+ 

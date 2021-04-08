@@ -28,7 +28,7 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="/gerenciar-itemCatalogo" class="waves-effect"><span>Item Catalogo</span></a></li>
                                 <li><a href="/gerenciar-composicao" class="waves-effect"><span>Composição</span></a></li>
-                                <!-- <li><a href="/gerenciar-cadastro-inicial" class="waves-effect"><span>Cadastro Inicial</span></a></li> -->
+                                <li><a href="/gerenciar-cadastro-inicial" class="waves-effect"><span>Cadastro Inicial</span></a></li>
                             </ul>
                         </li>
 
@@ -50,6 +50,7 @@
                                 <li><a href="/tamanho" class="waves-effect"><span>Tamanho</span></a></li>
                                 <li><a href="/cor" class="waves-effect"><span>Cor</span></a></li>
                                 <li><a href="/fase-etaria" class="waves-effect"><span>Fase Etária</span></a></li>
+                                <li><a href="/deposito" class="waves-effect"><span>Depósito</span></a></li>
                             </ul>
                         </li>
 
