@@ -31,7 +31,7 @@
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>Id</th>
+                                                <th>Id Teste</th>
                                                 <th>Tipo</th>
                                                 <th>Ação</th>
                                             </tr>
