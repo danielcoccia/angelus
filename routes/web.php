@@ -96,14 +96,14 @@ Route::post('cad-item-material/inserir', 'ItemCatalogoController@store')->middle
 Route::get('/item-catalogo/alterar/{id}', 'ItemCatalogoController@edit')->middleware('validaUsuario');
 Route::put('item-catalogo-atualizar/{id}', 'ItemCatalogoController@update')->middleware('validaUsuario');
 Route::get('/item-catalogo/excluir/{id}', 'ItemCatalogoController@destroy')->middleware('validaUsuario');
+Route::post('/cad-item-material/inserir', 'ItemCatalogoController@store')->middleware('validaUsuario');
 
 Route::get('gerenciar-composicao', 'ComposicaoItemController@index')->middleware('validaUsuario');
 Route::get('item-composicao/incluir/{id}', 'ComposicaoItemController@create')->middleware('validaUsuario');
 Route::post('item-composicao/inserir', 'ComposicaoItemController@store')->middleware('validaUsuario');
 Route::get('/item-composicao/excluir/{id}/{idComposicao}', 'ComposicaoItemController@destroy')->middleware('validaUsuario');
 
-Route::get('gerenciar-cadastro-inicial', 'CadastroInicialController@index')->middleware('validaUsuario');
-Route::get('gerenciar-cadastro-inicial/incluir', 'CadastroInicialController@create')->middleware('validaUsuario');
+
 
 
 Route::get('/marca', 'MarcaController@index')->middleware('validaUsuario');
@@ -128,7 +128,14 @@ Route::get('/deposito/excluir/{id}', 'DepositoController@destroy')->middleware('
 
 
 Route::get('/combo/catItem/{id}', 'CadastroInicialController@getCategoria')->middleware('validaUsuario');
+Route::get('/combo/catForm/{id}', 'CadastroInicialController@getFormCadastro')->middleware('validaUsuario');
+Route::get('/combo/valor/{id}', 'CadastroInicialController@getValor')->middleware('validaUsuario');
+Route::get('/combo/catFormFinal/{id}', 'CadastroInicialController@getFormCadastroFinal')->middleware('validaUsuario');
+Route::get('/combo/catValVariado/{id}', 'CadastroInicialController@getValorVariado')->middleware('validaUsuario');
+Route::get('/combo/composicao/{id}', 'CadastroInicialController@getComposicao')->middleware('validaUsuario');
 
+Route::get('gerenciar-cadastro-inicial', 'CadastroInicialController@index')->middleware('validaUsuario');
+Route::get('gerenciar-cadastro-inicial/incluir', 'CadastroInicialController@create')->middleware('validaUsuario');
 // Route::get('/combo/marcaItem/{id}', 'CadastroInicialController@getCategoria')->middleware('validaUsuario');
 Route::get('/combo/tamanho/{id}', 'CadastroInicialController@getTamanho')->middleware('validaUsuario');
 Route::get('/combo/embalagem/{id}', 'CadastroInicialController@getEmbalagem')->middleware('validaUsuario');

@@ -6,9 +6,9 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <a href="/item-composicao-incluir">
+<!--                                     <a href="/item-composicao-incluir">
                                             <input class="btn btn-primary" type="button" value="Incluir Composição de Item do Catalogo">
-                                    </a>
+                                    </a> -->
                     <br><br><hr>
                         <h4 class="card-title">Lista de Itens de Composição</h4>
                     <div class="row">

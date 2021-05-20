@@ -50,9 +50,15 @@
                                             </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>     
 
-                                             <?php if(session('mensagem')): ?>
+                                            <?php if(session('mensagem')): ?>
                                                 <div class="alert alert-success">
                                                     <p><?php echo e(session('mensagem')); ?></p>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if(session('mensagemErro')): ?>
+                                                <div class="alert alert-success">
+                                                    <p><?php echo e(session('mensagemErro')); ?></p>
                                                 </div>
                                             <?php endif; ?>
                                         </tbody>

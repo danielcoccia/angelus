@@ -8,7 +8,6 @@
 
                     <h4 class="card-title">Cadastro Tipo Estoque</h4>
                     <hr>
-                    <!-- <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->
                     <form class="form-horizontal mt-4" method="POST" action="/cad-tipo-estoque/inserir">
                     <?php echo csrf_field(); ?>
                         <div class="form-group row">
@@ -16,8 +15,7 @@
                             <div class="col-sm-10">
                                 <input class="form-control" type="text" value="" id="tp_estoque" name="tp_estoque">
                             </div>
-                        </div>                                   
-                      
+                        </div>
 
                         <div class="col-12 mt-3" style="text-align: right;">
                             <button type="submit" class="btn btn-primary">CADASTRAR</button>

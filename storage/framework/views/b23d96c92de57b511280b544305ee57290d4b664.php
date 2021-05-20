@@ -77,14 +77,14 @@
                                     <hr>    
                                 <div class="table-responsive">                            
                                 <table class="table table-bordered table-striped mb-0">
-                                  <?php $__currentLoopData = $resultEstoque; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $resultEstoques): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                  <?php $__currentLoopData = $resultDeposito; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $resultDepositos): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                         <td>
-                                            <?php echo e($resultEstoques->nome); ?>
+                                            <?php echo e($resultDepositos->nome); ?>
 
                                         </td>
                                         <td>
-                                            <input type="checkbox" id="<?php echo e($resultEstoques->nome); ?>" name="<?php echo e($resultEstoques->nome); ?>" value="<?php echo e($resultEstoques->id); ?>">                                            
+                                            <input type="checkbox" id="<?php echo e($resultDepositos->nome); ?>" name="<?php echo e($resultDepositos->nome); ?>" value="<?php echo e($resultDepositos->id); ?>">                                            
                                         </td>
                                     </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

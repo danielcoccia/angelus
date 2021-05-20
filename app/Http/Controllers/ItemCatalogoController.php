@@ -43,7 +43,7 @@ class ItemCatalogoController extends Controller
 
  
     public function create()
-    {           
+    {   
         $resultCategoria = $this->objTipoMaterial->all();
         return view('item/incluir-item-catalogo', compact('resultCategoria'));   
     }
@@ -51,6 +51,7 @@ class ItemCatalogoController extends Controller
 
     public function store(Request $request)
     {
+        
         $ativo = isset($request->ativo) ? 1 : 0;
         $composicao = isset($request->composicao) ? 1 : 0;
 
