@@ -133,6 +133,7 @@ Route::get('/combo/valor/{id}', 'CadastroInicialController@getValor')->middlewar
 Route::get('/combo/catFormFinal/{id}', 'CadastroInicialController@getFormCadastroFinal')->middleware('validaUsuario');
 Route::get('/combo/catValVariado/{id}', 'CadastroInicialController@getValorVariado')->middleware('validaUsuario');
 Route::get('/combo/composicao/{id}', 'CadastroInicialController@getComposicao')->middleware('validaUsuario');
+Route::post('/cad-inicial-material/inserir', 'CadastroInicialController@store')->middleware('validaUsuario');
 
 Route::get('gerenciar-cadastro-inicial', 'CadastroInicialController@index')->middleware('validaUsuario');
 Route::get('gerenciar-cadastro-inicial/incluir', 'CadastroInicialController@create')->middleware('validaUsuario');

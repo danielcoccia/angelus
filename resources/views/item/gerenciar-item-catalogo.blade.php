@@ -28,8 +28,10 @@
                                                 <th>Valor Mínimo</th>
                                                 <th>Valor Medio</th>
                                                 <th>Valor Máximo</th>
+                                                <th>Valor Marca</th>
+                                                <th>Valor Etiqueta</th>
                                                 <th>Item Composição</th>
-                                                <th>Ativo</th>                           
+                                                <th>Ativo</th>
                                             </tr>
                                         </thead>
 
@@ -41,7 +43,9 @@
                                                 <td>{{$results->nome_categoria}}</td>
                                                 <td>{{$results->valor_minimo}}</td>
                                                 <td>{{$results->valor_medio}}</td>
-                                                <td>{{$results->valor_maximo}}</td>                                                
+                                                <td>{{$results->valor_maximo}}</td>
+                                                <td>{{$results->valor_marca}}</td>
+                                                <td>{{$results->valor_etiqueta}}</td>
                                                 <td>{{$results->composicao ? 'sim' : 'não' }}</td>
                                                 <td>{{$results->ativo ? 'sim' : 'não' }}</td>
                                                 <td>

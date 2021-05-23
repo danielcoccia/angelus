@@ -28,7 +28,8 @@ class CadastroInicialController extends Controller
                 c.nome cor,
                 tm.nome tipo_material,
                 im.valor_venda,
-                im.valor_venda_promocional
+                im.valor_venda_promocional,
+                im.liberacao_venda
             from item_material im
             left join item_catalogo_material ic on (im.id_item_catalogo_material = ic.id)
             left join marca m on (im.id_marca = m.id)
@@ -276,7 +277,7 @@ class CadastroInicialController extends Controller
 
      public function store(Request $request)
     {
-        
+
             $Adiquirido = isset($request->checkAdq) ? 1 : 0;
             $Avariado = isset($request->checkAvariado) ? 1 : 0;
 
@@ -284,7 +285,7 @@ class CadastroInicialController extends Controller
             
             //???????????? Liberacao_venda, id_tipo_situacao, valor_aquisicao,valor_venda_promocional, ?id_usuario? 
             DB::table('item_material')->insert([            
-            'id_item_catalogo_material' => $request->input('item_material'),
+            'id_item_catalogo_material' => $request->input('item_material'),            
             'observacao' => $request->input('observacao'),
             'data_cadastro' => date("y/m/d"),
             'id_usuario_cadastro'=> '89',
@@ -302,15 +303,9 @@ class CadastroInicialController extends Controller
             'id_deposito' => $request->input('deposito'),
             'avariado' => $Avariado,
             'data_validade' => $request->input('dt_validade'),
-
+            'liberacao_venda' => 0,
             'id_tipo_situacao' => '1',
-            'id_usuario' => 89,
-            // 'id_categoria_material' => $request->input('categoria_item'),
-            // 'valor_minimo' => $request->input('val_minimo'),
-            // 'valor_medio' => $request->input('val_medio'),
-            // 'valor_maximo' => $request->input('val_maximo'),
-            // 'composicao' => $composicao,
-            // 'ativo' => $ativo,
+            'id_usuario' => '89',            
         ]);
         }
 

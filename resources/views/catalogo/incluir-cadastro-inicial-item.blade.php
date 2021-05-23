@@ -14,7 +14,7 @@
 
                 <h4 class="card-title">Cadastro Inicial de Item</h4>
                 <hr>                
-                <form class="form-horizontal mt-4" method="POST" action="/cad-item-material/inserir"> 
+                <form class="form-horizontal mt-4" method="POST" action="/cad-inicial-material/inserir"> 
                 @csrf
                     <div class="form-group row">
                         <div class="col-sm-6">

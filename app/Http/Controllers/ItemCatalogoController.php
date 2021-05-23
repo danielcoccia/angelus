@@ -27,6 +27,8 @@ class ItemCatalogoController extends Controller
                 i.valor_minimo,
                 i.valor_medio,
                 i.valor_maximo,
+                i.valor_marca,
+                i.valor_etiqueta,
                 i.composicao,
                 i.ativo
             from item_catalogo_material i
@@ -43,7 +45,7 @@ class ItemCatalogoController extends Controller
 
  
     public function create()
-    {   
+    {           
         $resultCategoria = $this->objTipoMaterial->all();
         return view('item/incluir-item-catalogo', compact('resultCategoria'));   
     }
@@ -51,7 +53,6 @@ class ItemCatalogoController extends Controller
 
     public function store(Request $request)
     {
-        
         $ativo = isset($request->ativo) ? 1 : 0;
         $composicao = isset($request->composicao) ? 1 : 0;
 
@@ -61,6 +62,8 @@ class ItemCatalogoController extends Controller
             'valor_minimo' => $request->input('val_minimo'),
             'valor_medio' => $request->input('val_medio'),
             'valor_maximo' => $request->input('val_maximo'),
+            'valor_marca' => $request->input('val_marca'),
+            'valor_etiqueta' => $request->input('val_etiqueta'),
             'composicao' => $composicao,
             'ativo' => $ativo,
         ]);
@@ -97,6 +100,8 @@ class ItemCatalogoController extends Controller
                 'valor_minimo' => $request->input('val_minimo'),
                 'valor_medio' => $request->input('val_medio'),
                 'valor_maximo' => $request->input('val_maximo'),
+                'valor_marca' => $request->input('val_marca'),
+                'valor_etiqueta' => $request->input('val_etiqueta'),
                 'composicao' => $composicao,
                 'ativo' => $ativo,
             ]);
