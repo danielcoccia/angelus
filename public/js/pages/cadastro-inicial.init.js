@@ -59,9 +59,33 @@ $(document).ready(function() {
 
 	$(document).on('change', '.valCheck', function(){
 
-		if(!$("#checkVal").is(':checked')){
-			$("#checkAvariado").prop('checked', false);
+			//alert($("#checkAvariado").is(':checked'));
+			//var check = $(this).attr("id"));
+
+		if($(this).attr("id") == "checkAvariado" && $("#checkAvariado").is(':checked') == true	){
+		 	$("#checkVal").prop('checked', false);
 		}
+
+		if($(this).attr("id") == "checkVal" && $("#checkVal").is(':checked') == true	){
+		 	$("#checkAvariado").prop('checked', false);
+		}
+
+		// if( $(this).attr("id") == 'checkVal' ){
+		
+		//  	$("#checkAvariado").prop('checked', false);
+		//}
+
+		// if($("#checkAvariado").is(':checked') && ){
+		
+		//  	$("#checkVal").prop('checked', false);
+		// }
+
+		//  if($("#checkVal").is(':checked') ){
+		
+		//  	$("#checkAvariado").prop('checked', false);
+		//  }
+
+		
 
 		var item_material = $("#item_material").val();
 		var listaValor = $("#checkVal").is(':checked');

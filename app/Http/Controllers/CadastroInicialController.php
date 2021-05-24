@@ -150,10 +150,10 @@ class CadastroInicialController extends Controller
 
         $html='<div class="table-responsive">';
         $html.='<table class="table table-bordered table-striped mb-0">';
-        $html.='<tr><td>Deposito</td> <td>'.getCombo($result8,'deposito', 1).'</td></tr>';
-        $html.='<tr><td>Embalagem</td> <td>'.getCombo($result9,'embalagem', 1).'</td></tr>';
-        $html.='<tr><td>Qtd Embalagem</td> <td><input type="text" name="qtdEmb" id="qtdEmb" required></td></tr>';
-        $html.='<tr><td>Unidade Medida</td> <td>'.getCombo($result10,'und_med', 1).'</td></tr>';
+        $html.='<tr><td>Deposito *</td> <td>'.getCombo($result8,'deposito', 1).'</td></tr>';
+        $html.='<tr><td>Embalagem *</td> <td>'.getCombo($result9,'embalagem', 1).'</td></tr>';
+        $html.='<tr><td>Qtd Embalagem *</td> <td><input type="text" name="qtdEmb" id="qtdEmb" required></td></tr>';
+        $html.='<tr><td>Unidade Medida *</td> <td>'.getCombo($result10,'und_med', 1).'</td></tr>';
         $html.='<tr><td>Adiquirido</td><td><input type="checkbox" id="checkAdq" name="checkAdq" switch="bool" /><label for="checkAdq" data-on-label="Sim" data-off-label="Não"></label></td>';
         $html.='</table>';
         $html.='</div>';
@@ -163,7 +163,7 @@ class CadastroInicialController extends Controller
 
     public function getValor($id){
 
-        $sql= "Select valor_minimo, valor_medio, valor_maximo from item_catalogo_material where  id = $id";
+        $sql= "Select valor_minimo, valor_medio, valor_maximo, valor_marca, valor_etiqueta from item_catalogo_material where  id = $id";
         $result = DB::select($sql);
 
         $html='<div class="table-responsive">';
@@ -179,6 +179,10 @@ class CadastroInicialController extends Controller
                         <label for="valor_medio">Médio R$'.$result[0]->valor_medio.'</label><br>
                         <input type="radio" id="valor_maximo" name="valor_venda" value="'.$result[0]->valor_maximo.'">
                         <label for="valor_medio">Máximo R$'.$result[0]->valor_maximo.'</label><br>
+                        <input type="radio" id="valor_marca" name="valor_marca" value="'.$result[0]->valor_marca.'">
+                        <label for="valor_marca">Marca R$'.$result[0]->valor_marca.'</label><br>
+                        <input type="radio" id="valor_etiqueta" name="valor_etiqueta" value="'.$result[0]->valor_etiqueta.'">
+                        <label for="valor_etiqueta">Etiqueta R$'.$result[0]->valor_etiqueta.'</label><br>
                     </div>
                 </td></tr>';
         $html.='</table>';
@@ -191,18 +195,22 @@ class CadastroInicialController extends Controller
 
         if($_REQUEST['listaValor'] == 'true' && $_REQUEST['avariado'] =='false' ){
             
-            $sql= "Select valor_minimo, valor_medio, valor_maximo from item_catalogo_material where  id = $id";
+            $sql= "Select valor_minimo, valor_medio, valor_maximo, valor_marca, valor_etiqueta from item_catalogo_material where  id = $id";
             $result = DB::select($sql);
 
             $html ='<input type="radio" id="valor_minimo" name="valor_venda" value="'.$result[0]->valor_minimo.'">
-                    <label for="valor_minimo">Mínimo R$'.$result[0]->valor_minimo.'</label><br>
+                    <label for="valor_minimo">Mínimo'.$result[0]->valor_minimo.'</label><br>
                     <input type="radio" id="valor_medio" name="valor_venda" value="'.$result[0]->valor_medio.'">
                     <label for="valor_medio">Médio R$'.$result[0]->valor_medio.'</label><br>
                     <input type="radio" id="valor_maximo" name="valor_venda" value="'.$result[0]->valor_maximo.'">
-                    <label for="valor_medio">Máximo R$'.$result[0]->valor_maximo.'</label><br>';
+                    <label for="valor_medio">Máximosss R$'.$result[0]->valor_maximo.'</label><br>
+                    <input type="radio" id="valor_marca" name="valor_marca" value="'.$result[0]->valor_marca.'">
+                    <label for="valor_marca">Marca R$'.$result[0]->valor_marca.'</label><br>
+                     <input type="radio" id="valor_etiqueta" name="valor_etiqueta" value="'.$result[0]->valor_etiqueta.'">
+                        <label for="valor_etiqueta">Etiqueta R$'.$result[0]->valor_etiqueta.'</label><br>';
 
 
-        }else if($_REQUEST['listaValor'] == 'true' && $_REQUEST['avariado'] =='true'){
+        }else if($_REQUEST['avariado'] =='true'){
             
             $sql= "Select valor id, valor nome from valor_avariado";
             $result = DB::select($sql);

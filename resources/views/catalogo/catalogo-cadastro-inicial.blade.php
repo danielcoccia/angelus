@@ -42,7 +42,6 @@
                                             <th>Cor</th>
                                             <th>Tipo Material</th>
                                             <th>Valor Venda</th>
-                                            <th>Valor Promocional</th>
                                             <th>Liberacao Venda</th>
                                             <th>Ação</th>
                                         </tr>
@@ -59,7 +58,6 @@
                                             <td>{{$results->cor}}</td>
                                             <td>{{$results->tipo_material}}</td>
                                             <td>{{$results->valor_venda}}</td>
-                                            <td>{{$results->valor_venda_promocional}}</td>
                                             <td>{{$results->liberacao_venda}}</td>
                                             <td>
                                                 <input class="btn btn-warning" type="reset" value="Alterar">
