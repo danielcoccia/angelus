@@ -51,6 +51,7 @@
                                 <li><a href="/cor" class="waves-effect"><span>Cor</span></a></li>
                                 <li><a href="/fase-etaria" class="waves-effect"><span>Fase Etária</span></a></li>
                                 <li><a href="/deposito" class="waves-effect"><span>Depósito</span></a></li>
+                                <li><a href="/localizador" class="waves-effect"><span>Localizador</span></a></li>
                             </ul>
                         </li>
 

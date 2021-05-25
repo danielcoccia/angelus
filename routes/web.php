@@ -118,6 +118,13 @@ Route::get('/cor', 'CorController@index')->middleware('validaUsuario');
 Route::post('/cor/inserir', 'CorController@store')->middleware('validaUsuario');
 Route::get('/cor/excluir/{id}', 'CorController@destroy')->middleware('validaUsuario');
 
+Route::get('/localizador', 'LocalizadorController@index')->middleware('validaUsuario');
+Route::post('/localizador/inserir', 'LocalizadorController@store')->middleware('validaUsuario');
+Route::get('/localizador/excluir/{id}', 'LocalizadorController@destroy')->middleware('validaUsuario');
+Route::get('/localizador/alterar/{id}', 'LocalizadorController@edit')->middleware('validaUsuario');
+Route::put('localizador/atualizar/{id}', 'LocalizadorController@update')->middleware('validaUsuario');
+
+
 Route::get('/fase-etaria', 'FaseEtariaController@index')->middleware('validaUsuario');
 Route::post('/fase-etaria/inserir', 'FaseEtariaController@store')->middleware('validaUsuario');
 Route::get('/fase-etaria/excluir/{id}', 'FaseEtariaController@destroy')->middleware('validaUsuario');

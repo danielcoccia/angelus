@@ -14,7 +14,7 @@
 
                     <h4 class="card-title">Cadastro de Pessoa</h4>
                     <hr>                                    
-                    <form class="form-horizontal mt-4" method="POST" action="/pessoa-atualizar/{{$result[0]->id}}">                                     
+                    <form class="form-horizontal mt-4" method="POST" action="/pessoa-atualizar/{{$result[0]->id}}">
                      @method('PUT')
                      @csrf
                         <input type="hidden" name="id" value="{{$result[0]->id}}">
