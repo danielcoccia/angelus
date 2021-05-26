@@ -122,7 +122,7 @@ Route::get('/localizador', 'LocalizadorController@index')->middleware('validaUsu
 Route::post('/localizador/inserir', 'LocalizadorController@store')->middleware('validaUsuario');
 Route::get('/localizador/excluir/{id}', 'LocalizadorController@destroy')->middleware('validaUsuario');
 Route::get('/localizador/alterar/{id}', 'LocalizadorController@edit')->middleware('validaUsuario');
-Route::put('localizador/atualizar/{id}', 'LocalizadorController@update')->middleware('validaUsuario');
+Route::put('/localizador/atualizar/{id}', 'LocalizadorController@update')->middleware('validaUsuario');
 
 
 Route::get('/fase-etaria', 'FaseEtariaController@index')->middleware('validaUsuario');
@@ -132,6 +132,8 @@ Route::get('/fase-etaria/excluir/{id}', 'FaseEtariaController@destroy')->middlew
 Route::get('/deposito', 'DepositoController@index')->middleware('validaUsuario');
 Route::post('/deposito/inserir', 'DepositoController@store')->middleware('validaUsuario');
 Route::get('/deposito/excluir/{id}', 'DepositoController@destroy')->middleware('validaUsuario');
+Route::get('/deposito/alterar/{id}', 'DepositoController@edit')->middleware('validaUsuario');
+Route::put('/deposito/atualizar/{id}', 'DepositoController@update')->middleware('validaUsuario');
 
 
 Route::get('/combo/catItem/{id}', 'CadastroInicialController@getCategoria')->middleware('validaUsuario');

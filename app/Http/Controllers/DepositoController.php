@@ -74,13 +74,33 @@ class DepositoController extends Controller
     
     public function edit($id)
     {
-        //
+
+        $resultTpEstoque = DB::select("select id, nome from tipo_estoque");
+
+        $sql="select
+                id,
+                nome,
+                sigla,
+                id_tp_estoque
+                from deposito
+                where ativo is true and id =$id";
+        
+        $resultDeposito = DB::select($sql);
+
+        return view('/cadastro-geral/alterar-deposito', compact("resultTpEstoque", "resultDeposito"));
     }
     
     public function update(Request $request, $id)
     {
-        //
-    }
+        DB::table('deposito')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('nomeDeposito'),
+            'sigla' => $request->input('siglaDeposito'),
+            'id_tp_estoque' => $request->input('tpEstoque')
+        ]);
+
+        return redirect()->action('DepositoController@index');    }
 
     public function destroy($id)
     {

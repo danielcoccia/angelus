@@ -7,18 +7,16 @@ $(document).ready(function() {
 	});
 
    	$(".classBtnAlterar").click(function(){
-   		
+
    		$("#divFormAlterar").html('<img src="/images/loader.gif"  width="50px" />');
-   		var idLocalizador =$(this).val();
-   		
+   		var idDeposito = $(this).val();
    		jQuery.ajax({
-	                  url: "/localizador/alterar/"+idLocalizador,
+	                  url: "/deposito/alterar/"+idDeposito,
 	                  method: 'get',
 	                  success: function(result){
 	                  	$("#divFormAlterar").html(result);
-	                  	$("#title-alterar").html("Alteração de Localizador");
-	                  	
-	                  	$(".select2").select2();
+	                  	$("#title-alterar").html("Alteração de Depostio");
+	                  	$(".select2").select2();	                  	
 	                  }
 	              	});
    	});
