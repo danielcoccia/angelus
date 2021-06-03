@@ -61,7 +61,7 @@
                                             <td>{{$results->liberacao_venda}}</td>
                                             <td>
                                                 <input class="btn btn-warning" type="reset" value="Alterar">
-                                                <a href="/cad-cat-material/excluir/{{$results->id}}">
+                                                <a href="/gerenciar-cadastro-inicial/excluir/{{$results->id}}">
                                                     <input class="btn btn-danger" type="button" value="Excluir">
                                                 </a>
                                             </td>

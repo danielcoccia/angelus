@@ -58,12 +58,23 @@ class FaseEtariaController extends Controller
 
     public function edit($id)
     {
-        //
+        $resultCategoria = $this->objCategoria->all();
+
+        $resultFaseEtaria = DB::select(" select id, nome, id_categoria_material, ativo from fase_etaria where id = $id ");
+        
+        return view('cadastro-geral/alterar-fase-etaria' , compact("resultCategoria", "resultFaseEtaria"));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        DB::table('fase_etaria')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('faseEtaria'),
+            'id_categoria_material' => $request->input('categoria')
+        ]);
+
+        return redirect()->action('FaseEtariaController@index');
     }
 
     public function destroy($id)

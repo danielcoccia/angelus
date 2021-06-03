@@ -128,6 +128,8 @@ Route::put('/localizador/atualizar/{id}', 'LocalizadorController@update')->middl
 Route::get('/fase-etaria', 'FaseEtariaController@index')->middleware('validaUsuario');
 Route::post('/fase-etaria/inserir', 'FaseEtariaController@store')->middleware('validaUsuario');
 Route::get('/fase-etaria/excluir/{id}', 'FaseEtariaController@destroy')->middleware('validaUsuario');
+Route::get('/fase-etaria/alterar/{id}', 'FaseEtariaController@edit')->middleware('validaUsuario');
+Route::put('/fase-etaria/atualizar/{id}', 'FaseEtariaController@edit')->middleware('validaUsuario');
 
 Route::get('/deposito', 'DepositoController@index')->middleware('validaUsuario');
 Route::post('/deposito/inserir', 'DepositoController@store')->middleware('validaUsuario');
@@ -144,8 +146,12 @@ Route::get('/combo/catValVariado/{id}', 'CadastroInicialController@getValorVaria
 Route::get('/combo/composicao/{id}', 'CadastroInicialController@getComposicao')->middleware('validaUsuario');
 Route::post('/cad-inicial-material/inserir', 'CadastroInicialController@store')->middleware('validaUsuario');
 
-Route::get('gerenciar-cadastro-inicial', 'CadastroInicialController@index')->middleware('validaUsuario');
-Route::get('gerenciar-cadastro-inicial/incluir', 'CadastroInicialController@create')->middleware('validaUsuario');
+Route::get('/gerenciar-cadastro-inicial', 'CadastroInicialController@index')->middleware('validaUsuario');
+Route::get('/gerenciar-cadastro-inicial/incluir', 'CadastroInicialController@create')->middleware('validaUsuario');
+Route::get('/gerenciar-cadastro-inicial/excluir/{id}', 'CadastroInicialController@destroy')->middleware('validaUsuario');
+Route::get('/gerenciar-cadastro-inicial/alterar/{id}', 'CadastroInicialController@edi')->middleware('validaUsuario');
+
+
 // Route::get('/combo/marcaItem/{id}', 'CadastroInicialController@getCategoria')->middleware('validaUsuario');
 Route::get('/combo/tamanho/{id}', 'CadastroInicialController@getTamanho')->middleware('validaUsuario');
 Route::get('/combo/embalagem/{id}', 'CadastroInicialController@getEmbalagem')->middleware('validaUsuario');
