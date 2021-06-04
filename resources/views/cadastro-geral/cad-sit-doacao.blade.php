@@ -8,7 +8,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Cadastro Situação da Dosção</h4>
+                    <h4 class="card-title">Cadastro Situação da Doação</h4>
                     <hr>
                     <form class="form-horizontal mt-4" method="POST" action="/cad-sit-doacao/inserir"> 
                         @csrf
@@ -46,7 +46,7 @@
                                                 <td>{{$results->id}}</td>
                                                 <td>{{$results->nome}}</td>                                                
                                                  <td>
-                                                    <input class="btn btn-warning" type="reset" value="Alterar">
+                                                     <button type="button" value="{{$results->id}}" id="btnAlterarUniMed" class="btn btn-warning waves-effect waves-light classBtnAlterar" data-toggle="modal" data-target=".bs-example-modal-lg">Alterar</button>
                                                     <a href="/cad-sit-doacao/excluir/{{$results->id}}">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
                                                     </a>                                                                                                        
@@ -63,7 +63,8 @@
                 </div>                                    
             </div>
         </div>            
-    </div>        
+    </div>
+    @include('cadastro-geral/popUp-alterar')
 @endsection
 
 @section('footerScript')
@@ -74,4 +75,6 @@
            
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
+            <script src="{{ URL::asset('/js/pages/gerenciar-doacao.init.js')}}"></script>
+
 @endsection

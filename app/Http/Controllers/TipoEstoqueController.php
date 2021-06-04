@@ -46,14 +46,21 @@ class TipoEstoqueController extends Controller
     
     public function edit($id)
     {
-        //
+        $resultTpEstoque = DB::select("select id, nome from tipo_estoque where id=$id");
+
+        return view('/cadastro-geral/alterar-tp-estoque', compact("resultTpEstoque"));
     }
 
    
     public function update(Request $request, $id)
     {
-        //
-    }
+        DB::table('tipo_estoque')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('tp_estoque'),
+        ]);
+
+        return redirect()->action('TipoEstoqueController@index');    }
 
     
     public function destroy($id)

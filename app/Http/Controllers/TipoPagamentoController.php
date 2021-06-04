@@ -21,22 +21,11 @@ class TipoPagamentoController extends Controller
         return view('/cadastro-geral/cad-pagamento', ['result'=>$result]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
          $pagamento = $request->input('pagamento');        
@@ -45,46 +34,30 @@ class TipoPagamentoController extends Controller
         return view('/cadastro-geral/cad-pagamento',['result'=>$result]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-           
+        $resultPagamento = DB::select("select id, nome from tipo_pagamento where id =$id");
+
+        return view('/cadastro-geral/alterar-pagamento' , compact('resultPagamento'));   
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('tipo_pagamento')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('pagamento'),
+        ]);
+
+        return redirect()->action('TipoPagamentoController@index');       
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function destroy($id)
     {
        $deleted = DB::delete('delete from tipo_pagamento where id= ?', [$id] );

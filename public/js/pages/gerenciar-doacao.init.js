@@ -9,13 +9,13 @@ $(document).ready(function() {
    	$(".classBtnAlterar").click(function(){
 
    		$("#divFormAlterar").html('<img src="/images/loader.gif"  width="50px" />');
-   		var idCategoria = $(this).val();
+   		var idDoacao = $(this).val();
    		jQuery.ajax({
-	                  url: "/cad-cat-material/alterar/"+idCategoria,
+	                  url: "/cad-sit-doacao/alterar/"+idDoacao,
 	                  method: 'get',
 	                  success: function(result){
 	                  	$("#divFormAlterar").html(result);
-	                  	$("#title-alterar").html("Alteração de Categoria");
+	                  	$("#title-alterar").html("Alteração de Tamano");
 	                  	$(".select2").select2();	                  	
 	                  }
 	              	});

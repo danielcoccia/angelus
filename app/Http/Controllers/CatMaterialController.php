@@ -48,12 +48,20 @@ class CatMaterialController extends Controller
 
     public function edit($id)
     {
-        //
+        $resultCatMaterial = DB::select("select id,nome from tipo_categoria_material where id = $id ");
+
+        return view('/cadastro-geral/alterar-cat-material', compact("resultCatMaterial"));
     }
     
     public function update(Request $request, $id)
     {
-        //
+         DB::table('tipo_categoria_material')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('categoria'),
+        ]);
+
+        return redirect()->action('CatMaterialController@index');
     }
 
     public function destroy($id)

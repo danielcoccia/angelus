@@ -43,7 +43,7 @@
                                                 <td>{{$results->id}}</td>
                                                 <td>{{$results->nome}}</td>
                                                 <td>
-                                                    <input class="btn btn-warning" type="reset" value="Alterar">
+                                                    <button type="button" value="{{$results->id}}" id="btnAlterarGenero" class="btn btn-warning waves-effect waves-light classBtnAlterar" data-toggle="modal" data-target=".bs-example-modal-lg">Alterar</button>
                                                     <a href="/cad-cat-material/excluir/{{$results->id}}">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
                                                     </a>
@@ -60,7 +60,7 @@
             </div>
         </div>    
     </div>
-    
+    @include('cadastro-geral/popUp-alterar')
 @endsection
 
 @section('footerScript')

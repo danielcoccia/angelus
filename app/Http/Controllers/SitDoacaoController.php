@@ -20,22 +20,12 @@ class SitDoacaoController extends Controller
         return view('/cadastro-geral/cad-sit-doacao', ['result'=>$result]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         $doacao = $request->input('doacao');        
@@ -45,46 +35,30 @@ class SitDoacaoController extends Controller
     }
     
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        
+        $resultDoacao = DB::select("select id, nome from tipo_situacao_doacao where id = $id");
+
+        return view('/cadastro-geral/alterar-doacao', compact('resultDoacao'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+         DB::table('tipo_situacao_doacao')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('doacao'),
+        ]);
+
+        return redirect()->action('SitDoacaoController@index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $deleted = DB::delete('delete from tipo_situacao_doacao where id =?' , [$id]);

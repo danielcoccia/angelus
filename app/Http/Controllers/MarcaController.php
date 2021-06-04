@@ -57,12 +57,22 @@ class MarcaController extends Controller
     
     public function edit($id)
     {
-        //
+        $resultCategoria = $this->objCategoria->all();
+        $resultMarca = DB::select("select id, nome, id_categoria_material, ativo from marca where id = $id");
+    
+        return view('/cadastro-geral/alterar-marca', compact("resultCategoria", "resultMarca"));
     }
     
     public function update(Request $request, $id)
     {
-        //
+         DB::table('marca')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('marca'),
+            'id_categoria_material' => $request->input('categoria')
+        ]);
+        return redirect()->action('MarcaController@index');
+
     }
     
     public function destroy($id)

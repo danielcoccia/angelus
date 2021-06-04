@@ -48,13 +48,22 @@ class GeneroController extends Controller
 
     public function edit($id)
     {
-        //
+        $resultGenero = DB::select("select id, nome, sigla from tipo_genero where id=$id");
+
+        return view('/cadastro-geral/alterar-genero', compact("resultGenero"));
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        DB::table('tipo_genero')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('genero'),
+            'sigla' => $request->input('siglaGenero'),
+        ]);
+
+        return redirect()->action('GeneroController@index');
     }
 
     public function destroy($id)

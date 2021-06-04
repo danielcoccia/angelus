@@ -34,33 +34,47 @@ Route::get('/logout', 'LexaAdmin@logout');
 Route::get('/', 'LoginController@index');
 Route::post('/login/valida', 'LoginController@valida');
 
-Route::get('cad-cat-material', 'CatMaterialController@index')->middleware('validaUsuario');
-Route::post('cad-cat-material/inserir', 'CatMaterialController@store')->middleware('validaUsuario');
-Route::get('cad-cat-material/excluir/{id}', 'CatMaterialController@destroy')->middleware('validaUsuario');
+Route::get('/cad-cat-material', 'CatMaterialController@index')->middleware('validaUsuario');
+Route::post('/cad-cat-material/inserir', 'CatMaterialController@store')->middleware('validaUsuario');
+Route::get('/cad-cat-material/excluir/{id}', 'CatMaterialController@destroy')->middleware('validaUsuario');
+Route::get('/cad-cat-material/alterar/{id}', 'CatMaterialController@edit')->middleware('validaUsuario');
+Route::put('/cad-cat-material/atualizar/{id}', 'CatMaterialController@update')->middleware('validaUsuario');
 
-Route::get('cad-embalagem', 'EmbalagemController@index')->middleware('validaUsuario');
-Route::post('cad-embalagem/inserir', 'EmbalagemController@store')->middleware('validaUsuario');
-Route::get('cad-embalagem/excluir/{id}', 'EmbalagemController@destroy')->middleware('validaUsuario');
+Route::get('/cad-embalagem', 'EmbalagemController@index')->middleware('validaUsuario');
+Route::post('/cad-embalagem/inserir', 'EmbalagemController@store')->middleware('validaUsuario');
+Route::get('/cad-embalagem/excluir/{id}', 'EmbalagemController@destroy')->middleware('validaUsuario');
+Route::get('/cad-embalagem/alterar/{id}', 'EmbalagemController@edit')->middleware('validaUsuario');
+Route::put('/cad-embalagem/atualizar/{id}', 'EmbalagemController@update')->middleware('validaUsuario');
 
-Route::get('cad-genero', 'GeneroController@index')->middleware('validaUsuario');
-Route::post('cad-genero/inserir', 'GeneroController@store')->middleware('validaUsuario');
-Route::get('cad-genero/excluir/{id}', 'GeneroController@destroy')->middleware('validaUsuario');
+Route::get('/cad-genero', 'GeneroController@index')->middleware('validaUsuario');
+Route::post('/cad-genero/inserir', 'GeneroController@store')->middleware('validaUsuario');
+Route::get('/cad-genero/excluir/{id}', 'GeneroController@destroy')->middleware('validaUsuario');
+Route::get('/cad-genero/alterar/{id}', 'GeneroController@edit')->middleware('validaUsuario');
+Route::put('/cad-genero/atualizar/{id}','GeneroController@update')->middleware('validaUsuario');
 
-Route::get('cad-tipo-estoque', 'TipoEstoqueController@index')->middleware('validaUsuario');
-Route::post('cad-tipo-estoque/inserir', 'TipoEstoqueController@store')->middleware('validaUsuario');
-Route::get('cad-tipo-estoque/excluir/{id}', 'TipoEstoqueController@destroy')->middleware('validaUsuario');
+Route::get('/cad-tipo-estoque', 'TipoEstoqueController@index')->middleware('validaUsuario');
+Route::post('/cad-tipo-estoque/inserir', 'TipoEstoqueController@store')->middleware('validaUsuario');
+Route::get('/cad-tipo-estoque/excluir/{id}', 'TipoEstoqueController@destroy')->middleware('validaUsuario');
+Route::get('/cad-tipo-estoque/alterar/{id}', 'TipoEstoqueController@edit')->middleware('validaUsuario');
+Route::put('/cad-tipo-estoque/atualizar/{id}', 'TipoEstoqueController@update')->middleware('validaUsuario');
 
-Route::get('cad-pagamento', 'TipoPagamentoController@index')->middleware('validaUsuario');
-Route::post('cad-pagamento/inserir', 'TipoPagamentoController@store')->middleware('validaUsuario');
-Route::get('cad-pagamento/excluir/{id}', 'TipoPagamentoController@destroy')->middleware('validaUsuario');
+Route::get('/cad-pagamento', 'TipoPagamentoController@index')->middleware('validaUsuario');
+Route::post('/cad-pagamento/inserir', 'TipoPagamentoController@store')->middleware('validaUsuario');
+Route::get('/cad-pagamento/excluir/{id}', 'TipoPagamentoController@destroy')->middleware('validaUsuario');
+Route::get('/cad-pagamento/alterar/{id}', 'TipoPagamentoController@edit')->middleware('validaUsuario');
+Route::put('/cad-pagamento/atualizar/{id}', 'TipoPagamentoController@update')->middleware('validaUsuario');
 
-Route::get('cad-sit-doacao', 'SitDoacaoController@index')->middleware('validaUsuario');
-Route::post('cad-sit-doacao/inserir', 'SitDoacaoController@store')->middleware('validaUsuario');
-Route::get('cad-sit-doacao/excluir/{id}', 'SitDoacaoController@destroy')->middleware('validaUsuario');
+Route::get('/cad-sit-doacao', 'SitDoacaoController@index')->middleware('validaUsuario');
+Route::post('/cad-sit-doacao/inserir', 'SitDoacaoController@store')->middleware('validaUsuario');
+Route::get('/cad-sit-doacao/excluir/{id}', 'SitDoacaoController@destroy')->middleware('validaUsuario');
+Route::get('/cad-sit-doacao/alterar/{id}', 'SitDoacaoController@edit')->middleware('validaUsuario');
+Route::put('/cad-sit-doacao/atualizar/{id}', 'SitDoacaoController@update')->middleware('validaUsuario');
 
-Route::get('unidade-medida', 'UnidadeMedidaController@index')->middleware('validaUsuario');
-Route::post('unidade-medida/inserir', 'UnidadeMedidaController@store')->middleware('validaUsuario');
-Route::get('unidade-medida/excluir/{id}', 'UnidadeMedidaController@destroy')->middleware('validaUsuario');
+Route::get('/unidade-medida', 'UnidadeMedidaController@index')->middleware('validaUsuario');
+Route::post('/unidade-medida/inserir', 'UnidadeMedidaController@store')->middleware('validaUsuario');
+Route::get('/unidade-medida/excluir/{id}', 'UnidadeMedidaController@destroy')->middleware('validaUsuario');
+Route::get('/unidade-medida/alterar/{id}', 'UnidadeMedidaController@edit')->middleware('validaUsuario');
+Route::put('/unidade-medida/atualizar/{id}', 'UnidadeMedidaController@update')->middleware('validaUsuario');
 
 Route::get('cad-pessoa', 'PessoaController@create')->middleware('validaUsuario');
 Route::post('cad-pessoa/inserir', 'PessoaController@store')->middleware('validaUsuario');
@@ -109,14 +123,21 @@ Route::get('/item-composicao/excluir/{id}/{idComposicao}', 'ComposicaoItemContro
 Route::get('/marca', 'MarcaController@index')->middleware('validaUsuario');
 Route::post('/marca/inserir', 'MarcaController@store')->middleware('validaUsuario');
 Route::get('/marca/excluir/{id}', 'MarcaController@destroy')->middleware('validaUsuario');
+Route::get('/marca/alterar/{id}', 'MarcaController@edit')->middleware('validaUsuario');
+Route::put('/marca/atualizar/{id}', 'MarcaController@update')->middleware('validaUsuario');
 
 Route::get('/tamanho', 'TamanhoController@index')->middleware('validaUsuario');
 Route::post('/tamanho/inserir', 'TamanhoController@store')->middleware('validaUsuario');
 Route::get('/tamanho/excluir/{id}', 'TamanhoController@destroy')->middleware('validaUsuario');
+Route::get('/tamanho/alterar/{id}', 'TamanhoController@edit')->middleware('validaUsuario');
+Route::put('/tamanho/atualizar/{id}', 'TamanhoController@update')->middleware('validaUsuario');
+
 
 Route::get('/cor', 'CorController@index')->middleware('validaUsuario');
 Route::post('/cor/inserir', 'CorController@store')->middleware('validaUsuario');
 Route::get('/cor/excluir/{id}', 'CorController@destroy')->middleware('validaUsuario');
+Route::get('/cor/alterar/{id}', 'CorController@edit')->middleware('validaUsuario');
+Route::put('/cor/atualizar/{id}', 'CorController@update')->middleware('validaUsuario');
 
 Route::get('/localizador', 'LocalizadorController@index')->middleware('validaUsuario');
 Route::post('/localizador/inserir', 'LocalizadorController@store')->middleware('validaUsuario');

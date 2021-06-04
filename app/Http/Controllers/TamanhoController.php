@@ -58,12 +58,22 @@ class TamanhoController extends Controller
 
     public function edit($id)
     {
-        //
-    }
+        $resultCategoria = $this->objCategoria->all(); 
+        $resultTamanho = DB::select(" select id, nome, id_categoria_material, ativo from Tamanho where id = $id ");
+
+        return view('/cadastro-geral/alterar-tamanho', compact('resultCategoria', 'resultTamanho'));
+   }
 
     public function update(Request $request, $id)
     {
-        //
+         DB::table('tamanho')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('tamanho'),
+            'id_categoria_material' => $request->input('categoria')
+        ]);
+
+        return redirect()->action('TamanhoController@index');
     }
    
     public function destroy($id)

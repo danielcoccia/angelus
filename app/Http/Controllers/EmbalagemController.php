@@ -45,12 +45,21 @@ class EmbalagemController extends Controller
    
     public function edit($id)
     {
-        //
+        $resultEmbalagem = DB::select("select id, nome, sigla from tipo_embalagem where id = $id");
+
+        return view('cadastro-geral/alterar-embalagem', compact("resultEmbalagem"));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        DB::table('tipo_embalagem')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('nome'),
+            'sigla' => $request->input('sigla'),
+        ]);
+
+        return redirect()->action('EmbalagemController@index');
     }
 
     

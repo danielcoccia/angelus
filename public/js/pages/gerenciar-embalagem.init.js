@@ -9,13 +9,13 @@ $(document).ready(function() {
    	$(".classBtnAlterar").click(function(){
 
    		$("#divFormAlterar").html('<img src="/images/loader.gif"  width="50px" />');
-   		var idCategoria = $(this).val();
+   		var idEmbalabem = $(this).val();
    		jQuery.ajax({
-	                  url: "/cad-cat-material/alterar/"+idCategoria,
+	                  url: "/cad-embalagem/alterar/"+idEmbalabem,
 	                  method: 'get',
 	                  success: function(result){
 	                  	$("#divFormAlterar").html(result);
-	                  	$("#title-alterar").html("Alteração de Categoria");
+	                  	$("#title-alterar").html("Alteração de Embalagem");
 	                  	$(".select2").select2();	                  	
 	                  }
 	              	});

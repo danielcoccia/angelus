@@ -70,7 +70,9 @@ class CadastroInicialController extends Controller
    
     public function edit($id)
     {
-        //
+        
+
+        return view("catalogo")
     }
 
    
@@ -82,7 +84,9 @@ class CadastroInicialController extends Controller
     
     public function destroy($id)
     {
-        //
+         DB::delete('delete from item_material where id = ?' , [$id]);
+
+        return redirect()->action('CadastroInicialController@index');
     }
 
     public function getCategoria ($id){

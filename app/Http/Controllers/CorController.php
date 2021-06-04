@@ -59,12 +59,22 @@ class CorController extends Controller
 
     public function edit($id)
     {
-        //
+        $resultCategoria = $this->objCategoria->all();
+        $resultCor = DB::select(" select id, nome, id_categoria_material, ativo from cor where id = $id ");
+
+        return view('cadastro-geral/alterar-cor' , compact("resultCategoria", "resultCor"));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        DB::table('cor')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('cor'),
+            'id_categoria_material' => $request->input('categoria')
+        ]);
+
+        return redirect()->action('CorController@index');
     }
 
     public function destroy($id)

@@ -45,12 +45,21 @@ class UnidadeMedidaController extends Controller
 
     public function edit($id)
     {
-        //
+        $resultUniMed = DB::select("select id, nome, sigla from tipo_unidade_medida where id = $id");
+
+        return view('/cadastro-geral/alterar-unidade-medida', compact('resultUniMed')); 
     }
     
     public function update(Request $request, $id)
     {
-        //
+         DB::table('tipo_unidade_medida')
+        ->where('id', $id)
+        ->update([
+            'nome' => $request->input('unidade_med'),
+            'sigla' => $request->input('sigla')
+        ]);
+
+        return redirect()->action('UnidadeMedidaController@index');
     }
   
     public function destroy($id)
