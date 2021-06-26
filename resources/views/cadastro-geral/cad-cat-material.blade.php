@@ -13,7 +13,7 @@
                     <form class="form-horizontal mt-4" method="POST" action="/cad-cat-material/inserir">
                         @csrf
                         <div class="form-group row">
-                            <label for="tipoMat" class="col-sm-2 col-form-label">Nova Categoria</label>
+                            <label for="tipoMat" class="col-sm-2 col-form-label">Categoria</label>
                             <div class="col-sm-4">
                                 <input class="form-control" type="text" value="" name="tipoMat" id="tipoMat" required oninvalid="this.setCustomValidity('Campo requerido')">
                             </div>

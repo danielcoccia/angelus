@@ -8,25 +8,62 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                 <h4 class="card-title">Cadastro Categoria </h4>
+                <h4 class="card-title" style="text-align: center; background: #088CFF; color: white;">Cadastro inicial</h4>
                     <hr>
-                    <form class="form-horizontal mt-4" method="POST" action="/cad-cat-material/inserir">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="tipoMat" class="col-sm-2 col-form-label">Nova Categoria</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="text" value="" name="tipoMat" id="tipoMat" required oninvalid="this.setCustomValidity('Campo requerido')">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-sm">
+                                <form>
+                                <label for="festa">Início</label>
+                                <input type="date" id="festa" name="Data" min="" max="">
+                                </form>
+                            </div>
+                            <div class="col-sm">
+                                <form>
+                                <label for="festa">Final</label>
+                                <input type="date" id="festa" name="Data" min="" max="">
+                                </form>
+                            </div>
+                            <div class="col-sm">
+                                <select class="form-control">0
+                                <option>Selecione uma categoria</option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <select class="form-control">0
+                                <option>Selecione uma Situação</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-6 mt-3" style="text-align: right;">
-                            <button type="submit" class="btn btn-primary">CADASTRAR</button>
+                    </div>
+                                <br>
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-sm">                                                           <input class="form-control" type="text" placeholder="Nome do material">
+                            </div>
+                            <div class="col-sm">
+                                      Doado<br><input type="checkbox" id="switch3" switch="bool" checked/>
+                                        <label for="switch3" data-on-label="Sim" data-off-label="Não"></label>
+                                </div>
+                            
+                            <div class="col-sm">
+                                <a href="/pesquisar">
+                                <input class="btn btn-primary" type="button" value="Pesquisar cadastro">
+                                </a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/gerenciar-cadastro-inicial/incluir">
+                                <input class="btn btn-success" type="button" value="Novo Cadastro +">
+                                </a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/barcode">
+                                <input class="btn btn-info" type="button" value="Cód Barras da pesquisa">
+                                </a>
+                            </div>
                         </div>
-                    </form>
-                <a href="/gerenciar-cadastro-inicial/incluir">
-                        <input class="btn btn-primary" type="button" value="Incluir Cadastro Inicial Item">
-                </a>
-                <br><br><hr>
-                <h4 class="card-title">Lista de Categorias</h4>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -34,7 +71,7 @@
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>ID</th>
                                             <th>Nome</th>
                                             <th>Data</th>
                                             <th>Marca</th>
@@ -64,6 +101,9 @@
                                                 <a href="/gerenciar-cadastro-inicial/excluir/{{$results->id}}">
                                                     <input class="btn btn-danger" type="button" value="Excluir">
                                                 </a>
+                                                <a href="/item_material/{{$results->id}}">
+                                                    <input class="btn btn-info" type="button" value="Cód Barras">
+                                                </a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -88,5 +128,6 @@
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/cad-tipo-material.init.js')}}"></script>            
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
-@endsection
+
+            @endsection
 
