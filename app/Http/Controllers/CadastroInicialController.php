@@ -72,7 +72,7 @@ class CadastroInicialController extends Controller
     {
         
 
-        return view("catalogo")
+        return view("catalogo");
     }
 
    
@@ -300,7 +300,7 @@ class CadastroInicialController extends Controller
             'id_item_catalogo_material' => $request->input('item_material'),            
             'observacao' => $request->input('observacao'),
             'data_cadastro' => date("y/m/d"),
-            'id_usuario_cadastro'=> '89',
+            'id_usuario_cadastro'=> '3',
             'id_tipo_embalagem' => $request->input('embalagem'),
             'id_tipo_unidade_medida' => $request->input('und_med'),
             'quantidade_embalagem' => $request->input('qtdEmb'),
@@ -317,7 +317,7 @@ class CadastroInicialController extends Controller
             'data_validade' => $request->input('dt_validade'),
             'liberacao_venda' => 0,
             'id_tipo_situacao' => '1',
-            'id_usuario' => '89',            
+            //'id_usuario' => '89',            
         ]);
         }
 

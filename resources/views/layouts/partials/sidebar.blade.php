@@ -10,7 +10,7 @@
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="mdi mdi-account-badge-horizontal-outline "></i>
+                                <i class="mdi mdi-key-outline"></i>
                                 <span>Controle e Acesso</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
@@ -22,20 +22,19 @@
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="mdi mdi-playlist-edit "></i>
+                                <i class="mdi mdi-file-document-edit-outline"></i>
                                 <span>Catalogo</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="/gerenciar-itemCatalogo" class="waves-effect"><span>Item Catalogo</span></a></li>
                                 <li><a href="/gerenciar-composicao" class="waves-effect"><span>Composição</span></a></li>
-                                <li><a href="/gerenciar-cadastro-inicial" class="waves-effect"><span>Cadastro Inicial</span></a></li>
-                            </ul>
+                           </ul>
                         </li>
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="mdi mdi-image-filter-none"></i>
-                                <span>Cadastro Geral</span>
+                                <i class="mdi mdi-wrench"></i>
+                                <span>Configurações</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <!-- <li><a href="/produtos/cad-inicial-prod" class="waves-effect"><span>Inicial</span></a></li> -->
@@ -54,15 +53,30 @@
                                 <li><a href="/localizador" class="waves-effect"><span>Localizador</span></a></li>
                             </ul>
                         </li>
-
-
-
-                      <!--   <li>
-                            <a href="/dashboard/index" class="waves-effect">
-                                <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-primary float-right">2</span>
-                                <span>Dashboard</span>
+                        <li>
+                            <a href="/gerenciar-cadastro-inicial" class="waves-effect">
+                                <i class="mdi mdi-library-books"></i>
+                                <span>Cadastro inicial</span>
                             </a>
-                        </li> -->
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="mdi mdi-cart-outline"></i>
+                                <span>Vendas de material</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <a href="/gerenciar-vendas" class="waves-effect">
+                                    <i class=""></i>
+                                    <span>Gerenciar vendas</span>
+                                </a>
+                            </ul>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <a href="/gerenciar-pagamentos" class="waves-effect">
+                                    <i class=""></i>
+                                    <span>Gerenciar pagamentos</span>
+                                </a>
+                            </ul>
+                        </li>
 
                         <!-- <li>
                             <a href="/cadastro/usuario" class="waves-effect">
