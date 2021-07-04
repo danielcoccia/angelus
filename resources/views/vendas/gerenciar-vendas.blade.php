@@ -7,55 +7,62 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-body">
-                                                     
+                                <div class="card-body">                
                                     <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Gerenciar Vendas</h4>
                                     <hr>
                                     <div class="container">
                                         <div class="row align-items-center">
                                             <div class="col-sm">
                                                 <form>
-                                                <label for="festa">Início</label>
-                                                <input type="date" id="festa" name="Data" min="" max="">
+                                                <label for="nome">Início</label>
+                                                <input type="date" id="{{ request('data_inicio') }}" name="data_inicio" min="" max="">
                                                 </form>
                                             </div>
                                             <div class="col-sm">
                                                 <form>
                                                 <label for="festa">Final</label>
-                                                <input type="date" id="festa" name="Data" min="" max="">
+                                                <input type="date" id="{{ request('data_fim') }}" name="data_fim" min="" max="">
                                                 </form>
-                                            </div>                                           
-                                            <div class="col-sm">                                  
-                                                <input class="form-control" type="text" placeholder="CPF">
                                             </div>
                                             <div class="col-sm">
-                                                <div class="col-sm">                                      
                                                 <input class="form-control" type="text" placeholder="Nome do cliente">
                                             </div>
+                                            <div class="col-sm">
+                                                <select class="custom-select">
+                                                    <label for="categoria" class="col-sm-4 col-form-label">Categoria
+                                                    </label>
+                                                <select class="form-control select2" id="categoria" name="categoria" required="required">                                                
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>                                                
                                         </div>
                                     </div>
                                     <br>
-                                <div class="container">
-                                    <div class="row align-items-center">
-                                        <div class="col-sm">                                
-                                            <select class="form-control">
-                                                <option>Categoria</option>
-                                            </select>                            
-                                        </div>                                                           
-                                        <div class="col-sm">
-                                            <a href="/gerenciar-vendas">
-                                            <input class="btn btn-danger" type="button" value="Limpar">
-                                            </a>
-                                        </div>
-                                        <div class="col-sm">
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col-sm">
+                                                <select class="custom-select">
+                                                    <option selected>Situação da Venda</option>
+                                                    <option value="1">Um</option>
+                                                    <option value="2">Dois</option>
+                                                    <option value="3">Três</option>
+                                                </select>
+                                            </div>         
+                                            <div class="col-sm">
                                                 <a href="/gerenciar-vendas">
-                                                <input class="btn btn-info" type="button" value="Pesquisar">
+                                                <input class="btn btn-danger" type="button" value="Limpar">
                                                 </a>
-                                        </div>
-                                        <div class="col-sm">
-                                            <a href="/registrar-venda">
-                                            <input class="btn btn-success" type="button" value="Nova venda +">
-                                            </a>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/gerenciar-vendas">
+                                                    <input class="btn btn-info" type="button" value="Pesquisar">
+                                                </a>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/registrar-venda">
+                                                <input class="btn btn-success" type="button" value="Nova venda +">
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -79,16 +86,15 @@
                                                 <th>Ações</th>
                                             </tr>
                                         </thead>
-
                                         <tbody style='text-align:center;vertical-align:middle'>
                                           @foreach($result as $results)
                                             <tr>
                                                 <td>{{$results->id}}</td>
                                                 <td>{{$results->data}}</td>
-                                                <td>{{$results->id_pessoa}}</td>
-                                                <td>{{$results->id_usuario}}</td>
+                                                <td>{{$results->nome_cliente}}</td>
+                                                <td>{{$results->nome_usuario}}</td>
                                                 <td>{{$results->valor}}</td>
-                                                <td>{{$results->id_tp_situacao_venda}}</td>
+                                                <td>{{$results->sit_venda}}</td>
                                                 <td>                                               
                                                     <a href="/gerenciar-vendas/edit/{{$results->id}}">
                                                         <input class="btn btn-warning" type="button" value="Alterar">
@@ -97,6 +103,7 @@
                                                         <input class="btn btn-danger" type="button" value="Excluir">
                                                     </a>
                                                     <a>
+                                                        <a href="/gerenciar-pagamentos/{id}/{{$results->id}}">  
                                                         <input class="btn btn-success" type="button" value="Pagar">
                                                     </a>
                                                 </td>
@@ -104,7 +111,6 @@
                                             @endforeach     
                                         </tbody>
                                     </table>
-
                                 </div>
                             </div>
                         </div>

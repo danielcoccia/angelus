@@ -93,7 +93,7 @@
                                         </table> 
                                         <table class="table table-bordered">
                                             <thead class="thead-light">
-                                            <h6 style="color: blue;">Lista de compras</h6>                                                
+                                            <h6 style="color: blue;">LISTA DE COMPRAS</h6>                                                
                                                 <tr>
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Produto</th>
@@ -110,8 +110,8 @@
                                                     <td></td>
                                                     <td> 
                                                         <a href="#" class="btn btn-danger btn-custom">
-                                                           <i class="mdi mdi-delete-outline"></i>
-                                                        </a>
+                                                           <i class="far fa-trash-alt"></i>
+                                                        </a>                                                        
                                                     </td>
                                                 </tr>                            
                                             </tbody>
