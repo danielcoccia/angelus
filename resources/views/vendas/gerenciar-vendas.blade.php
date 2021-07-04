@@ -8,7 +8,10 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
+<<<<<<< HEAD
                                                      
+=======
+>>>>>>> master
                                     <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Gerenciar Vendas</h4>
                                     <hr>
                                     <div class="container">
@@ -38,9 +41,15 @@
                                 <div class="container">
                                     <div class="row align-items-center">
                                         <div class="col-sm">                                
+<<<<<<< HEAD
                                             <select class="form-control">
                                                 <option>Categoria</option>
                                             </select>                            
+=======
+                                            <label for="sit_venda" class="col-sm col-form-label">Situação Venda</label>                                       
+                                            <select class="form-control" id="sit_venda" name="sit_venda">
+                                            </select>
+>>>>>>> master
                                         </div>                                                           
                                         <div class="col-sm">
                                             <a href="/gerenciar-vendas">
@@ -53,7 +62,11 @@
                                                 </a>
                                         </div>
                                         <div class="col-sm">
+<<<<<<< HEAD
                                             <a href="/registrar-venda">
+=======
+                                            <a href="/venda-incluir">
+>>>>>>> master
                                             <input class="btn btn-success" type="button" value="Nova venda +">
                                             </a>
                                         </div>
@@ -68,7 +81,11 @@
                             <div class="card"><h4 class="card-title" class="card-title">Dados das vendas</h4>
                                 <div class="card-body">                                    
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+<<<<<<< HEAD
                                         <thead style='text-align:center;vertical-align:middle'> 
+=======
+                                        <thead>
+>>>>>>> master
                                             <tr>
                                                 <th>ID Venda</th>
                                                 <th>Data Venda</th>
@@ -80,7 +97,11 @@
                                             </tr>
                                         </thead>
 
+<<<<<<< HEAD
                                         <tbody style='text-align:center;vertical-align:middle'>
+=======
+                                        <tbody>
+>>>>>>> master
                                           @foreach($result as $results)
                                             <tr>
                                                 <td>{{$results->id}}</td>
@@ -89,6 +110,7 @@
                                                 <td>{{$results->id_usuario}}</td>
                                                 <td>{{$results->valor}}</td>
                                                 <td>{{$results->id_tp_situacao_venda}}</td>
+<<<<<<< HEAD
                                                 <td>                                               
                                                     <a href="/gerenciar-vendas/edit/{{$results->id}}">
                                                         <input class="btn btn-warning" type="button" value="Alterar">
@@ -99,6 +121,15 @@
                                                     <a>
                                                         <input class="btn btn-success" type="button" value="Pagar">
                                                     </a>
+=======
+                                                <td>
+                                                    <a href="/gerenciar-vendas/alterar/{{$results->id}}">
+                                                        <input class="btn btn-warning" type="button" value="Alterar">
+                                                    </a>
+                                                    <a href="/gerenciar-vendas/excluir/{{$results->id}}">
+                                                        <input class="btn btn-danger" type="button" value="Excluir">
+                                                    </a>
+>>>>>>> master
                                                 </td>
                                             </tr>
                                             @endforeach     
@@ -113,6 +144,10 @@
 
                
 @endsection
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 @section('footerScript')
             <!-- Required datatable js -->
            <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>

@@ -27,8 +27,14 @@ class GerenciarVendasController extends Controller
                 v.id,
                 v.data,
                 v.id_pessoa,
+<<<<<<< HEAD
                 v.id_usuario,
                 p.nome,
+=======
+                p.nome,
+                p.cpf,
+                v.id_usuario,
+>>>>>>> master
                 v.valor,
                 v.id_tp_situacao_venda
             from venda v
@@ -48,7 +54,11 @@ class GerenciarVendasController extends Controller
     public function create()
     {           
         $resultVendas = $this->objVendas->all();
+<<<<<<< HEAD
         return view('vendas/registrar-venda', compact('resultVendas'));   
+=======
+        return view('vendas/venda-incluir', compact('resultVendas'));   
+>>>>>>> master
     }
 
 
@@ -90,12 +100,17 @@ class GerenciarVendasController extends Controller
     left join usuario u on (v.id_usuario = u.id)
     where v.id = $id");
      //return view ('item_material', ['item_material' => $itens]);
+<<<<<<< HEAD
      return view ('vendas/registrar-venda', compact('vendas'));
+=======
+     return view ('vendas/venda-incluir', compact('vendas'));
+>>>>>>> master
     }
 
   
     public function edit($id)
     {
+<<<<<<< HEAD
         $resultVenda = $this->objVendas->all();
         $result =DB::table('venda')->where('id',$id)->get();
         return view('vendas/gerenciar-vendas', compact('resultVenda', 'result'));
@@ -104,11 +119,17 @@ class GerenciarVendasController extends Controller
 
         return view('/vendas/gerenciar-vendas/alterar', compact("resultVendas"));
 
+=======
+        $resultCategoria = $this->objTipoMaterial->all();
+        $result =DB::table('item_catalogo_material')->where('id',$id)->get();
+        return view('item/editar-item-catalogo', compact('resultCategoria', 'result'));
+>>>>>>> master
     }
 
    
     public function update(Request $request, $id)
     {     
+<<<<<<< HEAD
         DB::table('venda')
         ->where('id', $id)
         ->update([
@@ -117,12 +138,40 @@ class GerenciarVendasController extends Controller
         ]);
 
         return redirect()->action('GerenciarvendasController@update');
+=======
+        $ativo = isset($request->ativo) ? 1 : 0;
+        $composicao = isset($request->composicao) ? 1 : 0;
+        
+        DB::table('item_catalogo_material')
+            ->where('id', $id)
+            ->update([
+                'nome' => $request->input('nome_item'),
+                'id_categoria_material' => $request->input('categoria_item'),
+                'valor_minimo' => $request->input('val_minimo'),
+                'valor_medio' => $request->input('val_medio'),
+                'valor_maximo' => $request->input('val_maximo'),
+                'valor_marca' => $request->input('val_marca'),
+                'valor_etiqueta' => $request->input('val_etiqueta'),
+                'composicao' => $composicao,
+                'ativo' => $ativo,
+            ]);
+
+        $result= $result= $this->getListaItemMatAll();;
+        return view('item/gerenciar-item-catalogo', ['result'=>$result]);
+
+>>>>>>> master
     }
    
     public function destroy($id)
     {
+<<<<<<< HEAD
         DB::delete('delete from venda where id = ?' , [$id]);
         $result= $this->getListaVendasAll();;
         return view('vendas/gerenciar-vendas', ['result'=>$result]);
+=======
+        DB::delete('delete from item_catalogo_material where id = ?' , [$id]);
+        $result= $result= $this->getListaItemMatAll();;
+        return view('item/gerenciar-item-catalogo', ['result'=>$result]);
+>>>>>>> master
     }
 }
