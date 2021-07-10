@@ -49,9 +49,9 @@
                                                 </select>
                                             </div>         
                                             <div class="col-sm">
-                                                <a href="/gerenciar-vendas">
-                                                <input class="btn btn-danger" type="button" value="Limpar">
-                                                </a>
+                                            <a href="/gerenciar-vendas">
+                                            <input class="btn btn-danger" type="button" value="Limpar">
+                                            </a>
                                             </div>
                                             <div class="col-sm">
                                                 <a href="/gerenciar-vendas">
@@ -75,7 +75,7 @@
                             <div class="card"><h4 class="card-title" class="card-title">Dados das vendas</h4>
                                 <div class="card-body">                                    
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead style='text-align:center;vertical-align:middle'> 
+                                        <thead style='text-align:center;vertical-align:middle'>
                                             <tr>
                                                 <th>ID Venda</th>
                                                 <th>Data Venda</th>
@@ -87,14 +87,14 @@
                                             </tr>
                                         </thead>
                                         <tbody style='text-align:center;vertical-align:middle'>
-                                          @foreach($result as $results)
+                                        @foreach($result as $results)
                                             <tr>
                                                 <td>{{$results->id}}</td>
                                                 <td>{{$results->data}}</td>
                                                 <td>{{$results->nome_cliente}}</td>
                                                 <td>{{$results->nome_usuario}}</td>
                                                 <td>{{$results->valor}}</td>
-                                                <td>{{$results->sit_venda}}</td>
+                                                <td>{{$results->sit_venda}}</td>                                                
                                                 <td>                                               
                                                     <a href="/gerenciar-vendas/edit/{{$results->id}}">
                                                         <input class="btn btn-warning" type="button" value="Alterar">
@@ -119,6 +119,7 @@
 
                
 @endsection
+
 @section('footerScript')
             <!-- Required datatable js -->
            <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>

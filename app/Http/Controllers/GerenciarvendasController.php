@@ -38,7 +38,7 @@ class GerenciarVendasController extends Controller
         left join usuario u on (v.id_usuario = u.id)
         left join pessoa pu on (u.id_pessoa = pu.id)
         left join tipo_situacao_venda t on (t.id = v.id_tp_situacao_venda)
-             ");
+        ");
         return $lista;
     }
 
@@ -49,11 +49,12 @@ class GerenciarVendasController extends Controller
     }
 
  
-    /*public function create()
+    public function create()
     {           
         $resultVendas = $this->objVendas->all();
+
         return view('vendas/registrar-venda', compact('resultVendas'));   
-    }*/
+    }
 
 
     public function store(Request $request)
@@ -89,12 +90,17 @@ class GerenciarVendasController extends Controller
     left join usuario u on (v.id_usuario = u.id)
     where v.id = $id");
      //return view ('item_material', ['item_material' => $itens]);
+
      return view ('vendas/registrar-venda', compact('vendas'));
+
+     return view ('vendas/registrar-venda', compact('vendas'));
+
     }
 
   
     public function edit($id)
     {
+
         $resultVenda = $this->objVendas->all();
         $result =DB::table('venda')->where('id',$id)->get();
         return view('vendas/gerenciar-vendas', compact('resultVenda', 'result'));
@@ -103,11 +109,13 @@ class GerenciarVendasController extends Controller
 
         return view('/vendas/gerenciar-vendas/alterar', compact("resultVendas"));
 
+
     }
 
    
     public function update(Request $request, $id)
     {     
+
         DB::table('venda')
         ->where('id', $id)
         ->update([
@@ -116,52 +124,20 @@ class GerenciarVendasController extends Controller
         ]);
 
         return redirect()->action('GerenciarvendasController@update');
+
     }
    
     public function destroy($id)
     {
+
         DB::delete('delete from venda where id = ?' , [$id]);
         $result= $this->getListaVendasAll();;
         return view('vendas/gerenciar-vendas', ['result'=>$result]);
+
+        DB::delete('delete from venda where id = ?' , [$id]);
+        $result= $this->getListaVendasAll();;
+        return view('vendas/gerenciar-vendas', ['result'=>$result]);
+
     }
 
-
-    public function create()
-    {
-        $sql ="Select 
-                    it.id, 
-                    it.nome,
-                    c.nome as categoria 
-                    from item_catalogo_material it
-                    join tipo_categoria_material c on it.id_categoria_material = c.id
-                ";
-
-        $resultItem = DB::select($sql);
-
-        return view('vendas/gerenciar-vendas', compact('resultItem'));
-    }
-
-   /* public function search (Array $data, $totaPage)
-    {
-        $historics = $this-> where (function ($query) use ($data){
-            if (isset ( $data['id']));
-                $query->where ('id', $data, ['id']);
-
-            if (isset ( $data['date']));
-                $query->where ('date', $data, ['date']);
-            
-            if (isset ( $data['type']));
-                $query->where ('type', $data, ['type']);
-        })
-        -> where ('user_id', auth()->user()->id)
-        -> with (['user_sender'])
-        ->paginate ($totaPage);
-        
-        return $historics;
-    }    
-    
-    */
-
-
-   
 }
