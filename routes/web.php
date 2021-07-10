@@ -187,11 +187,19 @@ Route::get('/item_material/{id}', 'BarcodeController@show');
 
 
 Route::get('/gerenciar-vendas', 'GerenciarvendasController@index');
+
 Route::get('/registrar-venda', 'GerenciarvendasController@create');
+
+Route::get('/registrar-venda', 'GerenciarvendasController@create');
+
 Route::get('/gerenciar-vendas/alterar/{id}', 'GerenciarvendasController@index')->middleware('validaUsuario');
 Route::get('/gerenciar-vendas/excluir/{id}', 'GerenciarvendasController@index')->middleware('validaUsuario');
 Route::post('cad-venda/inserir', 'ItemCatalogoController@store')->middleware('validaUsuario');
+
 Route::get('/cad-sit-venda', 'SituacaovendaController@index');
+
+Route::get('/cad-sit-venda', 'SituacaovendaController@index');
+
 Route::get('/gerenciar-vendas/alterar/{id}', 'GerenciarvendasController@edit')->middleware('validaUsuario');
 Route::put('/gerenciar-vendas/atualizar/{id}', 'GerenciarvendasController@update')->middleware('validaUsuario');
 Route::put('/gerenciar-vendas', 'GerenciarvendasController@create')->middleware('validaUsuario');
@@ -200,4 +208,8 @@ Route::put('/gerenciar-vendas', 'GerenciarvendasController@create')->middleware(
 Route::get('/gerenciar-pagamentos', 'GerenciarpagamentoController@index')->middleware('validaUsuario');
 Route::get('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@show')->middleware('validaUsuario');
 Route::get('/gerenciar-pagamentos/excluir{id}', 'GerenciarpagamentoController@destroy')->middleware('validaUsuario');
+
 Route::get('/gerenciar-pagamentos', 'GerenciarpagamentoController@index')->middleware('validaUsuario');
+
+Route::get('/cad-sit-venda', 'SituacaovendaController@index');
+

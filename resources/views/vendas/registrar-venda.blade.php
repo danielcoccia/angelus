@@ -18,33 +18,33 @@
                                     <div class="container"> 
                                         <div class="row align-items-center">
                                             <div class="col-sm">
-                                                <a href="/selecionar-pessoa">
-                                                <input class="btn btn-warning" type="button" value="Selecionar Pessoa">
-                                                </a>
+                                                <input class="form-control" type="text" placeholder="ID Venda" readonly>    
                                             </div>
                                             <div class="col-sm">
-                                                <a href="/cad-pessoa">
-                                                <input class="btn btn-primary" type="button" value="Cadastrar Pessoa">
-                                                </a>
+                                                <input class="form-control" type="text" placeholder="Data Venda" readonly>         
                                             </div>
                                             <div class="col-sm">                                      
                                                 <input class="form-control" type="text" placeholder="Vendedor:">               
                                             </div>
                                         </div>
                                     </div>
+                                </form>
                                     <br>
+                                <form class="form-horizontal mt-4" method="POST" action="/cad-venda/inserir">
                                     <div class="container">
                                         <div class="row align-items-center">
-                                            <div class="col-sm">                                      
-                                                <input class="form-control" type="text" placeholder="ID Venda" readonly>       
+                                            <div class="col-sm-2">
+                                                <a href="/selecionar-pessoa">
+                                                <input class="btn btn-warning" type="button" value="Selecionar Pessoa">
+                                                </a>                                                      
                                             </div>
-                                            <div class="col-sm">                                      
-                                                <input class="form-control" type="text" placeholder="Data Venda" readonly>     
-                                            </div>
-                                            <div class="col-sm">                                      
+                                                <a href="/cad-pessoa">
+                                                    <input class="btn btn-primary" type="button" value="Cadastrar Pessoa">
+                                                </a>                                            
+                                            <div class="col-sm-3">                                      
                                                 <input class="form-control" type="text" placeholder="CPF" readonly>          
                                             </div>
-                                            <div class="col-sm">                                      
+                                            <div class="col-sm-5">                                      
                                                 <input class="form-control" type="text" placeholder="Nome Cliente" readonly>  
                                             </div>
                                         </div>
