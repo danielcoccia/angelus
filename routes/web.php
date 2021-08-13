@@ -210,6 +210,3 @@ Route::get('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@show')->m
 Route::get('/gerenciar-pagamentos/excluir{id}', 'GerenciarpagamentoController@destroy')->middleware('validaUsuario');
 
 Route::get('/gerenciar-pagamentos', 'GerenciarpagamentoController@index')->middleware('validaUsuario');
-
-Route::get('/cad-sit-venda', 'SituacaovendaController@index');
-
