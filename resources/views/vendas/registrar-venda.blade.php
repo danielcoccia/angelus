@@ -14,17 +14,18 @@
                     <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Registrar Vendas</h4>
                     <hr>
                     <!-- <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->
-                                <form class="form-horizontal mt-4" method="POST" action="/cad-venda/inserir">
+                                <form class="form-horizontal mt-4" method="POST" action="route{{('/registrar-venda')}}">
+                                @csrf
                                     <div class="container"> 
                                         <div class="row align-items-center">
                                             <div class="col-sm">
                                                 <input class="form-control" type="text" placeholder="ID Venda" readonly>    
                                             </div>
                                             <div class="col-sm">
-                                                <input class="form-control" type="text" placeholder="Data Venda" readonly>         
+                                                <input class="form-control" value="{{date('d/m/Y')}}" type="text" placeholder="Data Venda" readonly>         
                                             </div>
                                             <div class="col-sm">                                      
-                                                <input class="form-control" type="text" placeholder="Vendedor:">               
+                                                <input class="form-control" value="{{session()->get('usuario.nome')}}" type="text" placeholder="Vendedor:">               
                                             </div>
                                         </div>
                                     </div>

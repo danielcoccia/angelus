@@ -28,13 +28,11 @@
                                                 <input class="form-control" type="text" placeholder="Nome do cliente">
                                             </div>
                                             <div class="col-sm">
-                                                <select class="custom-select">
-                                                    <label for="categoria" class="col-sm-4 col-form-label">Categoria
-                                                    </label>
-                                                <select class="form-control select2" id="categoria" name="categoria" required="required">                                                
-                                                    <option value=""></option>
-                                                </select>
-                                                     
+                                                <select class="form-control" id="categoria" name="categoria" required="required">                                                
+                                                @Foreach($resultCategoria as $resultCategorias)
+                                                <option value="{{$resultCategorias->id}}">{{$resultCategorias->nome}}</option>
+                                                @endForeach
+                                                </select>     
                                             </div>                                                
                                         </div>
                                     </div>
@@ -42,16 +40,16 @@
                                     <div class="container">
                                         <div class="row align-items-center">
                                             <div class="col-sm">
-                                                <select class="custom-select">
-                                                    <option selected>Situação da Venda</option>
-                                                    <option value="1">Um</option>
-                                                    <option value="2">Dois</option>
-                                                    <option value="3">Três</option>
-                                                </select>
+                                            <select class="form-control" id="categoria" name="categoria" required="required">                                                
+                                            <option>selecione </option>    
+                                            @Foreach($resultSitVenda as $resultSitVendas)
+                                                <option value="{{$resultSitVendas->id}}">{{$resultSitVendas->nome}}</option>
+                                                @endForeach
+                                            </select>
                                             </div>         
                                             <div class="col-sm">
                                             <a href="/gerenciar-vendas">
-                                            <input class="btn btn-danger" type="button" value="Limpar">
+                                            <input class="btn btn-danger" type="reset" value="Limpar">
                                             </a>
                                             </div>
                                             <div class="col-sm">

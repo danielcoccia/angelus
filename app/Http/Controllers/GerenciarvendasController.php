@@ -45,18 +45,13 @@ class GerenciarVendasController extends Controller
     public function index()
     {     
         $result= $this->getListaVendasAll();
-        return view('vendas/gerenciar-vendas',['result'=>$result]);
+        $resultCategoria = DB::select ('select id, nome from tipo_categoria_material');
+        $resultSitVenda = DB::select ('select id, nome from tipo_situacao_venda');
+        return view('vendas/gerenciar-vendas', compact("result", "resultCategoria", "resultSitVenda"));
+
     }
 
  
-    public function create()
-    {           
-        $resultVendas = $this->objVendas->all();
-
-        return view('vendas/registrar-venda', compact('resultVendas'));   
-    }
-
-
     public function store(Request $request)
     {
         //$ativo = isset($request->ativo) ? 1 : 0;

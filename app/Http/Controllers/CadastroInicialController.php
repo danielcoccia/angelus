@@ -300,7 +300,7 @@ class CadastroInicialController extends Controller
             'id_item_catalogo_material' => $request->input('item_material'),            
             'observacao' => $request->input('observacao'),
             'data_cadastro' => date("y/m/d"),
-            'id_usuario_cadastro'=> '3',
+            'id_usuario_cadastro'=> '4',
             'id_tipo_embalagem' => $request->input('embalagem'),
             'id_tipo_unidade_medida' => $request->input('und_med'),
             'quantidade_embalagem' => $request->input('qtdEmb'),
@@ -326,5 +326,4 @@ class CadastroInicialController extends Controller
         return redirect()->action('CadastroInicialController@index');
     }
 
-    
 }
