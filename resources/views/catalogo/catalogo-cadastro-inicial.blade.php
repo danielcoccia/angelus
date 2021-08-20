@@ -14,49 +14,54 @@
                         <div class="row align-items-center">
                             <div class="col-sm">
                                 <form>
-                                <label for="festa">Início</label>
+                                <label for="" class="form-label">Data inicial</label>
                                 <input type="date" id="festa" name="Data" min="" max="">
-                                </form>
+                                
                             </div>
                             <div class="col-sm">
-                                <form>
-                                <label for="festa">Final</label>
+                               
+                                <label for="" class="form-label">Data Final</label>
                                 <input type="date" id="festa" name="Data" min="" max="">
-                                </form>
+                                
                             </div>
                             <div class="col-sm">
-                                <select class="form-control">0
-                                <option>Selecione uma categoria</option>
+                                <select class="form-control"><option>Selecione a Categoria</option>
+                                @Foreach($resultCategoria as $resultCategorias)
+                                <option value="{{$resultCategorias->id}}">{{$resultCategorias->nome}}</option>
+                                @endForeach
                                 </select>
                             </div>
                             <div class="col-sm">
-                                <select class="form-control">0
-                                <option>Selecione uma Situação</option>
+                                <select class="form-control"><option>Selecione a Situação</option>
+                                @Foreach($resultSitMat as $resultSitMats)
+                                <option value="{{$resultSitMats->id}}">{{$resultSitMats->nome}}</option>
+                                @endForeach
                                 </select>
+                            </div>
+                            <div class="col-1">
+                                Doado<br><input type="checkbox" id="switch3" switch="bool" checked/>
+                                <label for="switch3" data-on-label="Sim" data-off-label="Não"></label>
                             </div>
                         </div>
                     </div>
                                 <br>
                     <div class="container">
                         <div class="row align-items-center">
-                            <div class="col-sm">                                                           <input class="form-control" type="text" placeholder="Nome do material">
+                            <div class="col-4">                                                           
+                                <input class="form-control" type="text" placeholder="Nome do material">
                             </div>
-                            <div class="col-sm">
-                                      Doado<br><input type="checkbox" id="switch3" switch="bool" checked/>
-                                        <label for="switch3" data-on-label="Sim" data-off-label="Não"></label>
-                                </div>
                             
-                            <div class="col-sm">
-                                <a href="/pesquisar">
-                                <input class="btn btn-primary" type="button" value="Pesquisar cadastro">
-                                </a>
+                            <div class="col-1">
+                                <input class="btn btn-danger" type="reset" value="Limpar"></a>
                             </div>
-                            <div class="col-sm">
-                                <a href="/gerenciar-cadastro-inicial/incluir">
-                                <input class="btn btn-success" type="button" value="Novo Cadastro +">
-                                </a>
+                            <div class="col-md-2 text-center">
+                                <a href=""><input class="btn btn-primary" type="button" value="Pesquisar"></a>
                             </div>
-                            <div class="col-sm">
+                            </form>
+                            <div class="col-2">
+                                <a href="/gerenciar-cadastro-inicial/incluir"><input class="btn btn-success" type="button" value="Novo Cadastro +"></a>
+                            </div>
+                            <div class="col-3">
                                 <a href="/barcode">
                                 <input class="btn btn-info" type="button" value="Cód Barras da pesquisa">
                                 </a>

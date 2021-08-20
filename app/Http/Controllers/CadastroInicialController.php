@@ -44,7 +44,11 @@ class CadastroInicialController extends Controller
     public function index()
     {
         $result= $this->getListaItens();
-        return view('catalogo/catalogo-cadastro-inicial', compact('result'));
+        $resultCategoria = DB::select ('select id, nome from tipo_categoria_material');
+        $resultSitMat = DB::select ('select id, nome from tipo_situacao_item_material');
+        return view('catalogo/catalogo-cadastro-inicial', compact("result", "resultCategoria", "resultSitMat"));
+       // return view('vendas/gerenciar-vendas', compact("result", "resultCategoria", "resultSitVenda"));
+
     }
 
     public function create()

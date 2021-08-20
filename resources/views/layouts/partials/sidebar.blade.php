@@ -65,16 +65,8 @@
                                 <span>Vendas de material</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <a href="/gerenciar-vendas" class="waves-effect">
-                                    <i class=""></i>
-                                    <span>Gerenciar vendas</span>
-                                </a>
-                            </ul>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <a href="/gerenciar-pagamentos" class="waves-effect">
-                                    <i class=""></i>
-                                    <span>Gerenciar pagamentos</span>
-                                </a>
+                               <li><a href="/gerenciar-vendas" class="waves-effect"><span>Gerenciar vendas</span></a></li>                            
+                               <li><a href="/gerenciar-pagamentos" class="waves-effect"><span>Gerenciar pagamentos</span></a></li>
                             </ul>
                         </li>
 
