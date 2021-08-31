@@ -22,7 +22,7 @@
                                 <div class="card-body">
 
                                     <!-- <h4 class="card-title">Pesquisar</h4>  -->
-<!--                                     <form class="form-horizontal mt-4" method="POST" action="/pesquisar-pessoa/show"> 
+<!--                                     <form class="form-horizontal mt-4" method="POST" action="/gerenciar-pessoa"> 
                                         @csrf
                                     <div class="row">
 									   	<div class="col-md-4">

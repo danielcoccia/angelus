@@ -15,20 +15,23 @@
                                             <div class="col-sm">
                                                 <form>
                                                 <label for="nome">Início</label>
-                                                <input type="date" id="{{ request('data_inicio') }}" name="data_inicio" min="" max="">
-                                                
+                                                <input type="date" id="{{ request('data_inicio') }}" name="data_inicio" min="" max="">                                                
                                             </div>
-                                            <div class="col-sm">
-                                                
-                                                <label for="festa">Final</label>
+                                            <div class="col-sm">                                                
+                                                <label for="date">Final</label>
                                                 <input type="date" id="{{ request('data_fim') }}" name="data_fim" min="" max="">
-                                                
-                                            </div>
-                                            <div class="col-sm">
-                                                <input class="form-control" type="text" placeholder="Nome do cliente">
-                                            </div>
+                                            </div>             
                                             <div class="col-sm">
                                                 <select class="form-control" id="categoria" name="categoria" required="required">                                                
+                                                <option>Situações da venda</option>    
+                                                @Foreach($resultSitVenda as $resultSitVendas)
+                                                <option value="{{$resultSitVendas->id}}">{{$resultSitVendas->nome}}</option>
+                                                @endForeach
+                                                </select>                                           
+                                            </div>                                            
+                                            <div class="col-sm">
+                                                <select class="form-control" id="categoria" name="categoria" required="required">
+                                                <option>Categorias</option>                                                
                                                 @Foreach($resultCategoria as $resultCategorias)
                                                 <option value="{{$resultCategorias->id}}">{{$resultCategorias->nome}}</option>
                                                 @endForeach
@@ -39,14 +42,9 @@
                                     <br>
                                     <div class="container">
                                         <div class="row align-items-center">
-                                            <div class="col-sm">
-                                            <select class="form-control" id="categoria" name="categoria" required="required">                                                
-                                            <option>selecione </option>    
-                                            @Foreach($resultSitVenda as $resultSitVendas)
-                                                <option value="{{$resultSitVendas->id}}">{{$resultSitVendas->nome}}</option>
-                                                @endForeach
-                                            </select>
-                                            </div>         
+                                            <div class="col-sm-5">
+                                                <input class="form-control" type="text" placeholder="Nome do cliente">
+                                            </div>
                                             <div class="col-sm">
                                             <a href="/gerenciar-vendas">
                                             <input class="btn btn-danger" type="reset" value="Limpar">

@@ -25,37 +25,36 @@
                                                 <input class="form-control" value="{{date('d/m/Y')}}" type="text" placeholder="Data Venda" readonly>         
                                             </div>
                                             <div class="col-sm">                                      
-                                                <input class="form-control" value="{{session()->get('usuario.nome')}}" type="text" placeholder="Vendedor:">               
+                                                <input class="form-control" value="{{session()->get('usuario.nome')}}" type="text" placeholder="Vendedor">               
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                                     <br>
-                                <form class="form-horizontal mt-4" method="POST" action="/cad-venda/inserir">
-                                    <div class="container">
-                                        <div class="row align-items-center">
-                                            <div class="col-sm-2">
-                                                <a href="/selecionar-pessoa">
-                                                <input class="btn btn-warning" type="button" value="Selecionar Pessoa">
-                                                </a>                                                      
-                                            </div>
-                                                <a href="/cad-pessoa">
-                                                    <input class="btn btn-primary" type="button" value="Cadastrar Pessoa">
-                                                </a>                                            
-                                            <div class="col-sm-3">                                      
-                                                <input class="form-control" type="text" placeholder="CPF" readonly>          
-                                            </div>
-                                            <div class="col-sm-5">                                      
-                                                <input class="form-control" type="text" placeholder="Nome Cliente" readonly>  
-                                            </div>
+                                <form class="form-horizontal mt-4" method="POST" action="route{{('/registrar-venda')}}">
+                                <div class="container">
+                                    <div class="row align-items-center">                                            
+                                        <div class="col-sm-3">                                      
+                                        <select class="form-control select2" id="cpf" name="cpf" required="required">                                                
+                                            <option>CPF</option>    
+                                            @Foreach($resultPessoa as $resultPessoas)
+                                            <option value="{{$resultPessoas->id}}">{{$resultPessoas->cpf}}</option>
+                                            @endForeach
+                                            </select>           
+                                        </div>
+                                    </form>              
+                                            <a href="/cad-pessoa">
+                                            <input class="btn btn-primary" type="button" value="Cadastrar Pessoa">
+                                            </a>    
                                         </div>
                                     </div>
-                                </form>
+                                
                             <hr>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <button type="button" class="btn btn-warning">Buscar item catálogo</button>
+                                        <button id="btnbuscaitem" type="button" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">Buscar item catálogo</button>
+                                        
                                         <button type="button" class="btn btn-info">Buscar item Cód barras</button>
                                     </div>                                    
                                 </div>
@@ -104,17 +103,18 @@
                                                 </tr>                                                
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td scope="row"></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                {{--<tr>@foreach
+                                                    <td scope="row">{{}}</td>
+                                                    <td>{{}}</td>
+                                                    <td>{{}}</td>
+                                                    <td>{{}}</td>
                                                     <td> 
                                                         <a href="#" class="btn btn-danger btn-custom">
                                                            <i class="far fa-trash-alt"></i>
                                                         </a>                                                        
                                                     </td>
-                                                </tr>                            
+                                                    @endforeach
+                                                </tr> --}}                            
                                             </tbody>
                                         </table>
                                     </div>                       
@@ -135,12 +135,20 @@
             </div>
         </div>
     </div>
+    @include('vendas/popUp-buscaritem')
+
 @endsection
 
-@section('footerScript')
-            <script src="{{ URL::asset('/js/pages/mascaras.init.js')}}"></script>
-            <script src="{{ URL::asset('/js/pages/busca-cep.init.js')}}"></script>            
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+@section('footerScript')      
+
             <script src="{{ URL::asset('/libs/select2/select2.min.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/form-advanced.init.js')}}"></script>
+            <!-- Required datatable js -->
+            <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
+            <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
+            <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
+           
+            <!-- Datatable init js -->
+            <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
+            <script src="{{ URL::asset('/js/pages/registrar-venda.init.js')}}"></script>
 @endsection

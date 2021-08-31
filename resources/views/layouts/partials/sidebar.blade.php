@@ -14,7 +14,7 @@
                                 <span>Controle e Acesso</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="/pesquisar-pessoa" class="waves-effect"><span>Pessoa</span></a></li>
+                                <li><a href="/gerenciar-pessoa" class="waves-effect"><span>Pessoa</span></a></li>
                                 <li><a href="/gerenciar-entidade" class="waves-effect"><span>Entidade</span></a></li>
                                 <li><a href="/gerenciar-usuario" class="waves-effect"><span>Usuario</span></a></li>
                             </ul>
@@ -67,6 +67,7 @@
                             <ul class="sub-menu" aria-expanded="false">
                                <li><a href="/gerenciar-vendas" class="waves-effect"><span>Gerenciar vendas</span></a></li>                            
                                <li><a href="/gerenciar-pagamentos" class="waves-effect"><span>Gerenciar pagamentos</span></a></li>
+                               <li><a href="/registrar-venda" class="waves-effect"><span>Registrar Venda</span></a></li>
                             </ul>
                         </li>
 

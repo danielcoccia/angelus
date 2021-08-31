@@ -24,7 +24,7 @@ class PessoaController extends Controller
     public function index()
     {   
         $result= $this->objPessoa->all();
-        return view('/pessoa/pesquisar-pessoa',['result'=>$result]);
+        return view('pessoa/gerenciar-pessoa',['result'=>$result]);
     }
    
     public function create()
@@ -63,7 +63,7 @@ class PessoaController extends Controller
         ]);
 
         $result= $this->objPessoa->all();
-        return view('/pessoa/pesquisar-pessoa',['result'=>$result]);
+        return view('pessoa/gerenciar-pessoa',['result'=>$result]);
 
     }
 
@@ -79,7 +79,7 @@ class PessoaController extends Controller
                                     ->where('cpf', 'like' , '%'.$cpf.'%')
                                     ->get();
 
-        return view('/pessoa/pesquisar-pessoa',['result'=>$result]);
+        return view('pessoa/gerenciar-pessoa',['result'=>$result]);
     }
 
     public function edit($id)
@@ -116,13 +116,15 @@ class PessoaController extends Controller
         ]);            
         
         $result= $this->objPessoa->all();
-        return view('/pessoa/pesquisar-pessoa',['result'=>$result]);
+        return view('/pessoa/gerenciar-pessoa',['result'=>$result]);
     }
 
     public function destroy($id)
     {
         $deleted = DB::delete('delete from pessoa where id =?' , [$id]);
         $result= $this->objPessoa->all();
-        return view('/pessoa/pesquisar-pessoa',['result'=>$result]);
+        return view('/pessoa/gerenciar-pessoa',['result'=>$result]);
     }
+
+    
 }

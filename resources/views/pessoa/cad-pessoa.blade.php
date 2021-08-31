@@ -76,7 +76,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="dt_nascimento" class="col-sm-2 col-form-label">Data Nascimento</label>
+                                            <label for="dt_nascimento" class="col-sm-2 col-form-label">Data Nascimento*</label>
                                             <div class="col-sm-10">
                                                 <input class="form-control" type="date" value="" id="dt_nascimento" name="dt_nascimento">
                                             </div>
@@ -115,7 +115,7 @@
                                                 <input type="text" class="form-control" id="estado" name="estado">
                                             </div>
                                              <div class="col-md-4">
-                                                <label for="cidade" class="form-label">Cidade</label>
+                                                <label for="cidade" class="form-label">Localidade*</label>
                                                 <input type="text" class="form-control" id="cidade" name="cidade">
                                             </div>  
                                             <div class="col-md-4">
@@ -125,7 +125,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <label for="logradouro" class="form-label">Logradouro</label>
+                                                <label for="logradouro" class="form-label">Logradouro*</label>
                                                 <input type="text" class="form-control" id="logradouro" name="logradouro">
                                             </div>                                                                             
                                             <div class="col-md-4">
