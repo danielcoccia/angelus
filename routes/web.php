@@ -195,8 +195,8 @@ Route::get('/gerenciar-vendas/alterar/{id}', 'GerenciarvendasController@edit')->
 Route::put('/gerenciar-vendas/atualizar/{id}', 'GerenciarvendasController@update')->middleware('validaUsuario');
 
 
-Route::get('/registrar-venda', 'RegistrarvendaController@index');
-Route::get('/registrar-venda/buscaritem', 'RegistrarvendaController@buscaritem');
+Route::get('/registrar-venda', 'RegistrarVendaController@index');
+Route::get('/registrar-venda/buscaritem', 'RegistrarVendaController@buscaritem');
 
 Route::get('/cad-sit-venda', 'SituacaovendaController@index');
 
