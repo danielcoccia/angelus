@@ -101,7 +101,7 @@
                                                         <input class="btn btn-danger" type="button" value="Excluir">
                                                     </a>
                                                     <a>
-                                                        <a href="/gerenciar-pagamentos/{id}/{{$results->id}}">  
+                                                        <a href="/gerenciar-pagamentos/{{$results->id}}">  
                                                         <input class="btn btn-success" type="button" value="Pagar">
                                                     </a>
                                                 </td>

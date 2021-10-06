@@ -56,7 +56,7 @@ class GerenciarpagamentoController extends Controller
         left join tipo_pagamento t on (p.id_tipo_pagamento = t.id)
     where p.id = $id");
      //return view ('item_material', ['item_material' => $itens]);
-     return view ('vendas/gerenciar-pagamentos', compact('pagamentos'));
+     return view ('vendas/gerenciar-pagamentos', compact('vendas'));
     }
 
     public function destroy($id)

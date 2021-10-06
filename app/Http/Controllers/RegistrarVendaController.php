@@ -97,5 +97,35 @@ class RegistrarVendaController extends Controller
 
         return view('vendas/registrar-venda', compact('pessoa'));
     }
+
+    public function getItem($id)
+    {
+       
+
+       $item = DB::select("
+            select 
+                im.id, 
+                ic.nome nome, 
+                im.data_cadastro data_cadastro, 
+                m.nome marca, 
+                t.nome tamanho, 
+                c.nome cor,
+                tm.nome tipo_material,
+                im.valor_venda,
+                im.valor_venda_promocional,
+                im.liberacao_venda
+            from item_material im
+            left join item_catalogo_material ic on (im.id_item_catalogo_material = ic.id)
+            left join marca m on (im.id_marca = m.id)
+            left join tamanho t on (im.id_tamanho = t.id)
+            left join cor c on (im.id_cor = c.id)
+            left join tipo_material tm on (im.id_tipo_material = tm.id)
+            where im.id = $id
+        ");
+
+        return view('vendas/area-confirmacao', compact('item'));
+    }
+
+    
    
 }

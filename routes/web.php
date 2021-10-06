@@ -197,6 +197,8 @@ Route::put('/gerenciar-vendas/atualizar/{id}', 'GerenciarvendasController@update
 
 Route::get('/registrar-venda', 'RegistrarVendaController@index');
 Route::get('/registrar-venda/buscaritem', 'RegistrarVendaController@buscaritem');
+Route::get('/registrar-venda/getItem/{id}', 'RegistrarVendaController@getItem');
+
 
 Route::get('/cad-sit-venda', 'SituacaovendaController@index');
 

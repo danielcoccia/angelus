@@ -26,8 +26,7 @@
                                                 <td>{{$resultItens->tamanho}}</td>
                                                 <td>{{$resultItens->cor}}</td>
                                                 <td>{{$resultItens->tipo_material}}</td>
-                                                 <td>
-                                                    </td>
+                                                 <td><button type="button" id="btnAddItem" value="{{$resultItens->id}}"  class="btn btn-primary">+</button></td>
                                             </tr>
                                             @endforeach
                                         </tbody>

@@ -53,16 +53,16 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <button id="btnbuscaitem" type="button" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">Buscar item catálogo</button>
+                                        <button id="btnbuscaitem" type="button" class="btn btn-warning">Buscar item catálogo</button>
                                         
                                         <button type="button" class="btn btn-info">Buscar item Cód barras</button>
                                     </div>                                    
                                 </div>
                             </div>
                             <br>
-                            <div class="container">
+                            <div class="container" >
                                 <div class="row">          
-                                    <div class="col col-lg-4">                                      
+                                    <div class="col col-lg-4" id="DivConfirmaItem">
                                         <input class="form-control" type="text" placeholder="ID" readonly>                                                                      
                                         <input class="form-control" type="text" placeholder="Nome item" readonly>                                                                 
                                         <input class="form-control" type="text" placeholder="Categoria" readonly>                                                                                
@@ -78,7 +78,7 @@
                                         <input class="form-control" type="text" placeholder="Valor da venda" readonly>       
                                     </div>
                                     <div class="col col-lg-2">                                                    
-                                        <button type="submit" class="btn btn-success">Adicionar a lista de compras</button>
+                                        <button type="button" id="btnAddLista" class="btn btn-success">Adicionar a lista de compras</button>
                                     </div>
                                     <div class="col col-lg-6">                                  
                                         <table class="table table-bordered">
@@ -135,7 +135,7 @@
             </div>
         </div>
     </div>
-    @include('vendas/popUp-buscaritem')
+    @include('vendas/popUp-buscaritem')    
 
 @endsection
 
@@ -151,4 +151,8 @@
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/registrar-venda.init.js')}}"></script>
+
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">                        
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 @endsection
