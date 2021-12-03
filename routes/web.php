@@ -198,6 +198,10 @@ Route::put('/gerenciar-vendas/atualizar/{id}', 'GerenciarvendasController@update
 Route::get('/registrar-venda', 'RegistrarVendaController@index');
 Route::get('/registrar-venda/buscaritem', 'RegistrarVendaController@buscaritem');
 Route::get('/registrar-venda/getItem/{id}', 'RegistrarVendaController@getItem');
+// Route::post('/registrar-venda/registra', 'RegistrarVendaController@setVenda');
+Route::get('/registrar-venda/setVenda/{id_pessoa}/{data_venda}/{id_usuario}', 'RegistrarVendaController@setVenda');
+Route::get('/registrar-venda/setItemLista/{id_item}/{id_venda}', 'RegistrarVendaController@setItemLista');
+
 
 
 Route::get('/cad-sit-venda', 'SituacaovendaController@index');
