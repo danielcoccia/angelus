@@ -17,17 +17,15 @@
                                 <form class="form-horizontal mt-4" method="POST" action="route{{('/registrar-venda')}}">
                                 @csrf
                                     <div class="container"> 
-                                        <div id="divVenda"></div>
                                         <div class="row align-items-center">
                                             <div class="col-sm">
-                                                <input class="form-control" type="text" name="id_venda" id="id_venda" value="" placeholder="ID Venda" readonly>    
+                                                <input class="form-control" type="text" placeholder="ID Venda" readonly>    
                                             </div>
                                             <div class="col-sm">
-                                                <input class="form-control" value="{{date('d-m-Y')}}" type="text" name="data_venda" id="data_venda" placeholder="Data Venda" readonly>
+                                                <input class="form-control" value="{{date('d/m/Y')}}" type="text" placeholder="Data Venda" readonly>         
                                             </div>
                                             <div class="col-sm">                                      
-                                                <input class="form-control" value="{{session()->get('usuario.id_usuario')}}" name="id_usuario" id="id_usuario" type="hidden" >
-                                                <input class="form-control" value="{{session()->get('usuario.nome')}}" name="nome_usuario" id="nome_usuario" type="text" placeholder="Vendedor" readonly>
+                                                <input class="form-control" value="{{session()->get('usuario.nome')}}" type="text" placeholder="Vendedor">               
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +50,6 @@
                                     </div>
                                 
                             <hr>
-                            <div id="divAddItem" style="display: none;">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -124,7 +121,6 @@
                                         </div>  
                                     </div>                     
                                 </div>
-                            </div>
                             </div>
                             <br>
                             <div class="container">

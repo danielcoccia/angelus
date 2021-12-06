@@ -49,6 +49,7 @@ class LoginController extends Controller
             {
                session()->put('usuario', [
                              'id_usuario'=> $result[0]->id_usuario,
+                             'id_pessoa' => $result[0]->id_pessoa,
                              'nome'=> $result[0]->nome,
                              'cpf' => $result[0]->cpf
                     ]);

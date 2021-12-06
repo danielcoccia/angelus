@@ -126,6 +126,49 @@ class RegistrarVendaController extends Controller
         return view('vendas/area-confirmacao', compact('item'));
     }
 
-    
-   
+    public function setVenda($id_pessoa, $data_venda, $id_usuario){
+
+        DB::table('venda')->insert([            
+            'data' => $data_venda,
+            'id_pessoa' => $id_pessoa,
+            'id_usuario' => $id_usuario,
+            'id_tp_situacao_venda' => '1',
+        ]);
+
+        $result = DB::select("
+            select
+                max(id) id
+            from venda
+            where id_pessoa=".$id_pessoa." and id_usuario=".$id_usuario);
+
+        return $result[0]->id;
+     }
+
+     public function setItemLista($id_item, $id_venda){
+
+        DB::table('venda_item_material')->insert([            
+            'id_venda' => $id_venda,
+            'id_item_material' => $id_item,
+        ]);
+
+        $listaItemVenda = $this->getListaVenda($id_venda);
+
+        return view('vendas/lista-compras', compact('listaItemVenda'));
+     }
+
+     public function getListaVenda($id_venda){
+
+         $result = DB::select("
+            select 
+            vi.id_venda,
+            id_item_material id,
+            ic.nome nome, 
+            im.valor_venda_promocional
+            from venda_item_material vi
+            left join item_material im on vi.id_item_material = im.id
+            left join item_catalogo_material ic on im.id_item_catalogo_material = ic.id
+            where id_venda =$id_venda");
+
+        return $result;
+     }
 }
