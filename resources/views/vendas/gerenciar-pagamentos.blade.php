@@ -33,7 +33,7 @@
                                                     <td class="text-center">{{$v->idv}}</td>
                                                     <td class="text-center">{{$v->data}}</td>
                                                     <td class="text-center">{{$v->cpf}}</td>
-                                                    <td class="text-center">{{$v->nomepes}}</td>@break
+                                                    <td class="text-center">{{$v->nomepes}}</td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -54,7 +54,7 @@
                                                 <td style=text-align:right>QUANTIDADE</td>                                               
                                                 <td style=font-size:18px;>{{$total_itens}}</td> 
                                                 <td style=text-align:right>VALOR TOTAL</td>                                               
-                                                <td style=font-size:18px;>{{$total_preco}}</td>                                          
+                                                <td style=font-size:18px;>{{number_format($total_preco,2,',','.')}}</td>                                          
                                                 </tr>
                                             </thead>
                                         </table> 
@@ -68,12 +68,12 @@
                                                 </tr>                                                
                                             </thead>
                                             <tbody>
-                                            @foreach($vendas as $v)
+                                            @foreach($itens_compra as $ic)
                                                 <tr>
-                                                    <td>{{$v->id_item_material}}</td>
-                                                    <td>{{$v->nomemat}}</td>
+                                                    <td>{{$ic->id_item_material}}</td>
+                                                    <td>{{$ic->nomemat}}</td>
                                                     <td></td>
-                                                    <td>{{$v->valor_venda}}</td>                                             
+                                                    <td>{{number_format($ic->valor_venda,2,',','.')}}</td>                                             
                                                 </tr>
                                             @endforeach                            
                                             </tbody>
@@ -86,25 +86,28 @@
                                     <div class="input-group mb-3"> 
                                         <div class="col-lg-3">
                                         @foreach($vendas as $v)                                            
-                                        ID VENDA<input type="numeric" class="form-control" value="{{$v->idv}}" id="id" name="id">@break
+                                        ID VENDA<input type="numeric" class="form-control" value="{{$v->idv}}" id="id" name="id">
                                             @endforeach
                                         </div>
                                     </div>
-                                    <div class="input-group mb-3">                                                                         
+                                    <div class="input-group mb-3">
                                         <div class="input-group-prepend">                                        
                                             <button style="background-color: #EEE9E9;" class="btn btn-outline-secondary" type="button">Forma de pagamento</button>
-                                        </div> 
+                                        </div>
+                                    
+                                     
                                         <select class="form-control" id="forma" name="forma" required="required">
                                             <option>Escolher...</option>
                                             @foreach($tipos_pagamento as $tp)
                                             <option value="{{$tp->id}}">"{{$tp->nome}}"</option>
                                             @endforeach
-                                        </select>
+                                        </select>                                    
                                     </div>
                                         <div class="input-group mb-3">
                                             <input type="numeric" class="form-control" id="valor" name="valor" placeholder="Valor">
                                         <div class="input-group-append">
-                                            <button style="background-color: #CAFF70;" class="btn btn-outline-secondary" type="submit" id="button-addon2">>>Confirmar</button>
+                                            <button type="submit" style="background-color: #CAFF70;" class="btn btn-outline-secondary"  id="button-addon2">>>Confirmar</button>
+                                    </form>
                                         </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -119,18 +122,27 @@
                                                     </tr>                                                
                                                 </thead>
                                                 <tbody style='text-align:center;vertical-align:middle'>
-                                                @foreach($pagamentos as $pg)                                                
+                                                
+                                                
+                                                
+                                                @foreach($pagamentos as $pg)
+
+                                                <form action="/gerenciar-pagamentos/excluir/{{$pg->pid}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')                                                
                                                     <tr> 
                                                         <td>{{$pg->pid}}</td>
                                                         <td>{{$pg->nome}}</td>
-                                                        <td>{{$pg->valor}}</td>
+                                                        <td>{{number_format($pg->valor,2,',','.')}}</td>
                                                         <td>                                                       
-                                                        <a href="/gerenciar-pagamentos/excluir/{{$pg->pid}}" value="{{$pg->pid}}" class="btn btn-danger btn-custom"><i class="far fa-trash-alt"></i></a> 
+                                                        <button type="submit" class="btn btn-danger btn-custom"><i class="far fa-trash-alt"></i></a> 
                                                         </td>
                                                     </tr>
-                                                    @endforeach                    
+                                                     
+                                                </form> @endforeach                  
                                                 </tbody>
                                             </table>
+                                            
                                         </div>                                        
                                         <div class="input-group mb-3">
                                             <table class="table table-bordered">
@@ -138,8 +150,14 @@
                                                 <tbody style='text-align:center;vertical-align:middle; font-size:15px;'>
                                                     <tr>
                                                     <td style="text-align:left;">Descontos:</td><td style="text-align:left;">R$</td></tr>
-                                                    <tr style="text-align:left;"><td>Pagamentos:</td><td style="text-align:left;">{{$total_pago}}</td></tr>
-                                                    <tr style="background-color: #FFDAB9; text-align:left;"><td>Troco:</td><td style="text-align:left;"></td></tr>
+                                                    <tr style="text-align:left;"><td>Pagamentos:</td><td style="text-align:left;">{{number_format($total_pago,2,',','.')}}</td></tr>
+                                                    <tr style="background-color: #FFDAB9; text-align:left;"><td>Troco:</td><td style="text-align:left;">
+                                                    @if($total_pago <= $total_preco)
+                                                    {{0,00}}        
+                                                    @elseif ($total_pago > $total_preco)
+                                                    {{number_format($troco,2,',','.')}}
+                                                    @endif</td>
+                                                    </tr>
                                                     <tr style="background-color: #FFFF00; text-align:right;font-weight:bold;"><td>Total da venda:</td><td style="text-align:left;font-size:18px;">{{$total_preco}}</td></tr>                            
                                                 </tbody>
                                             </table>
@@ -151,10 +169,11 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12 mt-3" style="text-align: right;">
-                                        <a href=
-                                        "/gerenciar-vendas"  type="button" class="btn btn-danger">Cancelar</a>
+                                        <a href="/gerenciar-vendas"  type="button" class="btn btn-danger">Cancelar</a>
                                         <button type="submit" class="btn btn-info">Exportar</button>
-                                        <button type="button" class="btn btn-success">Finalizar</button>                                        
+                                        
+                                        <a href="/gerenciar-pagamentos/" value="" type="button" class="btn btn-danger">Concluir</a>
+                                     
                                     </div>
                                 </div>
                             </div>

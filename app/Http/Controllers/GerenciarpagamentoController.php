@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\ModelPagamentos;
-
+use phpDocumentor\Reflection\Types\Float_;
 
 class GerenciarpagamentoController extends Controller
 {
@@ -17,6 +17,17 @@ class GerenciarpagamentoController extends Controller
         $this->objPagamentos = new ModelPagamentos();
     }
 
+    private function getListaPagamentosAll(){
+        $lista = DB::select("
+        Select
+        p.id,
+        p.id_venda,
+        p.valor
+        from pagamento p
+        left join venda v on (v.id = p.id_venda)
+        ");
+        return $lista;
+    }
      
 
     public function show($id)
@@ -56,36 +67,47 @@ class GerenciarpagamentoController extends Controller
     ->sum('valor');
 
     ///Cálculo de possível troco
-    $troco = DB::table ('pagamento')
-    ->where ('id_venda', '=', $id);
-    
+
+    $troco = $total_pago - $total_preco; 
+
+      
+    ///Recupera os dados da  venda e cliente
+    $itens_compra = DB::select ("
+    Select
+    distinct (v.id) idv,
+    vim.id_item_material,
+    im.id as idm,
+    ic.nome as nomemat,
+    im.valor_venda
+    from venda v
+    left join pagamento p on (v.id = p.id_venda)
+    left join venda_item_material vim on (vim.id_venda = v.id)
+    left join item_material im on (im.id = vim.id_item_material)
+    left join item_catalogo_material ic on (ic.id = im.id_item_catalogo_material)
+    where v.id=$id
+    ");
 
     ///Recupera os dados da  venda e cliente
     $vendas = DB::select ("
         Select
-        v.id as idv,
+        distinct (v.id) idv,
         pe.cpf,
         pe.nome as nomepes,
-        v.data,
-        vim.id_item_material,
-        im.id as idm,
-        ic.nome as nomemat,
-        im.valor_venda
+        v.data        
         from venda v
         left join pagamento p on (v.id = p.id_venda)
-        left join tipo_pagamento t on (p.id_tipo_pagamento = t.id)
         left join pessoa pe on (pe.id = v.id_pessoa)
         left join venda_item_material vim on (vim.id_venda = v.id)
-        left join item_material im on (im.id = vim.id_item_material)
-        left join item_catalogo_material ic on (ic.id = im.id_item_catalogo_material)
         where v.id=$id
     ");
-
-     return view ('vendas/gerenciar-pagamentos', compact('vendas','total_itens', 'total_preco', 'tipos_pagamento', 'pagamentos', 'total_pago', 'troco'));
+    
+    //print_r($troco);
+    //dd (number_format ($total_preco->price, 2)); //- (int)$total_pago);
+    return view ('vendas/gerenciar-pagamentos', compact('vendas','total_itens', 'total_preco', 'tipos_pagamento', 'pagamentos', 'total_pago', 'troco','itens_compra'));
     }
 
 
-    public function inserir($id, Request $request){
+    public function inserir(Request $request, $id){
 
         DB::table('pagamento')->insert([            
             'id_venda' => $request->input('id'),
@@ -93,20 +115,29 @@ class GerenciarpagamentoController extends Controller
             'id_tipo_pagamento' => $request->input('forma')
         ]);
         
-        return redirect()->action('GerenciarpagamentoController@show');
-                
-        //return redirect('form')->withInput();
+        $venda = DB::select("select v.id from venda v
+        left join pagamento p on (v.id = p.id_venda) where p.id=$id");
 
+        return redirect ('/gerenciar-pagamentos',[$venda]);
+
+        //return redirect()->action('GerenciarpagamentoController@show', $id);
+                
         //return redirect('/gerenciar-pagamentos');
     }
 
 
     public function destroy($id){
 
-        DB::delete('delete from pagamento where id = ?' , [$id]);
-                
-        return redirect()->action('GerenciarpagamentoController@show');
+       DB::delete('delete from pagamento where id = ?' , [$id]); 
+
+       $result= $this->getListaPagamentosAll();
+
+       return view('vendas/gerenciar-pagamentos', ['result'=>$result]);
+
+    
     } 
 
+    
+   
 }
     

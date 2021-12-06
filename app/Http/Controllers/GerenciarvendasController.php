@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ModelItemCatalogo;
 use App\Models\ModelCatMaterial;
 use App\Models\ModelVendas;
-use Illuminate\Support\Facades\Http;
-use PhpParser\Node\Expr\Cast\Array_;
+
 
 class GerenciarVendasController extends Controller
 {
