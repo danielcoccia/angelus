@@ -86,16 +86,14 @@
                                     <div class="input-group mb-3"> 
                                         <div class="col-lg-3">
                                         @foreach($vendas as $v)                                            
-                                        ID VENDA<input type="numeric" class="form-control" value="{{$v->idv}}" id="id" name="id">
+                                        ID VENDA<input type="text" class="form-control" value="{{$v->idv}}" id="id" name="idv" placeholder="ID"readonly>
                                             @endforeach
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">                                        
-                                            <button style="background-color: #EEE9E9;" class="btn btn-outline-secondary" type="button">Forma de pagamento</button>
+                                            <span class="input-group-text" style="background-color: #ffb40a" type="text">Forma de pagamento</button>
                                         </div>
-                                    
-                                     
                                         <select class="form-control" id="forma" name="forma" required="required">
                                             <option>Escolher...</option>
                                             @foreach($tipos_pagamento as $tp)
@@ -104,9 +102,9 @@
                                         </select>                                    
                                     </div>
                                         <div class="input-group mb-3">
-                                            <input type="numeric" class="form-control" id="valor" name="valor" placeholder="Valor">
+                                            <input type="number" step="any" min="0" class="form-control" id="valor" name="valor" placeholder="Valor">
                                         <div class="input-group-append">
-                                            <button type="submit" style="background-color: #CAFF70;" class="btn btn-outline-secondary"  id="button-addon2">>>Confirmar</button>
+                                            <button type="submit" style="background-color: #ffb40a;" class="btn btn-outline-secundary"  id="button-addon2">>>Confirmar Valor</button>
                                     </form>
                                         </div>
                                         </div>
@@ -122,12 +120,9 @@
                                                     </tr>                                                
                                                 </thead>
                                                 <tbody style='text-align:center;vertical-align:middle'>
-                                                
-                                                
-                                                
                                                 @foreach($pagamentos as $pg)
 
-                                                <form action="/gerenciar-pagamentos/excluir/{{$pg->pid}}" method="POST">
+                                                <form action="/gerenciar-pagamentos/{{$pg->pid}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')                                                
                                                     <tr> 
@@ -135,7 +130,7 @@
                                                         <td>{{$pg->nome}}</td>
                                                         <td>{{number_format($pg->valor,2,',','.')}}</td>
                                                         <td>                                                       
-                                                        <button type="submit" class="btn btn-danger btn-custom"><i class="far fa-trash-alt"></i></a> 
+                                                        <button type="submit" class="btn btn-danger btn-sm" font-size= 50px><i class="far fa-trash-alt"></i></a> 
                                                         </td>
                                                     </tr>
                                                      
@@ -146,7 +141,7 @@
                                         </div>                                        
                                         <div class="input-group mb-3">
                                             <table class="table table-bordered">
-                                                <h6 class="font-weight-bold" style="color: blue;">CÁCULOS DA VENDA</h6>
+                                                <h6 class="font-weight-bold" style="color: blue;">CÁLCULOS DA VENDA</h6>
                                                 <tbody style='text-align:center;vertical-align:middle; font-size:15px;'>
                                                     <tr>
                                                     <td style="text-align:left;">Descontos:</td><td style="text-align:left;">R$</td></tr>
@@ -158,7 +153,7 @@
                                                     {{number_format($troco,2,',','.')}}
                                                     @endif</td>
                                                     </tr>
-                                                    <tr style="background-color: #FFFF00; text-align:right;font-weight:bold;"><td>Total da venda:</td><td style="text-align:left;font-size:18px;">{{$total_preco}}</td></tr>                            
+                                                    <tr style="background-color: #FFFF00; text-align:right;font-weight:bold;"><td>Total da venda:</td><td style="text-align:left;font-size:18px;">{{number_format($total_preco,2,',','.')}}</td></tr>                            
                                                 </tbody>
                                             </table>
                                         </div>      
@@ -170,10 +165,11 @@
                                 <div class="row">
                                     <div class="col-12 mt-3" style="text-align: right;">
                                         <a href="/gerenciar-vendas"  type="button" class="btn btn-danger">Cancelar</a>
+                                        
                                         <button type="submit" class="btn btn-info">Exportar</button>
                                         
-                                        <a href="/gerenciar-pagamentos/" value="" type="button" class="btn btn-danger">Concluir</a>
-                                     
+                                        <a href="/gerenciar-vendas/"  type="button" value="" class="btn btn-primary">Concluir</a>
+                                        
                                     </div>
                                 </div>
                             </div>

@@ -209,7 +209,9 @@ Route::get('/cad-sit-venda', 'SituacaovendaController@index');
 
 Route::get('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@show')->middleware('validaUsuario');
 Route::post('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@inserir')->middleware('validaUsuario');
-Route::delete('/gerenciar-pagamentos/excluir/{id}', 'GerenciarpagamentoController@destroy')->middleware('validaUsuario');
+Route::get('/gerenciar-pagamentos}', 'GerenciarpagamentoController@index')->middleware('validaUsuario');
+Route::delete('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@destroy')->middleware('validaUsuario');
+Route::put('/gerenciar-vendas/{id}', 'GerenciarpagamentoController@update')->middleware('validaUsuario');
 
 
 

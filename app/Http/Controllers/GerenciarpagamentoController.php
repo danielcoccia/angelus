@@ -28,22 +28,24 @@ class GerenciarpagamentoController extends Controller
         ");
         return $lista;
     }
-     
+    
+    
 
-    public function show($id)
-    { 
-    ///Pagamentos vinculados em uma venda
-    $pagamentos= DB::select (" 
+    public function show($id){ 
+
+    ///Recupera os dados da  venda e cliente
+    $vendas = DB::select ("
     Select
-    v.id as idv,
-    p.id as pid,
-    p.id_tipo_pagamento,
-    p.valor,
-    tp.nome
+    distinct (v.id) idv,
+    pe.cpf,
+    pe.nome as nomepes,
+    v.data        
     from venda v
     left join pagamento p on (v.id = p.id_venda)
-    left join tipo_pagamento tp on (p.id_tipo_pagamento = tp.id)  
-    where v.id=$id");       
+    left join pessoa pe on (pe.id = v.id_pessoa)
+    left join venda_item_material vim on (vim.id_venda = v.id)
+    where v.id=$id
+    ");
 
     ///Conta o número de itens da lista
     $total_itens = DB::table ('venda_item_material')
@@ -87,55 +89,87 @@ class GerenciarpagamentoController extends Controller
     where v.id=$id
     ");
 
-    ///Recupera os dados da  venda e cliente
-    $vendas = DB::select ("
+  
+        ///Pagamentos vinculados em uma venda
+        $pagamentos= DB::select (" 
         Select
-        distinct (v.id) idv,
-        pe.cpf,
-        pe.nome as nomepes,
-        v.data        
-        from venda v
-        left join pagamento p on (v.id = p.id_venda)
-        left join pessoa pe on (pe.id = v.id_pessoa)
-        left join venda_item_material vim on (vim.id_venda = v.id)
-        where v.id=$id
-    ");
+        v.id as idv,
+        p.id as pid,
+        p.id_tipo_pagamento,
+        p.valor,
+        tp.nome
+        from pagamento p
+        left join venda v on (v.id = p.id_venda)
+        left join tipo_pagamento tp on (p.id_tipo_pagamento = tp.id)  
+        where v.id=$id        
+        ");
     
-    //print_r($troco);
-    //dd (number_format ($total_preco->price, 2)); //- (int)$total_pago);
-    return view ('vendas/gerenciar-pagamentos', compact('vendas','total_itens', 'total_preco', 'tipos_pagamento', 'pagamentos', 'total_pago', 'troco','itens_compra'));
+          
+
+    return view ('vendas/gerenciar-pagamentos', compact('pagamentos','vendas','total_itens', 'total_preco',
+     'tipos_pagamento', 'total_pago', 'troco','itens_compra'));
     }
 
 
     public function inserir(Request $request, $id){
 
         DB::table('pagamento')->insert([            
-            'id_venda' => $request->input('id'),
-            'valor' => $request->input('valor'),
+            'id_venda' => $request->input('idv'),
+            'valor' => $request->input ('valor'),
             'id_tipo_pagamento' => $request->input('forma')
         ]);
+       
         
-        $venda = DB::select("select v.id from venda v
-        left join pagamento p on (v.id = p.id_venda) where p.id=$id");
-
-        return redirect ('/gerenciar-pagamentos',[$venda]);
-
-        //return redirect()->action('GerenciarpagamentoController@show', $id);
-                
-        //return redirect('/gerenciar-pagamentos');
+        return redirect()->back();
     }
 
 
     public function destroy($id){
 
-       DB::delete('delete from pagamento where id = ?' , [$id]); 
-
-       $result= $this->getListaPagamentosAll();
-
-       return view('vendas/gerenciar-pagamentos', ['result'=>$result]);
-
-    
+     
+    DB::delete('delete from pagamento where id = ?', [$id]); 
+      
+     return redirect()->back();
+        
+      //dd("deletando o $id");
     } 
+
+
+    public function update ($id){
+    
+    $total_preco = DB::table ('venda')
+    ->leftjoin('venda_item_material', 'venda.id', '=', 'venda_item_material.id_venda')
+    ->leftjoin('item_material', 'venda_item_material.id_item_material', '=', 'item_material.id')
+    ->where ('id', '=', $id)
+    ->sum('item_material.valor_venda');
+
+    $valor =  DB::table ('venda')
+    ->where ('id', '=', $id)
+    ->sum('valor');
+
+    $tp_sit =  DB::table ('venda')
+    ->where ('id', '=', $id)
+    ->sum('id_tp_situacao_venda');      
+   
+    
+    
+    if ($tp_sit = 2) {
+        
+      $atualiza = DB::table ('venda')
+        ->where('id', $id)
+        ->update(['id_tp_situacao_venda' => 1], ['valor' => $total_preco] ); 
+      }
+    
+    elseif ($tp_sit = 1){
+
+        echo ("Favor finalizar a venda"); 
+      }
+      
+      dd();
+
+    //return redirect('/gerenciar-vendas');  
+        
+    }
 
     
    

@@ -2694,7 +2694,7 @@ textarea.form-control.is-invalid {
 .btn {
   display: inline-block;
   font-weight: 400;
-  color: #5b626b;
+  color: #FFF;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
@@ -3944,7 +3944,7 @@ input[type=button].btn-block {
   font-size: 0.8125rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #5b626b;
+  color: #FFF;
   text-align: center;
   white-space: nowrap;
   background-color: #e9ecef;
