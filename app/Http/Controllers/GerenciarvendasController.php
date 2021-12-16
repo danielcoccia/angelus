@@ -83,19 +83,19 @@ class GerenciarVendasController extends Controller
     left join pessoa p on (v.id_pessoa = p.id)
     left join usuario u on (v.id_usuario = u.id)
     where v.id = $id");
-     //return view ('item_material', ['item_material' => $itens]);
+     
 
-     return view ('vendas/registrar-venda', compact('vendas'));
+     return view ('vendas/gerenciar-venda', compact('vendas'));
 
-     return view ('vendas/registrar-venda', compact('vendas'));
 
     }
 
-  
+
     public function edit($id)
     {
 
         $resultVenda = $this->objVendas->all();
+
         $result =DB::table('venda')->where('id',$id)->get();
         return view('vendas/gerenciar-vendas', compact('resultVenda', 'result'));
 
@@ -106,21 +106,7 @@ class GerenciarVendasController extends Controller
 
     }
 
-   
-    public function update(Request $request, $id)
-    {     
-
-        DB::table('venda')
-        ->where('id', $id)
-        ->update([
-            'valor' => $request->input('valor'),
-           // 'id_usuario' => $request->input('vendedor'),
-        ]);
-
-        return redirect()->action('GerenciarvendasController@update');
-
-    }
-   
+    
     public function destroy($id)
     {
 
@@ -128,10 +114,53 @@ class GerenciarVendasController extends Controller
         $result= $this->getListaVendasAll();;
         return view('vendas/gerenciar-vendas', ['result'=>$result]);
 
-        DB::delete('delete from venda where id = ?' , [$id]);
-        $result= $this->getListaVendasAll();;
-        return view('vendas/gerenciar-vendas', ['result'=>$result]);
-
     }
+
+    public function update ($id){
+
+        
+
+        $total_preco = DB::select ("
+        select
+        sum (im.valor_venda) as total
+        from venda v
+        left join venda_item_material vi on (v.id = vi.id_venda)
+        left join item_material im on (vi.id_item_material = im.id)
+        where v.id= $id");
+
+        dd ($total_preco);  
+        
+        $valor =  DB::table ('venda')
+        ->where ('id', '=', $id)
+        ->sum('valor');
+
+           
+        $tp_sit =  DB::table ('venda')
+        ->where ('id', '=', $id)
+        ->sum('id_tp_situacao_venda');      
+
+        
+        if ($tp_sit[0]== 1){
+            
+            dd ( "Favor finalizar a venda $id");
+        }
+
+        elseif ($tp_sit[0] == 2) {
+            
+            DB::table ('venda')
+            ->where('id', $id)
+            ->update(['id_tp_situacao_venda' => 3],
+                     ['valor' => $total_preco]);
+        }
+
+        elseif ($tp_sit[0] == 3) {
+            
+            dd( "A venda $id está paga.");
+        }
+             
+        return redirect('/gerenciar-vendas');
+    }
+            
+    
 
 }

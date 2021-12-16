@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\ModelPagamentos;
+use App\Models\ModelVendas;
 use phpDocumentor\Reflection\Types\Float_;
 
 class GerenciarpagamentoController extends Controller
@@ -17,6 +18,7 @@ class GerenciarpagamentoController extends Controller
         $this->objPagamentos = new ModelPagamentos();
     }
 
+    
     private function getListaPagamentosAll(){
         $lista = DB::select("
         Select
@@ -126,7 +128,6 @@ class GerenciarpagamentoController extends Controller
 
     public function destroy($id){
 
-     
     DB::delete('delete from pagamento where id = ?', [$id]); 
       
      return redirect()->back();
@@ -134,44 +135,7 @@ class GerenciarpagamentoController extends Controller
       //dd("deletando o $id");
     } 
 
-
-    public function update ($id){
-    
-    $total_preco = DB::table ('venda')
-    ->leftjoin('venda_item_material', 'venda.id', '=', 'venda_item_material.id_venda')
-    ->leftjoin('item_material', 'venda_item_material.id_item_material', '=', 'item_material.id')
-    ->where ('id', '=', $id)
-    ->sum('item_material.valor_venda');
-
-    $valor =  DB::table ('venda')
-    ->where ('id', '=', $id)
-    ->sum('valor');
-
-    $tp_sit =  DB::table ('venda')
-    ->where ('id', '=', $id)
-    ->sum('id_tp_situacao_venda');      
-   
-    
-    
-    if ($tp_sit = 2) {
-        
-      $atualiza = DB::table ('venda')
-        ->where('id', $id)
-        ->update(['id_tp_situacao_venda' => 1], ['valor' => $total_preco] ); 
-      }
-    
-    elseif ($tp_sit = 1){
-
-        echo ("Favor finalizar a venda"); 
-      }
       
-      dd();
-
-    //return redirect('/gerenciar-vendas');  
-        
-    }
-
     
-   
 }
     
