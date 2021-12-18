@@ -118,17 +118,13 @@ class GerenciarVendasController extends Controller
 
     public function update ($id){
 
-        
+        //number_format($total_preco,2,',','.');
 
-        $total_preco = DB::select ("
-        select
-        sum (im.valor_venda) as total
-        from venda v
-        left join venda_item_material vi on (v.id = vi.id_venda)
-        left join item_material im on (vi.id_item_material = im.id)
-        where v.id= $id");
-
-        dd ($total_preco);  
+        $total_preco = DB::table ('venda')
+        ->leftjoin('venda_item_material', 'venda.id', '=', 'venda_item_material.id_venda')
+        ->leftjoin('item_material', 'venda_item_material.id_item_material', '=', 'item_material.id')
+        ->where ('id_venda', '=', $id)
+        ->sum('item_material.valor_venda');
         
         $valor =  DB::table ('venda')
         ->where ('id', '=', $id)
@@ -142,20 +138,19 @@ class GerenciarVendasController extends Controller
         
         if ($tp_sit[0]== 1){
             
-            dd ( "Favor finalizar a venda $id");
+            dd ("Favor finalizar a venda $id");
         }
 
         elseif ($tp_sit[0] == 2) {
             
             DB::table ('venda')
             ->where('id', $id)
-            ->update(['id_tp_situacao_venda' => 3],
-                     ['valor' => $total_preco]);
+            ->update(['valor' => $total_preco,'id_tp_situacao_venda' => 3]);
         }
 
         elseif ($tp_sit[0] == 3) {
             
-            dd( "A venda $id está paga.");
+            dd( "A venda $id já está paga.");
         }
              
         return redirect('/gerenciar-vendas');

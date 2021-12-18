@@ -91,7 +91,7 @@
                                                 <td>{{$results->data}}</td>
                                                 <td>{{$results->nome_cliente}}</td>
                                                 <td>{{$results->nome_usuario}}</td>
-                                                <td>{{$results->valor}}</td>
+                                                <td>{{number_format($results->valor,2,',','.')}}</td>
                                                 <td>{{$results->sit_venda}}</td>                                                
                                                 <td>                                               
                                                     <a href="/gerenciar-vendas/edit/{{$results->id}}">
