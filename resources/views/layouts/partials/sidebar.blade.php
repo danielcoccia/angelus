@@ -65,12 +65,23 @@
                                 <span>Vendas de material</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                               <li><a href="/gerenciar-vendas" class="waves-effect"><span>Gerenciar vendas</span></a></li>                            
-                               <li><a href="/gerenciar-pagamentos" class="waves-effect"><span>Gerenciar pagamentos</span></a></li>
+                               <li><a href="/gerenciar-vendas" class="waves-effect"><span>Gerenciar vendas</span></a></li>
                                <li><a href="/registrar-venda" class="waves-effect"><span>Registrar Venda</span></a></li>
                             </ul>
                         </li>
+                        <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="mdi mdi-library-books"></i>
+                                <span>Documentos</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="/relatorio-vendas" class="waves-effect"><span>Relatórios de Vendas</span></a></li>
+                            <li><a href="/demonstrativo" class="waves-effect"><span>Demonstrativos</span></a></li>
+                            </ul>
+                        </li>
 
+
+                        
                         <!-- <li>
                             <a href="/cadastro/usuario" class="waves-effect">
                                 <i class="mdi mdi-account-multiple-plus-outline"></i><span class="badge badge-pill badge-primary float-right"></span>

@@ -213,3 +213,6 @@ Route::post('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@inserir'
 Route::get('/gerenciar-pagamentos', 'GerenciarpagamentoController@index')->middleware('validaUsuario');
 Route::delete('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@destroy')->middleware('validaUsuario');
 
+
+Route::get('/demonstrativo/{id}', 'Gerenciardemonstrativo@index');
+
