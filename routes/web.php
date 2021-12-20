@@ -194,6 +194,7 @@ Route::get('/gerenciar-vendas', 'GerenciarvendasController@index');
 Route::get('/gerenciar-vendas/alterar/{id}', 'GerenciarvendasController@edit');
 Route::get('/gerenciar-vendas/{id}', 'GerenciarvendasController@show');
 Route::get('/gerenciar-vendas/finalizar/{id}', 'GerenciarvendasController@update');
+Route::get('/gerenciar-vendas/demonstrativo/{id}', 'GerenciarvendasController@update');
 
 
 Route::get('/registrar-venda', 'RegistrarVendaController@index');
@@ -214,5 +215,5 @@ Route::get('/gerenciar-pagamentos', 'GerenciarpagamentoController@index')->middl
 Route::delete('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@destroy')->middleware('validaUsuario');
 
 
-Route::get('/demonstrativo/{id}', 'Gerenciardemonstrativo@index');
+Route::get('/demonstrativo/{id}', 'GerenciardemonstrativoController@index');
 

@@ -87,7 +87,6 @@ class GerenciarVendasController extends Controller
 
      return view ('vendas/gerenciar-venda', compact('vendas'));
 
-
     }
 
 

@@ -76,7 +76,7 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                             <li><a href="/relatorio-vendas" class="waves-effect"><span>Relatórios de Vendas</span></a></li>
-                            <li><a href="/demonstrativo" class="waves-effect"><span>Demonstrativos</span></a></li>
+                            <li><a href="/gerenciar-vendas" class="waves-effect"><span>Demonstrativos</span></a></li>
                             </ul>
                         </li>
 

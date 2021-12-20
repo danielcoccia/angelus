@@ -78,7 +78,7 @@ class GerenciarpagamentoController extends Controller
     ///Recupera os dados da  venda e cliente
     $itens_compra = DB::select ("
     Select
-    distinct (v.id) idv,
+    distinct (v.id),
     vim.id_item_material,
     im.id as idm,
     ic.nome as nomemat,
@@ -108,8 +108,8 @@ class GerenciarpagamentoController extends Controller
     
           
 
-    return view ('vendas/gerenciar-pagamentos', compact('pagamentos','vendas','total_itens', 'total_preco',
-     'tipos_pagamento', 'total_pago', 'troco','itens_compra'));
+    return view ('vendas/gerenciar-pagamentos', compact('pagamentos','vendas','total_itens', 'total_preco', 'itens_compra',
+     'tipos_pagamento', 'total_pago', 'troco'));
     }
 
 

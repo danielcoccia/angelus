@@ -104,9 +104,13 @@
                                                         <a href="/gerenciar-pagamentos/{{$results->id}}">  
                                                         <input class="btn btn-success" type="button" value="Pagar">
                                                     </a>
+                                                   
+                                                    <a href="/demonstrativo/{{$results->id}}"  type="button" class="btn btn-info">Exportar</a>
+                                                    @endforeach 
+
                                                 </td>
                                             </tr>
-                                            @endforeach     
+                                                
                                         </tbody>
                                     </table>
                                 </div>

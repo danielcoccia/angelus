@@ -166,10 +166,9 @@
                                     <div class="col-12 mt-3" style="text-align: right;">
                                     @foreach($vendas as $vd)
                                         <a href="/gerenciar-vendas"  type="button" class="btn btn-danger">Cancelar</a>
-                                        
-                                        <a href="/gerenciar-vendas"  type="button" class="btn btn-info">Exportar</a>
-                                        
-                                        
+                                       
+                                        <a href="/demonstrativo/{{$vd->idv}}"  type="button" class="btn btn-info">Exportar</a>
+
                                         <a>
                                             <a href="/gerenciar-vendas/finalizar/{{$vd->idv}}">  
                                             <input class="btn btn-success" type="button" value="Concluir Pagamento">
