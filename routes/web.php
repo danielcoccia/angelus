@@ -190,9 +190,9 @@ Route::get('/item_material/{id}', 'BarcodeController@show');
 
 
 
-Route::get('/gerenciar-vendas', 'GerenciarvendasController@index');
+Route::any('/gerenciar-vendas', 'GerenciarvendasController@index')->name('vendas.index');
 Route::get('/gerenciar-vendas/alterar/{id}', 'GerenciarvendasController@edit');
-Route::get('/gerenciar-vendas/{id}', 'GerenciarvendasController@show');
+Route::get('/gerenciar-vendas/{id}', 'GerenciarvendasController@show')->name('teste.show');
 Route::get('/gerenciar-vendas/finalizar/{id}', 'GerenciarvendasController@update');
 Route::get('/gerenciar-vendas/demonstrativo/{id}', 'GerenciarvendasController@update');
 
@@ -216,4 +216,6 @@ Route::delete('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@destro
 
 
 Route::get('/demonstrativo/{id}', 'GerenciardemonstrativoController@index');
+
+Route::get('/relatorio-vendas1', 'RelatoriosController@index');
 

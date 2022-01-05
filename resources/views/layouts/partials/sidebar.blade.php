@@ -43,7 +43,7 @@
                                 <li><a href="/cad-tipo-estoque" class="waves-effect"><span>Tipo Estoque</span></a></li>
                                 <li><a href="/cad-genero" class="waves-effect"><span>Genero</span></a></li>
                                 <li><a href="/cad-pagamento" class="waves-effect"><span>Pagamento</span></a></li>
-                                <li><a href="/cad-sit-doacao" class="waves-effect"><span>Situação Doação </span></a></li>                                
+                                <li><a href="/cad-sit-doacao" class="waves-effect"><span>Situação Doação </span></a></li>
                                 <li><a href="/unidade-medida" class="waves-effect"><span>Unidade de Medida  </span></a></li>
                                 <li><a href="/marca" class="waves-effect"><span>Marca</span></a></li>
                                 <li><a href="/tamanho" class="waves-effect"><span>Tamanho</span></a></li>
@@ -75,13 +75,14 @@
                                 <span>Documentos</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="/relatorio-vendas" class="waves-effect"><span>Relatórios de Vendas</span></a></li>
+                            <li><a href="/relatorio-vendas1" class="waves-effect"><span>Relatórios de Vendas 1</span></a></li>
+                            <li><a href="/relatorio-vendas2" class="waves-effect"><span>Relatórios de Vendas 2</span></a></li>
                             <li><a href="/gerenciar-vendas" class="waves-effect"><span>Demonstrativos</span></a></li>
                             </ul>
                         </li>
 
 
-                        
+
                         <!-- <li>
                             <a href="/cadastro/usuario" class="waves-effect">
                                 <i class="mdi mdi-account-multiple-plus-outline"></i><span class="badge badge-pill badge-primary float-right"></span>
@@ -89,7 +90,7 @@
                             </a>
                         </li> -->
 
-                       
+
 
                         <!-- <li>
                             <a href="/calendar/calendar" class=" waves-effect">
@@ -184,7 +185,7 @@
                             </ul>
                         </li>
 
-               
+
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
