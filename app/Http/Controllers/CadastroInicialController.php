@@ -10,21 +10,21 @@ use App\Models\ModelItemCatalogo;
 
 class CadastroInicialController extends Controller
 {
-   
+
    private $objItemMaterial;
 
     public function __construct(){
-        $this->objItemMaterial = new ModelCadastroInicial();        
+        $this->objItemMaterial = new ModelCadastroInicial();
     }
 
     private function getListaItens(){
         $lista = DB::select("
-            select 
-                im.id, 
-                ic.nome nome, 
-                im.data_cadastro data_cadastro, 
-                m.nome marca, 
-                t.nome tamanho, 
+            select
+                im.id,
+                ic.nome nome,
+                im.data_cadastro data_cadastro,
+                m.nome marca,
+                t.nome tamanho,
                 c.nome cor,
                 tm.nome tipo_material,
                 im.valor_venda,
@@ -39,53 +39,57 @@ class CadastroInicialController extends Controller
         ");
         return $lista;
     }
-    
+
 
     public function index()
     {
         $result= $this->getListaItens();
         $resultCategoria = DB::select ('select id, nome from tipo_categoria_material');
         $resultSitMat = DB::select ('select id, nome from tipo_situacao_item_material');
-        return view('catalogo/catalogo-cadastro-inicial', compact("result", "resultCategoria", "resultSitMat"));
-       // return view('vendas/gerenciar-vendas', compact("result", "resultCategoria", "resultSitVenda"));
+
+        return view('cadastroinicial/gerenciar-cadastro-inicial', compact("result", "resultCategoria", "resultSitMat"));
+
 
     }
 
     public function create()
     {
-        $sql ="Select 
-                    it.id, 
+        $sql ="Select
+                    it.id,
                     it.nome,
-                    c.nome categoria 
+                    c.nome categoria
                     from item_catalogo_material it
                     join tipo_categoria_material c on it.id_categoria_material = c.id
                 ";
 
         $resultItem = DB::select($sql);
 
-        return view('catalogo/incluir-cadastro-inicial-item', compact('resultItem'));
+        return view('cadastroinicial/incluir-cadastro-inicial-item', compact('resultItem'));
     }
-   
+
     public function show($id)
     {
         //
     }
 
-   
-    public function edit($id)
-    {
-        
 
-        return view("catalogo");
+
+
+    public function formEditar ($id)
+    {
+
+        $teste = DB::select("select im.id from item_material im where im.id = $id");
+
+        return view ('cadastroinicial/editar-cadastro-inicial', compact('teste'));
+
     }
 
-   
-    public function update(Request $request, $id)
+    public function editar ()
     {
-        //
+        echo "editar";
+
     }
 
-    
     public function destroy($id)
     {
          DB::delete('delete from item_material where id = ?' , [$id]);
@@ -95,9 +99,9 @@ class CadastroInicialController extends Controller
 
     public function getCategoria ($id){
 
-        $sql = "Select 
-                    c.id, 
-                    c.nome 
+        $sql = "Select
+                    c.id,
+                    c.nome
                     from item_catalogo_material it
                     join tipo_categoria_material c on it.id_categoria_material = c.id
                 where it.id = $id";
@@ -139,7 +143,7 @@ class CadastroInicialController extends Controller
         $html.='<tr><td>Genero</td> <td>'.getCombo($result7,'genero', 0).'</td></tr>';
         $html.='</table>';
         $html.='</div>';
-   
+
         return $html;
     }
 
@@ -177,7 +181,7 @@ class CadastroInicialController extends Controller
         $html='<div class="table-responsive">';
         $html.='<table class="table table-bordered table-striped mb-0">';
         $html.='<tr><td>Lista valores <br><input type="checkbox" id="checkVal" name="checkVal" switch="bool"  checked class="valCheck" /><label for="checkVal" data-on-label="Sim" data-off-label="Não"></label></td>';
-        $html.='<td>Avariado<br><input type="checkbox" id="checkAvariado" name="checkAvariado" switch="bool" class="valCheck" /><label for="checkAvariado" data-on-label="Sim" data-off-label="Não"></label></td></tr>';         
+        $html.='<td>Avariado<br><input type="checkbox" id="checkAvariado" name="checkAvariado" switch="bool" class="valCheck" /><label for="checkAvariado" data-on-label="Sim" data-off-label="Não"></label></td></tr>';
         $html.='<tr><td>Valor de Venda</td>
                 <td>
                     <div id="DivValorInput">
@@ -202,7 +206,7 @@ class CadastroInicialController extends Controller
     public function getValorVariado($id){
 
         if($_REQUEST['listaValor'] == 'true' && $_REQUEST['avariado'] =='false' ){
-            
+
             $sql= "Select valor_minimo, valor_medio, valor_maximo, valor_marca, valor_etiqueta from item_catalogo_material where  id = $id";
             $result = DB::select($sql);
 
@@ -219,7 +223,7 @@ class CadastroInicialController extends Controller
 
 
         }else if($_REQUEST['avariado'] =='true'){
-            
+
             $sql= "Select valor id, valor nome from valor_avariado";
             $result = DB::select($sql);
 
@@ -254,7 +258,7 @@ class CadastroInicialController extends Controller
 
     public function getComposicao ($id){
 
-        $sql = "select 
+        $sql = "select
                 c.id id_item,
                 c.nome nome_item,
                 emb.sigla embalagem,
@@ -262,7 +266,7 @@ class CadastroInicialController extends Controller
                 ic.quantidade,
                 ic.id
                 from composicao_item_catalogo ic
-                left join item_catalogo_material c on ic.id_item_catalogo_composto =c.id 
+                left join item_catalogo_material c on ic.id_item_catalogo_composto =c.id
                 left join tipo_embalagem emb on ic.id_tipo_embalagem = emb.id
                 left join tipo_unidade_medida um on ic.id_tipo_unidade_medida = um.id
                 where ic.id_item_catalogo =$id";
@@ -277,7 +281,7 @@ class CadastroInicialController extends Controller
     //     $ativo = isset($request->ativo) ? 1 : 0;
     //     $composicao = isset($request->composicao) ? 1 : 0;
 
-    //     DB::table('item_catalogo_material')->insert([            
+    //     DB::table('item_catalogo_material')->insert([
     //         'nome' => $request->input('nome_item'),
     //         'id_categoria_material' => $request->input('categoria_item'),
     //         'valor_minimo' => $request->input('val_minimo'),
@@ -298,10 +302,10 @@ class CadastroInicialController extends Controller
             $Avariado = isset($request->checkAvariado) ? 1 : 0;
 
             for ($i=0; $i < $request->input('qtdItens'); $i++){
-            
-            //???????????? Liberacao_venda, id_tipo_situacao, valor_aquisicao,valor_venda_promocional, ?id_usuario? 
-            DB::table('item_material')->insert([            
-            'id_item_catalogo_material' => $request->input('item_material'),            
+
+            //???????????? Liberacao_venda, id_tipo_situacao, valor_aquisicao,valor_venda_promocional, ?id_usuario?
+            DB::table('item_material')->insert([
+            'id_item_catalogo_material' => $request->input('item_material'),
             'observacao' => $request->input('observacao'),
             'data_cadastro' => date("y/m/d"),
             'id_usuario_cadastro'=> '4',
@@ -321,7 +325,7 @@ class CadastroInicialController extends Controller
             'data_validade' => $request->input('dt_validade'),
             'liberacao_venda' => 0,
             'id_tipo_situacao' => '1',
-            //'id_usuario' => '89',            
+            //'id_usuario' => '89',
         ]);
         }
 

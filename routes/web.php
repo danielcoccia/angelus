@@ -176,7 +176,8 @@ Route::get('/usuario-logado', 'CadastroInicialController@search');
 Route::get('/gerenciar-cadastro-inicial', 'CadastroInicialController@index')->middleware('validaUsuario');
 Route::get('/gerenciar-cadastro-inicial/incluir', 'CadastroInicialController@create')->middleware('validaUsuario');
 Route::get('/gerenciar-cadastro-inicial/excluir/{id}', 'CadastroInicialController@destroy')->middleware('validaUsuario');
-Route::get('/gerenciar-cadastro-inicial/alterar/{id}', 'CadastroInicialController@edi')->middleware('validaUsuario');
+Route::get('/editar-cadastro-inicial/{id}', 'CadastroInicialController@formEditar')->name('formeditar');
+Route::put('/gerenciar-cadastro-inicial/alterar/{id}', 'CadastroInicialController@editar')->middleware('validaUsuario');
 
 
 // Route::get('/combo/marcaItem/{id}', 'CadastroInicialController@getCategoria')->middleware('validaUsuario');
@@ -209,9 +210,8 @@ Route::get('/registrar-venda/setItemLista/{id_item}/{id_venda}', 'RegistrarVenda
 Route::get('/cad-sit-venda', 'SituacaovendaController@index');
 
 
-Route::get('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@show')->middleware('validaUsuario');
+Route::get('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@show')->name('pagamentos.show');
 Route::post('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@inserir')->middleware('validaUsuario');
-Route::get('/gerenciar-pagamentos', 'GerenciarpagamentoController@index')->middleware('validaUsuario');
 Route::delete('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@destroy')->middleware('validaUsuario');
 
 

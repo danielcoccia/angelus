@@ -20,75 +20,52 @@ class GerenciarVendasController extends Controller
         $this->objVendas = new ModelVendas();
     }
 
-    private function getListaVendasAll(){
-        $lista = DB::select("
-        Select
-            v.id,
-            v.data,
-            v.id_pessoa,
-            v.id_usuario,
-            p.nome as nome_cliente,
-            pu.nome as nome_usuario,
-            v.valor,
-            t.nome as sit_venda
-        from venda v
-        left join pessoa p on (v.id_pessoa = p.id)
-        left join usuario u on (v.id_usuario = u.id)
-        left join pessoa pu on (u.id_pessoa = pu.id)
-        left join tipo_situacao_venda t on (t.id = v.id_tp_situacao_venda)
-        ");
-        return $lista;
-    }
-
     public function index(Request $request){
-        //$this->getListaVendasAll()
-        //$data_inicio = \DateTime::createFromFormat('d/m/Y', $request->get('data_inicio'));
-       // $data_fim    = \DateTime::createFromFormat('d/m/Y', $request->get('data_fim'));
 
-       $resultCategoria = DB::select ('select id, nome from tipo_categoria_material');
        $resultSitVenda = DB::select ('select id, nome from tipo_situacao_venda');
 
 
         $result = DB::table('venda AS v')
-        ->select ('v.id', 'v.data', 'v.id_pessoa', 'v.id_usuario', 'p.nome AS nome_cliente', 'pu.nome AS nome_usuario',  'v.valor', 't.nome as sit_venda', 't.id AS idt')
+        ->select ('v.id', 'v.data', 'v.id_pessoa', 'v.id_usuario', 'v.id_tp_situacao_venda', 'p.nome AS nome_cliente', 'pu.nome AS nome_usuario',  'v.valor', 't.nome as sit_venda', 't.id AS idt')
         ->leftjoin ('pessoa AS p',  'v.id_pessoa', '=', 'p.id')
         ->leftjoin ('usuario AS u',  'u.id', '=', 'v.id_usuario')
         ->leftjoin ('pessoa AS pu', 'u.id_pessoa', '=', 'pu.id')
-        ->leftjoin ('tipo_situacao_venda AS t', 't.id', '=', 'v.id_tp_situacao_venda')
-        ->where ('p.nome', 'LIKE', "%{$request->cliente}%", 'and')
-        ->where ('t.id',"like","$request->sit", 'and')
-        //->whereDate('v.data','>=', "$request->data_inicio", 'and')
-        //->whereDate('v.data','<=', "$request->data_fim")
-        ->get();
-        //->toSql();
+        ->leftjoin ('tipo_situacao_venda AS t', 't.id', '=', 'v.id_tp_situacao_venda');
 
-        //dd($result);
-       //print_r();
+
+        $situacao = $request->situacao;
+
+        $cliente = $request->cliente;
+
+        if ($request->situacao){
+            $result->where('v.id_tp_situacao_venda', $request->situacao);
+        }
+
+
+        if ($request->cliente){
+            $result->where('p.nome', 'like', "%$request->cliente%");
+        }
+
+
+        $data_inicio = $request->data_inicio;
+        $data_fim = $request->data_fim;
+
+        if ($request->data_inicio){
+
+            $result->where('v.data','>' , $request->data_inicio);
+        }
+
+        if ($request->data_fim){
+
+            $result->where('v.data','<' , $request->data_fim);
+        }
+
+        $result = $result->get();
 
         //->toSql();
         //->paginate();
 
-       // $lista = DB::table ('venda')->select('id','valor')->get();
-                    //->leftjoin('pessoa', 'venda.id_pessoa', '=', 'pessoa.id');
-                    //->where('nome', 'LIKE', "%{$request->items}%")
-                    //->where('id_tp_situacao_venda', '=', '3')
-                    //->orWhere('content', 'like', "%{Request->index%}")
-                    //->get();
-                    //$this->apresentar($lista);
-                    //->toSql();
-                    //->paginate();
-
-                   // echo '<pre>';
-
-
-
-
-//     if ($request->nome_cliente){
-  //      $result->where('p.nome_cliente', 'LIKE', "%$request->cliente%");
-    //    }
-
-
-       return view('vendas/gerenciar-vendas', compact( 'result','resultCategoria', 'resultSitVenda'));
+       return view('vendas/gerenciar-vendas', compact( 'result','data_inicio', 'data_fim', 'resultSitVenda', 'situacao', 'cliente'));
     }
 
 
@@ -180,7 +157,9 @@ class GerenciarVendasController extends Controller
 
         if ($tp_sit[0]== 1){
 
-            dd ("Favor finalizar a venda $id");
+            return redirect()
+                //->route("vendas/gerenciar-pagamentos/$id")
+                ->with(['errors'=>"Favor finalizar a venda $id"]);
         }
 
         elseif ($tp_sit[0] == 2) {
@@ -191,11 +170,12 @@ class GerenciarVendasController extends Controller
         }
 
         elseif ($tp_sit[0] == 3) {
-
-            dd( "A venda $id já está paga.");
+            return redirect()
+                //->route("vendas/gerenciar-pagamentos/$id")
+                ->with(['errors'=>"A venda $id já está paga."]);
         }
 
-        return redirect('/gerenciar-vendas');
+        return view ('vendas/gerenciar-vendas');
     }
 
 

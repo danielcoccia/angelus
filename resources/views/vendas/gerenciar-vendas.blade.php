@@ -3,69 +3,58 @@
 @section('title') Gerenciar Vendas @endsection
 
 @section('content')
-
-    <div class="row">
+<div class="container">
+    <div class="row align-items-center">
         <div class="col-12">
-                <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Gerenciar Vendas</h4>
-                <hr>
-                <form action="{{route('vendas.index')}}" class="form-horizontal mt-4" method="GET" >
-                    @csrf
-                    <div class="container">
-                        <div class="row align-items-center">
-                        <div class="col-sm">
-                            <label for="nome">Início</label>
-                            <input type="date" name="data_inicio" >
-                        </div>
-                        <div class="col-sm">
-                            <label for="date">Final</label>
-                            <input type="date" name="data_fim">
-
-                        </div>
-                        <div class="col-sm">
-                            <select class="form-control" id="sit" name="sit" required="required">
-                            <option>Situações da venda</option>
-                            @Foreach($resultSitVenda as $resultSitVendas)
-                            <option value="{{$resultSitVendas->id}}">{{$resultSitVendas->nome}}</option>
-                            @endForeach
-                            </select>
-                        </div>
-                        <div class="col-sm">
-                            <select class="form-control" id="cat" name="categoria">
-                            @Foreach($resultCategoria as $resultCategorias)
-                            <option value="{{$resultCategorias->id}}">{{$resultCategorias->nome}}</option>
-                            @endForeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="container">
-
-                    <div class="row align-items-center">
-
-                        <div class="col-sm-5">
-
-                        <input class="form-control" type="text" name="cliente" id="cliente" placeholder="Nome do cliente"/>
-                        </div>
-                        <div class="col-sm">
-                            <input class="btn btn-info" type="submit" value="Pesquisar">
-                        </div>
-
-                        <div class="col-sm">
-                            <a href="/gerenciar-vendas">
-                            <input class="btn btn-danger" type="button" value="Limpar">
-                            </a>
-                        </div>
-                    </form>
-                        <div class="col-sm">
-                            <a href="/registrar-venda">
-                            <input class="btn btn-success" type="button" value="Nova venda +">
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Gerenciar Vendas</h4>
+        </div>
+        <hr>
+        <div class="col-sm-1">
+        <form action="{{route('vendas.index')}}" class="form-horizontal mt-4" method="GET" >
+        </div>
+        <div class="col-md-3">
+        @csrf
+            <label for="nome">Início</label>
+            <input type="date" name="data_inicio" value="{{$data_inicio}}">
+        </div>
+        <div class="col-md-3">
+            <label for="date">Final</label>
+            <input type="date" name="data_fim"  value="{{$data_fim}}">
+        </div>
+        <div class="col-sm"style="text-align: right;>
+            <label for="nome">Situação da venda:</label>
+        </div>
+        <div class="col-sm">
+            <select class="form-control" id="sit" name="situacao" required="required">
+            @Foreach($resultSitVenda as $resultSitVendas)
+            <option value="{{$resultSitVendas->id}}" {{$resultSitVendas->id == $situacao ? 'selected' : ''}}>{{$resultSitVendas->nome}}</option>
+            @endForeach
+            </select>
         </div>
     </div>
+</div>
+    <br>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-sm-5">
+            <input class="form-control" type="text" name="cliente" id="cliente" value="{{$cliente}}" placeholder="Nome do cliente"/>
+        </div>
+        <div class="col-sm">
+            <input class="btn btn-info" type="submit" value="Pesquisar">
+        </div>
+        <div class="col-sm">
+            <a href="/gerenciar-vendas">
+            <input class="btn btn-danger" type="button" value="Limpar">
+            </a>
+        </div>
+        </form>
+        <div class="col-sm">
+            <a href="/registrar-venda">
+            <input class="btn btn-success" type="button" value="Nova venda +">
+            </a>
+        </div>
+    </div>
+
     <hr>
     <div class="row">
         <div class="col-12">
@@ -116,6 +105,7 @@
             </div>
         </div>
     </div>
+</div>
         <!-- end col -->
 
 

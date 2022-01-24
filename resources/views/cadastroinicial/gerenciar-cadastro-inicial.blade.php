@@ -16,13 +16,13 @@
                                 <form>
                                 <label for="" class="form-label">Data inicial</label>
                                 <input type="date" id="festa" name="Data" min="" max="">
-                                
+
                             </div>
                             <div class="col-sm">
-                               
+
                                 <label for="" class="form-label">Data Final</label>
                                 <input type="date" id="festa" name="Data" min="" max="">
-                                
+
                             </div>
                             <div class="col-sm">
                                 <select class="form-control"><option>Selecione a Categoria</option>
@@ -47,10 +47,10 @@
                                 <br>
                     <div class="container">
                         <div class="row align-items-center">
-                            <div class="col-4">                                                           
+                            <div class="col-4">
                                 <input class="form-control" type="text" placeholder="Nome do material">
                             </div>
-                            
+
                             <div class="col-1">
                                 <input class="btn btn-danger" type="reset" value="Limpar"></a>
                             </div>
@@ -102,7 +102,9 @@
                                             <td>{{$results->valor_venda}}</td>
                                             <td>{{$results->liberacao_venda}}</td>
                                             <td>
-                                                <input class="btn btn-warning" type="reset" value="Alterar">
+                                                <a href="/editar-cadastro-inicial/{{$results->id}}">
+                                                <input class="btn btn-warning" type="button" value="Alterar">
+                                                </a>
                                                 <a href="/gerenciar-cadastro-inicial/excluir/{{$results->id}}">
                                                     <input class="btn btn-danger" type="button" value="Excluir">
                                                 </a>
@@ -116,11 +118,11 @@
                                 </table>
                             </div>
                         </div>
-                    </div>                    
-                </div>                    
-            </div>                                
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>    
+    </div>
 </div>
 @endsection
 
@@ -129,9 +131,9 @@
             <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-           
+
             <!-- Datatable init js -->
-            <script src="{{ URL::asset('/js/pages/cad-tipo-material.init.js')}}"></script>            
+            <script src="{{ URL::asset('/js/pages/cad-tipo-material.init.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
 
             @endsection
