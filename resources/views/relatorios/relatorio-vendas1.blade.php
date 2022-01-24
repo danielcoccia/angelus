@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('title') Relatório de Vendas Nr 1 @endsection
+@section('title') Relatório Nr 1 @endsection
 
 @section('content')
 
 
 
     <div class="col12" style="background:#ffffff;">
-        <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Relatório de Vendas Nr 1</h4>
+        <h4 class="card-title" class="card-title" style="font-size:20px; text-align: center; background: #088CFF; color: white;">RELATÓRIO DE VENDAS POR PERÍODO - Nr 1</h4>
         <form action="/relatorio-vendas1" class="form-horizontal mt-4" method="GET" >
             @csrf
         <div class="col">
@@ -30,6 +30,7 @@
 <hr>
     <div class="row">
         <table class="table table-sm table-striped table-bordered">
+            <h6 class="font-weight-bold" style="color: blue;">VENDAS REALIZADAS NO PERÍODO</h6>
             <thead style='background:#ffffff; text-align:center;vertical-align:middle'>
                 <tr>
 
@@ -41,13 +42,13 @@
                 </tr>
             </thead>
             <tbody style='text-align:center;vertical-align:middle'>
-            @foreach($relatorio as $rel)
+            @foreach($rela as $ra)
                 <tr>
-                    <td>{{$rel->idv}}</td>
-                    <td>{{ date( 'd/m/Y' , strtotime($rel->data))}}</td>
-                    <td>{{$rel->nomep}}</td>
+                    <td>{{$ra->idv}}</td>
+                    <td>{{ date( 'd/m/Y' , strtotime($ra->data))}}</td>
+                    <td>{{$ra->nomep}}</td>
                     <td>Porcentagem</td>
-                    <td>{{number_format($rel->valor_venda,2,',','.')}}</td>
+                    <td>{{number_format($ra->valor_venda,2,',','.')}}</td>
                 </tr>
             @endforeach
             </tbody>
@@ -56,8 +57,8 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th style="text-align:right;">TOTAL</th>
-                    <td style="text-align:center;">{{number_format($total_vendas,2,',','.')}}</td>
+                    <th style="text-align:right;font-size:18px;font-weight: bold;">TOTAL</th>
+                    <td style="text-align:center;font-size:18px;font-weight: bold;">{{number_format($total_vendas,2,',','.')}}</td>
                 </tr>
             </tfoot>
         </table>
@@ -65,7 +66,7 @@
     <hr>
     <div class="row">
         <table class="table table-sm table-striped">
-        <h6 class="font-weight-bold" style="color: blue;">SOMA DOS PAGAMENTOS REALIZADOS</h6>
+        <h6 class="font-weight-bold" style="color: blue;">PAGAMENTOS REALIZADOS NO PERÍODO</h6>
             <thead style='background:#ffffff;text-align:center;vertical-align:middle'>
                 <tr>
                     <th scope="col">CÓDIGO DO PAGAMENTO</th>
@@ -73,20 +74,20 @@
                     <th scope="col">VALOR</th>
                 </tr>
             </thead>
-            <tbody style='text-align:center;vertical-align:middle'>
-            @foreach($relatorio as $rel)
+            <tbody style='text-align:center;vertical-align:middle;'>
+            @foreach($relb as $rb)
                 <tr>
-                    <td>{{$rel->pid}}</td>
-                    <td>{{$rel->nomepg}}</td>
-                    <td>{{number_format($rel->valor_p,2,',','.')}}</td>
+                    <td>{{$rb->pid}}</td>
+                    <td>{{$rb->nomepg}}</td>
+                    <td>{{number_format($rb->valor_p,2,',','.')}}</td>
                 </tr>
             @endforeach
             </tbody>
             <tfoot style='background:#ffffff;'>
                 <tr>
                     <th></th>
-                    <th style="text-align:right;">TOTAL</th>
-                    <td style="text-align:center;">{{number_format($total_pag,2,',','.')}}</td>
+                    <th style="text-align:right;font-size:18px;">TOTAL</th>
+                    <td style="text-align:center;font-size:18px;font-weight: bold;">{{number_format($total_pag,2,',','.')}}</td>
                 </tr>
             </tfoot>
         </table>
@@ -96,14 +97,16 @@
             <h6 class="font-weight-bold" style="color: blue;">CÁLCULOS DO PERÍODO</h6>
             <tbody style='text-align:center;vertical-align:middle; font-size:15px;'>
                 <tr>
-                <td style="text-align:left;">Descontos:</td><td style="text-align:left;"></td></tr>
-                <tr style="text-align:left;"><td>Pagamentos:</td><td style="text-align:left;"></td></tr>
-                <tr style=" text-align:left;"><td>Troco:</td><td style="text-align:left;">
-                </td>
-                </tr>
-                <tr style="text-align:right;font-weight:bold;">
-                <td>Total da venda:</td>
-                <td style="text-align:left;font-size:18px;"></td>
+                    <td></td><td style="text-align:right; font-weight: bold;">DESCONTOS -></td><td></td><td style="text-align:center;"></td></tr>
+                <tr style="text-align:right;"><td></td><td style="font-weight: bold;">DISCRIMINAÇÃO DOS PAGAMENTOS  -></td><td style="text-align:right; font-weight: bold;"></td></tr>
+                <tr style=" text-align:left;"><td></td><td></td><td>Em Dinheiro:</td><td style="font-weight: bold;">{{number_format($total_din,2,',','.')}}</td></tr>
+                <tr style=" text-align:left;"><td></td><td></td><td>No Débito:</td><td style="font-weight: bold;">{{number_format($total_deb,2,',','.')}}</td></tr>
+                <tr style=" text-align:left;"><td></td><td></td><td>No Crédito:</td><td style="font-weight: bold;">{{number_format($total_cre,2,',','.')}}</td></tr>
+                <tr style=" text-align:left;"><td></td><td></td><td>Em Cheque:</td><td style="font-weight: bold;">{{number_format($total_che,2,',','.')}}</td></tr>
+                <tr style=" text-align:left;"><td></td><td></td><td>Em Pix:</td><td style="font-weight: bold;">{{number_format($total_pix,2,',','.')}}</td></tr>
+                <tr style="text-align:right;font-size:18px;font-weight:bold;">
+                <td></td><td>TOTAL VENDIDO NO PERÍODO -></td><td></td>
+                <td style="text-align:right;font-size:18px;">{{number_format($total_pag,2,',','.')}}</td>
                 </tr>
             </tbody>
         </table>

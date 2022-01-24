@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ModelPagamentos;
 use App\Models\ModelVendas;
 use phpDocumentor\Reflection\Types\Float_;
+use PhpParser\Node\Stmt\ElseIf_;
 
 class GerenciarpagamentoController extends Controller
 {
@@ -38,14 +39,12 @@ class GerenciarpagamentoController extends Controller
     ///Recupera os dados da  venda e cliente
     $vendas = DB::select ("
     Select
-    distinct (v.id) idv,
+    v.id as idv,
     pe.cpf,
     pe.nome as nomepes,
     v.data
     from venda v
-    left join pagamento p on (v.id = p.id_venda)
     left join pessoa pe on (pe.id = v.id_pessoa)
-    left join venda_item_material vim on (vim.id_venda = v.id)
     where v.id=$id
     ");
 
@@ -62,6 +61,9 @@ class GerenciarpagamentoController extends Controller
     ->where ('id_venda', '=', $id)
     ->sum('item_material.valor_venda');
 
+
+
+
     ///Tipos de pagamento para exibir na lista de seleção
     $tipos_pagamento = DB::select ('select id, nome from tipo_pagamento');
 
@@ -69,6 +71,9 @@ class GerenciarpagamentoController extends Controller
     $total_pago = DB::table ('pagamento')
     ->where ('id_venda', '=', $id)
     ->sum('valor');
+
+
+
 
     ///Cálculo de possível troco
 
@@ -78,18 +83,15 @@ class GerenciarpagamentoController extends Controller
     ///Recupera os dados da  venda e cliente
     $itens_compra = DB::select ("
     Select
-    distinct (v.id),
+    vim.id_venda,
     vim.id_item_material,
     im.id as idm,
     ic.nome as nomemat,
-    im.valor_venda,
-    tp.nome as nomepg
-    from venda v
-    left join pagamento p on (v.id = p.id_venda)
-    left join venda_item_material vim on (vim.id_venda = v.id)
+    im.valor_venda
+    from venda_item_material vim
+    left join venda v on (vim.id_venda = v.id)
     left join item_material im on (im.id = vim.id_item_material)
     left join item_catalogo_material ic on (ic.id = im.id_item_catalogo_material)
-    left join tipo_pagamento tp on (p.id_tipo_pagamento = tp.id)
     where v.id=$id
     ");
 
@@ -115,16 +117,49 @@ class GerenciarpagamentoController extends Controller
     }
 
 
-    public function inserir(Request $request, $id){
+    public function inserir (Request $request, $id){
 
-        DB::table('pagamento')->insert([
-            'id_venda' => $request->input('idv'),
-            'valor' => $request->input ('valor'),
-            'id_tipo_pagamento' => $request->input('forma')
-        ]);
 
+        $total_preco = DB::table ('venda')
+        ->leftjoin('venda_item_material', 'venda.id', '=', 'venda_item_material.id_venda')
+        ->leftjoin('item_material', 'venda_item_material.id_item_material', '=', 'item_material.id')
+        ->where ('id_venda', '=', $id)
+        ->sum('item_material.valor_venda');
+
+
+        ///Soma TOTAL dos pagamentos
+        $total_pago = DB::table ('pagamento')
+        ->where ('id_venda', '=', $id)
+        ->sum('valor');
+
+        $resto = ($total_preco - $total_pago);
+
+        //dd($total_pago);
+        //global $total_preco;
+
+        //global $total_pago;
+
+        //dd();
+        //echo '<pre>';
+
+       //print_r(session()->all());
+
+       //dd($request['valor']);
+
+        if ($total_preco > $total_pago && $resto <= $request['valor']) {
+
+                DB::table('pagamento')->insert([
+                    'id_venda' => ($id),
+                    'valor' => $request->input ('valor'),
+                    'id_tipo_pagamento' => $request->input('forma')
+                    ]);
+        }
+        else {
+        return view ('/vendas/alerta-pagamento');
+        }
 
         return redirect()->back();
+
     }
 
 
@@ -134,9 +169,6 @@ class GerenciarpagamentoController extends Controller
 
      return redirect()->back();
 
-      //dd("deletando o $id");
     }
-
-
 
 }

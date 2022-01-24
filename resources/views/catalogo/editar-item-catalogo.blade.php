@@ -15,7 +15,7 @@
 
                     <h4 class="card-title">Altera Item</h4>
                     <hr>
-                    <form class="form-horizontal mt-4" method="POST" action="/item-catalogo-atualizar/{{$result[0]->id}}"> 
+                    <form class="form-horizontal mt-4" method="POST" action="/item-catalogo-atualizar/{{$result[0]->id}}">
                     @method('PUT')
                     @csrf
                         <div class="form-group row">
@@ -31,7 +31,7 @@
                                 <select class="form-control select2" id="categoria_item" name="categoria_item" required="required">
                                     <option value="">Selecione</option>
                                     @foreach($resultCategoria as $resultCategorias)
-                                         
+
                                         @if($result[0]->id_categoria_material  == $resultCategorias->id)
                                             <option value="{{$resultCategorias->id}}" selected="selected">{{$resultCategorias->nome}}</option>
                                         @else
@@ -53,7 +53,7 @@
                         <div class="form-group row">
                             <label for="val_medio" class="col-sm-2 col-form-label">Valor Médio*</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" id="val_medio" name="val_medio" required="required" value="{{$result[0]->valor_medio}}">                                                
+                                <input class="form-control" type="text" id="val_medio" name="val_medio" required="required" value="{{$result[0]->valor_medio}}">
                             </div>
                         </div>
 
@@ -81,7 +81,7 @@
                         <div class="form-group row">
                             <label for="composicao" class="col-sm-2 col-form-label" >Item Composição</label>
                             <div class="col-sm-10">
-                                <input  type="checkbox"  id="composicao" name="composicao" {{ $result[0]->composicao ? 'checked' : '' }}> 
+                                <input  type="checkbox"  id="composicao" name="composicao" {{ $result[0]->composicao ? 'checked' : '' }}>
                             </div>
                         </div>
 
@@ -93,9 +93,9 @@
                         </div>
 
                         <div class="col-12 mt-3" style="text-align: right;">
-                            <button type="submit" class="btn btn-primary">Alterar</button>                                            
+                            <input class="btn btn-success" type="submit" value="Alterar">
                         </div>
-                    </form>           
+                    </form>
             </div>
         </div>
     </div>
@@ -103,7 +103,7 @@
 
 @section('footerScript')
             <script src="{{ URL::asset('/js/pages/mascaras.init.js')}}"></script>
-            <script src="{{ URL::asset('/js/pages/busca-cep.init.js')}}"></script>            
+            <script src="{{ URL::asset('/js/pages/busca-cep.init.js')}}"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
             <script src="{{ URL::asset('/libs/select2/select2.min.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/form-advanced.init.js')}}"></script>
