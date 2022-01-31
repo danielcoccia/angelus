@@ -88,26 +88,6 @@ class GerenciarVendasController extends Controller
     }
 
 
-    public function show($id)
-    {
-    //$itens = DB::table ('item_material')->get();
-    $vendas = DB::select ("
-        v.id,
-        v.data,
-        p.nome,
-        p.cpf,
-        v.id_usuario,
-        v.valor,
-        v.id_tp_situacao_venda
-    from venda v
-    left join pessoa p on (v.id_pessoa = p.id)
-    left join usuario u on (v.id_usuario = u.id)
-    where v.id = $id");
-
-
-     return view ('vendas/gerenciar-venda', compact('vendas'));
-
-    }
 
 
     public function edit($id)
@@ -137,7 +117,14 @@ class GerenciarVendasController extends Controller
 
     public function update ($id){
 
-        //number_format($total_preco,2,',','.');
+        $alerta = DB::select ("
+        Select
+        v.id,
+        v.data
+        from venda v
+        where v.id=$id
+        ");
+
 
         $total_preco = DB::table ('venda')
         ->leftjoin('venda_item_material', 'venda.id', '=', 'venda_item_material.id_venda')
@@ -157,25 +144,21 @@ class GerenciarVendasController extends Controller
 
         if ($tp_sit[0]== 1){
 
-            return redirect()
-                //->route("vendas/gerenciar-pagamentos/$id")
-                ->with(['errors'=>"Favor finalizar a venda $id"]);
-        }
+            return view ('vendas/alerta-venda', compact('alerta'));
 
-        elseif ($tp_sit[0] == 2) {
+        }elseif ($tp_sit[0] == 2){
 
             DB::table ('venda')
             ->where('id', $id)
             ->update(['valor' => $total_preco,'id_tp_situacao_venda' => 3]);
+
+        } elseif ($tp_sit[0] == 3 && $total_preco == $valor) {
+
+            return view ('vendas/alerta-venda2', compact('alerta'));
         }
 
-        elseif ($tp_sit[0] == 3) {
-            return redirect()
-                //->route("vendas/gerenciar-pagamentos/$id")
-                ->with(['errors'=>"A venda $id já está paga."]);
-        }
+        return redirect()->action('GerenciarvendasController@index');
 
-        return view ('vendas/gerenciar-vendas');
     }
 
 

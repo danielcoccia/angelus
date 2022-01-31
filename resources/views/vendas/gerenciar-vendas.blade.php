@@ -76,7 +76,7 @@
                         @foreach($result as $results)
                             <tr>
                                 <td>{{$results->id}}</td>
-                                <td>{{$results->data}}</td>
+                                <td>{{ date( 'd/m/Y' , strtotime($results->data))}}</td>
                                 <td>{{$results->nome_cliente}}</td>
                                 <td>{{$results->nome_usuario}}</td>
                                 <td>{{number_format($results->valor,2,',','.')}}</td>

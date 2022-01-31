@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\ModelPagamentos;
 use App\Models\ModelVendas;
+use Facade\Ignition\DumpRecorder\Dump;
 use phpDocumentor\Reflection\Types\Float_;
 use PhpParser\Node\Stmt\ElseIf_;
+use Psy\VarDumper\Dumper;
+use Symfony\Component\Console\Helper\Dumper as HelperDumper;
+
 
 class GerenciarpagamentoController extends Controller
 {
@@ -119,6 +123,13 @@ class GerenciarpagamentoController extends Controller
 
     public function inserir (Request $request, $id){
 
+        $vendas = DB::select ("
+        Select
+        v.id,
+        v.data
+        from venda v
+        where v.id=$id
+        ");
 
         $total_preco = DB::table ('venda')
         ->leftjoin('venda_item_material', 'venda.id', '=', 'venda_item_material.id_venda')
@@ -134,31 +145,21 @@ class GerenciarpagamentoController extends Controller
 
         $resto = ($total_preco - $total_pago);
 
-        //dd($total_pago);
-        //global $total_preco;
 
-        //global $total_pago;
 
-        //dd();
-        //echo '<pre>';
-
-       //print_r(session()->all());
-
-       //dd($request['valor']);
-
-        if ($total_preco > $total_pago && $resto <= $request['valor']) {
+        if ($resto >= $request['valor']) {
 
                 DB::table('pagamento')->insert([
                     'id_venda' => ($id),
                     'valor' => $request->input ('valor'),
                     'id_tipo_pagamento' => $request->input('forma')
                     ]);
-        }
-        else {
-        return view ('/vendas/alerta-pagamento');
+        } else{
+
+          return view ('vendas/alerta-pagamento', compact('vendas'));
         }
 
-        return redirect()->back();
+       return redirect()->back();
 
     }
 
@@ -170,5 +171,9 @@ class GerenciarpagamentoController extends Controller
      return redirect()->back();
 
     }
+//    echo '<pre>';
+
+  //  print_r(session()->all());
+
 
 }

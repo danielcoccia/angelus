@@ -16,6 +16,7 @@
                     <!-- <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->
 
                                     <div class="container">
+
                                         <div class="row align-items-center">
                                         </table>
                                         <table class="table table-bordered">
@@ -31,7 +32,7 @@
                                                 @foreach($vendas as $v)
                                                 <tr>
                                                     <td class="text-center">{{$v->idv}}</td>
-                                                    <td class="text-center">{{$v->data}}</td>
+                                                    <td class="text-center">{{ date( 'd/m/Y' , strtotime ($v->data))}}</td>
                                                     <td class="text-center">{{$v->cpf}}</td>
                                                     <td class="text-center">{{$v->nomepes}}</td>
                                                 </tr>
@@ -101,10 +102,10 @@
                                         <div class="input-group mb-3">
                                             <input type="number" step="any" min="0" class="form-control" id="valor" name="valor" placeholder="Valor">
                                         <div class="input-group-append">
-                                            <button type="submit" style="background-color: #ffb40a;" class="btn btn-outline-secundary"  id="button-addon2">>>Confirmar Valor</button>
+                                            <button type="submit" style="background-color: #ffb40a;" class="btn btn-outline-secundary" id="button-addon2">>>Confirmar Valor</button>
                                     </form>
                                         </div>
-                                        </div>
+                                    </div>
                                         <div class="input-group mb-3">
                                             <table class="table table-bordered">
                                             <h6 class="font-weight-bold" style="color: blue;">PAGAMENTOS REALIZADOS</h6>
@@ -163,22 +164,18 @@
                                     <div class="col-12 mt-3" style="text-align: right;">
                                     @foreach($vendas as $vd)
                                         <a href="/gerenciar-vendas"  type="button" class="btn btn-danger">Cancelar</a>
-
                                         <a href="/demonstrativo/{{$vd->idv}}"  type="button" class="btn btn-info">Exportar</a>
-
-                                        <a>
-                                            <a href="/gerenciar-vendas">
-                                            <input class="btn btn-success" type="button" value="Concluir Pagamento">
-                                        </a>
+                                        <a href="/gerenciar-vendas/finalizar/{{$vd->idv}}" type="button" class="btn btn-success">Concluir Pagamento</a>
+                                    </div>
                                     @endforeach
 
-                                    </div>
                                </div>
                             </div>
                     </div>
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('footerScript')
