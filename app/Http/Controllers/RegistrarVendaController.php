@@ -50,6 +50,7 @@ class RegistrarVendaController extends Controller
             left join tamanho t on (im.id_tamanho = t.id)
             left join cor c on (im.id_cor = c.id)
             left join tipo_material tm on (im.id_tipo_material = tm.id)
+            where im.id_tipo_situacao = 1
         ");
         return $lista;
     }
@@ -62,7 +63,7 @@ class RegistrarVendaController extends Controller
         return view('vendas/registrar-venda', compact("result", "resultPessoa"));
     }
 
-    public function Buscaritem()
+    public function Buscaritem() 
     {     
        $resultItem = $this->getListaItens();
         
@@ -120,10 +121,12 @@ class RegistrarVendaController extends Controller
             left join tamanho t on (im.id_tamanho = t.id)
             left join cor c on (im.id_cor = c.id)
             left join tipo_material tm on (im.id_tipo_material = tm.id)
-            where im.id = $id
+            where im.id = $id and im.id_tipo_situacao = 1
         ");
-
-        return view('vendas/area-confirmacao', compact('item'));
+        if ($item){
+             return view('vendas/area-confirmacao', compact('item'));
+        }
+        return '<div class="alert alert-danger" role="alert">Nenhum resgitro encontrado!</div>';
     }
 
     public function setVenda($id_pessoa, $data_venda, $id_usuario){
@@ -153,8 +156,56 @@ class RegistrarVendaController extends Controller
 
         $listaItemVenda = $this->getListaVenda($id_venda);
 
-        return view('vendas/lista-compras', compact('listaItemVenda'));
+        DB::table ('item_material')
+            ->where('id', $id_item)
+            ->update(['id_tipo_situacao' => 2]);
+
+        return view('vendas/lista-compras', compact('listaItemVenda')); 
      }
+
+
+     public function removeItemLista($id_item, $id_venda){
+        DB::table ('item_material')
+            ->where('id', $id_item)
+            ->update(['id_tipo_situacao' => 1]);
+
+        DB::table ('venda_item_material')
+        ->where('id_venda', $id_venda)
+        ->where('id_item_material', $id_item)
+        ->delete();
+        $listaItemVenda = $this->getListaVenda($id_venda);
+        return view('vendas/lista-compras', compact('listaItemVenda'));  
+    }
+
+
+    public function cancelarVenda($id_venda){
+        DB::table ('item_material')
+            ->whereRaw('id IN (select id_item_material from venda_item_material where id_venda='.$id_venda.')')
+            ->update(['id_tipo_situacao' => 1]);
+
+        DB::table ('venda_item_material')
+        ->where('id_venda', $id_venda)
+        ->delete();
+
+        DB::table ('venda')
+        ->where('id', $id_venda)
+        ->delete();
+
+        $listaItemVenda = $this->getListaVenda($id_venda);
+        return view('vendas/lista-compras', compact('listaItemVenda'));  
+    }
+
+
+    public function concluirVenda($id_venda, $vlr_total){
+        DB::table ('venda')
+            ->where('id', $id_venda)
+            ->update(['id_tp_situacao_venda' => 2, 'valor' => $vlr_total]);
+
+        $listaItemVenda = $this->getListaVenda(0);
+        return view('vendas/lista-compras', compact('listaItemVenda'));  
+    }
+
+
 
      public function getListaVenda($id_venda){
 
@@ -163,7 +214,9 @@ class RegistrarVendaController extends Controller
             vi.id_venda,
             id_item_material id,
             ic.nome nome, 
-            im.valor_venda_promocional
+            im.valor_venda_promocional,
+            im.valor_venda,
+            1 as qtd
             from venda_item_material vi
             left join item_material im on vi.id_item_material = im.id
             left join item_catalogo_material ic on im.id_item_catalogo_material = ic.id

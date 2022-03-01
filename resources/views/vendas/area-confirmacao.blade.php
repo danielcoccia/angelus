@@ -12,6 +12,8 @@
                     <p>Tamanho:<strong>  {{$item[0]->tamanho}}</strong> </p>
                     <p>Cor: <strong> {{$item[0]->cor}}</strong> </p>
                     <p>Tipo de material: <strong> {{$item[0]->tipo_material}}</strong> </p>
+                    <p>Valor Venda: <strong> {{$item[0]->valor_venda}}</strong></p>
+                    <input type="hidden" id="vlrVenda" value="{{$item[0]->valor_venda}}">
                 </div>
             </div>
         </div>
