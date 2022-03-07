@@ -69,13 +69,8 @@ class RegistrarVendaController extends Controller
 
     }
 
-<<<<<<< HEAD
     public function Buscaritem()
     {
-=======
-    public function Buscaritem() 
-    {     
->>>>>>> master
        $resultItem = $this->getListaItens();
 
         return view('vendas/buscar-item', compact("resultItem"));
@@ -175,7 +170,7 @@ class RegistrarVendaController extends Controller
             ->where('id', $id_item)
             ->update(['id_tipo_situacao' => 2]);
 
-        return view('vendas/lista-compras', compact('listaItemVenda')); 
+        return view('vendas/lista-compras', compact('listaItemVenda'));
      }
 
 
@@ -189,7 +184,7 @@ class RegistrarVendaController extends Controller
         ->where('id_item_material', $id_item)
         ->delete();
         $listaItemVenda = $this->getListaVenda($id_venda);
-        return view('vendas/lista-compras', compact('listaItemVenda'));  
+        return view('vendas/lista-compras', compact('listaItemVenda'));
     }
 
 
@@ -207,7 +202,7 @@ class RegistrarVendaController extends Controller
         ->delete();
 
         $listaItemVenda = $this->getListaVenda($id_venda);
-        return view('vendas/lista-compras', compact('listaItemVenda'));  
+        return view('vendas/lista-compras', compact('listaItemVenda'));
     }
 
 
@@ -217,7 +212,7 @@ class RegistrarVendaController extends Controller
             ->update(['id_tp_situacao_venda' => 2, 'valor' => $vlr_total]);
 
         $listaItemVenda = $this->getListaVenda(0);
-        return view('vendas/lista-compras', compact('listaItemVenda'));  
+        return view('vendas/lista-compras', compact('listaItemVenda'));
     }
 
 
@@ -228,15 +223,8 @@ class RegistrarVendaController extends Controller
             select
             vi.id_venda,
             id_item_material id,
-<<<<<<< HEAD
             ic.nome nome,
             im.valor_venda_promocional
-=======
-            ic.nome nome, 
-            im.valor_venda_promocional,
-            im.valor_venda,
-            1 as qtd
->>>>>>> master
             from venda_item_material vi
             left join item_material im on vi.id_item_material = im.id
             left join item_catalogo_material ic on im.id_item_catalogo_material = ic.id
