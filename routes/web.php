@@ -203,6 +203,9 @@ Route::get('/registrar-venda/buscaritem', 'RegistrarVendaController@buscaritem')
 Route::get('/registrar-venda/getItem/{id}', 'RegistrarVendaController@getItem');
 Route::get('/registrar-venda/setVenda/{id_pessoa}/{data_venda}/{id_usuario}', 'RegistrarVendaController@setVenda');
 Route::get('/registrar-venda/setItemLista/{id_item}/{id_venda}', 'RegistrarVendaController@setItemLista');
+Route::get('/registrar-venda/removeItemLista/{id_item}/{id_venda}', 'RegistrarVendaController@removeItemLista');
+Route::get('/registrar-venda/cancelarVenda/{id_venda}', 'RegistrarVendaController@cancelarVenda');
+Route::get('/registrar-venda/concluirVenda/{id_venda}/{vlr_total}', 'RegistrarVendaController@concluirVenda');
 
 
 

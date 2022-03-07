@@ -10,9 +10,12 @@ use App\Models\ModelVendas;
 use Facade\Ignition\DumpRecorder\Dump;
 use phpDocumentor\Reflection\Types\Float_;
 use PhpParser\Node\Stmt\ElseIf_;
+<<<<<<< HEAD
 use Psy\VarDumper\Dumper;
 use Symfony\Component\Console\Helper\Dumper as HelperDumper;
 
+=======
+>>>>>>> master
 
 class GerenciarpagamentoController extends Controller
 {
@@ -123,6 +126,7 @@ class GerenciarpagamentoController extends Controller
 
     public function inserir (Request $request, $id){
 
+<<<<<<< HEAD
         $vendas = DB::select ("
         Select
         v.id,
@@ -130,6 +134,8 @@ class GerenciarpagamentoController extends Controller
         from venda v
         where v.id=$id
         ");
+=======
+>>>>>>> master
 
         $total_preco = DB::table ('venda')
         ->leftjoin('venda_item_material', 'venda.id', '=', 'venda_item_material.id_venda')
@@ -137,6 +143,7 @@ class GerenciarpagamentoController extends Controller
         ->where ('id_venda', '=', $id)
         ->sum('item_material.valor_venda');
 
+<<<<<<< HEAD
 
         ///Soma TOTAL dos pagamentos
         $total_pago = DB::table ('pagamento')
@@ -161,6 +168,42 @@ class GerenciarpagamentoController extends Controller
 
        return redirect()->back();
 
+=======
+
+        ///Soma TOTAL dos pagamentos
+        $total_pago = DB::table ('pagamento')
+        ->where ('id_venda', '=', $id)
+        ->sum('valor');
+
+        $resto = ($total_preco - $total_pago);
+
+        //dd($total_pago);
+        //global $total_preco;
+
+        //global $total_pago;
+
+        //dd();
+        //echo '<pre>';
+
+       //print_r(session()->all());
+
+       //dd($request['valor']);
+
+        if ($total_preco > $total_pago && $resto <= $request['valor']) {
+
+                DB::table('pagamento')->insert([
+                    'id_venda' => ($id),
+                    'valor' => $request->input ('valor'),
+                    'id_tipo_pagamento' => $request->input('forma')
+                    ]);
+        }
+        else {
+        return view ('/vendas/alerta-pagamento');
+        }
+
+        return redirect()->back();
+
+>>>>>>> master
     }
 
 
@@ -173,7 +216,10 @@ class GerenciarpagamentoController extends Controller
     }
 //    echo '<pre>';
 
+<<<<<<< HEAD
   //  print_r(session()->all());
 
 
+=======
+>>>>>>> master
 }

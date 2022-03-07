@@ -36,17 +36,45 @@ class GerenciarVendasController extends Controller
         $situacao = $request->situacao;
 
         $cliente = $request->cliente;
+<<<<<<< HEAD
+
+        if ($request->situacao){
+            $result->where('v.id_tp_situacao_venda', $request->situacao);
+        }
+=======
 
         if ($request->situacao){
             $result->where('v.id_tp_situacao_venda', $request->situacao);
         }
 
+>>>>>>> master
+
+        if ($request->cliente){
+            $result->where('p.nome', 'like', "%$request->cliente%");
+        }
 
         if ($request->cliente){
             $result->where('p.nome', 'like', "%$request->cliente%");
         }
 
 
+        $data_inicio = $request->data_inicio;
+        $data_fim = $request->data_fim;
+
+        if ($request->data_inicio){
+
+<<<<<<< HEAD
+            $result->where('v.data','>' , $request->data_inicio);
+        }
+
+        if ($request->data_fim){
+
+            $result->where('v.data','<' , $request->data_fim);
+        }
+
+        $result = $result->get();
+
+=======
         $data_inicio = $request->data_inicio;
         $data_fim = $request->data_fim;
 
@@ -62,6 +90,7 @@ class GerenciarVendasController extends Controller
 
         $result = $result->get();
 
+>>>>>>> master
         //->toSql();
         //->paginate();
 
@@ -144,7 +173,14 @@ class GerenciarVendasController extends Controller
 
         if ($tp_sit[0]== 1){
 
+<<<<<<< HEAD
             return view ('vendas/alerta-venda', compact('alerta'));
+=======
+            return redirect()
+                //->route("vendas/gerenciar-pagamentos/$id")
+                ->with(['errors'=>"Favor finalizar a venda $id"]);
+        }
+>>>>>>> master
 
         }elseif ($tp_sit[0] == 2){
 
@@ -152,6 +188,7 @@ class GerenciarVendasController extends Controller
             ->where('id', $id)
             ->update(['valor' => $total_preco,'id_tp_situacao_venda' => 3]);
 
+<<<<<<< HEAD
         } elseif ($tp_sit[0] == 3 && $total_preco == $valor) {
 
             return view ('vendas/alerta-venda2', compact('alerta'));
@@ -159,6 +196,15 @@ class GerenciarVendasController extends Controller
 
         return redirect()->action('GerenciarvendasController@index');
 
+=======
+        elseif ($tp_sit[0] == 3) {
+            return redirect()
+                //->route("vendas/gerenciar-pagamentos/$id")
+                ->with(['errors'=>"A venda $id já está paga."]);
+        }
+
+        return view ('vendas/gerenciar-vendas');
+>>>>>>> master
     }
 
 
