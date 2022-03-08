@@ -33,12 +33,12 @@ class RegistrarVendaController extends Controller
 
     private function getListaItens(){
         $lista = DB::select("
-            select
-                im.id,
-                ic.nome nome,
-                im.data_cadastro data_cadastro,
-                m.nome marca,
-                t.nome tamanho,
+            select 
+                im.id, 
+                ic.nome nome, 
+                im.data_cadastro data_cadastro, 
+                m.nome marca, 
+                t.nome tamanho, 
                 c.nome cor,
                 tm.nome tipo_material,
                 im.valor_venda,
@@ -56,51 +56,42 @@ class RegistrarVendaController extends Controller
     }
 
     public function index(Request $request)
-    {
+    {     
         $result= $this->getListaPessoaAll();
         $resultPessoa = DB::select ("select id, nome||'-'||cpf as cpf from pessoa");
-
-        //echo '<pre>';
-//dd($request);
-        //print_r($request->session()->all());
-
+        
         return view('vendas/registrar-venda', compact("result", "resultPessoa"));
-
-
     }
 
-    public function Buscaritem()
-    {
+    public function Buscaritem() 
+    {     
        $resultItem = $this->getListaItens();
-
+        
         return view('vendas/buscar-item', compact("resultItem"));
     }
 
-
+       
     public function search(Request $request )
     {
         $id = $request->input('id');
         $nome = $request->input('nome');
         $cpf = $request->input('cpf');
-
+        
         $result =DB::table('pessoa')
                                     ->where('id', 'like' ,'%'.$id.'%')
                                     ->where('nome', 'like' ,'%'.$nome.'%')
                                     ->where('cpf', 'like' , '%'.$cpf.'%')
                                     ->get();
 
-
-
         return view('registrar-venda/pessoa',['result'=>$result]);
     }
 
-
     public function show()
     {
-        $sql ="Select
-                    id,
+        $sql ="Select 
+                    id, 
                     nome,
-                    cpf
+                    cpf 
                     from pessoa";
 
         $pessoa = DB::select($sql);
@@ -110,15 +101,15 @@ class RegistrarVendaController extends Controller
 
     public function getItem($id)
     {
-
+       
 
        $item = DB::select("
-            select
-                im.id,
-                ic.nome nome,
-                im.data_cadastro data_cadastro,
-                m.nome marca,
-                t.nome tamanho,
+            select 
+                im.id, 
+                ic.nome nome, 
+                im.data_cadastro data_cadastro, 
+                m.nome marca, 
+                t.nome tamanho, 
                 c.nome cor,
                 tm.nome tipo_material,
                 im.valor_venda,
@@ -140,7 +131,7 @@ class RegistrarVendaController extends Controller
 
     public function setVenda($id_pessoa, $data_venda, $id_usuario){
 
-        DB::table('venda')->insert([
+        DB::table('venda')->insert([            
             'data' => $data_venda,
             'id_pessoa' => $id_pessoa,
             'id_usuario' => $id_usuario,
@@ -158,11 +149,10 @@ class RegistrarVendaController extends Controller
 
      public function setItemLista($id_item, $id_venda){
 
-        DB::table('venda_item_material')->insert([
+        DB::table('venda_item_material')->insert([            
             'id_venda' => $id_venda,
             'id_item_material' => $id_item,
         ]);
-
 
         $listaItemVenda = $this->getListaVenda($id_venda);
 
@@ -170,7 +160,7 @@ class RegistrarVendaController extends Controller
             ->where('id', $id_item)
             ->update(['id_tipo_situacao' => 2]);
 
-        return view('vendas/lista-compras', compact('listaItemVenda'));
+        return view('vendas/lista-compras', compact('listaItemVenda')); 
      }
 
 
@@ -184,7 +174,7 @@ class RegistrarVendaController extends Controller
         ->where('id_item_material', $id_item)
         ->delete();
         $listaItemVenda = $this->getListaVenda($id_venda);
-        return view('vendas/lista-compras', compact('listaItemVenda'));
+        return view('vendas/lista-compras', compact('listaItemVenda'));  
     }
 
 
@@ -202,7 +192,7 @@ class RegistrarVendaController extends Controller
         ->delete();
 
         $listaItemVenda = $this->getListaVenda($id_venda);
-        return view('vendas/lista-compras', compact('listaItemVenda'));
+        return view('vendas/lista-compras', compact('listaItemVenda'));  
     }
 
 
@@ -212,7 +202,7 @@ class RegistrarVendaController extends Controller
             ->update(['id_tp_situacao_venda' => 2, 'valor' => $vlr_total]);
 
         $listaItemVenda = $this->getListaVenda(0);
-        return view('vendas/lista-compras', compact('listaItemVenda'));
+        return view('vendas/lista-compras', compact('listaItemVenda'));  
     }
 
 
@@ -220,11 +210,13 @@ class RegistrarVendaController extends Controller
      public function getListaVenda($id_venda){
 
          $result = DB::select("
-            select
+            select 
             vi.id_venda,
             id_item_material id,
-            ic.nome nome,
-            im.valor_venda_promocional
+            ic.nome nome, 
+            im.valor_venda_promocional,
+            im.valor_venda,
+            1 as qtd
             from venda_item_material vi
             left join item_material im on vi.id_item_material = im.id
             left join item_catalogo_material ic on im.id_item_catalogo_material = ic.id
