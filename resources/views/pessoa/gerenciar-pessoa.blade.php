@@ -6,13 +6,13 @@
  <!-- start page title -->
                     <div class="row">
 <!--                 @component('common-components.breadcrumb')
-                     @slot('title') Pesquisa de Usuario  @endslot                     
+                     @slot('title') Pesquisa de Usuario  @endslot
                      @slot('li1') Lexa  @endslot
                      @slot('li2') Forms  @endslot
                      @slot('li3') Form Elements @endslot
                 @endcomponent
- -->                
-                   
+ -->
+
                     </div>
                     <!-- end page title -->
 
@@ -22,7 +22,7 @@
                                 <div class="card-body">
 
                                     <!-- <h4 class="card-title">Pesquisar</h4>  -->
-<!--                                     <form class="form-horizontal mt-4" method="POST" action="/gerenciar-pessoa"> 
+<!--                                     <form class="form-horizontal mt-4" method="POST" action="/gerenciar-pessoa">
                                         @csrf
                                     <div class="row">
 									   	<div class="col-md-4">
@@ -57,12 +57,12 @@
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>id</th>
-                                                <th>Name</th>
-                                                <th>Cpf</th>
-                                                <th>Identidade</th>                                                
-                                                <th>Email</th>
-                                                <th>Ação</th>
+                                                <th>CÓDIGO</th>
+                                                <th>NOME</th>
+                                                <th>CPF</th>
+                                                <th>IDENTIDADE</th>
+                                                <th>EMAIL</th>
+                                                <th>AÇÕES</th>
                                             </tr>
                                         </thead>
 
@@ -83,7 +83,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            @endforeach     
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -93,7 +93,7 @@
                     </div>
                         <!-- end col -->
                     </div>
-                                    
+
                 </div>
             </div>
             <!-- end col -->
@@ -106,7 +106,7 @@
            <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-           
+
             <!-- Datatable init js -->
              <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
 

@@ -55,7 +55,7 @@
                         </li>
                         <li>
                             <a href="/gerenciar-cadastro-inicial" class="waves-effect">
-                                <i class="mdi mdi-library-books"></i>
+                                <i class="mdi mdi-stack-overflow"></i>
                                 <span>Cadastro inicial</span>
                             </a>
                         </li>
@@ -75,9 +75,9 @@
                                 <span>Documentos</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="/relatorio-vendas1" class="waves-effect"><span>Relatórios de Vendas 1</span></a></li>
-                            <li><a href="/relatorio-vendas2" class="waves-effect"><span>Relatórios de Vendas 2</span></a></li>
-                            <li><a href="/gerenciar-vendas" class="waves-effect"><span>Demonstrativos</span></a></li>
+                                <li><a href="/inventarios" class="waves-effect"><span>Inventário de material</span></a></li>
+                                <li><a href="/relatorio-vendas" class="waves-effect"><span>Relatório de Vendas</span></a></li>
+                                <li><a href="/relatorio-entrada" class="waves-effect"><span>Relatório de Entradas</span></a></li>
                             </ul>
                         </li>
 

@@ -163,9 +163,9 @@ class CadastroInicialController extends Controller
         $html='<div class="table-responsive">';
         $html.='<table class="table table-bordered table-striped mb-0">';
         $html.='<tr><td>Deposito *</td> <td>'.getCombo($result8,'deposito', 1).'</td></tr>';
-        $html.='<tr><td>Embalagem *</td> <td>'.getCombo($result9,'embalagem', 1).'</td></tr>';
-        $html.='<tr><td>Qtd Embalagem *</td> <td><input type="text" name="qtdEmb" id="qtdEmb" required></td></tr>';
-        $html.='<tr><td>Unidade Medida *</td> <td>'.getCombo($result10,'und_med', 1).'</td></tr>';
+        $html.='<tr><td>Embalagem </td> <td>'.getCombo($result9,'embalagem', 0).'</td></tr>';
+        $html.='<tr><td>Qtd Embalagem</td> <td><input type="text" name="qtdEmb" id="qtdEmb"></td></tr>';
+        $html.='<tr><td>Unidade Medida </td> <td>'.getCombo($result10,'und_med', 0).'</td></tr>';
         $html.='<tr><td>Adiquirido</td><td><input type="checkbox" id="checkAdq" name="checkAdq" switch="bool" /><label for="checkAdq" data-on-label="Sim" data-off-label="Não"></label></td>';
         $html.='</table>';
         $html.='</div>';
@@ -191,9 +191,9 @@ class CadastroInicialController extends Controller
                         <label for="valor_medio">Médio R$'.$result[0]->valor_medio.'</label><br>
                         <input type="radio" id="valor_maximo" name="valor_venda" value="'.$result[0]->valor_maximo.'">
                         <label for="valor_medio">Máximo R$'.$result[0]->valor_maximo.'</label><br>
-                        <input type="radio" id="valor_marca" name="valor_marca" value="'.$result[0]->valor_marca.'">
+                        <input type="radio" id="valor_marca" name="valor_venda" value="'.$result[0]->valor_marca.'">
                         <label for="valor_marca">Marca R$'.$result[0]->valor_marca.'</label><br>
-                        <input type="radio" id="valor_etiqueta" name="valor_etiqueta" value="'.$result[0]->valor_etiqueta.'">
+                        <input type="radio" id="valor_etiqueta" name="valor_venda" value="'.$result[0]->valor_etiqueta.'">
                         <label for="valor_etiqueta">Etiqueta R$'.$result[0]->valor_etiqueta.'</label><br>
                     </div>
                 </td></tr>';
@@ -215,12 +215,14 @@ class CadastroInicialController extends Controller
                     <input type="radio" id="valor_medio" name="valor_venda" value="'.$result[0]->valor_medio.'">
                     <label for="valor_medio">Médio R$'.$result[0]->valor_medio.'</label><br>
                     <input type="radio" id="valor_maximo" name="valor_venda" value="'.$result[0]->valor_maximo.'">
-                    <label for="valor_medio">Máximosss R$'.$result[0]->valor_maximo.'</label><br>
-                    <input type="radio" id="valor_marca" name="valor_marca" value="'.$result[0]->valor_marca.'">
+                    <label for="valor_maximo">Máximo R$'.$result[0]->valor_maximo.'</label><br>
+                    <input type="radio" id="valor_marca" name="valor_venda" value="'.$result[0]->valor_marca.'">
                     <label for="valor_marca">Marca R$'.$result[0]->valor_marca.'</label><br>
-                     <input type="radio" id="valor_etiqueta" name="valor_etiqueta" value="'.$result[0]->valor_etiqueta.'">
-                        <label for="valor_etiqueta">Etiqueta R$'.$result[0]->valor_etiqueta.'</label><br>';
+                    <input type="radio" id="valor_etiqueta" name="valor_venda" value="'.$result[0]->valor_etiqueta.'">
+                    <label for="valor_etiqueta">Etiqueta R$'.$result[0]->valor_etiqueta.'</label><br>';
 
+
+                    dd($html);
 
         }else if($_REQUEST['avariado'] =='true'){
 
@@ -241,7 +243,7 @@ class CadastroInicialController extends Controller
 
         $html='<div class="table-responsive">';
         $html.='<table class="table table-bordered table-striped mb-0">';
-        $html.='<tr><td>Quantidade</td><td><input type="text" id="qtdItens" name="qtdItens" /></td>';
+        $html.='<tr><td>Quantidade *</td><td><input type="text" id="qtdItens" name="qtdItens" required /></td>';
         $html.='<tr><td>Data validade</td><td><input class="form-control" type="date" value="" id="dt_validade" name="dt_validade"></td>';
         $html.='<tr><td>Localizador</td> <td>'.getCombo($result,'localizador', 0) .'</td></tr>';
         $html.='</table>
@@ -307,8 +309,8 @@ class CadastroInicialController extends Controller
             DB::table('item_material')->insert([
             'id_item_catalogo_material' => $request->input('item_material'),
             'observacao' => $request->input('observacao'),
-            'data_cadastro' => date("y/m/d"),
-            'id_usuario_cadastro'=> '4',
+            'data_cadastro' => date("d/m/Y"),
+            'id_usuario_cadastro'=> session()->get('usuario.id_usuario'),
             'id_tipo_embalagem' => $request->input('embalagem'),
             'id_tipo_unidade_medida' => $request->input('und_med'),
             'quantidade_embalagem' => $request->input('qtdEmb'),
@@ -325,7 +327,6 @@ class CadastroInicialController extends Controller
             'data_validade' => $request->input('dt_validade'),
             'liberacao_venda' => 0,
             'id_tipo_situacao' => '1',
-            //'id_usuario' => '89',
         ]);
         }
 

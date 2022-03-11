@@ -16,10 +16,6 @@
                     <!-- <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->
 
                                     <div class="container">
-<<<<<<< HEAD
-
-=======
->>>>>>> master
                                         <div class="row align-items-center">
                                         </table>
                                         <table class="table table-bordered">
@@ -167,20 +163,8 @@
                                     <div class="col-12 mt-3" style="text-align: right;">
                                     @foreach($vendas as $vd)
                                         <a href="/gerenciar-vendas"  type="button" class="btn btn-danger">Cancelar</a>
-<<<<<<< HEAD
                                         <a href="/demonstrativo/{{$vd->idv}}"  type="button" class="btn btn-info">Exportar</a>
                                         <a href="/gerenciar-vendas/finalizar/{{$vd->idv}}" type="button" class="btn btn-success">Concluir Pagamento</a>
-=======
-
-                                        <a href="/demonstrativo/{{$vd->idv}}"  type="button" class="btn btn-info">Exportar</a>
-
-                                        <a>
-                                            <a href="/gerenciar-vendas">
-                                            <input class="btn btn-success" type="button" value="Concluir Pagamento">
-                                        </a>
-                                    @endforeach
-
->>>>>>> master
                                     </div>
                                     @endforeach
 

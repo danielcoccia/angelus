@@ -74,18 +74,16 @@
                         <div class="card">
                             <div class="card-body">
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nome</th>
-                                            <th>Data</th>
-                                            <th>Marca</th>
-                                            <th>Tamanho</th>
-                                            <th>Cor</th>
-                                            <th>Tipo Material</th>
-                                            <th>Valor Venda</th>
-                                            <th>Liberacao Venda</th>
-                                            <th>Ação</th>
+                                    <thead >
+                                        <tr align="center">
+                                            <th>CÓDIGO</th>
+                                            <th>NOME</th>
+                                            <th>DATA</th>
+                                            <th>MARCA</th>
+                                            <th>TAMANHO</th>
+                                            <th>COR</th>
+                                            <th>VALOR</th>
+                                            <th>AÇÕES</th>
                                         </tr>
                                     </thead>
 
@@ -94,13 +92,11 @@
                                         <tr>
                                             <td>{{$results->id}}</td>
                                             <td>{{$results->nome}}</td>
-                                            <td>{{$results->data_cadastro}}</td>
+                                            <td>{{date( 'd/m/Y' , strtotime($results->data_cadastro))}}</td>
                                             <td>{{$results->marca}}</td>
                                             <td>{{$results->tamanho}}</td>
                                             <td>{{$results->cor}}</td>
-                                            <td>{{$results->tipo_material}}</td>
-                                            <td>{{$results->valor_venda}}</td>
-                                            <td>{{$results->liberacao_venda}}</td>
+                                            <td>{{number_format($results->valor_venda,2,',','.')}}</td>
                                             <td>
                                                 <a href="/editar-cadastro-inicial/{{$results->id}}">
                                                 <input class="btn btn-warning" type="button" value="Alterar">

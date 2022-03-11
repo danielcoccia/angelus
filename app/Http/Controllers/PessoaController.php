@@ -8,27 +8,26 @@ use App\Models\ModelGenero;
 use App\Models\ModelPessoa;
 use App\Models\ModelEntidade;
 use Illuminate\Support\Facades\Http;
-use App\Http\Controllers\PessoaController;
 
 class PessoaController extends Controller
 {
-   
+
     private $objGenero;
     private $objPessoa;
-    
-    public function __construct(){        
+
+    public function __construct(){
         $this->objGenero = new ModelGenero();
         $this->objPessoa = new ModelPessoa();
     }
 
     public function index()
-    {   
+    {
         $result= $this->objPessoa->all();
         return view('pessoa/gerenciar-pessoa',['result'=>$result]);
     }
-   
+
     public function create()
-    {           
+    {
         //$response = Http::get('https://viacep.com.br/ws/01001000/json/');
         //$data = $response->json();
         // $entidade = new ModelEntidade();
@@ -42,7 +41,7 @@ class PessoaController extends Controller
 
     public function store(Request $request)
     {
-        DB::table('pessoa')->insert([            
+        DB::table('pessoa')->insert([
             'nome' => $request->input('nome'),
             'identidade' => $request->input('identidade'),
             'cpf' => preg_replace("/[^0-9]/", "", $request->input('cpf')),
@@ -72,7 +71,7 @@ class PessoaController extends Controller
         $nome = $request->input('nome');
         $identidade = $request->input('identidade');
         $cpf = $request->input('cpf');
-        
+
         $result =DB::table('pessoa')
                                     ->where('nome', 'like' ,'%'.$nome.'%')
                                     ->where('identidade', 'like' , '%'.$identidade.'%')
@@ -88,11 +87,11 @@ class PessoaController extends Controller
         $resultGenero= $this->objGenero->all();
         $resultEntidade = DB::select("select id, nome_fantasia||' - '||cnpj nome  from entidade");
 
-        return view('/pessoa/edit-pessoa',compact('result','resultGenero','resultEntidade'));        
+        return view('/pessoa/edit-pessoa',compact('result','resultGenero','resultEntidade'));
     }
 
     public function update(Request $request, $id)
-    {   
+    {
         DB::table('pessoa')
         ->where('id', $id)
         ->update([
@@ -113,8 +112,8 @@ class PessoaController extends Controller
             'complemento' => $request->input('complemento'),
             'ibge' => $request->input('ibge'),
             'gia' => $request->input('gia')
-        ]);            
-        
+        ]);
+
         $result= $this->objPessoa->all();
         return view('/pessoa/gerenciar-pessoa',['result'=>$result]);
     }
@@ -126,5 +125,5 @@ class PessoaController extends Controller
         return view('/pessoa/gerenciar-pessoa',['result'=>$result]);
     }
 
-    
+
 }

@@ -109,12 +109,17 @@ class GerenciarVendasController extends Controller
     }
 
 
-    public function destroy($id)
-    {
+    public function delete($id){
 
-        DB::delete('delete from venda where id = ?' , [$id]);
-        $result= $this->getListaVendasAll();;
-        return view('vendas/gerenciar-vendas', ['result'=>$result]);
+
+            DB::table ('item_material')
+            ->whereRaw('id IN (select id_item_material from venda_item_material where id_venda='.$id.')')
+            ->update(['id_tipo_situacao' => 1]);
+
+            DB::delete('delete from venda where id = ?' , [$id]);
+
+
+        return redirect()->action('GerenciarvendasController@index');
 
     }
 

@@ -192,7 +192,7 @@ Route::get('/item_material/{id}', 'BarcodeController@show');
 
 
 Route::any('/gerenciar-vendas', 'GerenciarvendasController@index')->name('vendas.index');
-Route::get('/gerenciar-vendas/alterar/{id}', 'GerenciarvendasController@edit');
+Route::get('/gerenciar-vendas/excluir/{id}', 'GerenciarvendasController@delete');
 Route::get('/gerenciar-vendas/{id}', 'GerenciarvendasController@update');
 Route::get('/gerenciar-vendas/finalizar/{id}', 'GerenciarvendasController@update');
 Route::get('/gerenciar-vendas/demonstrativo/{id}', 'GerenciarvendasController@update');
@@ -200,6 +200,7 @@ Route::get('/gerenciar-vendas/demonstrativo/{id}', 'GerenciarvendasController@up
 
 Route::get('/registrar-venda', 'RegistrarVendaController@index');
 Route::get('/registrar-venda/buscaritem', 'RegistrarVendaController@buscaritem');
+Route::get('/registrar-venda/editar/{id}', 'RegistrarVendaController@editar');
 Route::get('/registrar-venda/getItem/{id}', 'RegistrarVendaController@getItem');
 Route::get('/registrar-venda/setVenda/{id_pessoa}/{data_venda}/{id_usuario}', 'RegistrarVendaController@setVenda');
 Route::get('/registrar-venda/setItemLista/{id_item}/{id_venda}', 'RegistrarVendaController@setItemLista');
@@ -221,5 +222,7 @@ Route::get('/alerta-pagamento', 'GerenciarpagamentoController@inserir')->middlew
 
 Route::get('/demonstrativo/{id}', 'GerenciardemonstrativoController@index');
 
-Route::get('/relatorio-vendas1', 'RelatoriosController@index');
+Route::get('/relatorio-vendas', 'RelatoriosController@index');
+
+Route::get('/inventarios', 'GerenciarInventariosController@index');
 

@@ -82,11 +82,11 @@
                                 <td>{{number_format($results->valor,2,',','.')}}</td>
                                 <td>{{$results->sit_venda}}</td>
                                 <td>
-                                    <a href="/gerenciar-vendas/edit/{{$results->id}}">
+                                    <a href="/registrar-venda/editar/{{$results->id}}">
                                         <input class="btn btn-warning" type="button" value="Alterar">
                                     </a>
-                                    <a>
-                                        <input class="btn btn-danger" type="button" value="Excluir">
+                                    <a href="/gerenciar-vendas/excluir/{{$results->id}}">
+                                        <input class="btn btn-danger" type="button" value="Excluir" data-toggle="modal" data-target="#modalExemplo">
                                     </a>
                                     <a>
                                         <a href="/gerenciar-pagamentos/{{$results->id}}">
@@ -107,6 +107,31 @@
     </div>
 </div>
         <!-- end col -->
+
+<!--
+    **********************************************************************************************************************************
+    * MODAL
+    **********************************************************************************************************************************
+    -->
+    <div class="modal" id="modalExemplo" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Excluir venda</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>A venda foi excluida com sucesso.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 
 @endsection

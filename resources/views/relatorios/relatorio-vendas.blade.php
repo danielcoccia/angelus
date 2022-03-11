@@ -8,7 +8,7 @@
 
     <div class="col12" style="background:#ffffff;">
         <h4 class="card-title" class="card-title" style="font-size:20px; text-align: center; background: #088CFF; color: white;">RELATÓRIO DE VENDAS POR PERÍODO - Nr 1</h4>
-        <form action="/relatorio-vendas1" class="form-horizontal mt-4" method="GET" >
+        <form action="/relatorio-vendas" class="form-horizontal mt-4" method="GET" >
             @csrf
         <div class="col">
             <label for="nome">Início</label>
@@ -19,7 +19,7 @@
 
             <input class="btn btn-info" type="submit" value="Pesquisar">
 
-            <a href="/relatorio-vendas1">
+            <a href="/relatorio-vendas">
             <input class="btn btn-danger" type="button" value="Limpar">
             </a>
         </form>

@@ -9,7 +9,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-5">
                     <div class="card overflow-hidden">
-                        <div class="card-body pt-0">                            
+                        <div class="card-body pt-0">
                             <div class="p-3">
                                 <h4 class="text-muted font-size-18 mb-1 text-center">Alterar Senha</h4>
                                 <!-- <p class="text-muted text-center">Sign in to continue to Lexa.</p> -->
@@ -17,7 +17,7 @@
                                        @csrf
                                     <div class="form-group">
                                         Usuário - {{session()->get('usuario.nome')}}
-                                        
+
                                         @if(session('mensagem'))
                                             <div class="alert alert-success">
                                                 <p>{{session('mensagem')}}</p>
@@ -36,7 +36,7 @@
                                         @error('msg_erro')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
-                                            
+
                                         </span>
                                         @enderror
                                     </div>
@@ -59,7 +59,7 @@
                                             </div> -->
                                         </div>
                                         <div class="col-6 text-right">
-                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Altara Senha</button>
+                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Altera Senha</button>
                                         </div>
                                     </div>
                                     <!-- <div class="form-group mb-0 row">
@@ -70,7 +70,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
