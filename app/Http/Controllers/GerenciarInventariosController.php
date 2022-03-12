@@ -45,7 +45,7 @@ class GerenciarInventariosController extends Controller
 
     //dd($data);
 
-    return view('relatorios/inventarios', compact('qtd_estoque','vlr_estoque', 'nr_ordem', 'data', 'rela', 'resultCategorias', 'resultItens', 'total_preco'));
+    return view('relatorios/inventarios', compact('qtd_estoque','vlr_estoque', 'nr_ordem', 'data', 'resultCategorias', 'resultItens', 'total_preco'));
     }
 
 }

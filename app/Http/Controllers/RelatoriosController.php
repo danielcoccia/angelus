@@ -60,7 +60,7 @@ class RelatoriosController extends Controller
     $total_pix = $relb->where('tpid', '5')->sum('valor_p');
 
 
-    return view('relatorios/relatorio-vendas', compact('total_pag', 'total_vendas', 'data_fim', 'data_inicio', 'rela', 'relb','result','resultCategorias', 'resultSitVenda', 'resultItens', 'itens_compra', 'total_din', 'total_deb', 'total_cre', 'total_che', 'total_pix'));
+    return view('relatorios/relatorio-vendas', compact('total_pag', 'total_vendas', 'data_fim', 'data_inicio', 'rela', 'relb', 'total_din', 'total_deb', 'total_cre', 'total_che', 'total_pix'));
 
     }
 
@@ -73,7 +73,7 @@ class RelatoriosController extends Controller
         ->where ('id_venda', '=', $id)
         ->sum('item_material.valor_venda');
 
-    return view('relatorios/relatorio-vendas', compact('total_preco', 'total_pago'));
+    return view('relatorios/relatorio-vendas', compact('total_preco'));
 
     }
 
