@@ -15,7 +15,7 @@
                     <h4 class="card-title">Cadastro de Item</h4>
                     <hr>
                     <!-- <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->
-                    <form class="form-horizontal mt-4" method="POST" action="/cad-item-material/inserir"> 
+                    <form class="form-horizontal mt-4" method="POST" action="/cad-item-material/inserir">
                     @csrf
                         <div class="form-group row">
                             <label for="nome_item" class="col-sm-2 col-form-label">Nome Item*</label>
@@ -39,42 +39,42 @@
                         <div class="form-group row">
                             <label for="val_minimo" class="col-sm-2 col-form-label">Valor Minimo*</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" id="val_minimo" name="val_minimo" required="required">
+                                <input class="form-control" type="numeric" id="val_minimo" name="val_minimo" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="val_medio" class="col-sm-2 col-form-label">Valor Médio*</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" id="val_medio" name="val_medio" required="required">                                                
+                                <input class="form-control" type="numeric" id="val_medio" name="val_medio" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="val_maximo" class="col-sm-2 col-form-label">Valor Máximo*</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" value="" id="val_maximo" name="val_maximo" required="required">
+                                <input class="form-control" type="numeric" value="" id="val_maximo" name="val_maximo" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="val_marca" class="col-sm-2 col-form-label">Valor Marca*</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" value="" id="val_marca" name="val_marca" required="required">
+                                <input class="form-control" type="numeric" value="" id="val_marca" name="val_marca" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="val_etiqueta" class="col-sm-2 col-form-label">Valor Etiqueta*</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" value="" id="val_etiqueta" name="val_etiqueta" required="required">
+                                <input class="form-control" type="numeric" value="" id="val_etiqueta" name="val_etiqueta" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="composicao" class="col-sm-2 col-form-label">Item Composição</label>
                             <div class="col-sm-10">
-                                <input  type="checkbox"  id="composicao" name="omposicao">                                                                                                 
+                                <input  type="checkbox"  id="composicao" name="omposicao">
                             </div>
                         </div>
 
@@ -90,7 +90,7 @@
                             <button type="submit" class="btn btn-primary">Cadastrar</button>
                             <button type="button" class="btn btn-primary">Limpar</button>
                         </div>
-                    </form>           
+                    </form>
             </div>
         </div>
     </div>
@@ -98,7 +98,7 @@
 
 @section('footerScript')
             <script src="{{ URL::asset('/js/pages/mascaras.init.js')}}"></script>
-            <script src="{{ URL::asset('/js/pages/busca-cep.init.js')}}"></script>            
+            <script src="{{ URL::asset('/js/pages/busca-cep.init.js')}}"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
             <script src="{{ URL::asset('/libs/select2/select2.min.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/form-advanced.init.js')}}"></script>

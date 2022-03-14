@@ -17,20 +17,15 @@ class GerenciarInventariosController extends Controller
 
         $nr_ordem = 1;
 
-    //dd($nr_ordem);
 
     $resultCategorias = DB::select ('select id, nome from tipo_categoria_material');
 
-    $resultItens = ModelItemMaterial::join('item_catalogo_material', 'item_catalogo_material.id', '=', 'item_material.id_item_catalogo_material')
-                    ->select(DB::raw('count(*) as total_itens, nome, valor_venda'))
-                    ->groupBy('nome','valor_venda')
-                    ->orderBy('item_catalogo_material.nome');
+    $resultItens = ModelItemMaterial::leftjoin('item_catalogo_material', 'item_material.id_item_catalogo_material','=','item_catalogo_material.id')
+                                    ->select('item_catalogo_material.nome', 'item_material.valor_venda', DB::raw( 'count(*) as total_itens'), DB::raw('sum(valor_venda) as vlr_venda'))
+                                    ->where('item_material.id_tipo_situacao', '=',1)
+                                    ->orderBy('item_catalogo_material.nome')
+                                    ->groupBy('item_catalogo_material.nome','item_material.valor_venda');
 
-    $vlr_estoque = ModelItemMaterial::join('item_catalogo_material', 'item_catalogo_material.id', '=', 'item_material.id_item_catalogo_material')
-                    ->sum('valor_venda');
-
-    $qtd_estoque = ModelItemMaterial::join('item_catalogo_material', 'item_catalogo_material.id', '=', 'item_material.id_item_catalogo_material')
-                    ->count(DB::raw('item_material.id'));
 
     $data = $request->data;
 
@@ -42,10 +37,12 @@ class GerenciarInventariosController extends Controller
 
     $resultItens = $resultItens->get();
 
+    //$total_itens = DB::table('item_material')->where('total_itens');
 
-    //dd($data);
+    //$vlr_venda = DB::table('item_material')->where('vlr_venda');
 
-    return view('relatorios/inventarios', compact('qtd_estoque','vlr_estoque', 'nr_ordem', 'data', 'resultCategorias', 'resultItens', 'total_preco'));
+
+    return view('relatorios/inventarios', compact('nr_ordem', 'data', 'resultCategorias', 'resultItens'));
     }
 
 }

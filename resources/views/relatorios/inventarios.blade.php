@@ -17,7 +17,7 @@
         </div>
     </div>
         <br>
-    <div class="container">
+{{--<div class="container">
         <div class="row">
             <div class="col-sm">
                 <label for="nome">Categoria</label>
@@ -36,7 +36,7 @@
                 </select>
             </div>
         </div>
-    </div>
+    </div>--}}
     <br>
     <div class="container">
         <div class="row align-items-center">
@@ -71,16 +71,15 @@
                         <td>{{number_format($rit->valor_venda,2,',','.')}}</td>
                         <td>{{$rit->total_itens}}</td>
                         </tr>
-                        @endforeach
+                    @endforeach
                 </tbody>
                 <tfoot>
                         <tr style="text-align:center; font-weight: bold; font-size:15px">
                         <td></td>
                         <td>TOTAIS</td>
-                        <td>{{number_format($vlr_estoque,2,',','.')}}</td>
-                        <td>{{$qtd_estoque}}</td>
+                        <td>{{$rit->vlr_venda}}</td>
+                        <td>{{$rit->total_itens}}</td>
                     </tr>
-
                 </tfoot>
             </table>
         </div>

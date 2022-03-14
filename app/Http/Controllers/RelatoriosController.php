@@ -77,5 +77,11 @@ class RelatoriosController extends Controller
 
     }
 
+    public function entrada() {
+
+        return view('relatorios/relatorio-entrada', compact('total_preco'));
+
+    }
+
 
 }

@@ -224,5 +224,7 @@ Route::get('/demonstrativo/{id}', 'GerenciardemonstrativoController@index');
 
 Route::get('/relatorio-vendas', 'RelatoriosController@index');
 
+Route::get('/relatorio-entrada', 'RelatoriosController@entrada');
+
 Route::get('/inventarios', 'GerenciarInventariosController@index');
 
