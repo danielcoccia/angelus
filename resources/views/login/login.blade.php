@@ -16,7 +16,14 @@
                                 <!-- <h4 class="text-muted font-size-18 mb-1 text-center">Welcome Back !</h4> -->
                                 <!-- <p class="text-muted text-center">Sign in to continue to Lexa.</p> -->
                                 <form method="POST" class="form-horizontal mt-4" action="/login/valida">
-                                       @csrf
+                                    @csrf
+
+                                    @if($errors->any())
+                                        <div class="alert alert-danger">
+                                            <p>{{$errors->first()}}</p>
+                                        </div>
+                                    @endif
+
                                     <div class="form-group">
                                         <label for="username">E-Mail</label>
                                          <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="">

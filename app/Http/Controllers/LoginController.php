@@ -58,7 +58,7 @@ class LoginController extends Controller
             }
             
         }
-        return view('login/login');
+        return view('login/login')->withErrors(['Credenciais inválidas']);
 
         
         // $hash_senha = $result[0]->hash_senha;

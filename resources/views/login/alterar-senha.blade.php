@@ -17,18 +17,19 @@
                                        @csrf
                                     <div class="form-group">
                                         Usuário - {{session()->get('usuario.nome')}}
-
-                                        @if(session('mensagem'))
-                                            <div class="alert alert-success">
-                                                <p>{{session('mensagem')}}</p>
-                                            </div>
-                                        @endif
-
-                                        @if($errors->any())
-                                            <h4 class="text-danger">{{$errors->first()}}</h4>
-                                        @endif
                                     </div>
 
+                                    @if(session('mensagem'))
+                                        <div class="alert alert-success">
+                                            <p>{{session('mensagem')}}</p>
+                                        </div>
+                                    @endif
+
+                                    @if(session('mensagemErro'))
+                                        <div class="alert alert-danger">
+                                            <p>{{session('mensagemErro')}}</p>
+                                        </div>
+                                    @endif
 
                                     <div class="form-group">
                                         <label for="senhaAtual">Senha Atual</label>

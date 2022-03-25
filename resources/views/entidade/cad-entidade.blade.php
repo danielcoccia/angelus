@@ -85,7 +85,7 @@
                                             </div>
                                         </div>
 
-                                        <h4>Edereço</h4><hr class="mt-10">
+                                        <h4>Endereço</h4><hr class="mt-10">
                                         <div class="row mt-10">
                                             <div class="col-md-4">
                                                 <label for="cep" class="form-label">Cep</label>
