@@ -1,10 +1,10 @@
-<div>                                  
+<div>
     <table class="table table-bordered" style="display: none;">
         <thead class="thead-light">
             <tr style="background-color: #FFFFE0">
-            <td >Qtd</td>                                               
-            <td >Valor Unit.</td>                                               
-            <td >Valor total</td>                                           
+            <td >Qtd</td>
+            <td >Valor Unit.</td>
+            <td >Valor total</td>
             </tr>
         </thead>
         <tbody>
@@ -21,10 +21,10 @@
             </tr>
         </tbody>
 
-    </table> 
+    </table>
     <table class="table table-bordered">
         <thead class="thead-light">
-        <h6 style="color: blue;">LISTA DE COMPRAS</h6>                                                
+        <h6 style="color: blue;">LISTA DE COMPRAS</h6>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Produto</th>
@@ -32,7 +32,7 @@
                 <th scope="col">Qtd.</th>
                 <th scope="col">Valor</th>
                 <th scope="col">Ações</th>
-            </tr>                                                
+            </tr>
         </thead>
         <tbody>
             <?php $tot = floatval("0"); $qtde = 0 ?>
@@ -47,20 +47,20 @@
                 <td>{{$listaItemVendas->valor_venda_promocional}}</td>
                 @else
                 <?php $tot += floatval($listaItemVendas->valor_venda); $qtde++; ?>
-                <td>R${{$listaItemVendas->valor_venda}}</td>
+                <td>R$ {{$listaItemVendas->valor_venda}}</td>
                 @endif
-                <td> 
+                <td>
                     <button type="button" value="{{$listaItemVendas->id}}"  class="btn btn-danger btn-custom btnRemoveItem"><i class="far fa-trash-alt"></i></button>
                 </td>
-                
+
             </tr>
-            @endforeach          
+            @endforeach
         </tbody>
         <tfooter>
             <td colspan="2">TOTAL:</td>
             <td>{{$qtde}}</td>
-            <td>R$<span id="vlrTotalVenda">{{number_format($tot,2)}}</span></td>
+            <td>R$ <span id="vlrTotalVenda">{{number_format($tot,2,',','.')}}</span></td>
             <td>&nbsp;</td>
         </tfooter>
     </table>
-</div>   
+</div>

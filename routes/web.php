@@ -216,15 +216,19 @@ Route::get('/cad-sit-venda', 'SituacaovendaController@index');
 Route::get('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@show')->name('pagamentos.show');
 Route::post('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@inserir')->middleware('validaUsuario');
 Route::delete('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@destroy')->middleware('validaUsuario');
-
 Route::get('/alerta-pagamento', 'GerenciarpagamentoController@inserir')->middleware('validaUsuario');
 
 
 Route::get('/demonstrativo/{id}', 'GerenciardemonstrativoController@index');
-
 Route::get('/relatorio-vendas', 'RelatoriosController@index');
-
 Route::get('/relatorio-entrada', 'RelatoriosController@entrada');
-
 Route::get('/inventarios', 'GerenciarInventariosController@index');
+
+Route::get('/cad-valor-avariado', 'RegistrarAvariaController@index');
+Route::post('/cad-valor-avariado/inserir', 'RegistrarAvariaController@insert');
+Route::get('/cad-valor-avariado/excluir/{id}', 'RegistrarAvariaController@destroy');
+Route::get('/cad-valor-avariado/alterar/{id}', 'RegistrarAvariaController@edit');
+Route::any('/alterar-valor-avariado/atualizar/{id}', 'RegistrarAvariaController@update');
+
+
 

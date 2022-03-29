@@ -63,7 +63,7 @@ class GerenciarVendasController extends Controller
             $result->where('v.data','<' , $request->data_fim);
         }
 
-        $result = $result->get();
+        $result = $result->orderBy('v.id', 'DESC')->get();
 
         //->toSql();
         //->paginate();
@@ -144,26 +144,40 @@ class GerenciarVendasController extends Controller
         ->where ('id', '=', $id)
         ->sum('valor');
 
+        $pago =  DB::table ('venda_item_material')
+        ->leftjoin('pagamento', 'venda_item_material.id_venda', '=', 'pagamento.id_venda' )
+        ->where ('pagamento.id_venda', '=', $id)
+        ->sum('pagamento.valor');
+
 
         $tp_sit =  DB::table ('venda')
         ->where ('id', '=', $id)
         ->sum('id_tp_situacao_venda');
 
 
-        if ($tp_sit[0]== 1){
+        if ($tp_sit == 1 or $valor > $pago){
 
             return view ('vendas/alerta-venda', compact('alerta'));
 
-        }elseif ($tp_sit[0] == 2){
+        } elseif ($tp_sit == 3 && $total_preco == $valor) {
+
+            return view ('vendas/alerta-venda2', compact('alerta'));
+
+        } elseif ($tp_sit == 2){
 
             DB::table ('venda')
             ->where('id', $id)
             ->update(['valor' => $total_preco,'id_tp_situacao_venda' => 3]);
 
-        } elseif ($tp_sit[0] == 3 && $total_preco == $valor) {
+           $teste = DB::table ('item_material')
+            ->select('item_material.id')
+            ->leftjoin('venda_item_material', 'venda_item_material.id_item_material', '=', 'item_material.id' )
+            ->where('venda_item_material.id_venda', $id)
+            ->update(['item_material.id_tipo_situacao' => 2]);
 
-            return view ('vendas/alerta-venda2', compact('alerta'));
+           //dd($teste);
         }
+
 
         return redirect()->action('GerenciarvendasController@index');
 

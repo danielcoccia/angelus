@@ -36,24 +36,25 @@
                                     </div>
                                 </form>
                                     <br>
+
                                 <form class="form-horizontal mt-4" method="POST" action="route{{('/registrar-venda')}}">
                                 <div class="container">
-                                    <div class="row align-items-center">
-                                        <div class="col-sm-3">
-                                        <label for="cpf">Cliente</label>
-                                        <select class="form-control select2" id="cpf" name="cpf" required="required">
+                                    <div class="row">
+                                        <div class="col-5">
+
+                                        <select  class="form-control select2" id="cpf" name="cpf" required="required">
                                             <option value="">CPF</option>
                                             @Foreach($resultPessoa as $resultPessoas)
                                             <option value="{{$resultPessoas->id}}">{{$resultPessoas->cpf}}</option>
                                             @endForeach
                                             </select>
                                         </div>
-                                    </form>
-                                            <a href="/cad-pessoa">
-                                            <input class="btn btn-primary" type="button" value="Cadastrar Pessoa">
-                                            </a>
-                                        </div>
+                                </form>
+                                        <a href="/cad-pessoa">
+                                        <input class="btn btn-primary" type="button" value="Cadastrar Pessoa">
+                                        </a>
                                     </div>
+                                </div>
 
                             <hr>
                             <div id="divAddItem" style="display: none;">

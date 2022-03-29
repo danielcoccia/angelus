@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <style>
     .row{
-        margin: 1px;
-        line-height: 1.0;
+        /*margin: 1px;
+        line-height: 1.0;*/
         font-size: 10px;
         color: #000000;
     }
@@ -19,32 +19,23 @@
     <body >
         <div class="row">
           @foreach($itens as $p)
-            <div class="col-md-3" style="border:solid 1px;margin:2px; text-align: center;">
-                <strong>                
-                                             
+            <div class="col-md-3" style="margin:2px; text-align: center;">
+                <strong>
+
                             {{"Os produtos do bazar são usados,"}}</br>
                             {{"experimente-os. Não fazemos troca."}}</br>
-                            {!! DNS1D::getBarcodeSVG($p->id, 'EAN13', 2, 40)!!}</br>
+                            {!! DNS1D::getBarcodeSVG($p->id, 'C128', 2, 40)!!}</br>
                             {{$p->nome}}</br>
-                            {{$p->valor_venda}}</br>   
-                                                                     
-                </strong>               
+                            {{number_format($p->valor_venda,2,',','.')}}</br>
+
+                </strong>
             </div>
              @endforeach
         </div>
     </body>
-</html>                  
-                       
-                  
-                    
-          
-    
+</html>
 
-
-
-
-<!--
-
+{{--
  <div class="container text-center" style="margin-top: 50px;">
     <h3 class="mb-5">Barcode Laravel</h3>
     <div>{!! DNS1D::getBarcodeHTML('2021050001', 'C39') !!}</div></br>
@@ -59,7 +50,7 @@
             {{"Os produtos do bazar são usados,"}}
             </br>
             {{"experimente-os. Não fazemos troca."}}
-            </br>    
+            </br>
             {!! DNS1D::getBarcodeSVG($p->id, 'EAN13', 2, 40)!!}
             </br>
             {{$p->nome}}</br>
@@ -69,3 +60,4 @@
         @endforeach
     </div>
 </table>
+--}}

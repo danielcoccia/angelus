@@ -9,10 +9,10 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-            <form action="/inventarios" class="form-horizontal mt-4" method="GET" >
+            <form action="/inventarios" class="form-horizontal mt-4" method="GET">
                 @csrf
                 <label for="nome">Data Cadastro</label>
-                <input type="date" name="data" value="{{$data}}">
+                <input type="date" name='data' value="{{$data}}" default="$today = Carbon::today();">
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@
                 <input class="btn btn-info" type="submit" value="Pesquisar">
             </div>
             <div class="col-sm">
-                <a href="/gerenciar-vendas">
+                <a href="/inventarios">
                 <input class="btn btn-danger" type="button" value="Limpar">
                 </a>
             </div>
@@ -69,7 +69,7 @@
                         <td>{{$nr_ordem++}}</td>
                         <td style="text-align:left;">{{$rit->nome}}</td>
                         <td>{{number_format($rit->valor_venda,2,',','.')}}</td>
-                        <td>{{$rit->total_itens}}</td>
+                        <td>{{$rit->qtd}}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -77,8 +77,8 @@
                         <tr style="text-align:center; font-weight: bold; font-size:15px">
                         <td></td>
                         <td>TOTAIS</td>
-                        <td>{{$rit->vlr_venda}}</td>
-                        <td>{{$rit->total_itens}}</td>
+                        <td>{{$total_soma}}</td>
+                        <td>{{$total_itens}}</td>
                     </tr>
                 </tfoot>
             </table>

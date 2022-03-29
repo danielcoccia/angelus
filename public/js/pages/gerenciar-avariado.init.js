@@ -9,13 +9,13 @@ $(document).ready(function() {
    	$(".classBtnAlterar").click(function(){
 
    		$("#divFormAlterar").html('<img src="/images/loader.gif"  width="50px" />');
-   		var idDoacao = $(this).val();
+   		var idAvariado = $(this).val();
    		jQuery.ajax({
-	                  url: "/cad-sit-doacao/alterar/"+idDoacao,
+	                  url: "/cad-valor-avariado/alterar/"+idAvariado,
 	                  method: 'get',
 	                  success: function(result){
 	                  	$("#divFormAlterar").html(result);
-	                  	$("#title-alterar").html("Alteração de Tamano");
+	                  	$("#title-alterar").html("Alterar valor avariado");
 	                  	$(".select2").select2();
 	                  }
 	              	});

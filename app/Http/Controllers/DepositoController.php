@@ -9,7 +9,7 @@ use App\Models\ModelTipoEstoque;
 
 
 class DepositoController extends Controller
-{    
+{
     private $objTipoEstoque;
 
     public function __construct(){
@@ -17,7 +17,7 @@ class DepositoController extends Controller
     }
 
     public function getDeposito(){
-        $sql = "select  
+        $sql = "select
                 d.id,
                 d.nome,
                 d.sigla,
@@ -25,7 +25,7 @@ class DepositoController extends Controller
                 d.ativo
                 from deposito d
                 join tipo_estoque e on d.id_tp_estoque = e.id";
-        
+
         return DB::select($sql);
     }
 
@@ -34,25 +34,25 @@ class DepositoController extends Controller
                 id,
                 nome
                 from tipo_estoque";
-                
-        
+
+
         return DB::select($sql);
     }
 
     public function index()
     {
-        
+
 
         $restulTipoEstoque = $this->getTipoEstoque();
         $result = $this->getDeposito();
-        return view('cadastro-geral/gerenciar-deposito', compact('restulTipoEstoque', 'result'));
+        return view('config-depositos/gerenciar-deposito', compact('restulTipoEstoque', 'result'));
     }
- 
+
     public function create()
     {
         //
     }
-    
+
     public function store(Request $request)
     {
         DB::table('deposito')->insert([
@@ -66,12 +66,12 @@ class DepositoController extends Controller
     }
 
 
-    
+
     public function show($id)
     {
         //
     }
-    
+
     public function edit($id)
     {
 
@@ -84,12 +84,12 @@ class DepositoController extends Controller
                 id_tp_estoque
                 from deposito
                 where ativo is true and id =$id";
-        
+
         $resultDeposito = DB::select($sql);
 
-        return view('/cadastro-geral/alterar-deposito', compact("resultTpEstoque", "resultDeposito"));
+        return view('/config-depositos/alterar-deposito', compact("resultTpEstoque", "resultDeposito"));
     }
-    
+
     public function update(Request $request, $id)
     {
         DB::table('deposito')

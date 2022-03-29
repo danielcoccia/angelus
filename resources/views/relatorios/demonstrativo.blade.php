@@ -4,9 +4,18 @@
 
 
 <div class="container">
+    <a href="/gerenciar-vendas">
+        <input class="btn btn-danger" type="button" value="Cancelar">
+    </a>
+    <a>
+        <a href="">
+        <input class="btn btn-success" type="button" value="Imprimir">
+    </a>
+    <hr>
     <div class="row">
 
-        <h5 style="color: blue;">Descrição de compras no Bazar da Comunhão Espírita</h5>
+        <h5 style="color: blue;">DESCRIÇÃO DE COMPRAS DO BAZAR DA COMUNHÃO ESPÍRITA</h5>
+
             <table class= "table table-sm table-striped">
                 <thead >
                     <tr >

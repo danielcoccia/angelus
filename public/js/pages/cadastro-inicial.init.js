@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+
  $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -13,13 +13,13 @@ $(document).ready(function() {
   	 	var urls2 = "/combo/catForm/"+item_material;
   	 	var urls3 = "/combo/valor/"+item_material;
   	 	var urls4 = "/combo/catFormFinal/"+item_material;
-	  	
+
 	  	$("#btnComposicao").html('<button type="button" id="composicao" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg">Exibir Composição</button>');
 
 	  	jQuery.ajax({
 	                  url: urls,
 	                  method: 'get',
-	                  //data: {                     
+	                  //data: {
 	                     // type: jQuery('#type').val(),
 	                     // price: jQuery('#price').val()
 	                 // },
@@ -55,7 +55,7 @@ $(document).ready(function() {
 	                  	$(".select2").select2();
 	                  }
 	              	});
-	});	
+	});
 
 	$(document).on('change', '.valCheck', function(){
 
@@ -71,24 +71,25 @@ $(document).ready(function() {
 		}
 
 		// if( $(this).attr("id") == 'checkVal' ){
-		
+
 		//  	$("#checkAvariado").prop('checked', false);
 		//}
 
 		// if($("#checkAvariado").is(':checked') && ){
-		
+
 		//  	$("#checkVal").prop('checked', false);
 		// }
 
 		//  if($("#checkVal").is(':checked') ){
-		
+
 		//  	$("#checkAvariado").prop('checked', false);
 		//  }
 
-		
+
 
 		var item_material = $("#item_material").val();
 		var listaValor = $("#checkVal").is(':checked');
+
 		var avariado = $("#checkAvariado").is(':checked');
 
 		var urls = "/combo/catValVariado/"+item_material;
@@ -96,7 +97,7 @@ $(document).ready(function() {
 		jQuery.ajax({
 	                  url: urls,
 	                  method: 'get',
-	                  data: {                     
+	                  data: {
 	                    listaValor: $("#checkVal").is(':checked'),
 	                    avariado: $("#checkAvariado").is(':checked')
 	                	},
@@ -105,17 +106,17 @@ $(document).ready(function() {
 	                  	$(".select2").select2();
 	                  }
 	              	});
-		
+
   	});
 
   	$(document).on('click', '#composicao', function(){
-		
+
 		var item_material = $("#item_material").val();
 		var urls = "/combo/composicao/"+item_material;
-		
+
 		jQuery.ajax({
               url: urls,
-              method: 'get',              
+              method: 'get',
               success: function(result){
               	$("#divComposicao").html(result);
               	// $(".select2").select2();
@@ -130,7 +131,7 @@ $(document).ready(function() {
 
 	//    	var id_categoria = $("#id_categoria").val();
 	//    	alert(id_categoria);
- 	//  	var urls = "/combo/tamanho/"+id_categoria;  	 	
+ 	//  	var urls = "/combo/tamanho/"+id_categoria;
 	//   	jQuery.ajax({
 	//                   url: urls,
 	//                   method: 'get',
@@ -145,7 +146,7 @@ $(document).ready(function() {
 
  //  	var id_categoria = $("#id_categoria").val();
  //  	alert(id_categoria);
-	//  	var urls = "/combo/embalagem/"+id_categoria;  	 	
+	//  	var urls = "/combo/embalagem/"+id_categoria;
  //  	jQuery.ajax({
  //                  url: urls,
  //                  method: 'get',
@@ -153,10 +154,10 @@ $(document).ready(function() {
  //                  	$("#DivEmbalagem").html(result);
  //                  	$(".select2").select2();
  //                  }
- //              	});  
+ //              	});
  //    });
 
-	
+
 
 
 });

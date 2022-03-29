@@ -143,8 +143,8 @@
 
 
                                         <div class="col-12 mt-3" style="text-align: right;">
-                                            <button type="submit" class="btn btn-primary">Cadastrar</button>
-                                            <button type="button" class="btn btn-primary">Limpar</button>
+                                            <button type="submit" class="btn btn-success">Salvar</button>
+                                            <button type="button" class="btn btn-danger">Limpar</button>
                                         </div>
                                     </form>
                             </div>

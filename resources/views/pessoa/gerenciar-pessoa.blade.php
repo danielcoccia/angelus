@@ -42,14 +42,17 @@
 									    <button type="submit" class="btn btn-primary">Pesquisar</button>
 								  	</div> -->
                                     <a href="/cad-pessoa">
-                                        <input class="btn btn-primary" type="button" value="Incluir Pessoa">
+                                        <input class="btn btn-success" type="button" value=" + Incluir Pessoa" style="font-size:15px;">
                                         <!-- <button type="submit" class="btn btn-primary">Pesquisar</button> -->
+                                    </a>
+                                    <a href="/registrar-venda">
+                                        <input class="btn btn-primary" type="button" value="Registrar Venda" style="font-size:15px;">
                                     </a>
                                     <!-- <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->
                                 </form>
 
                     <br><br><hr>
-                        <h4 class="card-title">Lista de Pessoa</h4>
+                        <h4 class="card-title">Lista de Pessoas</h4>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">

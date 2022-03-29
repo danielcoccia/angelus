@@ -11,7 +11,6 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
                     <h4 class="card-title">Cadastro de Item</h4>
                     <hr>
                     <!-- <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use App\Models\ModelCadastroInicial;
 use App\Models\ModelItemCatalogo;
+use App\Models\ModelItemMaterial;
 
 class CadastroInicialController extends Controller
 {
@@ -36,6 +37,7 @@ class CadastroInicialController extends Controller
             left join tamanho t on (im.id_tamanho = t.id)
             left join cor c on (im.id_cor = c.id)
             left join tipo_material tm on (im.id_tipo_material = tm.id)
+            order by im.data_cadastro desc
         ");
         return $lista;
     }
@@ -43,7 +45,8 @@ class CadastroInicialController extends Controller
 
     public function index()
     {
-        $result= $this->getListaItens();
+
+        $result = $this->getListaItens();
         $resultCategoria = DB::select ('select id, nome from tipo_categoria_material');
         $resultSitMat = DB::select ('select id, nome from tipo_situacao_item_material');
 
@@ -222,7 +225,7 @@ class CadastroInicialController extends Controller
                     <label for="valor_etiqueta">Etiqueta R$'.$result[0]->valor_etiqueta.'</label><br>';
 
 
-                    dd($html);
+                    //dd($html);
 
         }else if($_REQUEST['avariado'] =='true'){
 

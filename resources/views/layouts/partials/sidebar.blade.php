@@ -39,18 +39,19 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <!-- <li><a href="/produtos/cad-inicial-prod" class="waves-effect"><span>Inicial</span></a></li> -->
                                 <li><a href="/cad-cat-material" class="waves-effect"><span>Categoria Material</span></a></li>
-                                <li><a href="/cad-embalagem" class="waves-effect"><span>Embalagem</span></a></li>
                                 <li><a href="/cad-tipo-estoque" class="waves-effect"><span>Tipo Estoque</span></a></li>
-                                <li><a href="/cad-genero" class="waves-effect"><span>Genero</span></a></li>
+                                <li><a href="/deposito" class="waves-effect"><span>Depósito</span></a></li>
+                                <li><a href="/localizador" class="waves-effect"><span>Localizador</span></a></li>
                                 <li><a href="/cad-pagamento" class="waves-effect"><span>Pagamento</span></a></li>
-                                <li><a href="/cad-sit-doacao" class="waves-effect"><span>Situação Doação </span></a></li>
+                                <li><a href="/cad-valor-avariado" class="waves-effect"><span>Valor Item Avariado</span></a></li>
+                                <li><a href="/cad-embalagem" class="waves-effect"><span>Embalagem</span></a></li>
                                 <li><a href="/unidade-medida" class="waves-effect"><span>Unidade de Medida  </span></a></li>
                                 <li><a href="/marca" class="waves-effect"><span>Marca</span></a></li>
                                 <li><a href="/tamanho" class="waves-effect"><span>Tamanho</span></a></li>
                                 <li><a href="/cor" class="waves-effect"><span>Cor</span></a></li>
                                 <li><a href="/fase-etaria" class="waves-effect"><span>Fase Etária</span></a></li>
-                                <li><a href="/deposito" class="waves-effect"><span>Depósito</span></a></li>
-                                <li><a href="/localizador" class="waves-effect"><span>Localizador</span></a></li>
+                                <li><a href="/cad-genero" class="waves-effect"><span>Genero</span></a></li>
+                                <li><a href="/cad-sit-doacao" class="waves-effect"><span>Situação Doação </span></a></li>
                             </ul>
                         </li>
                         <li>

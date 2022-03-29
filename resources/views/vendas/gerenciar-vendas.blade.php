@@ -3,38 +3,38 @@
 @section('title') Gerenciar Vendas @endsection
 
 @section('content')
-<div class="container">
+<div class="container"  style="background-color: #fff">
     <div class="row align-items-center">
-        <div class="col-12">
-        <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Gerenciar Vendas</h4>
-        </div>
-        <hr>
-        <div class="col-sm-1">
-        <form action="{{route('vendas.index')}}" class="form-horizontal mt-4" method="GET" >
-        </div>
-        <div class="col-md-3">
-        @csrf
-            <label for="nome">Início</label>
-            <input type="date" name="data_inicio" value="{{$data_inicio}}">
-        </div>
-        <div class="col-md-3">
-            <label for="date">Final</label>
-            <input type="date" name="data_fim"  value="{{$data_fim}}">
-        </div>
-        <div class="col-sm"style="text-align: right;>
-            <label for="nome">Situação da venda:</label>
-        </div>
-        <div class="col-sm">
-            <select class="form-control" id="sit" name="situacao" required="required">
-            @Foreach($resultSitVenda as $resultSitVendas)
-            <option value="{{$resultSitVendas->id}}" {{$resultSitVendas->id == $situacao ? 'selected' : ''}}>{{$resultSitVendas->nome}}</option>
-            @endForeach
-            </select>
-        </div>
+                <div class="col-12">
+                <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Gerenciar Vendas</h4>
+                </div>
+                <hr>
+                <div class="col-sm-1">
+                <form action="{{route('vendas.index')}}" class="form-horizontal mt-4" method="GET" >
+                </div>
+                <div class="col-md-3">
+                @csrf
+                    <label for="nome">Início</label>
+                    <input type="date" name="data_inicio" value="{{$data_inicio}}">
+                </div>
+                <div class="col-md-3">
+                    <label for="date">Final</label>
+                    <input type="date" name="data_fim"  value="{{$data_fim}}">
+                </div>
+                <div class="col-sm"style="text-align: right;>
+                    <label for="nome">Situação da venda:</label>
+                </div>
+                <div class="col-sm">
+                    <select class="form-control"id="sit" name="situacao" ><option>Selecione a Categoria</option>
+                    @Foreach($resultSitVenda as $resultSitVendas)
+                    <option value="{{$resultSitVendas->id}}" {{$resultSitVendas->id == $situacao ? 'selected' : ''}}>{{$resultSitVendas->nome}}</option>
+                    @endForeach
+                    </select>
+                </div>
     </div>
-</div>
-    <br>
-<div class="container">
+
+<br>
+
     <div class="row align-items-center">
         <div class="col-sm-5">
             <input class="form-control" type="text" name="cliente" id="cliente" value="{{$cliente}}" placeholder="Nome do cliente"/>
@@ -54,7 +54,6 @@
             </a>
         </div>
     </div>
-
     <hr>
     <div class="row">
         <div class="col-12">
@@ -83,22 +82,19 @@
                                 <td>{{$results->sit_venda}}</td>
                                 <td>
                                     <a href="/registrar-venda/editar/{{$results->id}}">
-                                        <input class="btn btn-warning" type="button" value="Alterar">
+                                        <input class="btn btn-warning" type="button" style="font-size:11px;" value="Alterar">
                                     </a>
                                     <a href="/gerenciar-vendas/excluir/{{$results->id}}">
-                                        <input class="btn btn-danger" type="button" value="Excluir" data-toggle="modal" data-target="#modalExemplo">
+                                        <input class="btn btn-danger" type="button" style="font-size:11px;" value="Excluir" data-toggle="modal" data-target="#modalExemplo">
                                     </a>
                                     <a>
                                         <a href="/gerenciar-pagamentos/{{$results->id}}">
-                                        <input class="btn btn-success" type="button" value="Pagar">
+                                        <input class="btn btn-success" type="button" style="font-size:11px;" value="Pagar">
                                     </a>
-
-                                    <a href="/demonstrativo/{{$results->id}}"  type="button" class="btn btn-info">Exportar</a>
+                                    <a href="/demonstrativo/{{$results->id}}"  type="button" style="font-size:11px;" class="btn btn-info">Recibo</a>
                                     @endforeach
-
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -107,7 +103,6 @@
     </div>
 </div>
         <!-- end col -->
-
 <!--
     **********************************************************************************************************************************
     * MODAL
@@ -131,20 +126,13 @@
           </div>
         </div>
       </div>
-
-
-
 @endsection
-
 @section('footerScript')
-            <!-- Required datatable js -->
-           <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
+
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/libs/select2/select2.min.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/form-advanced.init.js')}}"></script>
-
 @endsection
