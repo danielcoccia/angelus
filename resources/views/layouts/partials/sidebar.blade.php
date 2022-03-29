@@ -1,13 +1,20 @@
  <!-- ========== Left Sidebar Start ========== -->
         <div class="vertical-menu">
-
             <div data-simplebar class="h-100">
-
                 <!--- Sidemenu -->
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
-
+                        
+                        @php
+                            $perfis = session()->get('usuario.perfis');
+                            $perfil_adm = str_contains($perfis, '1');
+                            $perfil_ger = str_contains($perfis, '2');
+                            $perfil_aux = str_contains($perfis, '3');
+                            $perfil_vol = !($perfil_adm || $perfil_ger || $perfil_aux);
+                        @endphp
+                        
+                        {{-- Controle de Acceso --}}
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="mdi mdi-key-outline"></i>
@@ -15,11 +22,16 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="/gerenciar-pessoa" class="waves-effect"><span>Pessoa</span></a></li>
-                                <li><a href="/gerenciar-entidade" class="waves-effect"><span>Entidade</span></a></li>
-                                <li><a href="/gerenciar-usuario" class="waves-effect"><span>Usuario</span></a></li>
+                                @if(!$perfil_vol)
+                                    <li><a href="/gerenciar-entidade" class="waves-effect"><span>Entidade</span></a></li>
+                                    @if($perfil_adm)
+                                        <li><a href="/gerenciar-usuario" class="waves-effect"><span>Usuario</span></a></li>
+                                    @endif
+                                @endif
                             </ul>
                         </li>
-
+                        
+                        {{-- Catalogo --}}
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="mdi mdi-file-document-edit-outline"></i>
@@ -31,6 +43,7 @@
                            </ul>
                         </li>
 
+                        {{-- Configurações --}}
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="mdi mdi-wrench"></i>
@@ -39,11 +52,15 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <!-- <li><a href="/produtos/cad-inicial-prod" class="waves-effect"><span>Inicial</span></a></li> -->
                                 <li><a href="/cad-cat-material" class="waves-effect"><span>Categoria Material</span></a></li>
-                                <li><a href="/cad-tipo-estoque" class="waves-effect"><span>Tipo Estoque</span></a></li>
-                                <li><a href="/deposito" class="waves-effect"><span>Depósito</span></a></li>
-                                <li><a href="/localizador" class="waves-effect"><span>Localizador</span></a></li>
-                                <li><a href="/cad-pagamento" class="waves-effect"><span>Pagamento</span></a></li>
-                                <li><a href="/cad-valor-avariado" class="waves-effect"><span>Valor Item Avariado</span></a></li>
+                                @if($perfil_adm || $perfil_ger)
+                                    <li><a href="/cad-tipo-estoque" class="waves-effect"><span>Tipo Estoque</span></a></li>
+                                @endif
+                                @if(!$perfil_vol)
+                                    <li><a href="/deposito" class="waves-effect"><span>Depósito</span></a></li>
+                                    <li><a href="/localizador" class="waves-effect"><span>Localizador</span></a></li>
+                                    <li><a href="/cad-pagamento" class="waves-effect"><span>Pagamento</span></a></li>
+                                    <li><a href="/cad-valor-avariado" class="waves-effect"><span>Valor Item Avariado</span></a></li>
+                                @endif
                                 <li><a href="/cad-embalagem" class="waves-effect"><span>Embalagem</span></a></li>
                                 <li><a href="/unidade-medida" class="waves-effect"><span>Unidade de Medida  </span></a></li>
                                 <li><a href="/marca" class="waves-effect"><span>Marca</span></a></li>
@@ -51,15 +68,22 @@
                                 <li><a href="/cor" class="waves-effect"><span>Cor</span></a></li>
                                 <li><a href="/fase-etaria" class="waves-effect"><span>Fase Etária</span></a></li>
                                 <li><a href="/cad-genero" class="waves-effect"><span>Genero</span></a></li>
-                                <li><a href="/cad-sit-doacao" class="waves-effect"><span>Situação Doação </span></a></li>
+                                @if(!$perfil_vol)
+                                    <li><a href="/cad-sit-doacao" class="waves-effect"><span>Situação Doação </span></a></li>
+                                @endif
                             </ul>
                         </li>
+
+                        {{-- Cadastro inicial --}}
                         <li>
                             <a href="/gerenciar-cadastro-inicial" class="waves-effect">
                                 <i class="mdi mdi-stack-overflow"></i>
                                 <span>Cadastro inicial</span>
                             </a>
                         </li>
+
+                        @if(!$perfil_vol)
+                        {{-- Vendas de material --}}
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="mdi mdi-cart-outline"></i>
@@ -70,6 +94,10 @@
                                <li><a href="/registrar-venda" class="waves-effect"><span>Registrar Venda</span></a></li>
                             </ul>
                         </li>
+                        @endif
+
+                        {{-- Documentos --}}
+                        @if(!$perfil_vol)
                         <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="mdi mdi-library-books"></i>
@@ -81,6 +109,7 @@
                                 <li><a href="/relatorio-entrada" class="waves-effect"><span>Relatório de Entradas</span></a></li>
                             </ul>
                         </li>
+                        @endif
 
 
 

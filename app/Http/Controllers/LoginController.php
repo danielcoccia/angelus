@@ -29,18 +29,24 @@ class LoginController extends Controller
         //            where('ativo',true)->
         //            get();  
 
-        $result=DB::select("select 
+        $result=DB::select("
+                        select 
                         u.id id_usuario,
                         p.id id_pessoa,
                         p.cpf,
                         p.nome,
-                        u.hash_senha
-                        from usuario u 
+                        u.hash_senha,
+                        string_agg(distinct u_p.id_tp_perfil::text, ',') perfis,
+                        string_agg(distinct u_d.id_deposito::text, ',') depositos
+                        from usuario u
                         left join pessoa p on u.id_pessoa = p.id
+                        left join usuario_perfil u_p on u.id = u_p.id_usuario
+                        left join usuario_deposito u_d on u.id = u_d.id_usuario
                         where u.ativo is true and p.email ='$email'
-                    ");         
+                        group by u.id, p.id
+                        ");         
 
-       //dd($result);
+        // dd($result);
         if (count($result)>0){
 
             $hash_senha = $result[0]->hash_senha;
@@ -51,7 +57,9 @@ class LoginController extends Controller
                              'id_usuario'=> $result[0]->id_usuario,
                              'id_pessoa' => $result[0]->id_pessoa,
                              'nome'=> $result[0]->nome,
-                             'cpf' => $result[0]->cpf
+                             'cpf' => $result[0]->cpf,
+                             'perfis' => $result[0]->perfis,
+                             'depositos' => $result[0]->depositos
                     ]);
                return view('dashboard/index');
                //$this->validaUserLogado();
