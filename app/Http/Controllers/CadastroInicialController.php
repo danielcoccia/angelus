@@ -43,14 +43,55 @@ class CadastroInicialController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
 
-        $result = $this->getListaItens();
-        $resultCategoria = DB::select ('select id, nome from tipo_categoria_material');
-        $resultSitMat = DB::select ('select id, nome from tipo_situacao_item_material');
+        //$result = $this->getListaItens();
+        $result = DB::table('item_material AS im')
+                            ->select('im.data_cadastro','im.id', 'icm.nome AS n1', 'im.valor_venda','m.nome AS n2', 't.nome AS n3', 'c.nome AS n4', 'im.valor_venda')
+                            ->leftjoin('item_catalogo_material AS icm', 'icm.id' , '=', 'im.id_item_catalogo_material')
+                            ->leftjoin('tipo_categoria_material AS tcm', 'icm.id_categoria_material' , '=', 'tcm.id')
+                            ->leftjoin('marca AS m', 'm.id' , '=', 'im.id_marca')
+                            ->leftjoin('tamanho AS t', 't.id' , '=', 'im.id_tamanho')
+                            ->leftjoin('cor AS c', 'c.id', '=', 'im.id_cor');
+        //$resultCategoria = DB::select ('select id, nome from tipo_categoria_material');
+        //$resultSitMat = DB::select ('select id, nome from tipo_situacao_item_material');
 
-        return view('cadastroinicial/gerenciar-cadastro-inicial', compact("result", "resultCategoria", "resultSitMat"));
+        $data_inicio = $request->data_inicio;
+        $data_fim = $request->data_fim;
+
+        if ($request->data_inicio){
+
+            $result->where('im.data_cadastro','>' , $request->data_inicio);
+        }
+
+        if ($request->data_fim){
+
+            $result->where('im.data_cadastro','<' , $request->data_fim);
+        }
+
+
+        $material = $request->material;
+
+        if ($request->material){
+            $result->where('icm.nome', 'like', "%$request->material%");
+        }
+
+/*
+        if ($request->cliente){
+            $result->where('p.nome', 'like', "%$request->cliente%");
+        }
+
+        if ($request->cliente){
+            $result->where('p.nome', 'like', "%$request->cliente%");
+        }
+
+*/
+
+        $result = $result->orderBy('im.id', 'DESC')->get();
+
+
+        return view('cadastroinicial/gerenciar-cadastro-inicial', compact('result', 'data_inicio', 'data_fim', 'material'));
 
 
     }

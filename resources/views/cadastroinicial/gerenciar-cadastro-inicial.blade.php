@@ -13,49 +13,47 @@
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-sm">
-                                <form>
-                                <label for="" class="form-label">Data inicial</label>
-                                <input type="date" id="festa" name="Data" min="" max="">
-
+                                <form action="{{route('cadastroinicial.index')}}" class="form-horizontal mt-4" method="GET" >
+                                <label for="" class="form-label">Início</label>
+                                <input type="date" name="data_inicio" value="{{$data_inicio}}">
                             </div>
                             <div class="col-sm">
-
-                                <label for="" class="form-label">Data Final</label>
-                                <input type="date" id="festa" name="Data" min="" max="">
-
+                                <label for="" class="form-label">Final</label>
+                                <input type="date" name="data_fim" value="{{$data_fim}}">
                             </div>
-                            <div class="col-sm">
+                            {{--<div class="col-sm">
                                 <select class="form-control"><option>Selecione a Categoria</option>
-                                @Foreach($resultCategoria as $resultCategorias)
-                                <option value="{{$resultCategorias->id}}">{{$resultCategorias->nome}}</option>
+                                @Foreach($result as $results)
+                                <option value="{{$result->id}}">{{$result->nome}}</option>
                                 @endForeach
                                 </select>
                             </div>
                             <div class="col-sm">
                                 <select class="form-control"><option>Selecione a Situação</option>
-                                @Foreach($resultSitMat as $resultSitMats)
-                                <option value="{{$resultSitMats->id}}">{{$resultSitMats->nome}}</option>
+                                @Foreach($result as $results)
+                                <option value="{{$result->id}}">{{$result->nome}}</option>
                                 @endForeach
                                 </select>
-                            </div>
+                            </div>--}}
                             <div class="col-1">
                                 Doado<br><input type="checkbox" id="switch3" switch="bool" checked/>
                                 <label for="switch3" data-on-label="Sim" data-off-label="Não"></label>
                             </div>
                         </div>
                     </div>
-                                <br>
+                    <br>
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-4">
-                                <input class="form-control" type="text" placeholder="Nome do material">
-                            </div>
-
-                            <div class="col-1">
-                                <input class="btn btn-danger" type="reset" value="Limpar"></a>
+                                <input class="form-control" type="text" name="material" placeholder="Nome do material">
                             </div>
                             <div class="col-md-2 text-center">
-                                <a href=""><input class="btn btn-primary" type="button" value="Pesquisar"></a>
+                                <input class="btn btn-primary" type="submit" value="Pesquisar">
+                            </div>
+                            <div class="col-1">
+                                <a href="/gerenciar-cadastro-inicial">
+                                    <input class="btn btn-danger" type="button" value="Limpar">
+                                </a>
                             </div>
                             </form>
                             <div class="col-2">
@@ -91,11 +89,11 @@
                                         @foreach($result as $results)
                                         <tr>
                                             <td>{{$results->id}}</td>
-                                            <td>{{$results->nome}}</td>
+                                            <td>{{$results->n1}}</td>
                                             <td>{{date( 'd/m/Y' , strtotime($results->data_cadastro))}}</td>
-                                            <td>{{$results->marca}}</td>
-                                            <td>{{$results->tamanho}}</td>
-                                            <td>{{$results->cor}}</td>
+                                            <td>{{$results->n2}}</td>
+                                            <td>{{$results->n3}}</td>
+                                            <td>{{$results->n4}}</td>
                                             <td>{{number_format($results->valor_venda,2,',','.')}}</td>
                                             <td>
                                                 <a href="/editar-cadastro-inicial/{{$results->id}}">

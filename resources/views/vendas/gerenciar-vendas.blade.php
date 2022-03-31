@@ -25,7 +25,7 @@
                     <label for="nome">Situação da venda:</label>
                 </div>
                 <div class="col-sm">
-                    <select class="form-control"id="sit" name="situacao" ><option>Selecione a Categoria</option>
+                    <select class="form-control"id="sit" name="situacao" >{{--<option>Selecione a Categoria</option>--}}
                     @Foreach($resultSitVenda as $resultSitVendas)
                     <option value="{{$resultSitVendas->id}}" {{$resultSitVendas->id == $situacao ? 'selected' : ''}}>{{$resultSitVendas->nome}}</option>
                     @endForeach

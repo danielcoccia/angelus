@@ -173,7 +173,7 @@ Route::post('/cad-inicial-material/inserir', 'CadastroInicialController@store')-
 Route::get('/usuario-logado', 'CadastroInicialController@search');
 
 
-Route::get('/gerenciar-cadastro-inicial', 'CadastroInicialController@index')->middleware('validaUsuario');
+Route::get('/gerenciar-cadastro-inicial', 'CadastroInicialController@index')->name('cadastroinicial.index');
 Route::get('/gerenciar-cadastro-inicial/incluir', 'CadastroInicialController@create')->middleware('validaUsuario');
 Route::get('/gerenciar-cadastro-inicial/excluir/{id}', 'CadastroInicialController@destroy')->middleware('validaUsuario');
 Route::get('/editar-cadastro-inicial/{id}', 'CadastroInicialController@formEditar')->name('formeditar');
