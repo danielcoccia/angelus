@@ -24,9 +24,9 @@
                                 <li><a href="/gerenciar-pessoa" class="waves-effect"><span>Pessoa</span></a></li>
                                 @if(!$perfil_vol)
                                     <li><a href="/gerenciar-entidade" class="waves-effect"><span>Entidade</span></a></li>
-                                    @if($perfil_adm)
-                                        <li><a href="/gerenciar-usuario" class="waves-effect"><span>Usuario</span></a></li>
                                     @endif
+                                @if($perfil_adm)
+                                    <li><a href="/gerenciar-usuario" class="waves-effect"><span>Usuario</span></a></li>
                                 @endif
                             </ul>
                         </li>
