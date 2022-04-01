@@ -27,7 +27,7 @@ class ValidaUsuario
             case 'entidade':
             case 'deposito':
             case 'localizador':
-            case 'pagamento':
+            case 'pagamentos':
             case 'valor-avariado':
             case 'sit-doacao':
             case 'vendas':
