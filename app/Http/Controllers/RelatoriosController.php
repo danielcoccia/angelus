@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ModelVendas;
 use App\Models\ModelPagamentos;
+use App\Models\ModelItemMaterial;
 
 class RelatoriosController extends Controller
 {
@@ -77,11 +78,36 @@ class RelatoriosController extends Controller
 
     }
 
-    public function entrada() {
+    public function entrada(Request $request) {
 
-        return view('relatorios/relatorio-entrada', compact('total_preco'));
+        $nr_ordem = 1;
+
+        $entradamat = ModelItemMaterial::leftjoin('item_catalogo_material', 'item_material.id_item_catalogo_material', '=', 'item_catalogo_material.id')
+                        ->leftjoin('tipo_categoria_material', 'tipo_categoria_material.id','item_catalogo_material.id_categoria_material')
+                        ->leftjoin('marca', 'marca.id','item_material.id_marca')
+                        ->select(DB::raw('count(*) as total'))
+                        ->select('item_catalogo_material.nome','tipo_categoria_material.nome AS nomecat', 'marca.nome AS nomemar','data_cadastro', 'valor_venda', 'id_marca', 'id_tamanho', 'id_cor');
+                        //->where('venda.id_tipo_situacao', '=', '');
+
+        $data_inicio = $request->data_inicio;
+        $data_fim = $request->data_fim;
+
+        if ($request->data_inicio){
+
+        $entradamat->where('item_material.data_cadastro','>' , $request->data_inicio);
+
+        }
+
+        if ($request->data_fim){
+
+            $entradamat->where('item_material.data_cadastro','<' , $request->data_fim);
+        }
+
+        $entradamat = $entradamat->get();
+
+
+        return view('relatorios/relatorio-entrada', compact('entradamat', 'nr_ordem', 'data_inicio', 'data_fim'));
 
     }
-
 
 }
