@@ -3,7 +3,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <title>Barcode</title>
+    <title>Código barras</title>
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -17,19 +17,14 @@
     </style>
 </head>
     <body >
-        <div class="row">
+        <div class="Col" style="font-size: 14px; color:#000; text-align: center;">
           @foreach($itens as $p)
-            <div class="col-md-3" style="margin:2px; text-align: center;">
                 <strong>
-
-                            {{"Os produtos do bazar são usados,"}}</br>
-                            {{"experimente-os. Não fazemos troca."}}</br>
-                            {!! DNS1D::getBarcodeSVG($p->id, 'C128', 2, 40)!!}</br>
-                            {{$p->nome}}</br>
-                            {{number_format($p->valor_venda,2,',','.')}}</br>
-
+                    {!! DNS1D::getBarcodeSVG($p->id, 'C128', 2, 40)!!}</br>
+                    {{$p->nome}}</br>
+                    {{number_format($p->valor_venda,2,',','.')}}</br>
                 </strong>
-            </div>
+
              @endforeach
         </div>
     </body>

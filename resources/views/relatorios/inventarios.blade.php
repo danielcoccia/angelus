@@ -13,7 +13,7 @@
                 @csrf
 
                 <label for="nome">Data Cadastro</label>
-                <input type="date" name='data' value="{{$data}}" default="$today = Carbon::today();">
+                <input type="date" name='data' value="{{$data}}">
             </div>
 
 {{--<div class="container">
@@ -52,7 +52,7 @@
     <hr>
     <div class="container" style="background:#ffffff;">
         <div class="row">
-        <h6 class="font-weight-bold" style="color: blue;  margin-left: 10px;">RELAÇÃO DOS MATERIAIS EM ESTOQUE</h6>
+        <h6 class="font-weight-bold" style="color: blue;  margin-left: 10px;">RELAÇÃO DOS MATERIAIS EM ESTOQUE - Extraido em <span class="badge badge-secondary">{{"hoje"}}</span> </h6>
             <table class="table table-sm table-striped">
                 <thead style="text-align:center; background: #daffe0;">
                     <tr style="text-align:center; font-weight: bold; font-size:15px">
