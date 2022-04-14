@@ -15,13 +15,13 @@
         color: #000000;
 
     }
-    </style>
+    </style>C128C128
 </head>
     <body>
         <div class="Col" style="font-size: 14px; color:#000; text-align: center;">
         @foreach($itens as $p)
             <strong>
-                {!! DNS1D::getBarcodeSVG($p->id, 'EAN13', 2, 40)!!}</br>
+                {!! DNS1D::getBarcodeSVG($p->id, 'C128', 2, 40)!!}</br>
                 {{$p->nome}}</br>
                 {{number_format($p->valor_venda, 2,',','.')}}</br>
             </strong>
