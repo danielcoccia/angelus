@@ -59,7 +59,7 @@
         <tfooter>
             <td colspan="2">TOTAL:</td>
             <td>{{$qtde}}</td>
-            <td>R$ <span id="vlrTotalVenda">{{number_format($tot,2,',','.')}}</span></td>
+            <td>R$ <span id="vlrTotalVenda">{{number_format($tot,2,'.','.')}}</span></td>
             <td>&nbsp;</td>
         </tfooter>
     </table>

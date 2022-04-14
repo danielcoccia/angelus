@@ -18,11 +18,11 @@ $(document).ready(function() {
         } else {
           alert("Digite o código");
         }
-        
+
       }, 100);
 
     });
-    window.setTimeout(function () { 
+    window.setTimeout(function () {
       $("#txtCodigoBarra").trigger("focus").off().keypress(function (e) {
         if (e.which == 13) {
           $("#btnPesqItem").trigger("click");
@@ -41,7 +41,7 @@ $(document).ready(function() {
       height:400
     });
     $("#divBuscaritem").html('<img src="/images/loading02.gif" width="50px"><span>&nbsp;Carregando...</span>');
-    
+
   $("#divFormAlterar").html('<img src="/images/loader.gif"  width="50px" />');
     var idPagamento = $(this).val();
     jQuery.ajax({
@@ -69,10 +69,10 @@ $(document).ready(function() {
  	});
 
 
-  
 
 
-  
+
+
   $(document).on("click", ".btnRemoveItem", function(){
     removeItem($("#id_venda").val(), $(this).val());
   });
@@ -84,7 +84,7 @@ $(document).ready(function() {
     /*
     var id_item = $(this).val();
     jQuery.ajax({
-      url: "/registrar-venda/getItem/"+id_item, 
+      url: "/registrar-venda/getItem/"+id_item,
       method: 'get',
       success: function(result){
       	$("#DivConfirmaItem").html(result);
@@ -92,7 +92,7 @@ $(document).ready(function() {
       	$("#dialogBuscaItem").dialog("close")
         //$("#divVendaItens").show();
         //$("#divVendaBotoes").show();
-  
+
         fCalculaValor();
       	// $("#title-alterar").html("Buscar item");
       	// $(".select2").select2();
@@ -102,22 +102,22 @@ $(document).ready(function() {
   });
 
 
- 
+
 
   $("#cpf").change(function(){
-    
+
     if($("#cpf").val()!=null && $("#cpf").val()!=''){
-      $("#divAddItem").show();  
+      $("#divAddItem").show();
       //$("#divVendaItens").show();
     }else{
       $("#divAddItem").hide();
     }
 
   });
-    
-  
 
-  $(document).on("click", "#btnAddLista", function(){     
+
+
+  $(document).on("click", "#btnAddLista", function(){
 
       if($("#idItem").val() ==null){
         alert("Selecione um item");
@@ -131,27 +131,27 @@ $(document).ready(function() {
       showModal("divModal", "", "", "", true, pBackdrop="static", pKeyboard=false);
 
       if ($("#id_venda").val()==null || $("#id_venda").val()=='') {
-         
+
         var id_pessoa = $("#cpf").val();
         var data_venda = $("#data_venda").val();
         var id_usuario = $("#id_usuario").val();
-         
+
         jQuery.ajax({
           url: "/registrar-venda/setVenda/"+id_pessoa+"/"+data_venda+"/"+id_usuario+"",
           method: 'get',
           success: function(result){
             $("#id_venda").val(result);
-            adicionarItem(); 
-            //$("#cpf").val(result);           
+            adicionarItem();
+            //$("#cpf").val(result);
             // var html = $("#divVenda").html(result);
             // $("#divVenda").html(result);
-            
+
             // $("#dialogBuscaItem").dialog("close")
             // $("#title-alterar").html("Buscar item");
             // $(".select2").select2();
           }
         });
-    
+
      }else{
        adicionarItem();
      }
@@ -171,10 +171,10 @@ $(document).ready(function() {
       // });
 
 
-    
+
     // }
-      
-    
+
+
   });
 
   $("#qtd_item").keyup(function(evt){
@@ -183,9 +183,9 @@ $(document).ready(function() {
 });
 
 function pesqItem(id_item) {
-  showModal(); 
+  showModal();
   jQuery.ajax({
-    url: "/registrar-venda/getItem/" + id_item,
+    url: "/registrar-venda/getItem/" +id_item,
     method: 'get',
     success: function (result) {
       hideModal();
@@ -199,7 +199,7 @@ function pesqItem(id_item) {
       // $("#title-alterar").html("Buscar item");
       // $(".select2").select2();
     }
-  });  
+  });
 }
 
 
@@ -227,7 +227,7 @@ function adicionarItem(){
           concluirVenda($("#id_venda").val(), $("#vlrTotalVenda").text());
         }
       });
-    
+
 
       // $("#dialogBuscaItem").dialog("close")
       // $("#title-alterar").html("Buscar item");
@@ -251,7 +251,7 @@ function fCalculaValor(){
 
 
 function removeItem(pIdVenda, pIdItem){
-  console.log("removeItem",pIdVenda, pIdItem); 
+  console.log("removeItem",pIdVenda, pIdItem);
   showModal();
   jQuery.ajax({
     url: "/registrar-venda/removeItemLista/"+pIdItem+"/"+pIdVenda+"",
@@ -266,13 +266,13 @@ function removeItem(pIdVenda, pIdItem){
         }
       });
       */
-    
+
     }
   });
 }
 
 function cancelarVenda(pIdVenda){
-  console.log("cancelarVenda",pIdVenda); 
+  console.log("cancelarVenda",pIdVenda);
   showModal();
   jQuery.ajax({
     url: "/registrar-venda/cancelarVenda/"+pIdVenda+"",
@@ -291,7 +291,7 @@ function cancelarVenda(pIdVenda){
 
 
 function concluirVenda(pIdVenda, pVlrTotal){
-  console.log("concluirVenda",pIdVenda, pVlrTotal); 
+  console.log("concluirVenda",pIdVenda, pVlrTotal);
   showModal();
   jQuery.ajax({
     url: "/registrar-venda/concluirVenda/"+pIdVenda+"/"+pVlrTotal+"",
