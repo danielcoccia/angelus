@@ -15,7 +15,7 @@
         color: #000000;
 
     }
-    </style>C128C128
+    </style>
 </head>
     <body>
         <div class="Col" style="font-size: 14px; color:#000; text-align: center;">
