@@ -1,0 +1,93 @@
+//
+// components-rtl.scss
+//
+
+
+
+
+// inbox widget
+.inbox-wid {
+  .inbox-item {
+      .inbox-item-date {
+          left: 7px;
+          right: auto;
+      }
+  }
+}
+
+
+
+/* Activity */
+.activity-feed {
+  padding: 0px 15px 15px 15px;
+
+  .feed-item {
+    padding-right: 30px;
+    border-right: 2px solid $gray-200;
+    border-left: 0px;
+    
+    &:after {
+      right: -10px;
+    }
+    .feed-item-list{
+      &::after{
+        right: 19px;
+        margin-right: -1px;
+        border-left-color: $gray-100;
+        border-right-color: transparent;
+      }
+    }
+  }
+}
+
+.widget-user {
+  .widget-user-desc {
+      &:after {
+          right: 18px;
+          margin-right: -1px;
+          border-left-color: $primary;
+          border-right-color: transparent;
+      }
+  }
+}
+
+
+
+// dropdown
+
+.dropdown-megamenu{
+  &.show{
+    left: 20px!important;
+  }
+}
+
+
+// icons
+
+.icon-list-demo{
+  i{
+    margin-left: 12px;
+    margin-right: 0;
+  }
+}
+
+
+
+
+// Invoice
+
+@media print {
+  .content-page,
+  .content,
+  body {
+      margin-right: 0;
+  }
+}
+
+// Demos button 
+.demos-show-btn {
+  left: 0;
+  right: auto;
+  border-radius: 0 6px 6px 0;
+}
+
