@@ -116,7 +116,7 @@
                                                 </table>
                                                 <table class="table table-bordered">
                                                     <thead class="thead-light">
-                                                    <h6 style="color: blue;">LISTA DE COMPRAS</h6>
+                                                    <h6 style="color: yellow;">LISTA DE COMPRAS ?</h6>
                                                         <tr>
                                                             <th scope="col">ID</th>
                                                             <th scope="col">Produto</th>

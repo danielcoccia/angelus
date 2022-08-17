@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PessoaController;
 
+
 class RegistrarVendaController extends Controller
 {
     public function __construct(){
@@ -99,10 +100,7 @@ class RegistrarVendaController extends Controller
         return view('vendas/registrar-venda', compact('pessoa'));
     }
 
-    public function getItem($id)
-    {
-
-
+    public function getItem($id){
        $item = DB::select("
             select
                 im.id,
@@ -130,7 +128,7 @@ class RegistrarVendaController extends Controller
     }
 
     public function setVenda($id_pessoa, $data_venda, $id_usuario){
-
+        $data_venda = str_replace("-", "/", $data_venda);
         DB::table('venda')->insert([
             'data' => $data_venda,
             'id_pessoa' => $id_pessoa,
@@ -148,7 +146,6 @@ class RegistrarVendaController extends Controller
      }
 
      public function setItemLista($id_item, $id_venda){
-
         DB::table('venda_item_material')->insert([
             'id_venda' => $id_venda,
             'id_item_material' => $id_item,
@@ -233,7 +230,8 @@ class RegistrarVendaController extends Controller
         v.id as idv,
         pe.cpf,
         pe.nome as nomepes,
-        v.data
+        v.data,
+        v.id_pessoa
         from venda v
         left join pessoa pe on (pe.id = v.id_pessoa)
         where v.id=$id

@@ -33,7 +33,6 @@ $(document).ready(function() {
   });
 
 
-
   $("#btnbuscaitem").click(function(){
 
     $("#dialogBuscaItem").dialog({
@@ -42,7 +41,8 @@ $(document).ready(function() {
     });
     $("#divBuscaritem").html('<img src="/images/loading02.gif" width="50px"><span>&nbsp;Carregando...</span>');
 
-  $("#divFormAlterar").html('<img src="/images/loader.gif"  width="50px" />');
+    $("#divFormAlterar").html('<img src="/images/loader.gif"  width="50px" />');
+
     var idPagamento = $(this).val();
     jQuery.ajax({
       url: "/registrar-venda/buscaritem/",
@@ -59,50 +59,22 @@ $(document).ready(function() {
           lengthChange: false,
           buttons: ['copy', 'excel', 'pdf', 'colvis']
         });
-
-
       }
     });
-
-
-
- 	});
-
-
-
-
-
+  });
 
   $(document).on("click", ".btnRemoveItem", function(){
-    removeItem($("#id_venda").val(), $(this).val());
+    var id_item_material = parseInt($(".id_item_material").html());
+    var id_venda = parseInt($(".idv").html());
+    removeItem(id_item_material, id_venda);
   });
 
 
   $(document).on("click", "#btnAddItem", function () {
+    console.log("Clicou em btnAddItem");
     $("#dialogBuscaItem").dialog("close")
     pesqItem($(this).val());
-    /*
-    var id_item = $(this).val();
-    jQuery.ajax({
-      url: "/registrar-venda/getItem/"+id_item,
-      method: 'get',
-      success: function(result){
-      	$("#DivConfirmaItem").html(result);
-        $("#vlr_unit").val($("#vlrVenda").val());
-      	$("#dialogBuscaItem").dialog("close")
-        //$("#divVendaItens").show();
-        //$("#divVendaBotoes").show();
-
-        fCalculaValor();
-      	// $("#title-alterar").html("Buscar item");
-      	// $(".select2").select2();
-      }
-    });
-    */
   });
-
-
-
 
   $("#cpf").change(function(){
 
@@ -112,13 +84,10 @@ $(document).ready(function() {
     }else{
       $("#divAddItem").hide();
     }
-
   });
 
-
-
   $(document).on("click", "#btnAddLista", function(){
-
+    //   console.log("Clicou em btnAddLista");
       if($("#idItem").val() ==null){
         alert("Selecione um item");
         return;
@@ -128,53 +97,28 @@ $(document).ready(function() {
         return;
       }
 
-      showModal("divModal", "", "", "", true, pBackdrop="static", pKeyboard=false);
+      showModal("loading", "", "", "", true, pBackdrop="static", pKeyboard=false);
 
       if ($("#id_venda").val()==null || $("#id_venda").val()=='') {
 
-        var id_pessoa = $("#cpf").val();
-        var data_venda = $("#data_venda").val();
-        var id_usuario = $("#id_usuario").val();
+        // var id_pessoa = parseInt($(".id_pessoa").html());
+        // var data_venda = $(".data_venda").html().replace("/", '-').replace("/", '-');
+        // var id_usuario = parseInt($("#id_usuario").val());
 
-        jQuery.ajax({
-          url: "/registrar-venda/setVenda/"+id_pessoa+"/"+data_venda+"/"+id_usuario+"",
-          method: 'get',
-          success: function(result){
-            $("#id_venda").val(result);
+        // jQuery.ajax({
+
+        //   url: "/registrar-venda/setVenda/"+id_pessoa+"/"+data_venda+"/"+id_usuario+"",
+        //   method: 'get',
+        //   success: function(result){
+        //     console.log("setVenda() ->", "Funcionou");
+        //     $("#id_venda").val(result);
             adicionarItem();
-            //$("#cpf").val(result);
-            // var html = $("#divVenda").html(result);
-            // $("#divVenda").html(result);
-
-            // $("#dialogBuscaItem").dialog("close")
-            // $("#title-alterar").html("Buscar item");
-            // $(".select2").select2();
-          }
-        });
+        //   }
+        // });
 
      }else{
        adicionarItem();
      }
-
-
-    // if ($("#id_venda").val()==null) {
-
-      // jQuery.ajax({
-      //   url: "/registrar-venda-lista/setItemLista/"+id_item,
-      //   method: 'get',
-      //   success: function(result){
-      //     $("#divListaCompras").html(result);
-      //     // $("#dialogBuscaItem").dialog("close")
-      //     // $("#title-alterar").html("Buscar item");
-      //     // $(".select2").select2();
-      //   }
-      // });
-
-
-
-    // }
-
-
   });
 
   $("#qtd_item").keyup(function(evt){
@@ -183,39 +127,32 @@ $(document).ready(function() {
 });
 
 function pesqItem(id_item) {
-  showModal();
+  showModal("loading");
   jQuery.ajax({
     url: "/registrar-venda/getItem/" +id_item,
     method: 'get',
     success: function (result) {
-      hideModal();
+      console.log("pesqItem() ->", "Entrou");
       $("#DivConfirmaItem").html(result);
       $("#vlr_unit").val($("#vlrVenda").val());
-      //$("#dialogBuscaItem").dialog("close")
-      //$("#divVendaItens").show();
-      //$("#divVendaBotoes").show();
 
       fCalculaValor();
-      // $("#title-alterar").html("Buscar item");
-      // $(".select2").select2();
     }
   });
+  hideModal("loading");
 }
 
-
-
-
 function adicionarItem(){
-  var id_item = $("#idItem").val();
-  var id_venda = $("#id_venda").val();
-
+  var id_item = parseInt($("#idItem").val());
+  var id_venda = parseInt($(".idv").html());
+  console.log("adicionaItem() ->", id_item, id_venda)
   // alert("teste");
   jQuery.ajax({
     url: "/registrar-venda/setItemLista/"+id_item+"/"+id_venda,
     method: 'get',
     success: function(result){
       $("#divListaCompras").html(result);
-      hideModal();
+      hideModal("loading");
       $("#DivConfirmaItem").html("");
       $(document).on("click", "#btnCancVenda", function(){
         if ($("#id_venda").val()){
@@ -227,16 +164,9 @@ function adicionarItem(){
           concluirVenda($("#id_venda").val(), $("#vlrTotalVenda").text());
         }
       });
-
-
-      // $("#dialogBuscaItem").dialog("close")
-      // $("#title-alterar").html("Buscar item");
-      // $(".select2").select2();
     }
   });
 }
-
-
 
 function fCalculaValor(){
   if ($("#qtd_item").val()>0 && $("#vlr_unit").val()>0){
@@ -247,26 +177,15 @@ function fCalculaValor(){
   console.log("Calcula valor....");
 }
 
-
-
-
-function removeItem(pIdVenda, pIdItem){
+function removeItem(pIdItem, pIdVenda){
   console.log("removeItem",pIdVenda, pIdItem);
-  showModal();
+  showModal("loading");
   jQuery.ajax({
     url: "/registrar-venda/removeItemLista/"+pIdItem+"/"+pIdVenda+"",
     method: 'get',
     success: function(result){
       $("#divListaCompras").html(result);
-      hideModal();
-      /*
-      $(document).on("click", "#btnCancVenda", function(){
-        if ($("#id_venda").val()){
-          cancelarVenda($("#id_venda").val());
-        }
-      });
-      */
-
+      hideModal("loading");
     }
   });
 }
@@ -281,14 +200,10 @@ function cancelarVenda(pIdVenda){
       $("#divListaCompras").html(result);
       $("#id_venda").val("");
       $("#cpf").val(null).trigger('change');
-      //$("#divVendaItens").hide();
-      //$("#divVendaBotoes").hide();
       hideModal();
     }
   });
 }
-
-
 
 function concluirVenda(pIdVenda, pVlrTotal){
   console.log("concluirVenda",pIdVenda, pVlrTotal);
@@ -300,17 +215,10 @@ function concluirVenda(pIdVenda, pVlrTotal){
       $("#divListaCompras").html(result);
       $("#id_venda").val("");
       $("#cpf").val(null).trigger('change');
-      //$("#divVendaItens").hide();
-      //$("#divVendaBotoes").hide();
       hideModal();
     }
   });
 }
-
-
-
-
-
 
 function showModal(pId="divModal", pMsg="", pTitle="", pButtons="", pShowX=true, pBackdrop="static", pKeyboard=false){
   var lOptions={

@@ -23,19 +23,26 @@
                                         <th class="text-center">DATA DA VENDA</th>
                                         <th class="text-center">CPF DO CLIENTE</th>
                                         <th class="text-center">NOME DO CLIENTE</th>
+                                        <th style="display: none;">></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($venda as $v)
                                     <tr>
-                                        <td class="text-center">{{$v->idv}}</td>
-                                        <td class="text-center">{{ date( 'd/m/Y' , strtotime ($v->data))}}</td>
-                                        <td class="text-center">{{$v->cpf}}</td>
-                                        <td class="text-center">{{$v->nomepes}}</td>
+                                        <td class="text-center idv">{{$v->idv}}</td>
+                                        <td class="text-center data_venda">{{ date( 'd/m/Y' , strtotime ($v->data))}}</td>
+                                        <td class="text-center cpf">{{$v->cpf}}</td>
+                                        <td class="text-center nomepes">{{$v->nomepes}}</td>
+                                        <td style="display: none;" class="text-center id_pessoa">{{$v->id_pessoa}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="col-sm">
+                            <label for="nome_usuário">Usuário/Vendedor</label>
+                            <input class="form-control" value="{{session()->get('usuario.id_usuario')}}" name="id_usuario" id="id_usuario" type="hidden" >
+                            <input class="form-control" value="{{session()->get('usuario.nome')}}" name="nome_usuario" id="nome_usuario" type="text" placeholder="Vendedor" readonly>
                         </div>
                     </div>
                     <hr>
@@ -52,7 +59,7 @@
                         <br>
                         <div class="container" id="divVendaItens">
                                 <div class="row">
-                                    <div class="col col-lg-4" id="DivConfirmaItem">
+                                    <div class="col col-lg-4 confirmaItem1" id="DivConfirmaItem">
                                         <!--
                                         <input class="form-control" type="text" placeholder="ID" readonly>
                                         <input class="form-control" type="text" placeholder="Nome item" readonly>
@@ -98,7 +105,7 @@
                                             </table>
                                             <table class="table table-bordered">
                                                 <thead class="thead-light">
-                                                <h6 style="color: blue;">LISTA DE COMPRAS</h6>
+                                                <h6 style="color: blue;">LISTA DE COMPRAS 1</h6>
                                                     <tr>
                                                         <th scope="col">ID</th>
                                                         <th scope="col">Produto</th>
@@ -110,25 +117,32 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <?php $total = floatval("0"); $qtde = 0 ?>
                                                     @foreach($itens_compra as $ic)
-                                                    <tr>
-                                                    @method('DELETE')
-                                                        <td>{{$ic->id_item_material}}</td>
-                                                        <td>{{$ic->nomemat}}</td>
-                                                        <td></td>
-                                                        <td>{{number_format($ic->valor_venda,2,',','.')}}</td>
-                                                        <td>
-                                                            <a href="#" class="btn btn-danger btn-custom">
-                                                            <i class="far fa-trash-alt"></i>
-                                                            </a>
-                                                        </td>
+                                                        <tr>
+                                                            @method('DELETE')
+                                                            <td class="id_item_material">{{$ic->id_item_material}}</td>
+                                                            <td>{{$ic->nomemat}}</td>
+                                                            @if (floatval($ic->valor_venda)>0)
+                                                                <?php
+                                                                    $total += floatval($ic->valor_venda);
+                                                                    $qtde ++;
+                                                                ?>
+                                                            @endif
+                                                            <td>1</td>
+                                                            <td>R$ {{number_format($ic->valor_venda,2,',','.')}}</td>
+                                                            <td>
+                                                                <a href="#" class="btn btn-danger btn-custom btnRemoveItem">
+                                                                    <i class="far fa-trash-alt"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
                                                     @endforeach
-                                                    </tr>
                                                 </tbody>
                                                 <tfooter>
                                                     <td colspan="2">TOTAL:</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>R$0.00</td>
+                                                    <td>{{ $qtde }}</td>
+                                                    <td>R$ <span id="vlrTotalVenda">{{number_format($total,2,'.','.')}}</span></td>
                                                     <td>&nbsp;</td>
                                                 </tfooter>
 

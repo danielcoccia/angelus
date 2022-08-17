@@ -24,7 +24,7 @@
     </table>
     <table class="table table-bordered">
         <thead class="thead-light">
-        <h6 style="color: blue;">LISTA DE COMPRAS</h6>
+        <h6 style="color: red;">LISTA DE COMPRAS 2</h6>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Produto</th>
@@ -38,16 +38,16 @@
             <?php $tot = floatval("0"); $qtde = 0 ?>
             @foreach($listaItemVenda as $listaItemVendas)
             <tr>
-                <td scope="row">{{$listaItemVendas->id}}</td>
+                <td class="id_item_material" scope="row">{{$listaItemVendas->id}}</td>
                 <td>{{$listaItemVendas->nome}}</td>
                 <!-- <td>0</td> -->
                 <td>{{$listaItemVendas->qtd}}</td>
                 @if (floatval($listaItemVendas->valor_venda_promocional)>0)
-                <?php $tot += floatval($listaItemVendas->valor_venda_promocional); $qtde++; ?>
-                <td>{{$listaItemVendas->valor_venda_promocional}}</td>
+                    <?php $tot += floatval($listaItemVendas->valor_venda_promocional); $qtde++; ?>
+                    <td>{{$listaItemVendas->valor_venda_promocional}}</td>
                 @else
-                <?php $tot += floatval($listaItemVendas->valor_venda); $qtde++; ?>
-                <td>R$ {{$listaItemVendas->valor_venda}}</td>
+                    <?php $tot += floatval($listaItemVendas->valor_venda); $qtde++; ?>
+                    <td>R$ {{$listaItemVendas->valor_venda}}</td>
                 @endif
                 <td>
                     <button type="button" value="{{$listaItemVendas->id}}"  class="btn btn-danger btn-custom btnRemoveItem"><i class="far fa-trash-alt"></i></button>
