@@ -56,6 +56,7 @@ class ItemCatalogoController extends Controller
         $ativo = isset($request->ativo) ? 1 : 0;
         $composicao = isset($request->composicao) ? 1 : 0;
 
+
         DB::table('item_catalogo_material')->insert([
             'nome' => $request->input('nome_item'),
             'id_categoria_material' => $request->input('categoria_item'),
@@ -67,6 +68,8 @@ class ItemCatalogoController extends Controller
             'composicao' => $composicao,
             'ativo' => $ativo,
         ]);
+
+
 
         $result= $result= $this->getListaItemMatAll();
         return view('catalogo/gerenciar-item-catalogo',['result'=>$result]);
@@ -113,8 +116,21 @@ class ItemCatalogoController extends Controller
 
     public function destroy($id)
     {
-        DB::delete('delete from item_catalogo_material where id = ?' , [$id]);
-        $result= $result= $this->getListaItemMatAll();;
-        return view('catalogo/gerenciar-item-catalogo', ['result'=>$result]);
+
+            DB::delete('delete from item_catalogo_material where id = ?' , [$id]);
+
+            $result= $result= $this->getListaItemMatAll();
+
+            return view('catalogo/gerenciar-item-catalogo', ['result'=>$result]);
+
     }
+
+//    public function messages() {
+  //      return [     'required' => 'O campo :attribute é requerido',
+    //         'description.min' => 'O campo :attribute deve ter no mínimo 3 caracteres',
+      //            'expiration_time.min' => 'O campo :attribute deve ser a quantidade de dias',
+        //               'price.regex' => 'O campo :attribute deve conter um valor monetário. Ex.: 2.25',   ]; }
+        //Para funcionar utilize nome do campo.nome da regra
+
+
 }

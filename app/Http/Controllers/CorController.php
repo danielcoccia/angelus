@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\ModelCatMaterial;
 
 class CorController extends Controller
-{    
+{
     private $objCategoria;
 
     public function __construct(){
@@ -34,9 +34,10 @@ class CorController extends Controller
         $resultCategoria = $this->objCategoria->all();
         $result = $this->getCorCat();
 
+
         return view('/cadastro-geral/gerenciar-cor', compact('result', 'resultCategoria'));
     }
- 
+
     public function create()
     {
         //
@@ -44,7 +45,7 @@ class CorController extends Controller
 
     public function store(Request $request)
     {
-        DB::table('cor')->insert([            
+        DB::table('cor')->insert([
             'nome' => $request->input('cor'),
             'id_categoria_material' => $request->input('categoria'),
             'ativo' => 1

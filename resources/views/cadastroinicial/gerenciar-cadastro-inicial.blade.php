@@ -12,14 +12,21 @@
                     <hr>
                     <div class="container">
                         <div class="row align-items-center">
-                            <div class="col-sm">
+                            <div class="col-">
                                 <form action="{{route('cadastroinicial.index')}}" class="form-horizontal mt-4" method="GET" >
+                            </div>
+
                                 <label for="" class="form-label">Início</label>
+                            <div class="col">
                                 <input type="date" name="data_inicio" value="{{$data_inicio}}">
                             </div>
-                            <div class="col-sm">
+
                                 <label for="" class="form-label">Final</label>
+                            <div class="col">
                                 <input type="date" name="data_fim" value="{{$data_fim}}">
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control" type="text" name="material" placeholder="Nome do material">
                             </div>
                             {{--<div class="col-sm">
                                 <select class="form-control"><option>Selecione a Categoria</option>
@@ -39,15 +46,7 @@
                                 Doado<br><input type="checkbox" id="switch3" switch="bool" checked/>
                                 <label for="switch3" data-on-label="Sim" data-off-label="Não"></label>
                             </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-4">
-                                <input class="form-control" type="text" name="material" placeholder="Nome do material">
-                            </div>
-                            <div class="col-md-2 text-center">
+                            <div class="col">
                                 <input class="btn btn-primary" type="submit" value="Pesquisar">
                             </div>
                             <div class="col-1">
@@ -55,14 +54,20 @@
                                     <input class="btn btn-danger" type="button" value="Limpar">
                                 </a>
                             </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="container">
+                        <div class="row align-items-center">
                             </form>
-                            <div class="col-2">
-                                <a href="/gerenciar-cadastro-inicial/incluir"><input class="btn btn-success" type="button" value="Novo Cadastro +"></a>
-                            </div>
-                            <div class="col-3">
+
+                            <div class="col">
                                 <a href="/barcode">
                                 <input class="btn btn-info" type="button" value="Cód Barras da pesquisa">
                                 </a>
+                            </div>
+                            <div class="col">
+                                <a href="/gerenciar-cadastro-inicial/incluir"><input class="btn btn-success float-right" type="button" value="Novo Cadastro +"></a>
                             </div>
                         </div>
                     </div>
@@ -110,6 +115,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                {{$result->links()}}
+                                </div>
                             </div>
                         </div>
                     </div>

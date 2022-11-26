@@ -11,7 +11,7 @@
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('/images/favicon.ico')}}">
-    
+
      <!-- headerCss -->
     @yield('headerCss')
 
@@ -41,10 +41,16 @@
                 <div class="container-fluid">
 
                   <!-- content -->
+
+                    @include('layouts/partials/footer')
+
+                    @include('components/flash_alerts')
+
                    @yield('content')
 
 
-                  @include('layouts/partials/footer')
+
+
 
                 </div>
                 <!-- end main content-->
@@ -52,7 +58,9 @@
             <!-- END layout-wrapper -->
 
              @include('layouts/partials/rightbar')
-   
+
+
+
             <!-- JAVASCRIPT -->
             <script src="{{ URL::asset('/libs/jquery/jquery.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/bootstrap/bootstrap.min.js')}}"></script>

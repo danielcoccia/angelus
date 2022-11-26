@@ -160,7 +160,7 @@
                                         <div class="col-12 mt-3" style="text-align: right;">
                                             <button id="btnCancVenda" type="button" class="btn btn-danger">Cancelar venda</button>
                                             <!-- <button type="submit" class="btn btn-success">Salvar</button> -->
-                                            <button id="btnConcVenda" type="button" class="btn btn-info">Salvar e concluir</button>
+                                            <a href="/gerenciar-vendas" id="btnConcVenda" type="button" class="btn btn-info">Salvar e concluir</a>
 
                                         </div>
                                     </div>

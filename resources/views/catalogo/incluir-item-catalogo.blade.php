@@ -37,46 +37,34 @@
 
                         <div class="form-group row">
                             <label for="val_minimo" class="col-sm-2 col-form-label">Valor Minimo*</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="numeric" id="val_minimo" name="val_minimo" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
+                            <div class="col">
+                                <input class="form-control" value="0.00" type="numeric" id="val_minimo" name="val_minimo" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
+                            </div>
+                                <label for="val_medio" class="col-sm-2 col-form-label">Valor Médio*</label>
+                            <div class="col">
+                                <input class="form-control"  value="0.00" type="numeric" id="val_medio" name="val_medio" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="val_medio" class="col-sm-2 col-form-label">Valor Médio*</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="numeric" id="val_medio" name="val_medio" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
-                            </div>
-                        </div>
-
                         <div class="form-group row">
                             <label for="val_maximo" class="col-sm-2 col-form-label">Valor Máximo*</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="numeric" value="" id="val_maximo" name="val_maximo" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
+                            <div class="col">
+                                <input class="form-control"  type="numeric" value="0.00" id="val_maximo" name="val_maximo" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
                             </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="val_marca" class="col-sm-2 col-form-label">Valor Marca*</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="numeric" value="" id="val_marca" name="val_marca" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
+                            <div class="col">
+                                <input class="form-control"  type="numeric" value="0.00" id="val_marca" name="val_marca" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="val_etiqueta" class="col-sm-2 col-form-label">Valor Etiqueta*</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="numeric" value="" id="val_etiqueta" name="val_etiqueta" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
+                            <div class="col">
+                                <input class="form-control"  type="numeric" value="0.00" id="val_etiqueta" name="val_etiqueta" required="required" onchange="this.value = this.value.replace(/,/g, '.')">
                             </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="composicao" class="col-sm-2 col-form-label">Item Composição</label>
-                            <div class="col-sm-10">
-                                <input  type="checkbox"  id="composicao" name="omposicao">
+                            <div class="col">
+                                <input  type="checkbox"  id="composicao" name="composicao">
                             </div>
                         </div>
-
 
                         <div class="form-group row">
                             <label for="ativo" class="col-sm-2 col-form-label">Ativo</label>

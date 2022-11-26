@@ -4,23 +4,23 @@
 
 @section('content')
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <a href="/item-catalogo-incluir">
-                                            <input class="btn btn-primary" type="button" value="Incluir Item Catalogo">
-                                    </a>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <a href="/item-catalogo-incluir">
+                        <input class="btn btn-primary" type="button" value="Incluir Item Catalogo">
+                </a>
                     <br><br><hr>
                         <h4 class="card-title">Lista de Usuário</h4>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-body">                                    
+                                <div class="card-body">
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>Id</th>
+                                                <th>ID</th>
                                                 <th>Nome</th>
                                                 <th>Categoria</th>
                                                 <th>Valor Mínimo</th>
@@ -30,6 +30,7 @@
                                                 <th>Valor Etiqueta</th>
                                                 <th>Item Composição</th>
                                                 <th>Ativo</th>
+                                                <th>Ações</th>
                                             </tr>
                                         </thead>
 
@@ -39,11 +40,11 @@
                                                 <td>{{$results->id}}</td>
                                                 <td>{{$results->nome}}</td>
                                                 <td>{{$results->nome_categoria}}</td>
-                                                <td>{{$results->valor_minimo}}</td>
-                                                <td>{{$results->valor_medio}}</td>
-                                                <td>{{$results->valor_maximo}}</td>
-                                                <td>{{$results->valor_marca}}</td>
-                                                <td>{{$results->valor_etiqueta}}</td>
+                                                <td>{{number_format($results->valor_minimo,2,',','.')}}</td>
+                                                <td>{{number_format($results->valor_medio,2,',','.')}}</td>
+                                                <td>{{number_format($results->valor_maximo,2,',','.')}}</td>
+                                                <td>{{number_format($results->valor_marca,2,',','.')}}</td>
+                                                <td>{{number_format($results->valor_etiqueta,2,',','.')}}</td>
                                                 <td>{{$results->composicao ? 'sim' : 'não' }}</td>
                                                 <td>{{$results->ativo ? 'sim' : 'não' }}</td>
                                                 <td>
@@ -55,7 +56,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            @endforeach     
+                                            @endforeach
                                         </tbody>
                                     </table>
 
@@ -64,22 +65,20 @@
                         </div>
                         <!-- end col -->
                     </div>
-                        <!-- end col -->
-                    </div>
-                                    
-                </div>
+
             </div>
-            <!-- end col -->
         </div>
+    </div>
+</div>
         <!-- end row -->
 @endsection
 
 @section('footerScript')
             <!-- Required datatable js -->
-           <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
+            <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-           
+
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/libs/select2/select2.min.js')}}"></script>

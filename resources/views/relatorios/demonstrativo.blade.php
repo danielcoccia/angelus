@@ -9,9 +9,19 @@
     </a>
     <a>
         <a href="">
-        <input class="btn btn-success" type="button" value="Imprimir">
+        <input class="btn btn-success" onclick="cont();" type="button" value="Imprimir">
     </a>
     <hr>
+    <script>
+        function cont(){
+           var conteudo = document.getElementById('print').innerHTML;
+           tela_impressao = window.open('about:blank');
+           tela_impressao.document.write(conteudo);
+           tela_impressao.window.print();
+           tela_impressao.window.close();
+        }
+    </script>
+    <div id='print' class='conteudo'>
     <div class="row">
 
         <h5 style="color: blue;">DESCRIÇÃO DE COMPRAS DO BAZAR DA COMUNHÃO ESPÍRITA</h5>
@@ -136,7 +146,7 @@
 
 
 </div>
-
+</div>
 
 @section('footerScript')
             <script src="{{ URL::asset('/js/pages/mascaras.init.js')}}"></script>

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ModelItemMaterial;
 use PhpParser\Node\Stmt\Foreach_;
 use Symfony\Component\VarDumper\Cloner\Data;
+use Illuminate\Support\Carbon;
+
 
 class GerenciarInventariosController extends Controller{
 
@@ -17,8 +19,6 @@ class GerenciarInventariosController extends Controller{
     //$request->session()->put('data', "2022-03-10");
 
     $nr_ordem = 1;
-
-    //$today = Carbon::today();
 
     $vendas = DB::select ('select id_item_material from venda_item_material');
 

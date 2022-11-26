@@ -6,11 +6,11 @@
 
 
 <div class="col12" style="background:#ffffff;">
-    <h4 class="card-title" class="card-title" style="font-size:20px; text-align: center; background: #088CFF; color: white;">RELATÓRIO DE ENTRADAS POR PERÍODO</h4>
+
     <div class="container">
         <div class="row align-items-center">
 
-            <div class="col">
+            <div class="col-12">
             <form action="/relatorio-entrada" class="form-horizontal mt-4" method="GET">
                 @csrf
                 <label for="nome">Início</label>
@@ -25,10 +25,21 @@
             </div>
             <div class="col">
                     <a href="/relatorio-entrada">
-                    <input class="btn btn-danger" type="button" value="Limpar">
+                    <input class="btn btn-warning" type="button" value="Limpar">
                     </a>
-            </form>
             </div>
+            <div class="col">
+                <a href="/gerenciar-vendas">
+                    <input class="btn btn-danger" type="button" value="Cancelar">
+                </a>
+            </div>
+            <div class="col">
+                <a href="">
+                    <input class="btn btn-success" onclick="cont();" type="button" value="Imprimir">
+                </a>
+            </div>
+            </form>
+
         </div>
     </div>
 </div>
@@ -52,8 +63,19 @@
         </div>
     </div>
 </div>--}}
+<script>
+    function cont(){
+       var conteudo = document.getElementById('print').innerHTML;
+       tela_impressao = window.open('about:blank');
+       tela_impressao.document.write(conteudo);
+       tela_impressao.window.print();
+       tela_impressao.window.close();
+    }
+</script>
 <br>
+<div id='print' class='conteudo'>
 <div class="container" style="background:#ffffff;">
+<h4 class="card-title" class="card-title" style="font-size:20px; text-align: center; background: #088CFF; color: white;">RELATÓRIO DE ENTRADAS POR PERÍODO</h4>
     <div class="row align-items-center">
         <table class="table table-sm table-striped">
             <thead style="text-align:center;">
@@ -92,6 +114,7 @@
         </table>
 
     </div>
+</div>
 
 @section('footerScript')
             <script src="{{ URL::asset('/js/pages/mascaras.init.js')}}"></script>

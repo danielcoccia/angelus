@@ -5,52 +5,54 @@
 @section('content')
 
 <div class="col12" style="background:#ffffff;">
-    <h4 class="card-title" class="card-title" style="font-size:20px; text-align: center; background: #088CFF; color: white;">INVENTÁRIO DE MATERIAL</h4>
     <div class="container">
         <div class="row" style="text-align: left;">
             <div class="col">
             <form action="/inventarios" class="form-horizontal mt-4" method="GET">
                 @csrf
 
-                <label for="nome">Data Cadastro</label>
+                <label for="nome">Data</label>
                 <input type="date" name='data' value="{{$data}}">
             </div>
-
-{{--<div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <label for="nome">Categoria</label>
-                <select class="form-control" id="cat" name="categoria" placeholder="categoria" >
-                @Foreach($resultCategorias as $resultCategoria)
-                <option value="{{$resultCategoria->id}}">{{$resultCategoria->nome}}</option>
-                @endForeach
-                </select>
-            </div>
-            <div class="col-sm">
-                <label for="nome">Material</label>
-                <select class="form-control" id="cat" name="produtos" placeholder="Produtos">
-                @Foreach($resultItens as $resultItem)
-                <option value="{{$resultItem->id}}">{{$resultItem->nome}}</option>
-                @endForeach
-                </select>
-            </div>
-        </div>
-    </div>--}}
             <div class="col">
-            <br>
+                <br>
                 <input class="btn btn-info" type="submit" value="Pesquisar">
             </div>
             <div class="col">
-            <br>
+                <br>
                 <a href="/inventarios">
-                <input class="btn btn-danger" type="button" value="Limpar">
+                <input class="btn btn-warning" type="button" value="Limpar">
                 </a>
             </div>
+            <div class="col">
+                <br>
+                <a href="/gerenciar-vendas">
+                    <input class="btn btn-danger" type="button" value="Cancelar">
+                </a>
+            </div>
+            <div class="col">
+                <br>
+                <a href="">
+                    <input class="btn btn-success" onclick="cont();" type="button" value="Imprimir">
+                </a>
+            </div>
+
             </form>
         </div>
+        <script>
+            function cont(){
+               var conteudo = document.getElementById('print').innerHTML;
+               tela_impressao = window.open('about:blank');
+               tela_impressao.document.write(conteudo);
+               tela_impressao.window.print();
+               tela_impressao.window.close();
+            }
+        </script>
     </div>
     <hr>
+    <div id='print' class='conteudo'>
     <div class="container" style="background:#ffffff;">
+        <h4 class="card-title" class="card-title" style="font-size:20px; text-align: center; background: #088CFF; color: white;">INVENTÁRIO DE MATERIAL</h4>
         <div class="row">
         <h6 class="font-weight-bold" style="color: blue;  margin-left: 10px;">RELAÇÃO DOS MATERIAIS EM ESTOQUE - Extraido em <span class="badge badge-secondary">{{"hoje"}}</span> </h6>
             <table class="table table-sm table-striped">
@@ -88,6 +90,10 @@
         </div>
     </div>
 </div>
+</div>
+
+
+@endsection
 
 @section('footerScript')
             <script src="{{ URL::asset('/js/pages/mascaras.init.js')}}"></script>
@@ -98,4 +104,3 @@
 @endsection
 
 
-@endsection

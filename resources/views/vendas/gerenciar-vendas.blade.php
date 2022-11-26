@@ -5,56 +5,53 @@
 @section('content')
 <div class="container"  style="background-color: #fff">
     <div class="row align-items-center">
-                <div class="col-12">
-                <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Gerenciar Vendas</h4>
-                </div>
-                <hr>
-                <div class="col-sm-1">
-                <form action="{{route('vendas.index')}}" class="form-horizontal mt-4" method="GET" >
-                </div>
-                <div class="col-md-3">
-                @csrf
-                    <label for="nome">Início</label>
-                    <input type="date" name="data_inicio" value="{{$data_inicio}}">
-                </div>
-                <div class="col-md-3">
-                    <label for="date">Final</label>
-                    <input type="date" name="data_fim"  value="{{$data_fim}}">
-                </div>
-                <div class="col-sm"style="text-align: right;>
-                    <label for="nome">Situação da venda:</label>
-                </div>
-                <div class="col-sm">
-                    <select class="form-control"id="sit" name="situacao" >{{--<option>Selecione a Categoria</option>--}}
-                    @Foreach($resultSitVenda as $resultSitVendas)
-                    <option value="{{$resultSitVendas->id}}" {{$resultSitVendas->id == $situacao ? 'selected' : ''}}>{{$resultSitVendas->nome}}</option>
-                    @endForeach
-                    </select>
-                </div>
+        <div class="col-12">
+        <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Gerenciar Vendas</h4>
+        </div>
+        <hr>
+        <div class="col-">
+        <form action="{{route('vendas.index')}}" class="form-horizontal mt-4" method="GET" >
+        </div>
+        <div class="col-md-auto">Início
+        @csrf
+            <input type="date" name="data_inicio" value="{{$data_inicio}}">
+        </div>
+        <div class="col-md-auto">Fim
+            <input type="date" name="data_fim"  value="{{$data_fim}}">
+        </div>
+        <div class="col-md-auto">Situação:
+            <select class="form-control"id="sit" name="situacao" >{{--<option>Selecione a Categoria</option>--}}
+            @Foreach($resultSitVenda as $resultSitVendas)
+                <option value="{{$resultSitVendas->id}}" {{$resultSitVendas->id == $situacao ? 'selected' : ''}}>{{$resultSitVendas->nome}}</option>
+            @endForeach
+            </select>
+        </div>
+        <div class="col-3">Nome do cliente:
+            <input class="form-control" type="text" name="cliente" id="cliente" value="{{$cliente}}"/>
+        </div>
+        <div class="col-3">Código venda:
+            <input class="form-control" type="numeric" name="id_venda" id="id_venda" value=""/>
+        </div>
     </div>
-
 <br>
 
     <div class="row align-items-center">
-        <div class="col-sm-5">
-            <input class="form-control" type="text" name="cliente" id="cliente" value="{{$cliente}}" placeholder="Nome do cliente"/>
-        </div>
-        <div class="col-sm">
+        <div class="col">
             <input class="btn btn-info" type="submit" value="Pesquisar">
         </div>
-        <div class="col-sm">
-            <a href="/gerenciar-vendas">
-            <input class="btn btn-danger" type="button" value="Limpar">
-            </a>
+            <div class="col">
+                <a href="/gerenciar-vendas">
+                <input class="btn btn-danger" type="button" value="Limpar">
+                </a>
+            </div>
+            </form>
+            <div class="col">
+                <a href="/registrar-venda">
+                <input class="btn btn-success float-right" type="button" value="Nova venda +">
+                </a>
+            </div>
         </div>
-        </form>
-        <div class="col-sm">
-            <a href="/registrar-venda">
-            <input class="btn btn-success" type="button" value="Nova venda +">
-            </a>
-        </div>
-    </div>
-    <hr>
+        <hr>
     <div class="row">
         <div class="col-12">
             <div class="card"><h4 class="card-title" class="card-title">Dados das vendas</h4>
@@ -81,7 +78,7 @@
                                 <td>{{number_format($results->valor,2,',','.')}}</td>
                                 <td>{{$results->sit_venda}}</td>
                                 <td>
-                                    <a href="/registrar-venda/editar/{{$results->id}}">
+                                    <a href="/registrar-venda-editar/{{$results->id}}">
                                         <input class="btn btn-warning" type="button" style="font-size:11px;" value="Alterar">
                                     </a>
                                     <a href="/gerenciar-vendas/excluir/{{$results->id}}">
@@ -97,6 +94,9 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-center">
+                  {{$result->links()}}
+                    </div>
                 </div>
             </div>
         </div>

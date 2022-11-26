@@ -38,7 +38,7 @@ class GerenciarpagamentoController extends Controller
 
 
 
-    public function show($id){
+    public function show(Request $request, $id){
 
     ///Recupera os dados da  venda e cliente
     $vendas = DB::select ("
@@ -58,6 +58,7 @@ class GerenciarpagamentoController extends Controller
     ->where('id_venda', '=', $id)
     ->count('id_venda');
 
+
     ///Soma o total de itens da lista
     $total_preco = DB::table ('venda')
     ->leftjoin('venda_item_material', 'venda.id', '=', 'venda_item_material.id_venda')
@@ -65,8 +66,18 @@ class GerenciarpagamentoController extends Controller
     ->where ('id_venda', '=', $id)
     ->sum('item_material.valor_venda');
 
+    ///Total devido em dinheiro
+    $total_especie = DB::table ('venda')
+    ->leftjoin('pagamento','pagamento.id_venda', '=', 'venda.id' )
+    ->where ('id_venda', '=', $id)
+    ->where ('pagamento.id_tipo_pagamento', '=', 1)
+    ->sum('pagamento.valor');
 
 
+
+
+    ///Valor a devolver em dinheiro
+    $devolver = ($request->vlr_r) - $total_especie;
 
     ///Tipos de pagamento para exibir na lista de seleção
     $tipos_pagamento = DB::select ('select id, nome from tipo_pagamento');
@@ -117,7 +128,7 @@ class GerenciarpagamentoController extends Controller
 
 
     return view ('vendas/gerenciar-pagamentos', compact('pagamentos','vendas','total_itens', 'total_preco', 'itens_compra',
-     'tipos_pagamento', 'total_pago', 'troco'));
+     'tipos_pagamento', 'total_pago', 'troco', 'total_especie', 'devolver'));
     }
 
 
@@ -161,6 +172,12 @@ class GerenciarpagamentoController extends Controller
                //     ->with('mensagem', "O valor ultrapassa o valor total da venda.;") ;
 
           return view ('vendas/alerta-pagamento', compact('vendas'));
+          //return redirect()->route('pagamento.inserir.{id}')
+          //return redirect()->back()
+          //->with('warning', 'O valor ultrapassa o valor total da venda.');
+
+          //return view ('vendas/alerta-venda2', compact('alerta'));
+
         }
 
        return redirect()->back();

@@ -17,6 +17,10 @@
     </style>
 </head>
     <body >
+        <a href="/gerenciar-cadastro-inicial">
+            <input class="btn btn-danger" type="button" value="Cancelar">
+        </a>
+    </div>
         <div class="Col" style="font-size: 14px; color:#000; text-align: center;">
           @foreach($itens as $p)
                 <strong>

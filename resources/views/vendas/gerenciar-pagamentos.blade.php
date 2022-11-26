@@ -7,11 +7,14 @@
 @endsection
 
 @section('content')
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Registrar Pagamento</h4>
+                <h5 class="card-title" class="card-title" style="font-size:20px; text-align: center; background: #088CFF; color: white;">Registrar Pagamento</h5>
                 <hr>
                 <div class="container">
                     <div class="row align-items-center">
@@ -46,9 +49,9 @@
                             <table class="table table-bordered">
                                 <thead class="thead-light">
                                     <tr style="background-color: #f1f1f1; text-align:center; ">
-                                    <td style=text-align:right>QUANTIDADE</td>
+                                    <td style=text-align:right>QUANTIDADE:</td>
                                     <td style=font-size:18px;>{{$total_itens}}</td>
-                                    <td style=text-align:right>VALOR TOTAL</td>
+                                    <td style=text-align:right>VALOR TOTAL:</td>
                                     <td style=font-size:18px;>{{number_format($total_preco,2,',','.')}}</td>
                                     </tr>
                                 </thead>
@@ -126,13 +129,16 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div>
+                                <a href="#" class="btn btn-outline-warning btn-md btn-block" data-toggle="modal" data-target="#ModalCreate" ><span style="color: #f1f1f1"></span>Calcular troco</a>
+                            </div>
+                            <br>
                             <div class="input-group mb-3">
                                 <table class="table table-bordered">
-                                    <button type="button" value="{{--$results->id--}}" id="btnAlterarEmbalagem" class="btn btn-warning waves-effect waves-light classBtnAlterar" data-toggle="modal" data-target=".bs-example-modal-lg">Calcular troco</button>
                                     <tbody style='text-align:center;vertical-align:middle; font-size:15px;'>
                                         <tr>
                                         <td style="text-align:left;">Descontos:</td><td style="text-align:left;">R$</td></tr>
-                                        <tr style="text-align:left;"><td>Pagamentos:</td><td style="text-align:left;">{{number_format($total_pago,2,',','.')}}</td></tr>
+                                        <tr style="text-align:left;"><td>Pagamentos realizados:</td><td style="text-align:left;">{{number_format($total_pago,2,',','.')}}</td></tr>
                                         </tr>
                                         <tr style="background-color: #FFFF00; text-align:right;font-weight:bold;"><td>Total da venda:</td><td style="text-align:left;font-size:18px;">{{number_format($total_preco,2,',','.')}}</td></tr>
                                     </tbody>
@@ -157,6 +163,7 @@
         </div>
     </div>
 </div>
+@include('calculos.modalcalc')
 
 @endsection
 
