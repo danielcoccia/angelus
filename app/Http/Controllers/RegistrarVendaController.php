@@ -126,7 +126,7 @@ class RegistrarVendaController extends Controller
         if ($item){
              return view('vendas/area-confirmacao', compact('item'));
         }
-        return '<div class="alert alert-danger" role="alert">Nenhum resgitro encontrado!</div>';
+        return '<div class="alert alert-danger" role="alert">Nenhum registro encontrado!</div>';
     }
 
     public function setVenda($id_pessoa, $data_venda, $id_usuario){
@@ -202,7 +202,10 @@ class RegistrarVendaController extends Controller
             ->update(['id_tp_situacao_venda' => 2, 'valor' => $vlr_total]);
 
         $listaItemVenda = $this->getListaVenda(0);
+
+        //return view('vendas/gerenciar-vendas', compact('listaItemVenda'));
         return view('vendas/lista-compras', compact('listaItemVenda'));
+
     }
 
 
@@ -225,38 +228,41 @@ class RegistrarVendaController extends Controller
         return $result;
      }
 
-     public function editar($id){
+     public function edit($id_venda){
 
-         ///Recupera os dados da  venda e cliente
+
         $venda = DB::select ("
         Select
-        v.id as idv,
+        v.id,
         pe.cpf,
         pe.nome as nomepes,
         v.data
         from venda v
         left join pessoa pe on (pe.id = v.id_pessoa)
-        where v.id=$id
+        where v.id=$id_venda
         ");
 
-        ///Recupera os dados da  venda e cliente
-        $itens_compra = DB::select ("
+        $item = DB::select ("
         Select
-        vim.id_venda,
-        vim.id_item_material,
-        im.id as idm,
-        ic.nome as nomemat,
-        im.valor_venda
-        from venda_item_material vim
-        left join venda v on (vim.id_venda = v.id)
-        left join item_material im on (im.id = vim.id_item_material)
+        vi.id_item_material,
+        im.valor_venda_promocional,
+        im.valor_venda,
+        ic.nome
+        from venda v
+        left join venda_item_material vi on (v.id = vi.id_venda)
+        left join item_material im on (im.id = vi.id_item_material)
         left join item_catalogo_material ic on (ic.id = im.id_item_catalogo_material)
-        where v.id=$id
+        where v.id=$id_venda
         ");
 
-        return view('vendas/registrar-venda-alterar', compact('venda', 'itens_compra'));
+
+        return view('vendas/registrar-venda-editar', compact('venda', 'item'));
+
+
 
      }
+
+
 
 
 }

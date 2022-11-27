@@ -5,7 +5,7 @@
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
-                        
+
                         @php
                             $perfis = session()->get('usuario.perfis');
                             $perfil_adm = str_contains($perfis, '1');
@@ -13,7 +13,7 @@
                             $perfil_aux = str_contains($perfis, '3');
                             $perfil_vol = !($perfil_adm || $perfil_ger || $perfil_aux);
                         @endphp
-                        
+
                         {{-- Controle de Acceso --}}
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -30,7 +30,7 @@
                                 @endif
                             </ul>
                         </li>
-                        
+
                         {{-- Catalogo --}}
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -38,7 +38,7 @@
                                 <span>Catalogo</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="/gerenciar-itemCatalogo" class="waves-effect"><span>Item Catalogo</span></a></li>
+                                <li><a href="/gerenciar-item-catalogo" class="waves-effect"><span>Item Catalogo</span></a></li>
                                 <li><a href="/gerenciar-composicao" class="waves-effect"><span>Composição</span></a></li>
                            </ul>
                         </li>
@@ -62,7 +62,8 @@
                                     <li><a href="/cad-valor-avariado" class="waves-effect"><span>Valor Item Avariado</span></a></li>
                                 @endif
                                 <li><a href="/cad-embalagem" class="waves-effect"><span>Embalagem</span></a></li>
-                                <li><a href="/unidade-medida" class="waves-effect"><span>Unidade de Medida  </span></a></li>
+                                <li><a href="/unidade-medida" class="waves-effect"><span>Unidade de Medida</span></a></li>
+                                <li><a href="/cad-tipo-material" class="waves-effect"><span>Tipo de Material</span></a></li>
                                 <li><a href="/marca" class="waves-effect"><span>Marca</span></a></li>
                                 <li><a href="/tamanho" class="waves-effect"><span>Tamanho</span></a></li>
                                 <li><a href="/cor" class="waves-effect"><span>Cor</span></a></li>

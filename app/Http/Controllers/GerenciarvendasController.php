@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ModelItemCatalogo;
 use App\Models\ModelCatMaterial;
 use App\Models\ModelVendas;
+use Illuminate\Pagination\Paginator;
 
 
 class GerenciarVendasController extends Controller
@@ -13,6 +14,7 @@ class GerenciarVendasController extends Controller
     private $objItemCatalogo;
     private $objTipoMaterial;
     private $objVendas;
+    //private $totalPage = 3;
 
     public function __construct(){
         $this->objItemCatalogo = new ModelItemCatalogo();
@@ -22,7 +24,7 @@ class GerenciarVendasController extends Controller
 
     public function index(Request $request){
 
-       $resultSitVenda = DB::select ('select id, nome from tipo_situacao_venda');
+        $resultSitVenda = DB::select ('select id, nome from tipo_situacao_venda');
 
 
         $result = DB::table('venda AS v')
@@ -31,6 +33,7 @@ class GerenciarVendasController extends Controller
         ->leftjoin ('usuario AS u',  'u.id', '=', 'v.id_usuario')
         ->leftjoin ('pessoa AS pu', 'u.id_pessoa', '=', 'pu.id')
         ->leftjoin ('tipo_situacao_venda AS t', 't.id', '=', 'v.id_tp_situacao_venda');
+
 
 
         $situacao = $request->situacao;
@@ -42,11 +45,11 @@ class GerenciarVendasController extends Controller
         }
 
         if ($request->cliente){
-            $result->where('p.nome', 'like', "%$request->cliente%");
+            $result->where('p.nome', '~*', "$request->cliente");
         }
 
-        if ($request->cliente){
-            $result->where('p.nome', 'like', "%$request->cliente%");
+        if ($request->id_venda){
+            $result->where('v.id', '=', "$request->id_venda");
         }
 
 
@@ -63,19 +66,21 @@ class GerenciarVendasController extends Controller
             $result->where('v.data','<' , $request->data_fim);
         }
 
-        $result = $result->orderBy('v.id', 'DESC')->get();
+        $result = $result->orderBy('v.id', 'DESC')->paginate(5);
 
+
+        //dd($result);
+        //$result = $this->result->paginate($this->totalPage);
         //->toSql();
-        //->paginate();
 
-       return view('vendas/gerenciar-vendas', compact( 'result','data_inicio', 'data_fim', 'resultSitVenda', 'situacao', 'cliente'));
+
+       return view('vendas/gerenciar-vendas', compact('result','data_inicio', 'data_fim', 'resultSitVenda', 'situacao', 'cliente'));
     }
 
 
 
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         //$ativo = isset($request->ativo) ? 1 : 0;
         //$composicao = isset($request->composicao) ? 1 : 0;
 
@@ -93,8 +98,7 @@ class GerenciarVendasController extends Controller
 
 
 
-    public function edit($id)
-    {
+    public function edit($id){
 
         $resultVenda = $this->objVendas->all();
 
@@ -157,10 +161,17 @@ class GerenciarVendasController extends Controller
 
         if ($tp_sit == 1 or $valor > $pago){
 
+            //return redirect()->back()
+            //return redirect()->route('pagamentos.inserir')
+            //->with('warning', 'Este item não pode ser modificado porque não está mais em estoque');
             return view ('vendas/alerta-venda', compact('alerta'));
 
         } elseif ($tp_sit == 3 && $total_preco == $valor) {
 
+
+            //return redirect()->back()
+            //return redirect()->route('finalizarvenda.update')
+            //->with('warning', 'Esta venda foi finalizada ou os itens já foram pagos');
             return view ('vendas/alerta-venda2', compact('alerta'));
 
         } elseif ($tp_sit == 2){

@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Http;
 use App\Models\ModelCatMaterial;
 
 class MarcaController extends Controller
-{    
+{
     private $objCategoria;
 
-    function __construct(){            
+    public function __construct(){
         $this->objCategoria = new modelCatMaterial();
     }
 
@@ -23,22 +23,22 @@ class MarcaController extends Controller
                 from marca m
                 join tipo_categoria_material c on m.id_categoria_material = c.id
                 where m.ativo is true";
-        
+
         return DB::select($sql);
     }
 
     public function index()
-    {           
+    {
         $resultCategoria = $this->objCategoria->all();
         $result = $this->getMarcaCat();
         return view('/cadastro-geral/gerenciar-marca', compact('result','resultCategoria'));
     }
-    
+
     public function create()
     {
-        
+
     }
-    
+
     public function store(Request $request)
     {
         DB::table('marca')->insert([
@@ -54,15 +54,15 @@ class MarcaController extends Controller
     {
         //
     }
-    
+
     public function edit($id)
     {
         $resultCategoria = $this->objCategoria->all();
         $resultMarca = DB::select("select id, nome, id_categoria_material, ativo from marca where id = $id");
-    
+
         return view('/cadastro-geral/alterar-marca', compact("resultCategoria", "resultMarca"));
     }
-    
+
     public function update(Request $request, $id)
     {
          DB::table('marca')
@@ -74,7 +74,7 @@ class MarcaController extends Controller
         return redirect()->action('MarcaController@index');
 
     }
-    
+
     public function destroy($id)
     {
         DB::delete('delete from marca where id = ?' , [$id]);

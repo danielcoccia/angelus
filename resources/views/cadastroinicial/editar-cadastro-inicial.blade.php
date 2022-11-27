@@ -8,97 +8,180 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row">
-        <h4 class="card-title">Alterar Cadastro inicial</h4>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title" style="color:blue">ALTERAR CADASTRO INICIAL</h4>
+                <div class="form-group row">
+
+                    <div class="col-2">Código:
+                    <input class="form-control text-center" type="text" id="" name="id_item" required="required" value="{{number_format($itemmat[0]->id,' 0','','')}}" placeholder="ID"readonly style="background:rgb(219, 219, 219); color:rgb(0, 0, 0);font-weight:bold;">
+                    </div>
+
+                    <div class="col-6">Nome:
+                    <input class="form-control text-center" type="text" id="" name="nome" required="required" value="{{($itemmat[0]->nome)}}" placeholder="ID"readonly style="background:rgb(219, 219, 219); color:rgb(0, 0, 0);font-weight:bold;">
+                    </div>
+
+                    <div class="col-2">Data cadastro:
+                    <input class="form-control text-center" type="text" id="" name="data_cadastro" required="required" value="{{date( 'd/m/Y' , strtotime($itemmat[0]->data_cadastro))}}" placeholder="nome" readonly style="background:rgb(219, 219, 219); color:rgb(0, 0, 0);font-weight:bold;">
+                    </div>
+
+                    <div class="col-2">Valor venda:
+                        <input class="form-control text-center" type="text" id="" name="valor_venda" required="required" value="{{number_format($itemmat[0]->valor_venda,' 2',',','')}}" placeholder="ID"readonly style="background:rgb(219, 219, 219); color:rgb(0, 0, 0);font-weight:bold;">
+                        </div>
+
+                </div>
+            </div>
+        </div>
+
+    <div class="col-12">
+        <form class="form-horizontal mt-4" method="POST" action="/gerenciar-cadastro-inicial/alterar/{{$itemmat[0]->id}}">
+        @method('PUT')
+        <div class="card">
+            <div class="card-body">
+                @csrf
+                <div class="row align-items-end" style="background:#fff;">
+                    <div class="col-4">
+                        <div class="form-group row">
+                            <label for="nome_item" class="col-sm-5 content-md-center col-form-label">Categoria:</label>
+                            <div class="col-12">
+                                <select class="form-control select2" id="" name="categoria" required="required">
+                                    @foreach($categoria as $categorias)
+                                    <option value="{{$categorias->id}}">{{$categorias->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="nome_item" class="col-sm-5 content-md-center col-form-label">Nome Material:</label>
+                            <div class="col-12">
+                                <select class="form-control select2" id="" name="item_mat" required="required">
+                                    @foreach($itemcat as $itemcats)
+                                    <option value="{{$itemcats->id}}">{{$itemcats->nome}}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-end" style="background:#fff;">
+                    <div class="col-2">
+                        <div class="form-group row">
+                            <div class="col">Valor da venda:
+                            <input class="form-control" type="text" id="" name="valor_venda" required="requiered" value="{{$itemmat[0]->valor_venda}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group row">
+                            <div class="col">Tamanho:
+                                <select class="form-control" id="" name="tamanho" >
+                                    <option value="">Selecione</option>
+                                    @foreach($tamanho as $tamanhos)
+                                    <option value="{{$tamanhos->id}}">{{$tamanhos->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group row">
+                            <div class="col">Marca:
+                                <select class="form-control" id="" name="marca" >
+                                    <option value="">Selecione</option>
+                                    @foreach($marca as $marcas)
+                                    <option value="{{$marcas->id}}">{{$marcas->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <div class="col">Cor:
+                                <select class="form-control" id="" name="cor" >
+                                    <option value="">Selecione</option>
+                                    @foreach($cor as $cores)
+                                    <option value="{{$cores->id}}">{{$cores->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <div class="col">Tipo material:
+                                <select class="form-control" id="" name="tp_mat" >
+                                    <option value="">Selecione</option>
+                                    @foreach($tp_mat as $tp_mats)
+                                    <option value="{{$tp_mats->id}}">{{$tp_mats->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-end" style="background:#fff;">
+                    <div class="col">
+                        <div class="form-group row">
+                            <div class="col">Genero:
+                                <select class="form-control" id="" name="genero" >
+                                    <option value="">Selecione</option>
+                                    @foreach($genero as $generos)
+                                    <option value="{{$generos->id}}">{{$generos->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <div class="col">Fase etária:
+                                <select class="form-control" id="" name="etaria" >
+                                    <option value="">Selecione</option>
+                                    @foreach($fasetaria as $fasetarias)
+                                    <option value="{{$fasetarias->id}}">{{$fasetarias->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <div class="col">Data validade:
+                            <input class="form-control" type="date" id="" name="dt_validade" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">Doado?
+                            <div class="col">
+                                <input type="checkbox" id="checkAdq" name="checkAdq" switch="bool" checked/>
+                                <label for="switch3" data-off-label="Não" data-on-label="Sim" ></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="background:#fff;">
+                    <div class="col">
+                        <div class="form-group row">
+                            <input class="btn btn-danger btn-md btn-block" style="margin-right: 15px;" type="submit" value="Cancelar">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <input class="btn btn-info btn-md btn-block" style="margin-left: 15px;" type="submit" value="Confirmar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></form>
     </div>
-    <hr>
-        <div class="form-group row">
-            <label for="nome_item" class="col-sm-5 content-md-center col-form-label">ID Cadastro Inicial</label>
-            <div class="col">
-            <input class="form-control" type="text" id="" name="id_item" required="required" value="{{$teste[0]->id}}" placeholder="ID"readonly style="background:rgb(202, 200, 200);">
-            </div>
-        </div>
-</div>
-<div class="col">
-    <div class="form-group row">
-        <label for="val_minimo" class="col-sm-5 col-form-label">Nome</label>
-        <div class="col">
-        <input class="form-control" type="text" id="" name="nome_mat" required="required" value="{{$result[0]->nome}}" placeholder="nome" readonly style="background:rgb(202, 200, 200);">
-        </div>
-    </div>
-</div>
-</div>
-    <div class="row align-items-end" style="background:#fff;">
-        <div class="col">
-            <form class="form-horizontal mt-4" method="POST" action="/editar-cadastro-inicial/{{$teste[0]->id}}">
-            @method('PUT')
-            @csrf
-    <div class="row align-items-end" style="background:#fff;">
-        <div class="col">
-            <div class="form-group row">
-                <label for="nome_item" class="col-sm-5 content-md-center col-form-label">Marca</label>
-                <div class="col">
-                <input class="form-control" type="text" id="" name="id_marca" required="required" value="{{$result[0]->marca}}">
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-group row">
-                <label for="val_minimo" class="col-sm-5 col-form-label">Tamanho</label>
-                <div class="col">
-                <input class="form-control" type="text" id="" name="tamanho" required="required" value="{{$result[0]->tamanho}}">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row align-items-end" style="background:#fff;">
-        <div class="col">
-            <div class="form-group row">
-                <label for="nome_item" class="col-sm-5 content-md-center col-form-label">Cor</label>
-                <div class="col">
-                <input class="form-control" type="text" id="" name="cor" required="required" value="{{$result[0]->cor}}">
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-group row">
-                <label for="val_minimo" class="col-sm-5 col-form-label">Tipo de material</label>
-                <div class="col">
-                <input class="form-control" type="text" id="" name="tp_material" required="required" value="{{$result[0]->tipo_material}}">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row align-items-end" style="background:#fff;">
-        <div class="col">
-            <div class="form-group row">
-                <label for="nome_item" class="col-sm-5 content-md-center col-form-label">Valor da venda</label>
-                <div class="col">
-                <input class="form-control" type="text" id="" name="v_venda" required="required" value="{{$teste[0]->valor_venda}}">
-                </div>
-            </div>
-        </div>
-    <div class="col">
-            <div class="form-group row">
-                <label for="val_minimo" class="col-sm-5 col-form-label">Valor venda promocional</label>
-                <div class="col">
-                <input class="form-control" type="text" id="" name="v_venda_p" required="required" value="{{$teste[0]->valor_venda_promocional}}">
-                </div>
-            </div>
-        </div>
-    </div>
-            <div class="form-group row">
-            <label for="ativo" class="col-sm-2 col-form-label">Ativo</label>
-            <div class="col-sm-10">
-                <input  type="checkbox" id="ativo" name="ativo" {{$edititem[0]->ativo ? 'checked' : '' }}>
-            </div>
-        </div>
-        <div class="col-12 mt-3" style="text-align: right;">
-            <input class="btn btn-success" type="submit" value="Alterar">
-        </div>
-    </form>
-</div>
+
 @endsection
 
 @section('footerScript')

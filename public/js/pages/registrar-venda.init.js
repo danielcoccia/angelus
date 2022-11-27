@@ -116,6 +116,28 @@ $(document).ready(function() {
   });
 
 
+  function pesqItem(id_item) {
+
+    showModal();
+    jQuery.ajax({
+      url: "/registrar-venda/getItem/" +id_item,
+      method: 'get',
+      success: function (result) {
+        hideModal();
+        $("#DivConfirmaItem").html(result);
+        $("#vlr_unit").val($("#vlrVenda").val());
+        //$("#dialogBuscaItem").dialog("close")
+        //$("#divVendaItens").show();
+        //$("#divVendaBotoes").show();
+
+        fCalculaValor();
+        // $("#title-alterar").html("Buscar item");
+        // $(".select2").select2();
+      }
+    });
+  }
+
+
 
   $(document).on("click", "#btnAddLista", function(){
 
@@ -149,11 +171,14 @@ $(document).ready(function() {
             // $("#dialogBuscaItem").dialog("close")
             // $("#title-alterar").html("Buscar item");
             // $(".select2").select2();
+
           }
         });
 
-     }else{
+     }else {
        adicionarItem();
+
+
      }
 
 
@@ -182,25 +207,7 @@ $(document).ready(function() {
   });
 });
 
-function pesqItem(id_item) {
-  showModal();
-  jQuery.ajax({
-    url: "/registrar-venda/getItem/" +id_item,
-    method: 'get',
-    success: function (result) {
-      hideModal();
-      $("#DivConfirmaItem").html(result);
-      $("#vlr_unit").val($("#vlrVenda").val());
-      //$("#dialogBuscaItem").dialog("close")
-      //$("#divVendaItens").show();
-      //$("#divVendaBotoes").show();
 
-      fCalculaValor();
-      // $("#title-alterar").html("Buscar item");
-      // $(".select2").select2();
-    }
-  });
-}
 
 
 
@@ -209,7 +216,7 @@ function adicionarItem(){
   var id_item = $("#idItem").val();
   var id_venda = $("#id_venda").val();
 
-  // alert("teste");
+
   jQuery.ajax({
     url: "/registrar-venda/setItemLista/"+id_item+"/"+id_venda,
     method: 'get',

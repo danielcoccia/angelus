@@ -13,7 +13,7 @@
                             <th>ID</th>
                             <th>Nome do Item</th>
                             <th>Embalagem</th>
-                            <th>Uniadede Medida</th>
+                            <th>Unidade Medida</th>
                             <th>Quantidade</th>
                         </tr>
                     </thead>
