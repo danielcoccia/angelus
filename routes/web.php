@@ -235,28 +235,14 @@ Route::name('valor-avariado')->middleware('validaUsuario')->group(function () {
   Route::get('/cad-valor-avariado/excluir/{id}', 'RegistrarAvariaController@destroy');
   Route::get('/cad-valor-avariado/alterar/{id}', 'RegistrarAvariaController@edit');
   Route::any('/alterar-valor-avariado/atualizar/{id}', 'RegistrarAvariaController@update');
-<<<<<<< HEAD
-
-
-  Route::get('/cad-tipo-material', 'TipoMaterialController@index')->middleware('validaUsuario');
-  Route::post('/cad-tipo-material/inserir', 'TipoMaterialController@store')->middleware('validaUsuario');
-  Route::get('/cad-tipo-material/excluir/{id}', 'TipoMaterialController@destroy')->middleware('validaUsuario');
-  Route::get('/cad-tipo-material/alterar/{id}', 'TipoMaterialController@edit')->middleware('validaUsuario');
-  Route::put('/cad-tipo-material/atualizar/{id}', 'TipoMaterialController@update')->middleware('validaUsuario');
-=======
->>>>>>> master
 });
 
 Route::get('/calculos/Calculadora/{id}', 'CalculadoraController@calcular');
 
 
-<<<<<<< HEAD
-
-=======
 Route::get('/cad-tipo-material', 'TipoMaterialController@index')->middleware('validaUsuario');
 Route::post('/cad-tipo-material/inserir', 'TipoMaterialController@store')->middleware('validaUsuario');
 Route::get('/cad-tipo-material/excluir/{id}', 'TipoMaterialController@destroy')->middleware('validaUsuario');
 Route::get('/cad-tipo-material/alterar/{id}', 'TipoMaterialController@edit')->middleware('validaUsuario');
 Route::put('/cad-tipo-material/atualizar/{id}', 'TipoMaterialController@update')->middleware('validaUsuario');
->>>>>>> master
 
