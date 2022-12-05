@@ -3,7 +3,7 @@
             <div class="navbar-header">
                 <div class="d-flex">
                     <!-- LOGO -->
-                    <div class="navbar-brand-box">
+                    <div class="navbar-brand-box" style="background: #fff;">
                   <!--       <a href="/" class="logo logo-dark">
                             <span class="logo-sm">
                                 <img src="{{ URL::asset('/images/logo-sm.png')}}" alt="" height="22">
@@ -62,7 +62,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                             aria-labelledby="page-header-search-dropdown">
-                    
+
                             <form class="p-3">
                                 <div class="form-group m-0">
                                     <div class="input-group">
@@ -86,22 +86,22 @@
                                 <img src="{{ URL::asset('/images/flags/germany_flag.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle"> German </span>
                             </a>
 
-                           
+
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <img src="{{ URL::asset('/images/flags/italy_flag.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle"> Italian </span>
                             </a>
 
-                          
+
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <img src="{{ URL::asset('/images/flags/french_flag.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle"> French </span>
                             </a>
 
-                           
+
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <img src="{{ URL::asset('/images/flags/spain_flag.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle"> Spanish </span>
                             </a>
 
-                          
+
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <img src="{{ URL::asset('/images/flags/russia_flag.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle"> Russian </span>
                             </a>
@@ -217,7 +217,7 @@
                             </div> -->
                         </div>
                     </div>
-            
+
 
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
@@ -232,19 +232,19 @@
                             <!-- <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings font-size-17 text-muted align-middle mr-1"></i> Settings</a> -->
                             <a class="dropdown-item" href="/usuario/alterar-senha"><i class="mdi mdi-lock-open-outline font-size-17 text-muted align-middle mr-1"></i>Alterar Senha</a>
                             <!-- <div class="dropdown-divider"></div> -->
-                            <a class="dropdown-item text-danger" href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="mdi mdi-power font-size-17 text-muted align-middle mr-1 text-danger"></i> {{ __('Logout') }}</a>
+                            <a class="dropdown-item text-danger" href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="mdi mdi-power font-size-17 text-muted align-middle mr-1 text-danger"></i> {{ __('Sair') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>
                     </div>
-<!-- 
+<!--
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
                             <i class="mdi mdi-spin mdi-settings"></i>
                         </button>
                     </div> -->
-            
+
                 </div>
             </div>
         </header>

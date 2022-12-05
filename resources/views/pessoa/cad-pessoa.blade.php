@@ -29,43 +29,28 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="card-title">CADASTRAR UMA PESSOA</h4>
+                                    <h4 class="card-title" style="color: rgb(255, 0, 0);">CADASTRAR UMA PESSOA</h4>
                                     <hr>
                                     <!-- <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->
                                     <form class="form-horizontal mt-4" method="POST" action="/cad-pessoa/inserir">
                                     @csrf
                                         <div class="form-group row">
-                                            <label for="nome" class="col-sm-2 col-form-label">NOME*</label>
-                                            <div class="col-sm-10">
+
+                                            <div class="col">NOME*
                                                 <input class="form-control" required="required" type="text" id="nome" name="nome">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="identidade" class="col-sm-2 col-form-label">IDENTIDADE</label>
-                                            <div class="col-sm-10">
+                                            <div class="col">IDENTIDADE
                                                 <input class="form-control" maxlength="11" type="text" value="" id="identidade" name="identidade">
                                             </div>
-                                        </div>
 
-                                        <div class="form-group row">
-                                            <label for="cpf" class="col-sm-2 col-form-label">CPF</label>
-                                            <div class="col-sm-10">
+                                            <div class="col">CPF
                                                 <input class="form-control mascara_cpf" placeholder="Ex.: 000.000.000-00" type="text" value="" id="cpf" name="cpf">
                                                 <!-- <input type="text" class="form-control " placeholder="Ex.: 000.000.000-00"> -->
                                             </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="email" class="col-sm-2 col-form-label">EMAIL</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="email" value="" id="emial" name="email">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="genero" class="col-sm-2 col-form-label">GENERO*</label>
-                                            <div class="col-sm-10">
+                                            <div class="col">GÊNERO*
                                                 <select class="form-control select2" required="required"  id="genero" name="genero">
                                                     <option value="">Selecione</option>
                                                     @foreach($result as $results)
@@ -73,18 +58,21 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="dt_nascimento" class="col-sm-2 col-form-label">DATA NASCIMENTO</label>
-                                            <div class="col-sm-10">
+                                            <div class="col">DATA NASCIMENTO
                                                 <input class="form-control" type="date" value="" id="dt_nascimento" name="dt_nascimento">
+                                            </div>
+
+                                            <div class="col">CELULAR
+                                                <input class="form-control mascara_celular" placeholder="Ex.: (99) 99999-9999" type="text" value="" id="celular" name="celular">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="entidade" class="col-sm-2 col-form-label">ENTIDADE</label>
-                                            <div class="col-sm-10">
+                                            <div class="col">E-MAIL
+                                                <input class="form-control" type="email" value="" id="emial" name="email">
+                                            </div>
+
+                                            <div class="col">ENTIDADE
                                                 <select class="form-control select2" id="entidade" name="entidade">
                                                     <option value="">Selecione</option>
                                                     @foreach($resultEntidade as $resultEntidades)
@@ -94,14 +82,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label for="celular" class="col-sm-2 col-form-label">CELULAR</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control mascara_celular" placeholder="Ex.: (99) 99999-9999" type="text" value="" id="celular" name="celular">
-                                            </div>
-                                        </div>
-
-                                        <h4>ENDEREÇO</h4><hr class="mt-10">
+                                        <h4 class="card-title" style="color: rgb(255, 0, 0);">ENDEREÇO</h4><hr>
                                         <div class="row mt-10">
                                             <div class="col-md-4">
                                                 <label for="cep" class="form-label">CEP</label>
@@ -143,8 +124,10 @@
 
 
                                         <div class="col-12 mt-3" style="text-align: right;">
-                                            <button type="submit" class="btn btn-success">Salvar</button>
-                                            <button type="button" class="btn btn-danger">Limpar</button>
+                                            <button type="submit" class="btn btn-success">Confirmar</button>
+                                            <a href="/cad-pessoa">
+                                                <input class="btn btn-danger" type="button" value="Limpar">
+                                            </a>
                                         </div>
                                     </form>
                             </div>

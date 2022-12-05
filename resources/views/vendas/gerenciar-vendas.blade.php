@@ -9,27 +9,27 @@
         <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Gerenciar Vendas</h4>
         </div>
         <hr>
-        <div class="col-">
+    </div>
         <form action="{{route('vendas.index')}}" class="form-horizontal mt-4" method="GET" >
-        </div>
-        <div class="col-md-auto">Início
-        @csrf
+            @csrf
+    <div class="row align-items-center">
+        <div class="col">Início
             <input type="date" name="data_inicio" value="{{$data_inicio}}">
         </div>
-        <div class="col-md-auto">Fim
+        <div class="col">Fim
             <input type="date" name="data_fim"  value="{{$data_fim}}">
         </div>
-        <div class="col-md-auto">Situação:
-            <select class="form-control"id="sit" name="situacao" >{{--<option>Selecione a Categoria</option>--}}
+        <div class="col-2">Situação:
+            <select class="form-control"id="sit" name="situacao" ><option></option>
             @Foreach($resultSitVenda as $resultSitVendas)
                 <option value="{{$resultSitVendas->id}}" {{$resultSitVendas->id == $situacao ? 'selected' : ''}}>{{$resultSitVendas->nome}}</option>
             @endForeach
             </select>
         </div>
-        <div class="col-3">Nome do cliente:
+        <div class="col-4">Nome do cliente:
             <input class="form-control" type="text" name="cliente" id="cliente" value="{{$cliente}}"/>
         </div>
-        <div class="col-3">Código venda:
+        <div class="col-3">ID venda:
             <input class="form-control" type="numeric" name="id_venda" id="id_venda" value=""/>
         </div>
     </div>
@@ -59,13 +59,13 @@
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead style='text-align:center;vertical-align:middle'>
                             <tr>
-                                <th>ID Venda</th>
-                                <th>Data Venda</th>
-                                <th>Cliente</th>
-                                <th>Vendedor</th>
-                                <th>Valor Venda</th>
-                                <th>Situação</th>
-                                <th>Ações</th>
+                                <th>ID</th>
+                                <th>DATA</th>
+                                <th>CLIENTE</th>
+                                <th>VENDEDOR</th>
+                                <th>VALOR</th>
+                                <th>SITUAÇÃO</th>
+                                <th>AÇÕES</th>
                             </tr>
                         </thead>
                         <tbody style='text-align:center;vertical-align:middle'>

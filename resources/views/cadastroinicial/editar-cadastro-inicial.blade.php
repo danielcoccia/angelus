@@ -158,9 +158,9 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="form-group row">Doado?
+                        <div class="form-group row">Adquirido?
                             <div class="col">
-                                <input type="checkbox" id="checkAdq" name="checkAdq" switch="bool" checked/>
+                                <input type="checkbox" id="checkAdq" name="checkAdq" switch="bool"/>
                                 <label for="switch3" data-off-label="Não" data-on-label="Sim" ></label>
                             </div>
                         </div>

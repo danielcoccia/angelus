@@ -59,30 +59,30 @@
                                 <div class="card-body">
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
-                                            <tr>
-                                                <th>CÓDIGO</th>
-                                                <th>NOME</th>
-                                                <th>CPF</th>
-                                                <th>IDENTIDADE</th>
-                                                <th>EMAIL</th>
-                                                <th>AÇÕES</th>
+                                            <tr style="text-align: center;">
+                                                <th class="col-1">CÓDIGO</th>
+                                                <th class="col">NOME</th>
+                                                <th class="col">CPF</th>
+                                                <th class="col">IDENTIDADE</th>
+                                                <th class="col">EMAIL</th>
+                                                <th class="col">AÇÕES</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
                                           @foreach($result as $results)
                                              <tr>
-                                                <td>{{$results->id}}</td>
-                                                <td>{{$results->nome}}</td>
-                                                <td>{{$results->cpf}}</td>
-                                                <td>{{$results->identidade}}</td>
-                                                <td>{{$results->email}}</td>
-                                                 <td>
+                                                <td class="col-sm-1">{{$results->id}}</td>
+                                                <td class="col-4">{{$results->nome}}</td>
+                                                <td class="col-1">{{$results->cpf}}</td>
+                                                <td class="col-1">{{$results->identidade}}</td>
+                                                <td class="col-2">{{$results->email}}</td>
+                                                <td class="col-2">
                                                     <a href="/pessoa/alterar/{{$results->id}}">
-                                                        <input class="btn btn-warning" type="button" value="Alterar">
+                                                        <input class="btn btn-warning btn-sm" type="button" value="Alterar">
                                                     </a>
                                                     <a href="/pessoa/excluir/{{$results->id}}">
-                                                        <input class="btn btn-danger" type="button" value="Excluir">
+                                                        <input class="btn btn-danger btn-sm" type="button" value="Excluir">
                                                     </a>
                                                 </td>
                                             </tr>

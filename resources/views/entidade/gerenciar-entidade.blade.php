@@ -6,45 +6,33 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-body">                                    
-                             <!--        <form class="form-horizontal mt-4" method="POST" action="/pesquisar-entidade"> 
+                            <br>
+
                                         @csrf
-                                    <div class="row">
-									   	<div class="col-md-4">
-									    	<label for="cnpj" class="form-label">Cnpj</label>
-									    	<input type="text" class="form-control" id="cnpj" name="cnpj">
-									  	</div>
-									  	<div class="col-md-4">
-									    	<label for="nome_fantasia" class="form-label">Nome Fansasia</label>
-									    	<input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia">
-									  	</div>									  	
-									</div> -->									
                                     <a href="/cad-entidade">
                                         <input class="btn btn-primary" type="button" value="Incluir Entidade">
-                                        <!-- <button type="submit" class="btn btn-primary">Pesquisar</button> -->
                                     </a>
-							  	</div>
-<!--                                 </form> -->
 
-                    <br><br><hr>
-                        <h4 class="card-title">Lista de Entidade</h4>
+
+                                <hr>
+                        <h4 class="card-title">Entidades cadastradas</h4>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
 
-                                    
-                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="text-align:center; border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>id</th>
-                                                <th>Cnpj</th>
+                                                <th>ID</th>
+                                                <th>CNPJ</th>
                                                 <th>Nome Fantasia</th>
                                                 <th>Email</th>
                                                 <th>Contato</th>
                                                 <th>Ação</th>
 
-                                                                                                
+
                                             </tr>
                                         </thead>
 
@@ -62,10 +50,10 @@
                                                     </a>
                                                     <a href="/entidade/excluir/{{$results->id}}">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
-                                                    </a>                                                                                                        
+                                                    </a>
                                                 </td>
                                             </tr>
-                                            @endforeach     
+                                            @endforeach
                                         </tbody>
                                     </table>
 
@@ -76,7 +64,7 @@
                     </div>
                         <!-- end col -->
                     </div>
-                                    
+
                 </div>
             </div>
             <!-- end col -->
@@ -89,7 +77,7 @@
            <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-           
+
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/libs/select2/select2.min.js')}}"></script>

@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" style="color: #000">
 
-<head>
+<head style="color:black;">
+    <script type="text/javascript">
+        function Atualizar() {
+            window.location.reload();
+        }
+    </script>
 
     <meta charset="utf-8" />
     <!-- <title> @yield('title')  | Lexa - Responsive Bootstrap 4 Admin Dashboard</title> -->
@@ -10,7 +15,7 @@
     <meta content="Lexa Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ URL::asset('/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{ URL::asset('/images/logo.ico')}}">
 
      <!-- headerCss -->
     @yield('headerCss')
@@ -23,10 +28,11 @@
     <link href="{{ URL::asset('/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
 </head>
 
-<body data-sidebar="dark">
+<body data-sidebar="dark" style="font-family: consolas; background:#fff;  color:black;">
+
 
     <!-- Begin page -->
-    <div id="layout-wrapper">
+    <div id="layout-wrapper" style="color: #000;">
 
          @include('layouts/partials/header')
 
@@ -35,10 +41,11 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content">
+        <div class="main-content" style="color: #000;">
 
-            <div class="page-content">
-                <div class="container-fluid">
+            <div class="page-content" style="color: #000; padding-top: 70px;">
+
+                <div class="container-fluid" style="color: #000;">
 
                   <!-- content -->
 

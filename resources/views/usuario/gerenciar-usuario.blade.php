@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Data Tables @endsection
+@section('title') Gerenciar usuário @endsection
 
 @section('content')
                     <div class="row">
@@ -10,23 +10,23 @@
                                     <a href="/usuario-incluir">
                                             <input class="btn btn-primary" type="button" value="Incluir Usuário">
                                     </a>
-                    <br><br><hr>
+                    <br><hr>
                         <h4 class="card-title">Lista de Usuário</h4>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
 
-                                    
+
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
-                                            <tr>
-                                                <th>Nome</th>
-                                                <th>Cpf</th>
-                                                <th>Ativo</th>
-                                                <th>Bloqueado</th>
-                                                <th>Data Ativação</th>
-                                                <th>Ação</th>
+                                            <tr style="text-align: center;">
+                                                <th>NOME</th>
+                                                <th>CPF</th>
+                                                <th>ATIVO</th>
+                                                <th>BLOQUEADO</th>
+                                                <th>DATA ATIVAÇÃO</th>
+                                                <th>AÇÃO</th>
                                             </tr>
                                         </thead>
 
@@ -40,17 +40,17 @@
                                                 <td>{{$results->data_ativacao}}</td>
                                                 <td>
                                                     <a href="/usuario/alterar/{{$results->id}}">
-                                                        <input class="btn btn-warning" type="button" value="Alterar">
+                                                        <input class="btn btn-warning btn-sm" type="button" value="Alterar">
                                                     </a>
                                                     <a href="/usuario/excluir/{{$results->id}}">
-                                                        <input class="btn btn-danger" type="button" value="Excluir">
+                                                        <input class="btn btn-danger btn-sm" type="button" value="Excluir">
                                                     </a>
                                                      <a href="/usuario/gerar-Senha/{{$results->id_pessoa}}">
-                                                        <input class="btn btn-primary" type="button" value="Gerar Senha">
+                                                        <input class="btn btn-primary btn-sm" type="button" value="Gerar Senha">
                                                     </a>
                                                 </td>
                                             </tr>
-                                            @endforeach     
+                                            @endforeach
 
                                             @if(session('mensagem'))
                                                 <div class="alert alert-success">
@@ -73,7 +73,7 @@
                     </div>
                         <!-- end col -->
                     </div>
-                                    
+
                 </div>
             </div>
             <!-- end col -->
@@ -86,7 +86,7 @@
            <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-           
+
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/libs/select2/select2.min.js')}}"></script>

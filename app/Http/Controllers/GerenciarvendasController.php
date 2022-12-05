@@ -127,6 +127,9 @@ class GerenciarVendasController extends Controller
 
     }
 
+// Ação de finalizar o pagamento da venda e
+// registrar as situações na tabela item material e venda
+
     public function update ($id){
 
         $alerta = DB::select ("
@@ -143,6 +146,7 @@ class GerenciarVendasController extends Controller
         ->leftjoin('item_material', 'venda_item_material.id_item_material', '=', 'item_material.id')
         ->where ('id_venda', '=', $id)
         ->sum('item_material.valor_venda');
+
 
         $valor =  DB::table ('venda')
         ->where ('id', '=', $id)
@@ -186,7 +190,7 @@ class GerenciarVendasController extends Controller
             ->where('venda_item_material.id_venda', $id)
             ->update(['item_material.id_tipo_situacao' => 2]);
 
-           //dd($teste);
+
         }
 
 

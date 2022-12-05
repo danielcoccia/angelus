@@ -11,7 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Cadastro de Item</h4>
+                    <h4 class="card-title" style="color: rgb(255, 0, 0)">Cadastro de Item</h4>
                     <hr>
                     <!-- <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->
                     <form class="form-horizontal mt-4" method="POST" action="/cad-item-material/inserir">
@@ -74,8 +74,8 @@
                         </div>
 
                         <div class="col-12 mt-3" style="text-align: right;">
-                            <button type="submit" class="btn btn-primary">Cadastrar</button>
-                            <button type="button" class="btn btn-primary">Limpar</button>
+                            <button type="submit" class="btn btn-success">Confirmar</button>
+                            <button type="button" class="btn btn-danger">Limpar</button>
                         </div>
                     </form>
             </div>

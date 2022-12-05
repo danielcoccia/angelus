@@ -1,26 +1,26 @@
 @extends('layouts.master')
 
-@section('title') Data Tables @endsection
+@section('title') Cadastrar usuário @endsection
 
 @section('content')
-    <div class="row"> 
+    <div class="row">
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Usuario<i class="mdi mdi-account-badge"></i></h4>
+                    <h4 class="card-title" style="color: rgb(255, 0, 0)">Usuário <i class="ti-user"></i></h4>
                     <hr>
-                    <div class="card-body"> 
-                        <p>Nome:<strong> {{$result[0]->nome}}</strong></p>
-                        <p>Cpf: <strong> {{$result[0]->cpf}}</strong> </p>
-                        <p>Identidade:<strong>  {{$result[0]->identidade}}</strong> </p>
-                        <p>Data de Nascimento:<strong>  {{$result[0]->data_nascimento}}</strong> </p>
-                        <p>Email: <strong> {{$result[0]->email}}</strong> </p>
+                    <div class="card-body">
+                        <p>NOME:<strong> {{$result[0]->nome}}</strong></p>
+                        <p>CPF: <strong> {{$result[0]->cpf}}</strong> </p>
+                        <p>IDENTIDADE:<strong>  {{$result[0]->identidade}}</strong> </p>
+                        <p>DATA NASCIMENTO:<strong>  {{$result[0]->data_nascimento}}</strong> </p>
+                        <p>EMAIL: <strong> {{$result[0]->email}}</strong> </p>
                     </div>
 
-                <form class="form-horizontal mt-4" method="POST" action="/cad-usuario/inserir"> 
+                <form class="form-horizontal mt-4" method="POST" action="/cad-usuario/inserir">
                 @csrf
                 <input type="hidden" name="idPessoa" value="{{$result[0]->id}}">
-                    <div class="table-responsive">                                
+                    <div class="table-responsive">
                         <table class="table table-bordered table-striped mb-0">
                             <tr>
                                 <td>
@@ -49,34 +49,31 @@
 
         <div class="col-lg-6">
             <div class="card" >
-                
-                    <div class="card-body" >
-                        <div class="row"> 
-                            <div class="col-sm">
-                              <h4 class="card-title">Configurar Perfis <i class="ion mdi mdi-account-network " ></i></h4> 
-                            </div>                            
+                <div class="card-body" >
+                    <div class="row">
+                        <div class="col-sm">
+                            <h4 class="card-title" style="color: rgb(255, 0, 0)">Selecionar Perfis <i class="ti-key" ></i></h4>
                         </div>
-
+                    </div>
+                    <hr>
+                    <div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped mb-0">
+                                @foreach($resultPerfil as $resultPerfils)
+                                <tr>
+                                    <td>
+                                        {{$resultPerfils->nome}}
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="{{$resultPerfils->nome}}" name="{{$resultPerfils->nome}}" value="{{$resultPerfils->id}}" />
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </table>
+                        </div><br><br>
+                        <h4 class="card-title" style="color: rgb(255, 0, 0)">Selecionar Estoque <i class="ti-unlock" ></i> </h4>
                         <hr>
-                        <div>
-                            <div class="table-responsive">                                
-                                <table class="table table-bordered table-striped mb-0">
-                                    @foreach($resultPerfil as $resultPerfils)
-                                    <tr>
-                                        <td>
-                                            {{$resultPerfils->nome}}
-                                        </td>
-                                        <td>
-                                            <input type="checkbox" id="{{$resultPerfils->nome}}" name="{{$resultPerfils->nome}}" value="{{$resultPerfils->id}}" />
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </table>
-                            </div><br><br>
-
-                                    <h4 class="card-title">Configurar Estoque <i class="mdi mdi-view-sequential" ></i> </h4>
-                                    <hr>    
-                                <div class="table-responsive">                            
+                            <div class="table-responsive">
                                 <table class="table table-bordered table-striped mb-0">
                                   @foreach($resultDeposito as $resultDepositos)
                                     <tr>
@@ -84,16 +81,25 @@
                                             {{$resultDepositos->nome}}
                                         </td>
                                         <td>
-                                            <input type="checkbox" id="{{$resultDepositos->nome}}" name="{{$resultDepositos->nome}}" value="{{$resultDepositos->id}}">                                            
+                                            <input type="checkbox" id="{{$resultDepositos->nome}}" name="{{$resultDepositos->nome}}" value="{{$resultDepositos->id}}">
                                         </td>
                                     </tr>
                                     @endforeach
                                 </table>
-                            </div>                        
-                        </div>
+                            </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
-                </form>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+                    </div>
+                    <div class="col">
+                        <a href="/gerenciar-usuario">
+                            <input class="btn btn-danger btn-block" type="button" value="Cancelar">
+                        </a>
+                    </div>
+                </div>
+            </form>
             </div>
         </div>
     </div>
@@ -104,7 +110,7 @@
            <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-           
+
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/libs/select2/select2.min.js')}}"></script>

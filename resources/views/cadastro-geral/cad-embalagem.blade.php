@@ -10,7 +10,7 @@
                 <div class="card-body">
 
                     <h4 class="card-title">Cadastro Embalagem</h4>
-                    <hr>                   
+                    <hr>
                     <form class="form-horizontal mt-4" method="POST" action="/cad-embalagem/inserir">
                     @csrf
                         <div class="form-group">
@@ -29,15 +29,15 @@
                             </div>
                         </div>
                         <div class="col-6 mt-3" style="text-align: right;">
-                            <button type="submit" class="btn btn-primary">CADASTRAR</button>
+                            <button type="submit" class="btn btn-success">CADASTRAR</button>
                         </div>
                     </form>
-                    <br><br><hr>
+                    <br>
                     <h4 class="card-title">Lista de Embalagens</h4>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-body">                                   
+                                <div class="card-body">
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
@@ -79,7 +79,7 @@
             <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-           
+
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/gerenciar-embalagem.init.js')}}"></script>

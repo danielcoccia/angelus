@@ -61,7 +61,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <button id="btnbuscaitem" type="button" class="btn btn-warning">Buscar item catálogo</button>
+                                            <button id="btnbuscaitem" type="button" class="btn btn-dark">Buscar item catálogo</button>
 
                                             <button id="btncodigobarra" type="button" class="btn btn-info">Buscar item Cód barras</button>
                                         </div>
@@ -87,70 +87,70 @@
                                             <input class="form-control" type="text" placeholder="Valor da venda" readonly>
                                             -->
                                         </div>
-                                        <div class="col col-lg-2">
-                                            <button type="button" id="btnAddLista" class="btn btn-success">Incluir na lista de compras</button>
-                                        </div>
-                                        <div id="divListaCompras" class="col col-lg-6">
-                                            <div>
-                                                <table class="table table-bordered" style="display: none;">
-                                                    <thead class="thead-light">
-                                                        <tr style="background-color: #FFFFE0">
-                                                        <td >Qtd</td>
-                                                        <td >Valor unit.</td>
-                                                        <td >Valor total</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <input class="form-control" value="1" type="text" name="qtd_item" id="qtd_item" placeholder="Qtd" readonly>
-                                                            </td>
-                                                            <td>
-                                                                <input class="form-control" value="" type="text" name="vlr_unit" id="vlr_unit" placeholder="Vlr. Unit." readonly>
-                                                            </td>
-                                                            <td>
-                                                                <input class="form-control" value="" type="text" name="vlr_total" id="vlr_total" placeholder="Vlr. Total" readonly>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <table class="table table-bordered">
-                                                    <thead class="thead-light">
-                                                    <h6 style="color: blue;">LISTA DE COMPRAS</h6>
-                                                        <tr>
-                                                            <th scope="col">ID</th>
-                                                            <th scope="col">Produto</th>
-                                                            <!-- <th scope="col">Desconto</th> -->
-                                                            <th scope="col">Qtd.</th>
-                                                            <th scope="col">Valor</th>
-                                                            <th scope="col">Ações</th>
+                                        <div class="col">
+                                            <button type="button" id="btnAddLista" class="btn btn-outline-warning">Incluir na lista de compras</button>
+                                            <div id="divListaCompras" class="col">
 
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {{--<tr>@foreach
-                                                            <td scope="row">{{}}</td>
-                                                            <td>{{}}</td>
-                                                            <!-- <td>{{}}</td> -->
-                                                            <td>{{}}</td>
-                                                            <td>{{}}</td>
-                                                            <td>
-                                                                <a href="#" class="btn btn-danger btn-custom">
-                                                                <i class="far fa-trash-alt"></i>
-                                                                </a>
-                                                            </td>
-                                                            @endforeach
-                                                        </tr> --}}
-                                                    </tbody>
-                                                    <tfooter>
-                                                        <td colspan="2">TOTAL:</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>R$0.00</td>
-                                                        <td>&nbsp;</td>
-                                                    </tfooter>
+                                                        <table class="table table-bordered" style="display: none;">
+                                                            <thead class="thead-light">
+                                                                <tr style="background-color: #FFFFE0">
+                                                                <td >Qtd</td>
+                                                                <td >Valor unit.</td>
+                                                                <td >Valor total</td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input class="form-control" value="1" type="text" name="qtd_item" id="qtd_item" placeholder="Qtd" readonly>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" value="" type="text" name="vlr_unit" id="vlr_unit" placeholder="Vlr. Unit." readonly>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" value="" type="text" name="vlr_total" id="vlr_total" placeholder="Vlr. Total" readonly>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table class="table table-bordered">
+                                                            <thead class="thead-light">
+                                                            <br>
+                                                            <h6 style="color: blue;">LISTA DE COMPRAS</h6>
+                                                                <tr>
+                                                                    <th scope="col">ID</th>
+                                                                    <th scope="col">Produto</th>
+                                                                    <!-- <th scope="col">Desconto</th> -->
+                                                                    <th scope="col">Qtd.</th>
+                                                                    <th scope="col">Valor</th>
+                                                                    <th scope="col">Ações</th>
 
-                                                </table>
-                                            </div>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {{--<tr>@foreach
+                                                                    <td scope="row">{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <!-- <td>{{}}</td> -->
+                                                                    <td>{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>
+                                                                        <a href="#" class="btn btn-danger btn-custom">
+                                                                        <i class="far fa-trash-alt"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                    @endforeach
+                                                                </tr> --}}
+                                                            </tbody>
+                                                            <tfooter>
+                                                                <td colspan="2">TOTAL:</td>
+                                                                <td>&nbsp;</td>
+                                                                <td>R$0.00</td>
+                                                                <td>&nbsp;</td>
+                                                            </tfooter>
+
+                                                        </table>
+
                                         </div>
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@
                                         <div class="col-12 mt-3" style="text-align: right;">
                                             <button id="btnCancVenda" type="button" class="btn btn-danger">Cancelar venda</button>
                                             <!-- <button type="submit" class="btn btn-success">Salvar</button> -->
-                                            <a href="/gerenciar-vendas" id="btnConcVenda" type="button" class="btn btn-info">Salvar e concluir</a>
+                                            <a href="/gerenciar-vendas" id="btnConcVenda" type="button" class="btn btn-success">Salvar e concluir</a>
 
                                         </div>
                                     </div>

@@ -48,7 +48,7 @@ class CadastroInicialController extends Controller
 
         //$result = $this->getListaItens();
         $result = DB::table('item_material AS im')
-                            ->select('im.data_cadastro','im.id', 'icm.nome AS n1', 'im.valor_venda','m.nome AS n2', 't.nome AS n3', 'c.nome AS n4', 'im.valor_venda')
+                            ->select('im.data_cadastro','im.id', 'icm.nome AS n1', 'im.valor_venda','m.nome AS n2', 't.nome AS n3', 'c.nome AS n4', 'im.valor_venda', 'im.adquirido')
                             ->leftjoin('item_catalogo_material AS icm', 'icm.id' , '=', 'im.id_item_catalogo_material')
                             ->leftjoin('tipo_categoria_material AS tcm', 'icm.id_categoria_material' , '=', 'tcm.id')
                             ->leftjoin('marca AS m', 'm.id' , '=', 'im.id_marca')
@@ -64,37 +64,31 @@ class CadastroInicialController extends Controller
 
             $result->where('im.data_cadastro','>' , $request->data_inicio);
         }
-
         if ($request->data_fim){
-
             $result->where('im.data_cadastro','<' , $request->data_fim);
         }
-
 
         $material = $request->material;
 
         if ($request->material){
             $result->where('icm.nome', '~*', "$request->material");
         }
-
-/*
-        if ($request->cliente){
-            $result->where('p.nome', 'like', "%$request->cliente%");
+        $doado = $request->doado;
+        if ($request->doado){
+            $result->where('im.adquirido', '=', "$request->doado");
         }
-
-        if ($request->cliente){
-            $result->where('p.nome', 'like', "%$request->cliente%");
+        $comprado = $request->comprado;
+        if ($request->comprado){
+            $result->where('im.adquirido', '=', "$request->comprado");
         }
-
-*/
-
+        //dd($doado);
         $result = $result->orderBy('im.id', 'DESC')->paginate(10);
 
-
-        return view('cadastroinicial/gerenciar-cadastro-inicial', compact('result', 'data_inicio', 'data_fim', 'material'));
+        return view('cadastroinicial/gerenciar-cadastro-inicial', compact('result', 'data_inicio', 'data_fim', 'material', 'doado', 'comprado'));
 
 
     }
+
 
     public function create()
     {
@@ -179,7 +173,7 @@ class CadastroInicialController extends Controller
         }
         else{
 
-        $Adquirido = isset($request->checkAdq) ? 0 : 1;
+        $Adquirido = isset($request->checkAdq) ? 1 : 0;
         //$Avariado = isset($request->checkAvariado) ? 1 : 0;
 
         DB::table('item_material')

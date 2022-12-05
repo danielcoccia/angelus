@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class BarcodeController extends Controller
 
 {
-    public function show($id)
+   public function show($id)
     {
      //$itens = DB::table ('item_material')->get();
      $itens = DB::select ("
@@ -26,10 +26,11 @@ class BarcodeController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-     //$itens = DB::table ('item_material')->get();
-     $itens = DB::select ("
+
+/*
+     $result = DB::select ("
      select
      m.id,
      m.valor_venda,
@@ -37,7 +38,32 @@ class BarcodeController extends Controller
      from item_material m
      left join item_catalogo_material c on (c.id = m.id_item_catalogo_material)
      ");
-     return view ('barcode', ['itens' => $itens]);
-     //return view ('item_material', compact('itens'));
+*/
+     $result = DB::table('item_material AS im')
+     ->select('im.id', 'icm.nome AS n1', 'im.valor_venda')
+     ->leftjoin('item_catalogo_material AS icm', 'icm.id' , '=', 'im.id_item_catalogo_material');
+
+        $id = $request->id;
+
+        if ($request->id){
+        $result->where('im.id', '=', "$request->id");
+        }
+        $nome = $request->nome;
+        if ($request->nome){
+        $result->where('n1', '=', "$request->nome");
+        }
+        $valor_venda = $request->valor_venda;
+        if ($request->comprvalor_vendaado){
+        $result->where('im.valor_venda', '=', "$request->valor_venda");
+        }
+        //dd($doado);
+        $result = $result;
+
+
+
+
+     return view ('barcode', ['result' => $result]);
+
     }
+
 }

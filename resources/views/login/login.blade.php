@@ -51,7 +51,7 @@
                                             </div> -->
                                         </div>
                                         <div class="col-6 text-right">
-                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Logar</button>
+                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Entrar</button>
                                         </div>
                                     </div>
                                     <!-- <div class="form-group mb-0 row">

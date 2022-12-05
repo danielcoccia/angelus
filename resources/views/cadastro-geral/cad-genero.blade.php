@@ -3,14 +3,14 @@
 @section('title')  @endsection
 
 @section('content')
- 
+
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
 
                     <h4 class="card-title">Cadastro Genero</h4>
-                    <hr>                                    
+                    <hr>
                     <form class="form-horizontal mt-4" method="POST" action="/cad-genero/inserir">
                     @csrf
                     <div class="form-group">
@@ -29,14 +29,14 @@
                         </div>
                     </div>
                     <div class="col-4 mt-3" style="text-align: right;">
-                        <button type="submit" class="btn btn-primary">CADASTRAR</button>                        
-                    </div>                    
-                    <br><br><hr>
+                        <button type="submit" class="btn btn-success">CADASTRAR</button>
+                    </div>
+                    <br>
                     <h4 class="card-title">Lista de Generos</h4>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-body">                                    
+                                <div class="card-body">
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
@@ -57,21 +57,21 @@
                                                     <button type="button" value="{{$results->id}}" id="btnAlterarGenero" class="btn btn-warning waves-effect waves-light classBtnAlterar" data-toggle="modal" data-target=".bs-example-modal-lg">Alterar</button>
                                                     <a href="/cad-genero/excluir/{{$results->id}}">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
-                                                    </a>                                                                                                        
+                                                    </a>
                                                 </td>
                                             </tr>
-                                            @endforeach                       
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                        </div>                        
-                    </div>                        
-                </div>                                    
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>            
+        </div>
     </div>
-    @include('/cadastro-geral/popUp-alterar')    
+    @include('/cadastro-geral/popUp-alterar')
 @endsection
 
 @section('footerScript')
@@ -79,7 +79,7 @@
             <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-           
+
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/gerenciar-genero.init.js')}}"></script>

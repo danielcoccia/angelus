@@ -19,10 +19,10 @@
                             </div>
                         </div>
                         <div class="col-6 mt-3" style="text-align: right;">
-                            <button type="submit" class="btn btn-primary">CADASTRAR</button>
+                            <button type="submit" class="btn btn-success">CADASTRAR</button>
                         </div>
                     </form>
-                    <br><br><hr>
+                    <br>
                     <h4 class="card-title">Lista de Embalagens</h4>
                     <div class="row">
                         <div class="col-12">
@@ -31,9 +31,9 @@
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>Id</th>
-                                                <th>Tipo</th>                                                
-                                                <th>Ação</th>
+                                                <th>ID</th>
+                                                <th>TIPO</th>
+                                                <th>AÇÃO</th>
                                             </tr>
                                         </thead>
 
@@ -41,7 +41,7 @@
                                              @foreach($result as $results)
                                              <tr>
                                                 <td>{{$results->id}}</td>
-                                                <td>{{$results->nome}}</td>                                                
+                                                <td>{{$results->nome}}</td>
                                                  <td>
                                                     <button type="button" value="{{$results->id}}" id="btnAlterarGenero" class="btn btn-warning waves-effect waves-light classBtnAlterar" data-toggle="modal" data-target=".bs-example-modal-lg">Alterar</button>
                                                     <a href="/cad-tipo-estoque/excluir/{{$results->id}}">
@@ -49,18 +49,18 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            @endforeach  
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                    </div>                        
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
-        @include("cadastro-geral/popUp-alterar");        
+        @include("cadastro-geral/popUp-alterar");
 @endsection
 
 @section('footerScript')
@@ -68,7 +68,7 @@
             <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-           
+
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/gerenciar-tp-estoque.init.js')}}"></script>

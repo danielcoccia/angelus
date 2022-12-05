@@ -21,16 +21,16 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Nome</th>
-                                                <th>Categoria</th>
-                                                <th>Valor Mínimo</th>
-                                                <th>Valor Medio</th>
-                                                <th>Valor Máximo</th>
-                                                <th>Valor Marca</th>
-                                                <th>Valor Etiqueta</th>
-                                                <th>Item Composição</th>
-                                                <th>Ativo</th>
-                                                <th>Ações</th>
+                                                <th>NOME</th>
+                                                <th>CATEGORIA</th>
+                                                <th>VALOR MÍNIMO</th>
+                                                <th>VALOR MÉDIO</th>
+                                                <th>VALOR MÁXIMO</th>
+                                                <th>VALOR MARCA</th>
+                                                <th>VALOR ETIQUETA</th>
+                                                <th>ITEM COMPOSIÇÃO</th>
+                                                <th>ATIVO</th>
+                                                <th>AÇÕES</th>
                                             </tr>
                                         </thead>
 
@@ -49,10 +49,10 @@
                                                 <td>{{$results->ativo ? 'sim' : 'não' }}</td>
                                                 <td>
                                                     <a href="/item-catalogo/alterar/{{$results->id}}">
-                                                        <input class="btn btn-warning" type="button" value="Alterar">
+                                                        <input class="btn btn-warning btn-sm" type="button" value="Alterar">
                                                     </a>
                                                     <a href="/item-catalogo/excluir/{{$results->id}}">
-                                                        <input class="btn btn-danger" type="button" value="Excluir">
+                                                        <input class="btn btn-danger btn-sm" type="button" value="Excluir">
                                                     </a>
                                                 </td>
                                             </tr>

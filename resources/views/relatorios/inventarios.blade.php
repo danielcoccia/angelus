@@ -54,7 +54,7 @@
     <div class="container" style="background:#ffffff;">
         <h4 class="card-title" class="card-title" style="font-size:20px; text-align: center; background: #088CFF; color: white;">INVENTÁRIO DE MATERIAL</h4>
         <div class="row">
-        <h6 class="font-weight-bold" style="color: blue;  margin-left: 10px;">RELAÇÃO DOS MATERIAIS EM ESTOQUE - Extraido em <span class="badge badge-secondary">{{"hoje"}}</span> </h6>
+        <h6 class="font-weight-bold" style="color: blue;  margin-left: 10px;">RELAÇÃO DOS MATERIAIS EM ESTOQUE - no dia <span class="badge badge-secondary">{{ \Carbon\Carbon::parse($data)->format('d/m/Y')}}</span> </h6>
             <table class="table table-sm table-striped">
                 <thead style="text-align:center; background: #daffe0;">
                     <tr style="text-align:center; font-weight: bold; font-size:15px">
@@ -87,6 +87,7 @@
                     </tr>
                 </tfoot>
             </table>
+            <h6 class="font-weight-bold" style="color: blue;  margin-left: 10px;">A data de impressão do relatório é <span class="badge badge-secondary">{{ \Carbon\Carbon::today()->format('d/m/Y')}}</span> </h6>
         </div>
     </div>
 </div>

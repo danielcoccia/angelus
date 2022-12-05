@@ -152,7 +152,12 @@ $(document).ready(function() {
 
       showModal("divModal", "", "", "", true, pBackdrop="static", pKeyboard=false);
 
+
+
+
       if ($("#id_venda").val()==null || $("#id_venda").val()=='') {
+
+
 
         var id_pessoa = $("#cpf").val();
         var data_venda = $("#data_venda").val();
@@ -175,13 +180,11 @@ $(document).ready(function() {
           }
         });
 
-     }else {
+        }else {
+
        adicionarItem();
 
-
-     }
-
-
+        }
     // if ($("#id_venda").val()==null) {
 
       // jQuery.ajax({
@@ -194,17 +197,12 @@ $(document).ready(function() {
       //     // $(".select2").select2();
       //   }
       // });
-
-
-
     // }
-
-
-  });
+    });
 
   $("#qtd_item").keyup(function(evt){
     fCalculaValor();
-  });
+    });
 });
 
 
@@ -230,6 +228,7 @@ function adicionarItem(){
         }
       });
       $(document).on("click", "#btnConcVenda", function(){
+
         if ($("#id_venda").val()){
           concluirVenda($("#id_venda").val(), $("#vlrTotalVenda").text());
         }
@@ -326,19 +325,19 @@ function showModal(pId="divModal", pMsg="", pTitle="", pButtons="", pShowX=true,
       show: true
   }
   $("#" + pId + " .modal-title").html(pTitle);
-  if (pMsg) {
-      $("#" + pId + " .modal-body").html(pMsg);
-  } else {
-    $("#" + pId + " .modal-body").html('<img src="/images/loading02.gif" width="50px"><span>&nbsp;Carregando...</span>');
-  }
-  if (pButtons) {
-      $("#" + pId + " .modal-footer").html(pButtons);
-  }else{
-      $("#" + pId + " .modal-footer").html("");
-  }
-  if (pShowX){
-      $("#"+pId+" button.close").css("display", "inherit");
-  }else{
+ if (pMsg) {
+     $("#" + pId + " .modal-body").html(pMsg);
+ } else {
+   $("#" + pId + " .modal-body").html('<img src="/images/loading02.gif" width="50px"><span>&nbsp;Carregando...</span>');
+ }
+ if (pButtons) {
+    $("#" + pId + " .modal-footer").html(pButtons);
+ }else{
+    $("#" + pId + " .modal-footer").html("");
+ }
+ if (pShowX){
+    $("#"+pId+" button.close").css("display", "inherit");
+ }else{
       $("#"+pId+" button.close").css("display", "none");
   }
   //console.log(lOptions);
@@ -347,5 +346,5 @@ function showModal(pId="divModal", pMsg="", pTitle="", pButtons="", pShowX=true,
 }
 
 function hideModal(pId="divModal"){
-  $("#"+pId).modal('hide');
+ $("#"+pId).modal('hide');
 }
