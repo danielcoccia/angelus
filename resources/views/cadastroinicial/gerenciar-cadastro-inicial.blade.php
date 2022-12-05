@@ -15,6 +15,7 @@
                             <div class="col-">
                                 <form action="{{route('cadastroinicial.index')}}" class="form-horizontal mt-4" method="GET" >
                             </div>
+<<<<<<< HEAD
                             <div class="col">Início
                                 <input type="date" name="data_inicio" value="{{$data_inicio}}">
                             </div>
@@ -26,6 +27,23 @@
                             </div>
                             {{--<div class="col-sm">Comprado
                                 <select class="form-control"><option></option>
+=======
+
+                                <label for="" class="form-label">Início</label>
+                            <div class="col">
+                                <input type="date" name="data_inicio" value="{{$data_inicio}}">
+                            </div>
+
+                                <label for="" class="form-label">Final</label>
+                            <div class="col">
+                                <input type="date" name="data_fim" value="{{$data_fim}}">
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control" type="text" name="material" placeholder="Nome do material">
+                            </div>
+                            {{--<div class="col-sm">
+                                <select class="form-control"><option>Selecione a Categoria</option>
+>>>>>>> master
                                 @Foreach($result as $results)
                                 <option value="{{$results->id}}">{{$results->adquirido}}</option>
                                 @endForeach
@@ -38,6 +56,7 @@
                                 @endForeach
                                 </select>
                             </div>
+<<<<<<< HEAD
                             <div class="col-1">
                                 Comprado<br><input type="checkbox" id="switch3" name="doado" switch="bool" value="true" checked/>
                                 <label for="switch3" data-on-label="Não" data-off-label="Sim"></label>
@@ -48,6 +67,8 @@
                                 <label for = "other">Não</label>
                                 <input type="checkbox" id="" label="Não" name="comprado" value="false" checked/>
                             </div>
+=======
+>>>>>>> master
                             <div class="col">
                                 <input class="btn btn-primary" type="submit" value="Pesquisar">
                             </div>
@@ -64,8 +85,13 @@
                             </form>
 
                             <div class="col">
+<<<<<<< HEAD
                                 <a href="/cadastroinicial/barcode">
                                 <input class="btn btn-info" type="button" value="Imprimir Cód Barras">
+=======
+                                <a href="/barcode">
+                                <input class="btn btn-info" type="button" value="Cód Barras da pesquisa">
+>>>>>>> master
                                 </a>
                             </div>
                             <div class="col">

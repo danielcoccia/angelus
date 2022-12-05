@@ -37,11 +37,19 @@
                         </div>
                         <div class="row">
                             <div class="col-6 mt-3" style="text-align: right;">
+<<<<<<< HEAD
                                 <button type="submit" class="btn btn-success">CADASTRAR</button>
                             </div>
                         </div>
                     </form>
                     <hr>
+=======
+                                <button type="submit" class="btn btn-primary">CADASTRAR</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br><br><hr>
+>>>>>>> master
                     <h4 class="card-title">Lista de Tipos de Material</h4>
                     <div class="row">
                         <div class="col-12">

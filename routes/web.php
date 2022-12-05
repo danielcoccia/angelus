@@ -178,8 +178,11 @@ Route::get('/gerenciar-cadastro-inicial/incluir', 'CadastroInicialController@cre
 Route::get('/gerenciar-cadastro-inicial/excluir/{id}', 'CadastroInicialController@destroy')->middleware('validaUsuario');
 Route::get('/editar-cadastro-inicial/{id}', 'CadastroInicialController@formEditar')->middleware('validaUsuario');
 Route::put('/gerenciar-cadastro-inicial/alterar/{id}', 'CadastroInicialController@update')->middleware('validaUsuario');
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
 
 // Route::get('/combo/marcaItem/{id}', 'CadastroInicialController@getCategoria')->middleware('validaUsuario');
 Route::get('/combo/tamanho/{id}', 'CadastroInicialController@getTamanho')->middleware('validaUsuario');
@@ -194,6 +197,10 @@ Route::get('/item_material/{id}', 'BarcodeController@show')->middleware('validaU
 Route::name('vendas')->middleware('validaUsuario')->group(function () {
   Route::any('/gerenciar-vendas', 'GerenciarvendasController@index')->name('.index');
   Route::get('/gerenciar-vendas/excluir/{id}', 'GerenciarvendasController@delete');
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
   Route::get('/gerenciar-vendas/finalizar/{id}', 'GerenciarvendasController@update')->name('finalizarvenda.update');
   Route::get('/gerenciar-vendas/demonstrativo/{id}', 'GerenciarvendasController@update');
 
@@ -238,6 +245,7 @@ Route::name('valor-avariado')->middleware('validaUsuario')->group(function () {
   Route::get('/cad-valor-avariado/excluir/{id}', 'RegistrarAvariaController@destroy');
   Route::get('/cad-valor-avariado/alterar/{id}', 'RegistrarAvariaController@edit');
   Route::any('/alterar-valor-avariado/atualizar/{id}', 'RegistrarAvariaController@update');
+<<<<<<< HEAD
 
 
   Route::get('/cad-tipo-material', 'TipoMaterialController@index')->middleware('validaUsuario');
@@ -245,10 +253,20 @@ Route::name('valor-avariado')->middleware('validaUsuario')->group(function () {
   Route::get('/cad-tipo-material/excluir/{id}', 'TipoMaterialController@destroy')->middleware('validaUsuario');
   Route::get('/cad-tipo-material/alterar/{id}', 'TipoMaterialController@edit')->middleware('validaUsuario');
   Route::put('/cad-tipo-material/atualizar/{id}', 'TipoMaterialController@update')->middleware('validaUsuario');
+=======
+>>>>>>> master
 });
 
 Route::get('/calculos/Calculadora/{id}', 'CalculadoraController@calcular');
 
 
+<<<<<<< HEAD
 
+=======
+Route::get('/cad-tipo-material', 'TipoMaterialController@index')->middleware('validaUsuario');
+Route::post('/cad-tipo-material/inserir', 'TipoMaterialController@store')->middleware('validaUsuario');
+Route::get('/cad-tipo-material/excluir/{id}', 'TipoMaterialController@destroy')->middleware('validaUsuario');
+Route::get('/cad-tipo-material/alterar/{id}', 'TipoMaterialController@edit')->middleware('validaUsuario');
+Route::put('/cad-tipo-material/atualizar/{id}', 'TipoMaterialController@update')->middleware('validaUsuario');
+>>>>>>> master
 

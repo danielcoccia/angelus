@@ -67,8 +67,13 @@ class GerenciarVendasController extends Controller
         }
 
         $result = $result->orderBy('v.id', 'DESC')->paginate(5);
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> master
         //dd($result);
         //$result = $this->result->paginate($this->totalPage);
         //->toSql();

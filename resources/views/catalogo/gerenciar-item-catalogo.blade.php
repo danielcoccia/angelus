@@ -21,6 +21,7 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
+<<<<<<< HEAD
                                                 <th>NOME</th>
                                                 <th>CATEGORIA</th>
                                                 <th>VALOR MÍNIMO</th>
@@ -31,6 +32,18 @@
                                                 <th>ITEM COMPOSIÇÃO</th>
                                                 <th>ATIVO</th>
                                                 <th>AÇÕES</th>
+=======
+                                                <th>Nome</th>
+                                                <th>Categoria</th>
+                                                <th>Valor Mínimo</th>
+                                                <th>Valor Medio</th>
+                                                <th>Valor Máximo</th>
+                                                <th>Valor Marca</th>
+                                                <th>Valor Etiqueta</th>
+                                                <th>Item Composição</th>
+                                                <th>Ativo</th>
+                                                <th>Ações</th>
+>>>>>>> master
                                             </tr>
                                         </thead>
 

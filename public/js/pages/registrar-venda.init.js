@@ -180,7 +180,15 @@ $(document).ready(function() {
           }
         });
 
+<<<<<<< HEAD
         }else {
+=======
+     }else {
+       adicionarItem();
+
+
+     }
+>>>>>>> master
 
        adicionarItem();
 

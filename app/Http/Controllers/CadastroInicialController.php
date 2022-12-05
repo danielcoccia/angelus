@@ -6,16 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use App\Models\ModelCadastroInicial;
-use Illuminate\Support\Facades\Response;
-
+use App\Models\ModelItemCatalogo;
+use App\Models\ModelItemMaterial;
 
 class CadastroInicialController extends Controller
 {
 
    private $objItemMaterial;
 
-   public function __construct(){
-     $this->objItemMaterial = new ModelCadastroInicial();
+    public function __construct(){
+        $this->objItemMaterial = new ModelCadastroInicial();
     }
 
     private function getListaItens(){
@@ -71,7 +71,7 @@ class CadastroInicialController extends Controller
         $material = $request->material;
 
         if ($request->material){
-            $result->where('icm.nome', '~*', "$request->material");
+            $result->where('icm.nome', 'like', "%$request->material%");
         }
         $doado = $request->doado;
         if ($request->doado){
@@ -84,7 +84,12 @@ class CadastroInicialController extends Controller
         //dd($doado);
         $result = $result->orderBy('im.id', 'DESC')->paginate(10);
 
-        return view('cadastroinicial/gerenciar-cadastro-inicial', compact('result', 'data_inicio', 'data_fim', 'material', 'doado', 'comprado'));
+*/
+
+        $result = $result->orderBy('im.id', 'DESC')->get();
+
+
+        return view('cadastroinicial/gerenciar-cadastro-inicial', compact('result', 'data_inicio', 'data_fim', 'material'));
 
 
     }
@@ -105,107 +110,28 @@ class CadastroInicialController extends Controller
         return view('cadastroinicial/incluir-cadastro-inicial-item', compact('resultItem'));
     }
 
+    public function show($id)
+    {
+        //
+    }
+
+
+
 
     public function formEditar ($id)
     {
 
-        $itemmat = DB::table("item_material AS im")
-        ->leftJoin("item_catalogo_material AS ic", "im.id_item_catalogo_material", "ic.id" )
-        ->leftJoin("tipo_categoria_material AS tc", "ic.id_categoria_material", "tc.id" )
-        ->select('ic.nome', 'im.id', 'im.data_cadastro', 'im.valor_venda', 'im.id_tipo_situacao', 'adquirido', 'id_fase_etaria', 'valor_venda','tc.id AS idcat', 'tc.nome AS nomecat')
-        ->where('im.id',$id)
-        ->get();
+        $teste = DB::select("select im.id from item_material im where im.id = $id");
 
-        $categoria = DB::table("tipo_categoria_material")
-        ->select('id', 'nome')
-        ->get();
-
-        $itemcat = DB::table("item_catalogo_material")
-        //->where('id' )
-        ->orderBy('id', 'ASC')->get();
-
-
-        $marca = DB::table("marca")
-        ->Where('id', '>', 0)
-        ->orderBy ('id', 'ASC')->get();
-
-        $tamanho = DB::table("tamanho")
-        ->Where('id', '>', 0)
-        ->orderBy ('id', 'ASC')->get();
-
-        $cor = DB::table("cor")
-        ->Where('id', '>', 0)
-        ->orderBy ('id', 'ASC')->get();
-
-        $tp_mat = DB::table("tipo_material")
-        ->Where('id', '>', 0)
-        ->orderBy ('id', 'ASC')->get();
-
-        $fasetaria = DB::table("fase_etaria")
-        ->Where('id', '>', 0)
-        ->orderBy ('id', 'ASC')->get();
-
-        $genero = DB::table("tipo_genero")
-        ->select('id', 'nome')
-        ->Where('id', '>', 0)
-        ->orderBy ('id', 'ASC')->get();
-
-
-    return view('cadastroinicial/editar-cadastro-inicial', compact('categoria','itemmat', 'itemcat', 'marca', 'tamanho', 'cor', 'tp_mat', 'fasetaria', 'genero'));
+        return view ('cadastroinicial/editar-cadastro-inicial', compact('teste'));
 
     }
 
-
-    public function  update (Request $request, $id)
+    public function editar ()
     {
+        echo "editar";
 
-        $situacao = DB::table('item_material')
-                        ->where('id', $id)
-                        ->sum('id_tipo_situacao');
-
-
-        if ($situacao > '1' && $situacao < '6' ){
-
-        //return redirect()->back();
-        return redirect()->route('cadastroinicial.index')
-        ->with('warning', 'Este item não pode ser modificado porque não está mais em estoque');
-
-        }
-        else{
-
-        $Adquirido = isset($request->checkAdq) ? 1 : 0;
-        //$Avariado = isset($request->checkAvariado) ? 1 : 0;
-
-        DB::table('item_material')
-            ->where('id', $id)
-            ->update([
-            'id_usuario_cadastro'=> session()->get('usuario.id_usuario'),
-            'id_item_catalogo_material' => $request->input('item_mat'),
-           // 'data_cadastro' => date("d/m/Y"),
-           // 'id_tipo_embalagem' => $request->input('embalagem'),
-           // 'id_tipo_unidade_medida' => $request->input('und_med'),
-           // 'quantidade_embalagem' => $request->input('qtdEmb'),
-            'valor_venda' => $request->input('valor_venda'),
-            'id_tamanho' => $request->input('tamanho'),
-            'id_marca' => $request->input('marca'),
-            'id_cor' => $request->input('cor'),
-            'id_tp_genero' => $request->input('genero'),
-            'id_tipo_material' => $request->input('tp_mat'),
-            'id_fase_etaria' => $request->input('etaria'),
-            //'id_deposito' => $request->input('deposito'),
-            'data_validade' => $request->input('dt_validade'),
-            'adquirido' => $Adquirido,
-            //'avariado' => $Avariado,
-            //'liberacao_venda' => 0,
-            //'id_tipo_situacao' => '1',
-
-        ]);
-
-        return redirect()->action('CadastroInicialController@index');
-        }
     }
-
-
 
     public function destroy($id)
     {
@@ -241,7 +167,7 @@ class CadastroInicialController extends Controller
         $sql4 = "Select id, nome from cor where id_categoria_material = $idCat";
         $result4 = DB::select($sql4);
 
-        $sql5 = "Select id, nome from tipo_material";
+        $sql5 = "Select id, nome from tipo_material where id_categoria_material = $idCat";
         $result5 = DB::select($sql5);
 
         $sql6 = "Select id, nome from fase_etaria where id_categoria_material = $idCat";
@@ -283,7 +209,7 @@ class CadastroInicialController extends Controller
         $html.='<tr><td>Embalagem </td> <td>'.getCombo($result9,'embalagem', 0).'</td></tr>';
         $html.='<tr><td>Qtd Embalagem</td> <td><input type="text" name="qtdEmb" id="qtdEmb"></td></tr>';
         $html.='<tr><td>Unidade Medida </td> <td>'.getCombo($result10,'und_med', 0).'</td></tr>';
-        $html.='<tr><td>Adquirido</td><td><input type="checkbox" id="checkAdq" name="checkAdq" switch="bool" /><label for="checkAdq" data-on-label="Sim" data-off-label="Não"></label></td>';
+        $html.='<tr><td>Adiquirido</td><td><input type="checkbox" id="checkAdq" name="checkAdq" switch="bool" /><label for="checkAdq" data-on-label="Sim" data-off-label="Não"></label></td>';
         $html.='</table>';
         $html.='</div>';
 
@@ -303,15 +229,15 @@ class CadastroInicialController extends Controller
                 <td>
                     <div id="DivValorInput">
                         <input type="radio" id="valor_minimo" name="valor_venda" value="'.$result[0]->valor_minimo.'">
-                        <label for="valor_minimo">Mínimo R$'. number_format($result[0]->valor_minimo,2,',','.') .'</label><br>
+                        <label for="valor_minimo">Mínimo R$'.$result[0]->valor_minimo.'</label><br>
                         <input type="radio" id="valor_medio" name="valor_venda" value="'.$result[0]->valor_medio.'">
-                        <label for="valor_medio">Médio R$'. number_format($result[0]->valor_medio,2,',','.').'</label><br>
+                        <label for="valor_medio">Médio R$'.$result[0]->valor_medio.'</label><br>
                         <input type="radio" id="valor_maximo" name="valor_venda" value="'.$result[0]->valor_maximo.'">
-                        <label for="valor_medio">Máximo R$'. number_format($result[0]->valor_maximo,2,',','.').'</label><br>
+                        <label for="valor_medio">Máximo R$'.$result[0]->valor_maximo.'</label><br>
                         <input type="radio" id="valor_marca" name="valor_venda" value="'.$result[0]->valor_marca.'">
-                        <label for="valor_marca">Marca R$'. number_format($result[0]->valor_marca,2,',','.').'</label><br>
+                        <label for="valor_marca">Marca R$'.$result[0]->valor_marca.'</label><br>
                         <input type="radio" id="valor_etiqueta" name="valor_venda" value="'.$result[0]->valor_etiqueta.'">
-                        <label for="valor_etiqueta">Etiqueta R$'. number_format($result[0]->valor_etiqueta,2,',','.').'</label><br>
+                        <label for="valor_etiqueta">Etiqueta R$'.$result[0]->valor_etiqueta.'</label><br>
                     </div>
                 </td></tr>';
         $html.='</table>';
@@ -417,7 +343,7 @@ class CadastroInicialController extends Controller
      public function store(Request $request)
     {
 
-            $Adquirido = isset($request->checkAdq) ? 1 : 0;
+            $Adiquirido = isset($request->checkAdq) ? 1 : 0;
             $Avariado = isset($request->checkAvariado) ? 1 : 0;
 
             for ($i=0; $i < $request->input('qtdItens'); $i++){
@@ -431,7 +357,7 @@ class CadastroInicialController extends Controller
             'id_tipo_embalagem' => $request->input('embalagem'),
             'id_tipo_unidade_medida' => $request->input('und_med'),
             'quantidade_embalagem' => $request->input('qtdEmb'),
-            'adquirido' => $Adquirido,
+            'adquirido' => $Adiquirido,
             'valor_venda' => $request->input('valor_venda'),
             'id_marca' => $request->input('marca'),
             'id_tamanho' => $request->input('tamanho'),

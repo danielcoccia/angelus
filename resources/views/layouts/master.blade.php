@@ -15,7 +15,11 @@
     <meta content="Lexa Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
+<<<<<<< HEAD
     <link rel="shortcut icon" href="{{ URL::asset('/images/logo.ico')}}">
+=======
+    <link rel="shortcut icon" href="{{ URL::asset('/images/favicon.ico')}}">
+>>>>>>> master
 
      <!-- headerCss -->
     @yield('headerCss')

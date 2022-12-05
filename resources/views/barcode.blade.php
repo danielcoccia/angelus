@@ -17,7 +17,11 @@
     </style>
 </head>
     <body >
+<<<<<<< HEAD
        <a href="/gerenciar-cadastro-inicial">
+=======
+        <a href="/gerenciar-cadastro-inicial">
+>>>>>>> master
             <input class="btn btn-danger" type="button" value="Cancelar">
         </a>
     </div>
