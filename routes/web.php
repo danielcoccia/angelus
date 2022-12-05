@@ -178,13 +178,7 @@ Route::get('/gerenciar-cadastro-inicial/incluir', 'CadastroInicialController@cre
 Route::get('/gerenciar-cadastro-inicial/excluir/{id}', 'CadastroInicialController@destroy')->middleware('validaUsuario');
 Route::get('/editar-cadastro-inicial/{id}', 'CadastroInicialController@formEditar')->middleware('validaUsuario');
 Route::put('/gerenciar-cadastro-inicial/alterar/{id}', 'CadastroInicialController@update')->middleware('validaUsuario');
-<<<<<<< HEAD
 
-
-=======
->>>>>>> master
-
-// Route::get('/combo/marcaItem/{id}', 'CadastroInicialController@getCategoria')->middleware('validaUsuario');
 Route::get('/combo/tamanho/{id}', 'CadastroInicialController@getTamanho')->middleware('validaUsuario');
 Route::get('/combo/embalagem/{id}', 'CadastroInicialController@getEmbalagem')->middleware('validaUsuario');
 
@@ -197,10 +191,6 @@ Route::get('/item_material/{id}', 'BarcodeController@show')->middleware('validaU
 Route::name('vendas')->middleware('validaUsuario')->group(function () {
   Route::any('/gerenciar-vendas', 'GerenciarvendasController@index')->name('.index');
   Route::get('/gerenciar-vendas/excluir/{id}', 'GerenciarvendasController@delete');
-<<<<<<< HEAD
-=======
-
->>>>>>> master
   Route::get('/gerenciar-vendas/finalizar/{id}', 'GerenciarvendasController@update')->name('finalizarvenda.update');
   Route::get('/gerenciar-vendas/demonstrativo/{id}', 'GerenciarvendasController@update');
 

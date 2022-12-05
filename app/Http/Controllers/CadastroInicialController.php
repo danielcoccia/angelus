@@ -81,12 +81,7 @@ class CadastroInicialController extends Controller
         if ($request->comprado){
             $result->where('im.adquirido', '=', "$request->comprado");
         }
-        //dd($doado);
         $result = $result->orderBy('im.id', 'DESC')->paginate(10);
-
-*/
-
-        $result = $result->orderBy('im.id', 'DESC')->get();
 
 
         return view('cadastroinicial/gerenciar-cadastro-inicial', compact('result', 'data_inicio', 'data_fim', 'material'));
