@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Ângelus @endsection
+@section('title') @endsection
 
 @section('content')
 

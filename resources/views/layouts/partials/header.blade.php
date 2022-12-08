@@ -19,7 +19,6 @@
                             </span>
                             <span class="logo-lg">
                                 <img src="{{ URL::asset('/images/logo_comunhao_completa_cor_pos.png')}}" alt="" height="55">
-                                Angelus
                             </span>
                         </a>
                     </div>

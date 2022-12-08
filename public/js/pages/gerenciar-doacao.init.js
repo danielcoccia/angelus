@@ -15,7 +15,7 @@ $(document).ready(function() {
 	                  method: 'get',
 	                  success: function(result){
 	                  	$("#divFormAlterar").html(result);
-	                  	$("#title-alterar").html("Alteração de Tamano");
+	                  	$("#title-alterar").html("Alteração de Tamanho");
 	                  	$(".select2").select2();
 	                  }
 	              	});

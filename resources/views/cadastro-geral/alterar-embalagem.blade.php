@@ -1,4 +1,4 @@
-<form class="form-horizontal mt-4" method="POST" action="cad-embalagem/atualizar/{{$resultEmbalagem[0]->id}}">  
+<form class="form-horizontal mt-4" method="POST" action="cad-embalagem/atualizar/{{$resultEmbalagem[0]->id}}">
 @csrf
 @method('PUT')
     <div class="form-group">
@@ -18,7 +18,7 @@
     </div>
     <div class="row">
         <div class="col-6 mt-3" style="text-align: right;">
-            <button type="submit" class="btn btn-primary">Alterar</button>                        
-        </div>    
+            <button type="submit" class="btn btn-success">Alterar</button>
+        </div>
     </div>
 </form>

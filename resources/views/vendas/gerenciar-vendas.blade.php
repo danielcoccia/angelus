@@ -9,7 +9,6 @@
         <h4 class="card-title" class="card-title" style="text-align: center; background: #088CFF; color: white;">Gerenciar Vendas</h4>
         </div>
         <hr>
-<<<<<<< HEAD
     </div>
         <form action="{{route('vendas.index')}}" class="form-horizontal mt-4" method="GET" >
             @csrf
@@ -52,50 +51,6 @@
                 </a>
             </div>
         </div>
-=======
-        <div class="col-">
-        <form action="{{route('vendas.index')}}" class="form-horizontal mt-4" method="GET" >
-        </div>
-        <div class="col-md-auto">Início
-        @csrf
-            <input type="date" name="data_inicio" value="{{$data_inicio}}">
-        </div>
-        <div class="col-md-auto">Fim
-            <input type="date" name="data_fim"  value="{{$data_fim}}">
-        </div>
-        <div class="col-md-auto">Situação:
-            <select class="form-control"id="sit" name="situacao" >{{--<option>Selecione a Categoria</option>--}}
-            @Foreach($resultSitVenda as $resultSitVendas)
-                <option value="{{$resultSitVendas->id}}" {{$resultSitVendas->id == $situacao ? 'selected' : ''}}>{{$resultSitVendas->nome}}</option>
-            @endForeach
-            </select>
-        </div>
-        <div class="col-3">Nome do cliente:
-            <input class="form-control" type="text" name="cliente" id="cliente" value="{{$cliente}}"/>
-        </div>
-        <div class="col-3">Código venda:
-            <input class="form-control" type="numeric" name="id_venda" id="id_venda" value=""/>
-        </div>
-    </div>
-<br>
-
-    <div class="row align-items-center">
-        <div class="col">
-            <input class="btn btn-info" type="submit" value="Pesquisar">
-        </div>
-            <div class="col">
-                <a href="/gerenciar-vendas">
-                <input class="btn btn-danger" type="button" value="Limpar">
-                </a>
-            </div>
-            </form>
-            <div class="col">
-                <a href="/registrar-venda">
-                <input class="btn btn-success float-right" type="button" value="Nova venda +">
-                </a>
-            </div>
-        </div>
->>>>>>> master
         <hr>
     <div class="row">
         <div class="col-12">

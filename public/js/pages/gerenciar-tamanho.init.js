@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+
 	$.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -15,8 +15,8 @@ $(document).ready(function() {
 	                  method: 'get',
 	                  success: function(result){
 	                  	$("#divFormAlterar").html(result);
-	                  	$("#title-alterar").html("Alteração de Tamano");
-	                  	$(".select2").select2();	                  	
+	                  	$("#title-alterar").html("Alteração de Tamanho");
+	                  	$(".select2").select2();
 	                  }
 	              	});
    	});

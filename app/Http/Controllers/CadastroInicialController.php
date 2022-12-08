@@ -62,10 +62,10 @@ class CadastroInicialController extends Controller
 
         if ($request->data_inicio){
 
-            $result->where('im.data_cadastro','>' , $request->data_inicio);
+            $result->where('im.data_cadastro','>=' , $request->data_inicio);
         }
         if ($request->data_fim){
-            $result->where('im.data_cadastro','<' , $request->data_fim);
+            $result->where('im.data_cadastro','<=' , $request->data_fim);
         }
 
         $material = $request->material;
@@ -204,7 +204,7 @@ class CadastroInicialController extends Controller
         $html.='<tr><td>Embalagem </td> <td>'.getCombo($result9,'embalagem', 0).'</td></tr>';
         $html.='<tr><td>Qtd Embalagem</td> <td><input type="text" name="qtdEmb" id="qtdEmb"></td></tr>';
         $html.='<tr><td>Unidade Medida </td> <td>'.getCombo($result10,'und_med', 0).'</td></tr>';
-        $html.='<tr><td>Adiquirido</td><td><input type="checkbox" id="checkAdq" name="checkAdq" switch="bool" /><label for="checkAdq" data-on-label="Sim" data-off-label="Não"></label></td>';
+        $html.='<tr><td>Comprado</td><td><input type="checkbox" id="checkAdq" name="checkAdq" switch="bool" /><label for="checkAdq" data-on-label="Sim" data-off-label="Não"></label></td>';
         $html.='</table>';
         $html.='</div>';
 

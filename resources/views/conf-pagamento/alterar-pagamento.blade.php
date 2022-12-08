@@ -11,7 +11,7 @@
     </div>
     <div class="row">
         <div class="col-6 mt-3" style="text-align: right;">
-            <button type="submit" class="btn btn-primary">Alterar</button>
+            <button type="submit" class="btn btn-success">Alterar</button>
         </div>
     </div>
 </form>

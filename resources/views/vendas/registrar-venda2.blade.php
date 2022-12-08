@@ -22,7 +22,7 @@
                                                 <input class="form-control" type="text" placeholder="ID Venda" readonly>
                                             </div>
                                             <div class="col-sm">
-                                                <input class="form-control" value="{{date('d/m/Y')}}" type="text" placeholder="Data Venda" readonly>
+                                                <input class="form-control" value="{{date('d-m-Y')}}" type="text" placeholder="Data Venda" readonly>
                                             </div>
                                             <div class="col-sm">
                                                 <input class="form-control" value="{{session()->get('usuario.nome')}}" type="text" placeholder="Vendedor">

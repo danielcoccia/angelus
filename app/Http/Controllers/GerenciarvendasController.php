@@ -40,6 +40,12 @@ class GerenciarVendasController extends Controller
 
         $cliente = $request->cliente;
 
+        $data_inicio = $request->data_inicio;
+
+        $data_fim = $request->data_fim;
+
+        $id_venda = $request->id_venda;
+
         if ($request->situacao){
             $result->where('v.id_tp_situacao_venda', $request->situacao);
         }
@@ -52,10 +58,6 @@ class GerenciarVendasController extends Controller
             $result->where('v.id', '=', "$request->id_venda");
         }
 
-
-        $data_inicio = $request->data_inicio;
-        $data_fim = $request->data_fim;
-
         if ($request->data_inicio){
 
             $result->where('v.data','>' , $request->data_inicio);
@@ -67,16 +69,6 @@ class GerenciarVendasController extends Controller
         }
 
         $result = $result->orderBy('v.id', 'DESC')->paginate(5);
-<<<<<<< HEAD
-
-
-=======
-
-
->>>>>>> master
-        //dd($result);
-        //$result = $this->result->paginate($this->totalPage);
-        //->toSql();
 
 
        return view('vendas/gerenciar-vendas', compact('result','data_inicio', 'data_fim', 'resultSitVenda', 'situacao', 'cliente'));

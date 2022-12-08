@@ -10,16 +10,12 @@
 
     <meta charset="utf-8" />
     <!-- <title> @yield('title')  | Lexa - Responsive Bootstrap 4 Admin Dashboard</title> -->
-    <title> @yield('title')  </title>
+    <title> @yield('title') </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Lexa Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-<<<<<<< HEAD
     <link rel="shortcut icon" href="{{ URL::asset('/images/logo.ico')}}">
-=======
-    <link rel="shortcut icon" href="{{ URL::asset('/images/favicon.ico')}}">
->>>>>>> master
 
      <!-- headerCss -->
     @yield('headerCss')
