@@ -13,10 +13,10 @@
                 <div class="container">
                     <form action="{{route('cadastroinicial.index')}}" class="form-horizontal mt-4" method="GET" >
                     <div class="row">
-                        <div class="col">Início
+                        <div class="col-2">Início
                         <input type="date" name="data_inicio" value="{{$data_inicio}}">
                         </div>
-                        <div class="col">Final
+                        <div class="col-2">Final
                             <input type="date" name="data_fim" value="{{$data_fim}}">
                         </div>
                         <div class="col-4">Nome do material
@@ -28,24 +28,22 @@
                             <label for = "other">Não</label>
                             <input type="checkbox" id="" label="Não" name="comprado" value="false" checked/>
                         </div>
-                        <div class="col">
-                            <input class="btn btn-primary" type="submit" value="Pesquisar">
-                        </div>
-                        <div class="col">
-                            <a href="/gerenciar-cadastro-inicial">
-                                <input class="btn btn-danger" type="button" value="Limpar">
-                            </a>
-                        </form>
+                        <div class="col-2">Categoria:
+                            <select class="form-control" id="" name="categoria" ><option></option>
+                            @Foreach($resultCat as $resultCats)
+                                <option value="{{$resultCats->id}}" {{$resultCats->id == $categoria ? 'selected' : ''}}>{{$resultCats->nome}}</option>
+                            @endForeach
+                            </select>
                         </div>
                     </div>
-                    <div class="row">
+                    <br>
+                    <div class="row" style="text-align: right;">
                         <div class="col">
-                            <a href="/cadastroinicial/barcode">
-                            <input class="btn btn-info" type="button" value="Imprimir Cód Barras">
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="/gerenciar-cadastro-inicial/incluir"><input class="btn btn-success float-right" type="button" value="Novo Cadastro +"></a>
+                            <input class="btn btn-primary" type="submit" value="Pesquisar">
+                            <a href="/gerenciar-cadastro-inicial"><input class="btn btn-danger" type="button" value="Limpar"></a>
+                        </form>
+                            <a href="/barcode"><input class="btn btn-info" type="button" value="Imprimir Cód Barras"></a>
+                            <a href="/gerenciar-cadastro-inicial/incluir"><input class="btn btn-success" type="button" value="Novo Cadastro +"></a>
                         </div>
                     </div>
                 </div>

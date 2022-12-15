@@ -46,9 +46,11 @@ class CadastroInicialController extends Controller
     public function index(Request $request)
     {
 
+        $resultCat = DB::select ('select id, nome from tipo_categoria_material');
+
         //$result = $this->getListaItens();
         $result = DB::table('item_material AS im')
-                            ->select('im.data_cadastro','im.id', 'icm.nome AS n1', 'im.valor_venda','m.nome AS n2', 't.nome AS n3', 'c.nome AS n4', 'im.valor_venda', 'im.adquirido')
+                            ->select('im.data_cadastro','im.id', 'icm.nome AS n1','tcm.nome AS n5', 'im.valor_venda','m.nome AS n2', 't.nome AS n3', 'c.nome AS n4', 'im.valor_venda', 'im.adquirido', 'tcm.id AS id_cat')
                             ->leftjoin('item_catalogo_material AS icm', 'icm.id' , '=', 'im.id_item_catalogo_material')
                             ->leftjoin('tipo_categoria_material AS tcm', 'icm.id_categoria_material' , '=', 'tcm.id')
                             ->leftjoin('marca AS m', 'm.id' , '=', 'im.id_marca')
@@ -77,6 +79,10 @@ class CadastroInicialController extends Controller
         if ($request->doado){
             $result->where('im.adquirido', '=', "$request->doado");
         }
+        $categoria = $request->categoria;
+        if ($request->categoria){
+            $result->where('tcm.id', '=', "$request->categoria");
+        }
         $comprado = $request->comprado;
         if ($request->comprado){
             $result->where('im.adquirido', '=', "$request->comprado");
@@ -84,7 +90,7 @@ class CadastroInicialController extends Controller
         $result = $result->orderBy('im.id', 'DESC')->paginate(10);
 
 
-        return view('cadastroinicial/gerenciar-cadastro-inicial', compact('result', 'data_inicio', 'data_fim', 'material'));
+        return view('cadastroinicial/gerenciar-cadastro-inicial', compact('result','categoria', 'data_inicio', 'data_fim', 'material', 'resultCat'));
 
 
     }

@@ -35,27 +35,19 @@
     </div>
 <br>
 
-    <div class="row align-items-center">
-        <div class="col">
+    <div class="row" style="text-align: right;">
+        <div class="col-12">
             <input class="btn btn-info" type="submit" value="Pesquisar">
-        </div>
-            <div class="col">
-                <a href="/gerenciar-vendas">
-                <input class="btn btn-danger" type="button" value="Limpar">
-                </a>
-            </div>
+            <a href="/gerenciar-vendas"><input class="btn btn-danger" type="button" value="Limpar"></a>
             </form>
-            <div class="col">
-                <a href="/registrar-venda">
-                <input class="btn btn-success float-right" type="button" value="Nova venda +">
-                </a>
-            </div>
+            <a href="/registrar-venda"><input class="btn btn-success" type="button" value="Nova venda +"></a>
         </div>
-        <hr>
+        <hr><br><br>
     <div class="row">
         <div class="col-12">
-            <div class="card"><h4 class="card-title" class="card-title">Dados das vendas</h4>
+            <div class="card">
                 <div class="card-body">
+                    <h4 class="card-title" style="text-align: left;">Dados das vendas</h4>
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead style='text-align:center;vertical-align:middle'>
                             <tr>

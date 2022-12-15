@@ -17,18 +17,12 @@
     </style>
 </head>
     <body >
-<<<<<<< HEAD
        <a href="/gerenciar-cadastro-inicial">
-=======
-        <a href="/gerenciar-cadastro-inicial">
->>>>>>> master
             <input class="btn btn-danger" type="button" value="Cancelar">
         </a>
     </div>
         <div class="Col" style="font-size: 14px; color:#000; text-align: center;">
-        <script>
 
-        </script>
           @foreach($result as $results)
                 <strong>
                     {!! DNS1D::getBarcodeSVG($results->id, 'C128', 2, 40)!!}</br>

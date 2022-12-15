@@ -209,8 +209,7 @@ class RegistrarVendaController extends Controller
     }
 
 
-
-     public function getListaVenda($id_venda){
+    public function getListaVenda($id_venda){
 
          $result = DB::select("
             select
@@ -258,11 +257,37 @@ class RegistrarVendaController extends Controller
 
         return view('vendas/registrar-venda-editar', compact('venda', 'item'));
 
-
-
      }
 
+     public function fimEdicao($id){
 
+        $venda = DB::select ("
+        Select
+        v.id,
+        pe.cpf,
+        pe.nome as nomepes,
+        v.data
+        from venda v
+        left join pessoa pe on (pe.id = v.id_pessoa)
+        where v.id=$id
+        ");
+
+
+        $total = DB::table ('venda AS v')
+            ->leftjoin('venda_item_material AS vi', 'v.id', 'vi.id_venda')
+            ->leftjoin('item_material AS im', 'vi.id_item_material', 'im.id')
+            ->where('v.id','=', $id)
+            ->sum('im.valor_venda');
+
+
+        DB::table ('venda')
+            ->where('id', $id)
+            ->update(['id_tp_situacao_venda' => 2, 'valor' => $total]);
+
+        return redirect()->action('GerenciarvendasController@index');
+        //return view('vendas/gerenciar-vendas', compact('venda', 'total'));
+
+    }
 
 
 }

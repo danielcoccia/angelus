@@ -184,7 +184,7 @@ Route::get('/combo/embalagem/{id}', 'CadastroInicialController@getEmbalagem')->m
 
 
 
-Route::get('/cadastroinicial/barcode', 'BarcodeController@index')->middleware('validaUsuario');
+Route::get('/barcode', 'BarcodeController@index')->middleware('validaUsuario');
 Route::get('/item_material/{id}', 'BarcodeController@show')->middleware('validaUsuario');
 
 
@@ -197,8 +197,7 @@ Route::name('vendas')->middleware('validaUsuario')->group(function () {
 
 
   Route::get('/registrar-venda-editar/{id_venda}', 'RegistrarVendaController@edit');
-
-
+  Route::get('/registrar-venda-fimedicao/{id}', 'RegistrarVendaController@fimEdicao');
   Route::get('/registrar-venda', 'RegistrarVendaController@index');
   Route::get('/registrar-venda/buscaritem', 'RegistrarVendaController@buscaritem');
   Route::get('/registrar-venda/getItem/{id}', 'RegistrarVendaController@getItem');

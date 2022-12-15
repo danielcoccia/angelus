@@ -26,43 +26,25 @@ class BarcodeController extends Controller
     }
 
 
-    public function index(Request $request)
+    public function index ()
     {
 
-/*
-     $result = DB::select ("
-     select
-     m.id,
-     m.valor_venda,
-     c.nome
-     from item_material m
-     left join item_catalogo_material c on (c.id = m.id_item_catalogo_material)
-     ");
-*/
-     $result = DB::table('item_material AS im')
-     ->select('im.id', 'icm.nome AS n1', 'im.valor_venda')
-     ->leftjoin('item_catalogo_material AS icm', 'icm.id' , '=', 'im.id_item_catalogo_material');
-
-        $id = $request->id;
-
-        if ($request->id){
-        $result->where('im.id', '=', "$request->id");
-        }
-        $nome = $request->nome;
-        if ($request->nome){
-        $result->where('n1', '=', "$request->nome");
-        }
-        $valor_venda = $request->valor_venda;
-        if ($request->comprvalor_vendaado){
-        $result->where('im.valor_venda', '=', "$request->valor_venda");
-        }
-        //dd($doado);
-        $result = $result;
+        $result = DB::select ("
+        select
+        m.id,
+        m.valor_venda,
+        m.data_cadastro,
+        c.nome
+        from item_material m
+        left join item_catalogo_material c on (c.id = m.id_item_catalogo_material)
+        ");
 
 
+       // dd($result);
 
 
-     return view ('barcode', ['result' => $result]);
+        return view('/barcode', compact('result'));
+     //return view ('barcode', ['result' => $result]);
 
     }
 

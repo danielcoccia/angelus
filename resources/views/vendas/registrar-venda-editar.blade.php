@@ -124,13 +124,13 @@
                                         </div>
                                 </div>
                                 <br/>
-                                <div class="container" id="divVendaBotoes">
+                                <div class="container">
                                     <div class="row">
                                         <div class="col-12 mt-3" style="text-align: right;">
-                                            {{--<button id="btnCancVenda" type="button" class="btn btn-danger">Cancelar venda</button>--}}
-                                            <a href="/gerenciar-vendas" id="btnCancVenda" type="button" class="btn btn-danger">Cancelar</a>
-                                            <a href="/gerenciar-vendas" id="btnConcVenda" type="button" class="btn btn-success" style="color: #000">Salvar e concluir</a>
-
+                                            @foreach ($venda as $vd )
+                                            <a href="/gerenciar-vendas" id="" type="button" class="btn btn-danger">Cancelar</a>
+                                            <a href="/registrar-venda-fimedicao/{{$vd->id}}" id="" type="button" class="btn btn-success" style="color: #000">Salvar e concluir</a>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
