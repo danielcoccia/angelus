@@ -113,17 +113,17 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                        <table class="table table-bordered">
+                                                        <table class="table-sm col-12 table-bordered" style= "text-align:center;">
                                                             <thead class="thead-light">
                                                             <br>
                                                             <h6 style="color: blue;">LISTA DE COMPRAS</h6>
-                                                                <tr>
-                                                                    <th scope="col">ID</th>
-                                                                    <th scope="col">Produto</th>
+                                                                <tr style="background: #f3f3f3;">
+                                                                    <th scope="col" class="col-2">ID</th>
+                                                                    <th scope="col">PRODUTO</th>
                                                                     <!-- <th scope="col">Desconto</th> -->
-                                                                    <th scope="col">Qtd.</th>
-                                                                    <th scope="col">Valor</th>
-                                                                    <th scope="col">Ações</th>
+                                                                    <th scope="col" class="col-1">QTD</th>
+                                                                    <th scope="col" class="col-2">VALOR</th>
+                                                                    <th scope="col" class="col-1">AÇÕES</th>
 
                                                                 </tr>
                                                             </thead>

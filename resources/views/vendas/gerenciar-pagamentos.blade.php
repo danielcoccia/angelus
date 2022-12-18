@@ -19,22 +19,22 @@
                 <div class="container">
                     <div class="row align-items-center">
                     </table>
-                    <table class="table table-bordered">
+                    <table class="table-sm col-12 table-bordered">
                         <thead class="table-success">
                             <tr>
-                                <th class="text-center">ID VENDA</th>
-                                <th class="text-center">DATA DA VENDA</th>
-                                <th class="text-center">CPF DO CLIENTE</th>
-                                <th class="text-center">NOME DO CLIENTE</th>
+                                <th  scope="col" class="col-1 text-center">ID VENDA</th>
+                                <th  scope="col" class="col-2 text-center">DATA DA VENDA</th>
+                                <th  scope="col" class="col-2 text-center">CPF DO CLIENTE</th>
+                                <th  scope="col" class="text-center">NOME DO CLIENTE</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($vendas as $v)
                             <tr>
-                                <td class="text-center">{{$v->idv}}</td>
-                                <td class="text-center">{{ date( 'd/m/Y' , strtotime ($v->data))}}</td>
-                                <td class="text-center">{{$v->cpf}}</td>
-                                <td class="text-center">{{$v->nomepes}}</td>
+                                <th scope="col" class="col-1 text-center">{{$v->idv}}</th>
+                                <td scope="col" class="col-2 text-center">{{ date( 'd/m/Y' , strtotime ($v->data))}}</td>
+                                <td scope="col" class="col-2 text-center">{{$v->cpf}}</td>
+                                <td scope="col" class="text-center">{{$v->nomepes}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -46,7 +46,7 @@
                     <div class="row">
                         <div class="col col-lg-6">
                         <h6 class="font-weight-bold" style="color: blue;">LISTA DE COMPRAS</h6>
-                            <table class="table table-bordered">
+                            <table class="table-sm table-bordered">
                                 <thead class="thead-light">
                                     <tr style="background-color: #f1f1f1; text-align:center; ">
                                     <td style=text-align:right>QUANTIDADE:</td>
@@ -56,7 +56,7 @@
                                     </tr>
                                 </thead>
                             </table>
-                            <table class="table table-bordered">
+                            <table class="table-sm col-12 table-bordered">
                                 <thead class="table-success" style= "text-align:center; background-color:#f1f1f1;">
                                     <tr>
                                         <th scope="col">ID</th>
@@ -102,7 +102,7 @@
                                 </div>
                         </div>
                             <div class="input-group mb-3">
-                                <table class="table table-bordered">
+                                <table class="table-sm col-12 table-bordered">
                                 <h6 class="font-weight-bold" style="color: blue;">PAGAMENTOS REALIZADOS</h6>
                                     <thead class="table-success" style="text-align:center;vertical-align:middle; background: #f1f1f1";>
                                         <tr>

@@ -127,7 +127,7 @@ class GerenciarVendasController extends Controller
 // Ação de finalizar o pagamento da venda e
 // registrar as situações na tabela item material e venda
 
-    public function update ($id){
+    public function finalizar ($id){
 
         $alerta = DB::select ("
         Select
@@ -157,7 +157,9 @@ class GerenciarVendasController extends Controller
 
         $tp_sit =  DB::table ('venda')
         ->where ('id', '=', $id)
-        ->sum('id_tp_situacao_venda');
+        ->value('id_tp_situacao_venda');
+
+
 
 
         if ($tp_sit == 1 or $valor > $pago){

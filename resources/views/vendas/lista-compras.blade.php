@@ -22,16 +22,17 @@
         </tbody>
 
     </table>
-    <table class="table table-bordered">
+    <table class="table-sm col-12 table-bordered">
         <thead class="thead-light">
         <h6 style="color: blue;">LISTA DE COMPRAS</h6>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Produto</th>
+        <br>
+            <tr style="background: #f3f3f3;">
+                <th scope="col" class="col-2">ID</th>
+                <th scope="col" class="col-6">PRODUTO</th>
                 <!-- <th scope="col">Desconto</th> -->
-                <th scope="col">Qtd.</th>
-                <th scope="col">Valor</th>
-                <th scope="col">Ações</th>
+                <th scope="col" class="col-1">QTD</th>
+                <th scope="col" class="col-2">VALOR</th>
+                <th scope="col" class="col-1">AÇÕES</th>
             </tr>
         </thead>
         <tbody>

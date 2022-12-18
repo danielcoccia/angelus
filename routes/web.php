@@ -191,7 +191,7 @@ Route::get('/item_material/{id}', 'BarcodeController@show')->middleware('validaU
 Route::name('vendas')->middleware('validaUsuario')->group(function () {
   Route::any('/gerenciar-vendas', 'GerenciarvendasController@index')->name('.index');
   Route::get('/gerenciar-vendas/excluir/{id}', 'GerenciarvendasController@delete');
-  Route::get('/gerenciar-vendas/finalizar/{id}', 'GerenciarvendasController@update')->name('finalizarvenda.update');
+  Route::get('/gerenciar-vendas/finalizar/{id}', 'GerenciarvendasController@finalizar')->name('finalizarvenda.update');
   Route::get('/gerenciar-vendas/demonstrativo/{id}', 'GerenciarvendasController@update');
 
 
