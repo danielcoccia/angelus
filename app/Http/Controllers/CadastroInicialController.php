@@ -7,7 +7,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use App\Models\ModelCadastroInicial;
 use App\Models\ModelItemCatalogo;
+use App\Models\ModelCatMaterial;
 use App\Models\ModelItemMaterial;
+use App\Models\ModelCor;
+use App\Models\ModelTamanho;
+use App\Models\ModelMarca;
 
 class CadastroInicialController extends Controller
 {
@@ -122,15 +126,62 @@ class CadastroInicialController extends Controller
     public function formEditar ($id)
     {
 
-        $teste = DB::select("select im.id from item_material im where im.id = $id");
+        $itemmat = DB::table('item_material AS im')
+                        ->select('im.id', 'icm.nome AS nome', 'im.data_cadastro', 'im.valor_venda')
+                        ->leftjoin('item_catalogo_material AS icm', 'im.id_item_catalogo_material', 'icm.id')
+                        ->where('im.id',$id)
+                        ->get();
 
-        return view ('cadastroinicial/editar-cadastro-inicial', compact('teste'));
 
+        $nomeitem = DB::table('item_catalogo_material AS icm')
+                        ->select('icm.id AS id_nome','icm.nome AS n1')
+                        ->get();
+
+
+        $result = DB::table('tipo_categoria_material AS tcm')
+                        ->distinct('tcm.id')
+                        ->select('tcm.id AS id_cat', 't.id AS id_tam', 'm.id AS id_marca', 'tcm.id AS id_cat', 'c.id AS id_cor', 'm.nome AS n2', 't.nome AS n3','tcm.nome AS n5', 'c.nome AS n4')
+                        ->leftjoin('marca AS m', 'tcm.id', '=', 'm.id_categoria_material')
+                        ->leftjoin('tamanho AS t', 'tcm.id' , '=', 't.id_categoria_material')
+                        ->leftjoin('cor AS c', 'tcm.id', '=', 'c.id_categoria_material')
+                        ->get();
+
+        $tipo = DB::table('tipo_material AS tp')
+                        ->select('tp.id AS id', 'tp.nome')
+                        ->get();
+
+        $genero = DB::table('tipo_genero AS g')
+                        ->select('g.id AS id', 'g.nome')
+                        ->get();
+
+        $etaria = DB::table('fase_etaria AS fe')
+                        ->select('fe.id AS id', 'fe.nome')
+                        ->get();
+
+
+        return view ('cadastroinicial/editar-cadastro-inicial', compact('result', 'itemmat', 'nomeitem', 'tipo','genero', 'etaria' ));
     }
 
-    public function editar ()
+    public function update (Request $request, $id)
     {
-        echo "editar";
+        $ativo = isset($request->checkAdq) ? 1 : 0;
+
+         DB::table('item_material')
+            ->where('id', $id)
+            ->update([
+                'id_item_catalogo_material' => $request->input('item_mat'),
+                'valor_venda' => $request->input('valor'),
+                'id_tamanho' => $request->input('tamanho'),
+                'id_marca' => $request->input('marca'),
+                'id_cor' => $request->input('cor'),
+                'id_tipo_material' => $request->input('tp_mat'),
+                'id_tp_genero' => $request->input('genero'),
+                'id_fase_etaria' => $request->input('etaria'),
+                'data_validade' => $request->input('dt_validade'),
+                'adquirido' => $ativo,
+        ]);
+
+        return redirect()->action('GeneroController@index');
 
     }
 
@@ -184,7 +235,7 @@ class CadastroInicialController extends Controller
         $html.='<tr><td>Cor</td> <td>'.getCombo($result4,'cor', 0).'</td></tr>';
         $html.='<tr><td>Tipo Material</td> <td>'.getCombo($result5,'tp_mat', 0).'</td></tr>';
         $html.='<tr><td>Fase Etária</td> <td>'.getCombo($result6,'fase_etaria', 0).'</td></tr>';
-        $html.='<tr><td>Genero</td> <td>'.getCombo($result7,'genero', 0).'</td></tr>';
+        $html.='<tr><td>Gênero</td> <td>'.getCombo($result7,'genero', 0).'</td></tr>';
         $html.='</table>';
         $html.='</div>';
 
@@ -322,29 +373,10 @@ class CadastroInicialController extends Controller
                 return view('catalogo/dialog-composicao-item', compact('result'));
     }
 
-    // public function store(Request $request)
-    // {
-    //     $ativo = isset($request->ativo) ? 1 : 0;
-    //     $composicao = isset($request->composicao) ? 1 : 0;
-
-    //     DB::table('item_catalogo_material')->insert([
-    //         'nome' => $request->input('nome_item'),
-    //         'id_categoria_material' => $request->input('categoria_item'),
-    //         'valor_minimo' => $request->input('val_minimo'),
-    //         'valor_medio' => $request->input('val_medio'),
-    //         'valor_maximo' => $request->input('val_maximo'),
-    //         'composicao' => $composicao,
-    //         'ativo' => $ativo,
-    //     ]);
-
-    //     $result= $result= $this->getListaItemMatAll();
-    //     return view('item/gerenciar-item-catalogo',['result'=>$result]);
-    // }
-
-     public function store(Request $request)
+    public function store(Request $request)
     {
 
-            $Adiquirido = isset($request->checkAdq) ? 1 : 0;
+            $Adquirido = isset($request->checkAdq) ? 1 : 0;
             $Avariado = isset($request->checkAvariado) ? 1 : 0;
 
             for ($i=0; $i < $request->input('qtdItens'); $i++){
@@ -358,7 +390,7 @@ class CadastroInicialController extends Controller
             'id_tipo_embalagem' => $request->input('embalagem'),
             'id_tipo_unidade_medida' => $request->input('und_med'),
             'quantidade_embalagem' => $request->input('qtdEmb'),
-            'adquirido' => $Adiquirido,
+            'adquirido' => $Adquirido,
             'valor_venda' => $request->input('valor_venda'),
             'id_marca' => $request->input('marca'),
             'id_tamanho' => $request->input('tamanho'),
