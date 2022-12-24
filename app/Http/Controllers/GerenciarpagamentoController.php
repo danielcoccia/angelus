@@ -167,16 +167,7 @@ class GerenciarpagamentoController extends Controller
                     ]);
         } else{
 
-            //return redirect()
-             //       ->back()
-               //     ->with('mensagem', "O valor ultrapassa o valor total da venda.;") ;
-
           return view ('vendas/alerta-pagamento', compact('vendas'));
-          //return redirect()->route('pagamento.inserir.{id}')
-          //return redirect()->back()
-          //->with('warning', 'O valor ultrapassa o valor total da venda.');
-
-          //return view ('vendas/alerta-venda2', compact('alerta'));
 
         }
 

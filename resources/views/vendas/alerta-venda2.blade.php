@@ -8,7 +8,7 @@
 
 <div>
     @foreach($alerta as $alr)
-    <h3 style="color:rgb(243, 45, 45)">A venda {{$alr->id}} já está paga e finalizada.;</h3>
+    <h3 style="color:rgb(243, 45, 45)">A venda {{$alr->id}} já está paga e encerrada.</h3>
     <a href="/gerenciar-pagamentos/{{$alr->id}}"  type="button" class="btn btn-danger">Retornar</a>
     @endforeach
 

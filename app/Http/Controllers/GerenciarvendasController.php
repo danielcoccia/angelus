@@ -155,33 +155,26 @@ class GerenciarVendasController extends Controller
         ->sum('pagamento.valor');
 
 
-        $tp_sit =  DB::table ('venda')
+        $sit_ven =  DB::table ('venda')
         ->where ('id', '=', $id)
         ->value('id_tp_situacao_venda');
 
-
-
-
-        if ($tp_sit == 1 or $valor > $pago){
+        if ($sit_ven == 1 or $sit_ven == 2 or $valor > $pago){
 
             //return redirect()->back()
             //return redirect()->route('pagamentos.inserir')
             //->with('warning', 'Este item não pode ser modificado porque não está mais em estoque');
             return view ('vendas/alerta-venda', compact('alerta'));
 
-        } elseif ($tp_sit == 3 && $total_preco == $valor) {
+        } elseif ($sit_ven == 4 && $total_preco == $valor) {
 
-
-            //return redirect()->back()
-            //return redirect()->route('finalizarvenda.update')
-            //->with('warning', 'Esta venda foi finalizada ou os itens já foram pagos');
             return view ('vendas/alerta-venda2', compact('alerta'));
 
-        } elseif ($tp_sit == 2){
+        } elseif ($sit_ven == 3 && $total_preco == $valor){
 
             DB::table ('venda')
             ->where('id', $id)
-            ->update(['valor' => $total_preco,'id_tp_situacao_venda' => 3]);
+            ->update(['valor' => $total_preco,'id_tp_situacao_venda' => 4]);
 
            $teste = DB::table ('item_material')
             ->select('item_material.id')

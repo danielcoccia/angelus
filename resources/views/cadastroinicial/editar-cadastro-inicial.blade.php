@@ -42,7 +42,7 @@
             <div class="card-body">
                 @csrf
                 <div class="row align-items-end" style="background:#fff;">
-                    <div class="col-4">
+                    {{--<div class="col-4">
                         <div class="form-group row">
                             <label for="nome_item" class="col-sm-5 content-md-center col-form-label">Categoria:</label>
                             <div class="col-12">
@@ -53,12 +53,13 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                     <div class="col">
                         <div class="form-group row">
                             <label for="nome_item" class="col-sm-5 content-md-center col-form-label">Nome Material:</label>
                             <div class="col-12">
-                                <select class="form-control select2" id="" name="item_mat" required="required">
+                                <select class="form-control select2" id="" name="item_mat" default-value="teste"  required="required">
+                                    <option value=>{{($itemmat[0]->nome)}}</option>
                                     @foreach($nomeitem as $nomeitems)
                                     <option value="{{$nomeitems->id_nome}}">{{$nomeitems->n1}}</option>
                                     @endforeach
@@ -72,7 +73,7 @@
                     <div class="col-2">
                         <div class="form-group row">
                             <div class="col">Valor da venda:
-                            <input class="form-control" type="numeric" id="" name="valor" required="requiered" value="">
+                            <input class="form-control" type="numeric" id="" name="valor" required="requiered" value="{{number_format($itemmat[0]->valor_venda,'0','','')}}">
                             </div>
                         </div>
                     </div>
@@ -161,9 +162,9 @@
                         <div class="form-group row">Comprado?
                             <div class="col">
                                 <input type="checkbox" id="checkAdq" name="checkAdq" switch="bool"/>
-                                <label for="switch3" data-off-label="Não" data-on-label="Sim" ></label>
+                                <label for="checkAdq" data-off-label="Não" data-on-label="Sim" ></label>
                             </div>
-                        </div>
+                         </div>
                     </div>
                 </div>
                 <div class="row" style="background:#fff;">

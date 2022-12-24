@@ -54,7 +54,7 @@ class CadastroInicialController extends Controller
 
         //$result = $this->getListaItens();
         $result = DB::table('item_material AS im')
-                            ->select('im.data_cadastro','im.id', 'icm.nome AS n1','tcm.nome AS n5', 'im.valor_venda','m.nome AS n2', 't.nome AS n3', 'c.nome AS n4', 'im.valor_venda', 'im.adquirido', 'tcm.id AS id_cat')
+                            ->select('im.data_cadastro','im.id', 'icm.nome AS n1','tcm.nome AS n5', 'im.valor_venda','m.nome AS n2', 't.nome AS n3', 'c.nome AS n4', 'im.valor_venda', 'im.adquirido', 'tcm.id AS id_cat', 'im.id_tipo_situacao')
                             ->leftjoin('item_catalogo_material AS icm', 'icm.id' , '=', 'im.id_item_catalogo_material')
                             ->leftjoin('tipo_categoria_material AS tcm', 'icm.id_categoria_material' , '=', 'tcm.id')
                             ->leftjoin('marca AS m', 'm.id' , '=', 'im.id_marca')
@@ -62,6 +62,7 @@ class CadastroInicialController extends Controller
                             ->leftjoin('cor AS c', 'c.id', '=', 'im.id_cor');
         //$resultCategoria = DB::select ('select id, nome from tipo_categoria_material');
         //$resultSitMat = DB::select ('select id, nome from tipo_situacao_item_material');
+
 
         $data_inicio = $request->data_inicio;
         $data_fim = $request->data_fim;
@@ -123,11 +124,11 @@ class CadastroInicialController extends Controller
 
 
 
-    public function formEditar ($id)
+    public function formEditar (Request $request, $id)
     {
 
         $itemmat = DB::table('item_material AS im')
-                        ->select('im.id', 'icm.nome AS nome', 'im.data_cadastro', 'im.valor_venda')
+                        ->select('im.id', 'icm.nome AS nome', 'im.data_cadastro', 'im.valor_venda', 'im.id_tipo_situacao')
                         ->leftjoin('item_catalogo_material AS icm', 'im.id_item_catalogo_material', 'icm.id')
                         ->where('im.id',$id)
                         ->get();
@@ -158,6 +159,7 @@ class CadastroInicialController extends Controller
                         ->select('fe.id AS id', 'fe.nome')
                         ->get();
 
+        //dd($request);
 
         return view ('cadastroinicial/editar-cadastro-inicial', compact('result', 'itemmat', 'nomeitem', 'tipo','genero', 'etaria' ));
     }
@@ -181,7 +183,7 @@ class CadastroInicialController extends Controller
                 'adquirido' => $ativo,
         ]);
 
-        return redirect()->action('GeneroController@index');
+        return redirect()->action('CadastroInicialController@index');
 
     }
 
