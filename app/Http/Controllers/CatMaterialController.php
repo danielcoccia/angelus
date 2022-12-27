@@ -37,7 +37,10 @@ class CatMaterialController extends Controller
         $tipoMat = $request->input('tipoMat');
         DB::insert('insert into tipo_categoria_material (nome) values (?)', [$tipoMat]);
         $result= $this->objTpMat->all();
-        return view('/cadastro-geral/cad-cat-material',['result'=>$result]);
+        return redirect()
+        ->route('cadcat.index')
+        //('/cadastro-geral/cad-cat-material',['result'=>$result])
+        ->with('message', 'sucesso ao criar a categoria');
 
     }
 
@@ -61,7 +64,10 @@ class CatMaterialController extends Controller
             'nome' => $request->input('categoria'),
         ]);
 
-        return redirect()->action('CatMaterialController@index');
+        return redirect()
+        ->action('CatMaterialController@index')
+        ->with('message', 'a categoria foi alterada com sucesso');
+
     }
 
     public function destroy($id)
@@ -70,7 +76,9 @@ class CatMaterialController extends Controller
         $deleted = DB::delete('delete from tipo_categoria_material where id =?' , [$id]);
         $result= $this->objTpMat->all();
 
-        return view('/cadastro-geral/cad-cat-material',['result'=>$result]);
+        return redirect()
+        ->action('CatMaterialController@index')
+        ->with('message', 'sucesso ao excluir a categoria');
     }
 }
 

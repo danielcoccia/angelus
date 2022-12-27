@@ -11,7 +11,7 @@ use App\Http\Controllers\Session;
 
 class LoginController extends Controller
 {
-   
+
     public function index()
     {
         return view('login/login');
@@ -22,15 +22,15 @@ class LoginController extends Controller
 
         $email = $request->input('email');
         $senha = $request->input('senha');
-        
+
         // $result=DB::table('usuario')->
         //             join('pessoa', 'usuario.id_pessoa', '=', 'pessoa.id')->
         //            where('pessoa.email',$email)->
         //            where('ativo',true)->
-        //            get();  
+        //            get();
 
         $result=DB::select("
-                        select 
+                        select
                         u.id id_usuario,
                         p.id id_pessoa,
                         p.cpf,
@@ -44,9 +44,15 @@ class LoginController extends Controller
                         left join usuario_deposito u_d on u.id = u_d.id_usuario
                         where u.ativo is true and p.email ='$email'
                         group by u.id, p.id
-                        ");         
+                        ");
 
         // dd($result);
+
+
+        //$senha = Hash::make($request->senha);
+        //return ($request->senha . ' - ' . $senha);
+
+
         if (count($result)>0){
 
             $hash_senha = $result[0]->hash_senha;
@@ -61,27 +67,22 @@ class LoginController extends Controller
                              'perfis' => $result[0]->perfis,
                              'depositos' => $result[0]->depositos
                     ]);
+
+
+
                return view('dashboard/index');
                //$this->validaUserLogado();
             }
-            
+
         }
         return view('login/login')->withErrors(['Credenciais inválidas']);
 
-        
-        // $hash_senha = $result[0]->hash_senha;
 
-        // if (Hash::check('brasil123', $hash_senha))
-        // {
-        //     echo 'ok';
-        // }
-
-        
 
     }
 
     public function validaUserLogado(){
-        
+
         if (!Session::has('usuario'))
         {
             echo "nao";
@@ -95,13 +96,13 @@ class LoginController extends Controller
         //
     }
 
-    
+
     public function store(Request $request)
     {
         //
     }
 
-    
+
     public function show($id)
     {
         //
@@ -117,7 +118,7 @@ class LoginController extends Controller
         //
     }
 
-    
+
     public function destroy($id)
     {
         //

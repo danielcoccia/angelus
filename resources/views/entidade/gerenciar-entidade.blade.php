@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Data Tables @endsection
+@section('title') Incuir Entidade @endsection
 
 @section('content')
                     <div class="row">
@@ -10,15 +10,16 @@
 
                                         @csrf
                                     <a href="/cad-entidade">
-                                        <input class="btn btn-primary" type="button" value="Incluir Entidade">
+                                        <input class="btn btn-success" type="button" value="Incluir Entidade">
                                     </a>
 
 
                                 <hr>
-                        <h4 class="card-title">Entidades cadastradas</h4>
+
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
+                                <h4 class="card-title">Entidades cadastradas</h4>
                                 <div class="card-body">
 
 
@@ -27,10 +28,10 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>CNPJ</th>
-                                                <th>Nome Fantasia</th>
-                                                <th>Email</th>
-                                                <th>Contato</th>
-                                                <th>Ação</th>
+                                                <th>NOME FANTASIA</th>
+                                                <th>EMAIL</th>
+                                                <th>CONTATO</th>
+                                                <th>AÇÃO</th>
 
 
                                             </tr>

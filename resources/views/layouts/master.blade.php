@@ -43,17 +43,24 @@
         <!-- ============================================================== -->
         <div class="main-content" style="color: #000;">
 
+
+
             <div class="page-content" style="color: #000; padding-top: 70px;">
 
                 <div class="container-fluid" style="color: #000;">
 
                   <!-- content -->
 
+
                     @include('layouts/partials/footer')
 
-                    @include('components/flash_alerts')
 
-                   @yield('content')
+
+                        @include('components/flash_alerts')
+
+                        @yield('content')
+
+
 
 
 
@@ -75,6 +82,10 @@
             <script src="{{ URL::asset('/libs/simplebar/simplebar.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/node-waves/node-waves.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jquery-sparkline/jquery-sparkline.min.js')}}"></script>
+            <link rel="stylesheet" href="css/bootstrap.min.css" />
+            <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+
+
 
             <!-- footerScript -->
              @yield('footerScript')

@@ -8,7 +8,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <a href="/usuario-incluir">
-                                            <input class="btn btn-primary" type="button" value="Incluir Usuário">
+                                            <input class="btn btn-success" type="button" value="Incluir Usuário">
                                     </a>
                     <br><hr>
                         <h4 class="card-title">Lista de Usuário</h4>

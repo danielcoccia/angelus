@@ -1,5 +1,5 @@
-<?php  
-        $para="contatosite@misterlimpe.com.br";
+<?php
+        $para="moisesshalon72@gmail.com";
 
 
         // $txtnome=$_POST['nome'];
@@ -12,7 +12,7 @@
 
         //Monta Cabeçalho da Mensagem
         $headers  = "From: $para\n";
-        $headers .= "X-Sender: <daniel_coccia@hotmail.com> \n";
+        $headers .= "X-Sender: <moisesshalon72@gmail.com> \n";
         $headers .= "Content-Type: text/html; charset=iso-8859-1\n";
 
 
@@ -24,6 +24,6 @@
             echo 'oks';
         }
         else {
-            //Exibe mensagem caso algo de errado tenha ocorrido            
+            //Exibe mensagem caso algo de errado tenha ocorrido
             echo "Ocorreu um erro durante o envio do email.";
         }

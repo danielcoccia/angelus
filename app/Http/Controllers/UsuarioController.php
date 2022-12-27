@@ -7,20 +7,32 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ModelUsuario;
 use App\Models\ModelPessoa;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\ResetPassword;
+use Illuminate\Notifications\Notifiable;
+
 
 class UsuarioController extends Controller
 {
 
+    use Notifiable;
+
+    // Enviar email traduziado
+    public function sendPasswordResetNotification($token)
+    {
+    $this->notify(new ResetPassword($token));
+    }
+
+
     private $objUsuario;
-    
+
     public function __construct(){
         $this->objUsuario = new ModelUsuario();
-        
+
     }
 
     public function getUsuarios(){
 
-        $result= DB::select("select 
+        $result= DB::select("select
                         u.id,
                         u.id_pessoa,
                         p.cpf,
@@ -28,8 +40,8 @@ class UsuarioController extends Controller
                         u.ativo,
                         u.bloqueado,
                         u.data_ativacao
-                        from usuario u 
-                        left join pessoa p on u.id_pessoa = p.id                        
+                        from usuario u
+                        left join pessoa p on u.id_pessoa = p.id
                     ");
 
         return $result;
@@ -37,12 +49,12 @@ class UsuarioController extends Controller
 
 
     public function index()
-    {   
+    {
         //$result= $this->objUsuario->all();
         $result = $this->getUsuarios();
         return view('usuario/gerenciar-usuario', compact('result'));
     }
-   
+
     public function create()
     {
         $pessoa = new ModelPessoa();
@@ -50,10 +62,10 @@ class UsuarioController extends Controller
 
         return view('usuario/incluir-usuario', compact('result'));
     }
-    
+
     public function store(Request $request)
     {
-             
+
         $keys_request = array_keys($request->input());
 
         $senha_inicial = $this->gerarSenhaInicial($request->input('idPessoa'));
@@ -63,25 +75,25 @@ class UsuarioController extends Controller
         $this->excluirUsuarioPerfis($request->input('idPessoa'));
 
         $this->inserirperfilUsuario($keys_request,$request->input('idPessoa'));
-        
+
         $this->inserirUsuarioDeposito($keys_request,$request->input('idPessoa'));
 
         $result = $this->getUsuarios();
         return view('usuario/gerenciar-usuario', compact('result'));
     }
-    
+
     public function show($id)
     {
         //
     }
-    
+
     public function edit($idUsuario)
     {
-        
+
         $resultPerfil = DB::select("select id, nome from tipo_perfil");
 
         $resultDeposito = $this->getDeposito();
-        
+
         $resultUsuario = DB::table('usuario')->where('id', $idUsuario)->get();
 
         $result = DB::table('pessoa')->where('id', $resultUsuario[0]->id_pessoa)->get();
@@ -117,43 +129,43 @@ class UsuarioController extends Controller
             'bloqueado' => $bloqueado,
         ]);
 
-        
+
         $keys_request = array_keys($request->input());
 
         $this->excluirUsuarioPerfis($request->input('idPessoa'));
 
         $this->inserirPerfilUsuario($keys_request,$request->input('idPessoa'));
-        
+
         $this->inserirUsuarioDeposito($keys_request,$request->input('idPessoa'));
 
         $result = $this->getUsuarios();
-        
+
         return view('usuario/gerenciar-usuario', compact('result'));
 
     }
-    
+
     public function destroy($id)
-    {   
+    {
         DB::delete('delete from usuario_perfil where id_usuario =?' , [$id]);
         DB::delete('delete from usuario_deposito where id_usuario =?' , [$id]);
         $deleted = DB::delete('delete from usuario where id =?' , [$id]);
-        
+
         $result = $this->getUsuarios();
         return view('usuario/gerenciar-usuario', compact('result'));
     }
 
     public function getDeposito(){
-        $sql = "select  
+        $sql = "select
                 d.id,
-                d.nome||'-'||e.nome nome                
+                d.nome||'-'||e.nome nome
                 from deposito d
                 join tipo_estoque e on d.id_tp_estoque = e.id";
-        
+
         return DB::select($sql);
     }
 
     public function configurarUsuario($id)
-    {        
+    {
 
         $resultPerfil = DB::select("select id, nome from tipo_perfil");
 
@@ -193,20 +205,20 @@ class UsuarioController extends Controller
         $resultPerfil = DB::select("select id, nome from tipo_perfil");
 
          foreach ($perfil as $perfils) {
-            foreach ($resultPerfil as $resultPerfils) {                
+            foreach ($resultPerfil as $resultPerfils) {
 
-                if($resultPerfils->nome ==  str_replace("_", " ",$perfils) ){   
+                if($resultPerfils->nome ==  str_replace("_", " ",$perfils) ){
 
                     //echo $resultPerfils->id;
 
-                    DB::table('usuario_perfil')->insert([            
+                    DB::table('usuario_perfil')->insert([
                             'id_usuario' =>  $idUsuario[0]->id,
                             'id_tp_perfil' => $resultPerfils->id,
-                            
-                    ]);                    
-                }        
+
+                    ]);
+                }
             }
-        }        
+        }
     }
 
     // public function inserirTipoEstque($tpEstoque,$idPessoa)
@@ -215,16 +227,16 @@ class UsuarioController extends Controller
     //     $resultEstoque = DB::select("select id, nome from tipo_estoque");
 
     //      foreach ($tpEstoque as $tpEstoques) {
-    //         foreach ($resultEstoque as $resultEstoques) {                
+    //         foreach ($resultEstoque as $resultEstoques) {
 
     //             if($resultEstoques->nome ==  str_replace("_", " ",$tpEstoques) ){
 
-    //                 DB::table('usuario_tipo_estoque')->insert([            
+    //                 DB::table('usuario_tipo_estoque')->insert([
     //                         'id_usuario' => $idUsuario[0]->id,
     //                         'id_tp_estoque' => $resultEstoques->id,
-                            
+
     //                 ]);
-    //             }        
+    //             }
     //         }
     //     }
     // }
@@ -236,25 +248,25 @@ class UsuarioController extends Controller
         $resultDeposito = $this->getDeposito();
         //dd($resultDeposito);
          foreach ($deposito as $depositos) {
-            foreach ($resultDeposito as $resultDepositos) {                
+            foreach ($resultDeposito as $resultDepositos) {
 
                 if($resultDepositos->nome ==  str_replace("_", " ",$depositos) ){
 
-                    DB::table('usuario_deposito')->insert([            
+                    DB::table('usuario_deposito')->insert([
                             'id_usuario' => $idUsuario[0]->id,
                             'id_deposito' => $resultDepositos->id,
-                            
+
                     ]);
-                }        
+                }
             }
         }
     }
 
-    public function gerarSenhaInicial($id_pessoa){        
-       
+    public function gerarSenhaInicial($id_pessoa){
+
        $resultPessoa = DB::select("select SUBSTRING(cpf , 1,3) id from pessoa where id =$id_pessoa");
 
-       return Hash::make('angelus'.$resultPessoa[0]->id);        
+       return Hash::make('angelus'.$resultPessoa[0]->id);
     }
 
     public function alteraSenha(){
@@ -267,7 +279,7 @@ class UsuarioController extends Controller
        $senhaAtual = $request->input('senhaAtual');
        $resultSenhaAtualHash = DB::select("select hash_senha from usuario where id = $id_usuario");
 
-       
+
         if ( Hash::check($senhaAtual, $resultSenhaAtualHash[0]->hash_senha))
         {
             $senha_nova = Hash::make($request->input('senhaNova'));
@@ -282,7 +294,7 @@ class UsuarioController extends Controller
              return redirect()
                     ->back()
                     ->with('mensagem', 'Senha Alterada com sucesso!') ;
-        } 
+        }
         return redirect()
                     ->back()
                     ->with('mensagemErro', 'Senha atual incorreta!') ;
@@ -300,7 +312,9 @@ class UsuarioController extends Controller
             ]);
             return redirect()
                     ->back()
-                    ->with('mensagem', 'Senha gera com sucesso!') ;
+                    ->with('mensagem', 'Senha gerada com sucesso!') ;
     }
+
+
 }
 

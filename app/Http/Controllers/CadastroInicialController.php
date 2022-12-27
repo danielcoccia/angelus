@@ -347,8 +347,15 @@ class CadastroInicialController extends Controller
                 <label class="text-muted">Observação</label>
                 <textarea id="textarea" name="observacao" class="form-control" maxlength="225" rows="3" placeholder=""></textarea>
                 <div class="col-12 mt-3" style="text-align: right;">
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    <button type="button" class="btn btn-primary">Limpar</button>
+                <div class="row">
+                <div class="col">
+                <a href="/gerenciar-cadastro-inicial/incluir"><input class="btn btn-danger btn-block" type="button" value="Cancelar">
+                </a>
+                </div>
+                <div class="col">
+                <button type="submit" class="btn btn-success btn-block">Confirmar</button>
+                </div>
+                </div>
                 </div>';
         $html.='</div>';
 

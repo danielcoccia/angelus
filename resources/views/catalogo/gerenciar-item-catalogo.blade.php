@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Data Tables @endsection
+@section('title') Gerenciar item @endsection
 
 @section('content')
 
@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
                 <a href="/item-catalogo-incluir">
-                        <input class="btn btn-primary" type="button" value="Incluir Item Catalogo">
+                        <input class="btn btn-success" type="button" value="Incluir Item Catalogo">
                 </a>
                     <br><br><hr>
                         <h4 class="card-title">Lista de Usuário</h4>

@@ -1,43 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Auth\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Session;
 
-class VerificationController extends Controller
+class RecuperaSenhaController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Email Verification Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling email verification for any
-    | user that recently registered with the application. Emails may also
-    | be re-sent if the user didn't receive the original email message.
-    |
-    */
-    /**
-     * Where to redirect users after verification.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    public function index(){
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+        return view('/email/remessa-email');
+    }
 
-
-    public function validar (Request $request){
+    public function validar(Request $request){
 
         $email = $request->input('email');
 
@@ -62,11 +42,13 @@ class VerificationController extends Controller
 
         if (count($result)>0){
 
-            echo "Send mail";
+            return view('/email/remessa-email')
+            ->withErrors(['O email foi enviado']);
 
         }else{
 
-            return view('login/login')->withErrors(['Credenciais inválidas']);
+            return '';
+
 
         }
 

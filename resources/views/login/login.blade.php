@@ -10,7 +10,7 @@
                     <div class="card overflow-hidden">
                         <div class="card-body pt-0">
                             <h3 class="text-center mt-4">
-                                <a href="/" class="logo logo-admin"><img src="{{ URL::asset('/images/logo_comunhao_completa_cor_pos.png')}}" height="100" alt="logo"></a>
+                                <a href="/" class="logo logo-admin"><img src="{{ URL::asset('/images/logo150px.png')}}" height="100" alt="logo"></a>
                             </h3>
                             <div class="p-3">
                                 <!-- <h4 class="text-muted font-size-18 mb-1 text-center">Welcome Back !</h4> -->
@@ -45,20 +45,21 @@
                                     </div>
                                     <div class="form-group row mt-4">
                                         <div class="col-6">
-                                            <!-- <div class="custom-control custom-checkbox">
+                                            {{-- <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" name="remember" id="customControlInline" {{ old('remember') ? 'checked' : '' }}>
                                         <label class="custom-control-label" for="customControlInline">{{ __('Remember Me') }}</label>
-                                            </div> -->
+                                            </div> --}}
                                         </div>
-                                        <div class="col-6 text-right">
-                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Entrar</button>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary w-md waves-effect waves-light btn-block" type="submit">Entrar</button>
+                                        </div>
+                                        <div class="form-group mb-0 row">
+                                            <div class="col-12 mt-3">
+                                                <a href="/email/remessa-email" class="text-danger" type="button"><i class="mdi mdi-lock"></i>Esqueci minha senha</a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group mb-0 row">
-                                        <div class="col-12 mt-4">
-                                            <a href="{{ route('password.request') }}" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
-                                        </div>
-                                    </div> -->
+
                                 </form>
                             </div>
                         </div>

@@ -73,4 +73,10 @@
             <script src="{{ URL::asset('/js/pages/cad-tipo-material.init.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
 
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="jquery.bsAlerts.js"></script>
+
+
+
 @endsection

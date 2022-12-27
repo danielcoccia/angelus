@@ -13,14 +13,14 @@
                             </span>
                         </a> -->
 
-                        <a href="/" class="logo">
-                            <span class="logo-sm">
-                                <img src="{{ URL::asset('/images/logo_comunhao_completa_cor_pos.png')}}" alt="" height="22">
-                            </span>
+                       {{-- <a href="/" class="logo">--}}
+                            {{--<span class="logo-sm">
+                                <img src="{{ URL::asset('/images/logo150px.png')}}" alt="" height="22">
+                            </span>--}}
                             <span class="logo-lg">
-                                <img src="{{ URL::asset('/images/logo_comunhao_completa_cor_pos.png')}}" alt="" height="55">
+                                <img src="{{ URL::asset('/images/logo150px.png')}}" style=" margin:1em;" alt="" height="55">
                             </span>
-                        </a>
+                        {{--</a>--}}
                     </div>
 
                     <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">

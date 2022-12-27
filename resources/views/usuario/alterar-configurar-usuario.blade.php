@@ -8,7 +8,7 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Usuario<i class="mdi mdi-account-badge"></i></h4>
+                    <h4 class="card-title">Usuário  <i class="ti-user"></i></h4>
                     <hr>
                     <div class="card-body">
                         <p>Nome:<strong> {{$result[0]->nome}}</strong></p>
@@ -52,51 +52,58 @@
 
         <div class="col-lg-6">
             <div class="card" >
-
-                    <div class="card-body" >
-                        <div class="row">
-                            <div class="col-sm">
-                              <h4 class="card-title">Configurar Perfis <i class="ion mdi mdi-account-network " ></i></h4>
-                            </div>
-                        </div>
-
-                        <hr>
-                        <div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped mb-0">
-                                    @foreach($resultPerfil as $resultPerfils)
-                                    <tr>
-                                        <td>
-                                            {{$resultPerfils->nome}}
-                                        </td>
-                                        <td>
-
-                                            <input type="checkbox" id="{{$resultPerfils->nome}}" name="{{$resultPerfils->nome}}" value="{{$resultPerfils->id}}"  {{in_array($resultPerfils->id,$resultPerfisUsuarioArray) ? 'checked' : ''}}/>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </table>
-                            </div><br><br>
-
-                                    <h4 class="card-title">Configurar Estoque <i class="mdi mdi-view-sequential" ></i> </h4>
-                                    <hr>
-                                <div class="table-responsive">
-                                <table class="table table-bordered table-striped mb-0">
-                                  @foreach($resultDeposito as $resultDepositos)
-                                    <tr>
-                                        <td>
-                                            {{$resultDepositos->nome}}
-                                        </td>
-                                        <td>
-                                            <input type="checkbox" id="{{$resultDepositos->nome}}" name="{{$resultDepositos->nome}}" value="{{$resultDepositos->id}}" {{in_array($resultDepositos->id,$resultDepositoUsuarioArray) ? 'checked' : ''}}>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </table>
-                            </div>
+                <div class="card-body" >
+                    <div class="row">
+                        <div class="col-sm">
+                            <h4 class="card-title">Selecionar Perfis <i class="ti-key" ></i></h4>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Alterar</button>
+
+                    <hr>
+                    <div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped mb-0">
+                                @foreach($resultPerfil as $resultPerfils)
+                                <tr>
+                                    <td>
+                                        {{$resultPerfils->nome}}
+                                    </td>
+                                    <td>
+
+                                        <input type="checkbox" id="{{$resultPerfils->nome}}" name="{{$resultPerfils->nome}}" value="{{$resultPerfils->id}}"  {{in_array($resultPerfils->id,$resultPerfisUsuarioArray) ? 'checked' : ''}}/>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </table>
+                        </div><br><br>
+
+                                <h4 class="card-title">Configurar Estoque  <i class="ti-unlock" ></i> </h4>
+                                <hr>
+                            <div class="table-responsive">
+                            <table class="table table-bordered table-striped mb-0">
+                                @foreach($resultDeposito as $resultDepositos)
+                                <tr>
+                                    <td>
+                                        {{$resultDepositos->nome}}
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="{{$resultDepositos->nome}}" name="{{$resultDepositos->nome}}" value="{{$resultDepositos->id}}" {{in_array($resultDepositos->id,$resultDepositoUsuarioArray) ? 'checked' : ''}}>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </table>
+                            </div>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="/gerenciar-usuario"><input class="btn btn-danger btn-block" type="button" value="Cancelar">
+                            </a>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-success btn-block">Confirmar</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

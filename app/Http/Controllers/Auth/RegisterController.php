@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Models\ModelUsuario;
+use App\Models\ModelPessoa;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -50,9 +52,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'nome' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'hash_senha' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -60,14 +62,19 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\ModelUsuario
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        return ModelPessoa::create([
+            'nome' => $data['nome'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'cpf' => $data['cpf'],
+        ]);
+
+        return ModelUsuario::create([
+            'id' => $data['id'],
+            'hash_senha' => Hash::make($data['hash_senha']),
         ]);
     }
 }

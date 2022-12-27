@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\GerenciarVendasController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,26 +36,10 @@ Route::get('/logout', 'LexaAdmin@logout');
 
 Route::get('/', 'LoginController@index');
 Route::post('/login/valida', 'LoginController@valida');
+Route::get('/email/remessa-email', 'RecuperaSenhaController@index');
+Route::post('/email/remessa-email', 'RecuperaSenhaController@validar');
 
-Route::view('/dashboard/index' , 'dashboard/index')->middleware('validaUsuario');
-
-Route::get('/cad-cat-material', 'CatMaterialController@index')->middleware('validaUsuario');
-Route::post('/cad-cat-material/inserir', 'CatMaterialController@store')->middleware('validaUsuario');
-Route::get('/cad-cat-material/excluir/{id}', 'CatMaterialController@destroy')->middleware('validaUsuario');
-Route::get('/cad-cat-material/alterar/{id}', 'CatMaterialController@edit')->middleware('validaUsuario');
-Route::put('/cad-cat-material/atualizar/{id}', 'CatMaterialController@update')->middleware('validaUsuario');
-
-Route::get('/cad-embalagem', 'EmbalagemController@index')->middleware('validaUsuario');
-Route::post('/cad-embalagem/inserir', 'EmbalagemController@store')->middleware('validaUsuario');
-Route::get('/cad-embalagem/excluir/{id}', 'EmbalagemController@destroy')->middleware('validaUsuario');
-Route::get('/cad-embalagem/alterar/{id}', 'EmbalagemController@edit')->middleware('validaUsuario');
-Route::put('/cad-embalagem/atualizar/{id}', 'EmbalagemController@update')->middleware('validaUsuario');
-
-Route::get('/cad-genero', 'GeneroController@index')->middleware('validaUsuario');
-Route::post('/cad-genero/inserir', 'GeneroController@store')->middleware('validaUsuario');
-Route::get('/cad-genero/excluir/{id}', 'GeneroController@destroy')->middleware('validaUsuario');
-Route::get('/cad-genero/alterar/{id}', 'GeneroController@edit')->middleware('validaUsuario');
-Route::put('/cad-genero/atualizar/{id}', 'GeneroController@update')->middleware('validaUsuario');
+//Route::view('/dashboard/index' , 'dashboard/index')->middleware('validaUsuario');
 
 Route::name('estoque')->middleware('validaUsuario')->group(function () {
   Route::get('/cad-tipo-estoque', 'TipoEstoqueController@index');
@@ -109,6 +94,7 @@ Route::name('usuario')->middleware('validaUsuario')->group(function () {
   Route::get('/usuario/gerar-Senha/{id}', 'UsuarioController@gerarSenha');
   Route::get('/usuario/alterar-senha', 'UsuarioController@alteraSenha');
   Route::post('/usuario/gravaSenha', 'UsuarioController@gravaSenha');
+
 });
 
 Route::get('gerenciar-item-catalogo', 'ItemCatalogoController@index')->middleware('validaUsuario');
@@ -141,6 +127,25 @@ Route::post('/cor/inserir', 'CorController@store')->middleware('validaUsuario');
 Route::get('/cor/excluir/{id}', 'CorController@destroy')->middleware('validaUsuario');
 Route::get('/cor/alterar/{id}', 'CorController@edit')->middleware('validaUsuario');
 Route::put('/cor/atualizar/{id}', 'CorController@update')->middleware('validaUsuario');
+
+Route::get('/cad-cat-material', 'CatMaterialController@index')->middleware('validaUsuario')->name('cadcat.index');
+Route::post('/cad-cat-material/inserir', 'CatMaterialController@store')->middleware('validaUsuario');
+Route::get('/cad-cat-material/excluir/{id}', 'CatMaterialController@destroy')->middleware('validaUsuario');
+Route::get('/cad-cat-material/alterar/{id}', 'CatMaterialController@edit')->middleware('validaUsuario');
+Route::put('/cad-cat-material/atualizar/{id}', 'CatMaterialController@update')->middleware('validaUsuario');
+
+Route::get('/cad-embalagem', 'EmbalagemController@index')->middleware('validaUsuario');
+Route::post('/cad-embalagem/inserir', 'EmbalagemController@store')->middleware('validaUsuario');
+Route::get('/cad-embalagem/excluir/{id}', 'EmbalagemController@destroy')->middleware('validaUsuario');
+Route::get('/cad-embalagem/alterar/{id}', 'EmbalagemController@edit')->middleware('validaUsuario');
+Route::put('/cad-embalagem/atualizar/{id}', 'EmbalagemController@update')->middleware('validaUsuario');
+
+Route::get('/cad-genero', 'GeneroController@index')->middleware('validaUsuario');
+Route::post('/cad-genero/inserir', 'GeneroController@store')->middleware('validaUsuario');
+Route::get('/cad-genero/excluir/{id}', 'GeneroController@destroy')->middleware('validaUsuario');
+Route::get('/cad-genero/alterar/{id}', 'GeneroController@edit')->middleware('validaUsuario');
+Route::put('/cad-genero/atualizar/{id}', 'GeneroController@update')->middleware('validaUsuario');
+
 
 Route::name('localizador')->middleware('validaUsuario')->group(function () {
   Route::get('/localizador', 'LocalizadorController@index');

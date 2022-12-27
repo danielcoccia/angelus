@@ -95,7 +95,7 @@
 
 
                                         <div class="col-12 mt-3" style="text-align: right;">
-                                            <button type="submit" class="btn btn-success">Finalizar</button>
+                                            <button type="submit" class="btn btn-success">Confirmar</button>
                                             <a href="/cad-entidade">
                                                 <input class="btn btn-danger" type="button" value="Limpar">
                                             </a>
