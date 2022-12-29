@@ -58,6 +58,7 @@
 
                         @include('components/flash_alerts')
 
+
                         @yield('content')
 
 

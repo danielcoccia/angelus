@@ -73,7 +73,7 @@
                     <div class="col-2">
                         <div class="form-group row">
                             <div class="col">Valor da venda:
-                            <input class="form-control" type="numeric" id="" name="valor" required="requiered" value="{{number_format($itemmat[0]->valor_venda,'0','','')}}">
+                            <input class="form-control" type="numeric" id="" name="valor" required="requiered" value="{{number_format($itemmat[0]->valor_venda,'2','.','')}}">
                             </div>
                         </div>
                     </div>

@@ -53,11 +53,11 @@
                                         <div class="col-12">
                                             <button class="btn btn-primary w-md waves-effect waves-light btn-block" type="submit">Entrar</button>
                                         </div>
-                                        <div class="form-group mb-0 row">
+                                        {{--<div class="form-group mb-0 row">
                                             <div class="col-12 mt-3">
                                                 <a href="/email/remessa-email" class="text-danger" type="button"><i class="mdi mdi-lock"></i>Esqueci minha senha</a>
                                             </div>
-                                        </div>
+                                        </div>--}}
                                     </div>
 
                                 </form>

@@ -87,7 +87,7 @@
                     </tr>
                 </tfoot>
             </table>
-            <h6 class="font-weight-bold" style="color: blue;  margin-left: 10px;">A data de impressão do relatório é <span class="badge badge-secondary">{{ \Carbon\Carbon::today()->format('d/m/Y')}}</span> </h6>
+            <h6 class="col-12  font-weight-bold" style="color: blue; margin-left: 10px; text-align:right;">A data de impressão do relatório é <span class="badge badge-secondary">{{ \Carbon\Carbon::today()->format('d/m/Y')}}</span> </h6>
         </div>
     </div>
 </div>

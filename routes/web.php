@@ -64,10 +64,10 @@ Route::get('/unidade-medida/alterar/{id}', 'UnidadeMedidaController@edit')->midd
 Route::put('/unidade-medida/atualizar/{id}', 'UnidadeMedidaController@update')->middleware('validaUsuario');
 
 
-Route::get('/gerenciar-pessoa', 'PessoaController@index')->middleware('validaUsuario');
+Route::get('/gerenciar-pessoa', 'PessoaController@index')->middleware('validaUsuario')->name('listapessoa.index');
 Route::get('cad-pessoa', 'PessoaController@create')->middleware('validaUsuario');
-Route::post('cad-pessoa/inserir', 'PessoaController@store')->middleware('validaUsuario');
-Route::get('/gerenciar-pessoa', 'PessoaController@show')->middleware('validaUsuario');
+Route::post('cad-pessoa/inserir', 'PessoaController@store')->middleware('validaUsuario')->name('inserepessoa.index');
+Route::get('/filtrar-pessoa', 'PessoaController@show')->middleware('validaUsuario')->name('filtrarpessoa.show');
 Route::get('pessoa/alterar/{id}', 'PessoaController@edit')->middleware('validaUsuario');
 Route::put('pessoa-atualizar/{id}', 'PessoaController@update')->middleware('validaUsuario');
 Route::get('/pessoa/excluir/{id}', 'PessoaController@destroy')->middleware('validaUsuario');

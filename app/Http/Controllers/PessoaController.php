@@ -8,6 +8,7 @@ use App\Models\ModelGenero;
 use App\Models\ModelPessoa;
 use App\Models\ModelEntidade;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Arr;
 
 class PessoaController extends Controller
 {
@@ -41,6 +42,37 @@ class PessoaController extends Controller
 
     public function store(Request $request)
     {
+       $cpf = $request->cpf;
+       $email = $request->email;
+
+       $cpfban = DB::table('pessoa')
+                    ->select(DB::raw('case when count(cpf) > 0 then 1 else 0 end'))
+                    ->where('cpf', '=', $cpf)
+                    ->value([0]);
+
+        //dd($cpfban);
+
+        $emailban = DB::table('pessoa')
+                    ->select(DB::raw('case when count(email) > 0 then 1 else 0 end'))
+                    ->where('email', '=', $email)
+                    ->value([0]);
+
+
+
+        if ($cpfban == 1){
+
+            return redirect()
+            ->action('PessoaController@create')
+            ->with('danger', 'Esse CPF está duplicado no cadastro do sistema!');
+
+        } elseif ($emailban == 1) {
+
+            return redirect()
+            ->action('PessoaController@create')
+            ->with('danger', 'Esse Email está duplicado no cadastro do sistema!');
+
+        } else{
+
         DB::table('pessoa')->insert([
             'nome' => $request->input('nome'),
             'identidade' => $request->input('identidade'),
@@ -61,12 +93,17 @@ class PessoaController extends Controller
             'gia' => $request->input('gia')
         ]);
 
+
         $result= $this->objPessoa->all();
-        return view('pessoa/gerenciar-pessoa',['result'=>$result]);
+
+        return redirect()
+        ->action('PessoaController@index')
+        ->with('message', 'A pessoa foi cadastrada!');
+        }
 
     }
 
-    public function show(Request $request )
+    public function show(Request $request)
     {
         $nome = $request->input('nome');
         $identidade = $request->input('identidade');

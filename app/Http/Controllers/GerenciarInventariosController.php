@@ -29,16 +29,14 @@ class GerenciarInventariosController extends Controller{
     $resultItens = ModelItemMaterial::leftjoin('item_catalogo_material', 'item_material.id_item_catalogo_material','=','item_catalogo_material.id')
                                     ->leftjoin('venda_item_material', 'venda_item_material.id_item_material','item_material.id')
                                     ->leftjoin('venda', 'venda.id','venda_item_material.id_venda' )
-                                    ->select('item_catalogo_material.nome', 'item_material.valor_venda', DB::raw('count(*) as qtd'), DB::raw('sum(valor_venda) as total'))
-
-                                    ->orderBy('item_catalogo_material.nome')
+                                    ->select('item_catalogo_material.nome', 'item_material.valor_venda', DB::raw('count(*) as qtd'), DB::raw('sum(valor_venda) as total'), DB::raw('count(*) as qtd'))                                    ->orderBy('item_catalogo_material.nome')
                                     ->groupBy('item_catalogo_material.nome', 'item_material.valor_venda');
-//dd($resultItens);
+
 
 
     if ($request->data){
             $resultItens->where('item_material.data_cadastro','<=' , $request->data);
-                        //->where('venda.data','<=', $request->data)
+                        //->where('item_material.id','doesntExist', $vendas);
                         //->where('venda.data','<>', $request->data);
     }
 

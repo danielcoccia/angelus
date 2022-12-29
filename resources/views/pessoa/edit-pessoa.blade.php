@@ -29,7 +29,7 @@
                                 <input class="form-control" type="text" value="{{$result[0]->identidade}}" id="identidade" name="identidade">
                             </div>
                             <div class="col-2">CPF
-                                <input class="form-control" type="text" value="{{$result[0]->cpf}}" id="cpf" name="cpf">
+                                <input class="form-control" type="text" placeholder="Ex.: 000.000.000-00" value="{{$result[0]->cpf}}" id="cpf" name="cpf">
                             </div>
                             <div class="col-2">Data nascimento
                                 <input class="form-control" type="date" value="{{$result[0]->data_nascimento}}" id="dt_nascimento" name="dt_nascimento">
@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="col-12 mt-3" style="text-align: right;">
-                            <button type="submit" class="btn btn-primary">Atualizar</button>
+                            <button type="submit" class="btn btn-success">Atualizar</button>
                             <a href="/gerenciar-pessoa">
                                 <input class="btn btn-danger" type="button" value="Cancelar">
                             </a>
