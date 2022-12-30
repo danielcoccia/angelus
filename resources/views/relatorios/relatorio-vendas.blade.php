@@ -111,8 +111,9 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <h6 class="font-weight-bold" style="font-size:12px; color: blue;  margin-left: 10px; text-align: right;">O relatório foi extraído no dia <span class="badge badge-secondary">{{ \Carbon\Carbon::parse("today")->format('d/m/Y')}}</span> </h6>
+                    <h6 class="font-weight-bold" style="font-size:12px; color: blue;  margin-left: 10px; text-align: right;">O relatório foi extraído em <span class="badge badge-secondary">{{ \Carbon\Carbon::today()->locale('pt')->isoFormat('dddd, Do MMMM YYYY, HH:mm:ss')}}</span> </h6>
                 </div>
+
             </div>
             <br><br><br><br>
             <div class="row">

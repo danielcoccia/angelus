@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use App\Models\ModelItemMaterial;
+use DateTimeImmutable;
 use PhpParser\Node\Stmt\Foreach_;
 use Symfony\Component\VarDumper\Cloner\Data;
 use Illuminate\Support\Carbon;
@@ -24,20 +25,30 @@ class GerenciarInventariosController extends Controller{
 
     $resultCategorias = DB::select ('select id, nome from tipo_categoria_material');
 
+
     $data = $request->data;
 
-    $resultItens = ModelItemMaterial::leftjoin('item_catalogo_material', 'item_material.id_item_catalogo_material','=','item_catalogo_material.id')
-                                    ->leftjoin('venda_item_material', 'venda_item_material.id_item_material','item_material.id')
-                                    ->leftjoin('venda', 'venda.id','venda_item_material.id_venda' )
-                                    ->select('item_catalogo_material.nome', 'item_material.valor_venda', DB::raw('count(*) as qtd'), DB::raw('sum(valor_venda) as total'), DB::raw('count(*) as qtd'))                                    ->orderBy('item_catalogo_material.nome')
-                                    ->groupBy('item_catalogo_material.nome', 'item_material.valor_venda');
+
+    $resultItens = DB::table('item_material')
+                                    ->select('item_material.id', 'venda.data', 'item_material.data_cadastro', 'item_catalogo_material.nome', 'item_material.valor_venda', DB::raw('count(*) as qtd'), DB::raw('sum(valor_venda) as total'), DB::raw('count(*) as qtd'))
+                                    ->leftjoin('item_catalogo_material', 'item_material.id_item_catalogo_material','=','item_catalogo_material.id')
+                                    ->leftjoin('venda_item_material','item_material.id','venda_item_material.id_item_material')
+                                    ->leftjoin('venda','venda_item_material.id_venda', 'venda.id')
+                                    ->groupBy('item_material.id','venda.data', 'item_material.data_cadastro', 'item_catalogo_material.nome', 'item_material.valor_venda');
+
 
 
 
     if ($request->data){
-            $resultItens->where('item_material.data_cadastro','<=' , $request->data);
-                        //->where('item_material.id','doesntExist', $vendas);
-                        //->where('venda.data','<>', $request->data);
+        $resultItens->where('item_material.data_cadastro','<=', $request->data)
+        ->Where('venda.data','>=', $request->data)
+        ->orWhere('venda.data','<=', $request->data)
+        ->whereNull('venda.data')
+        ;
+
+
+                   //->where('(','venda.data','>=', $request->data)
+                   //->whereOr('venda.data is null',')');
     }
 
     $resultItens = $resultItens->get();
