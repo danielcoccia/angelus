@@ -96,11 +96,11 @@
                         <tr>
                             <td></td><td style="text-align:right; font-weight: bold;">DESCONTOS -></td><td></td><td style="text-align:center;"></td></tr>
                         <tr style="text-align:right;"><td></td><td style="font-weight: bold;">DISCRIMINAÇÃO DOS PAGAMENTOS  -></td><td style="text-align:right; font-weight: bold;"></td></tr>
-                        <tr><td></td><td  style=" text-align:right;"><i class="fas fa-money-bill-wave"></i></td><td  style=" text-align:left;">Em Dinheiro:</td><td style="font-weight: bold;">{{number_format($total_din,2,',','.')}}</td></tr>
+                        <tr><td></td><td  style=" text-align:right;"><i class="fa-solid fa-money-bill-1-wave"></i></td><td  style=" text-align:left;">Em Dinheiro:</td><td style="font-weight: bold;">{{number_format($total_din,2,',','.')}}</td></tr>
                         <tr><td></td><td style=" text-align:right;"><i class="fab fa-cc-mastercard"></i></td><td style=" text-align:left;">No Débito:</td><td style="font-weight: bold;">{{number_format($total_deb,2,',','.')}}</td></tr>
                         <tr><td></td><td style=" text-align:right;"><i class="fab fa-cc-visa"></i></td><td style=" text-align:left;">No Crédito:</td><td style="font-weight: bold;">{{number_format($total_cre,2,',','.')}}</td></tr>
-                        <tr><td></td><td style=" text-align:right;"><i class="fas fa-money-check-alt"></i></td><td style=" text-align:left;">Em Cheque:</td><td style="font-weight: bold;">{{number_format($total_che,2,',','.')}}</td></tr>
-                        <tr><td></td><td style=" text-align:right;"><i class="fas fa-dollar-sign"></i></td><td style=" text-align:left;">Em Pix:</td><td style="font-weight: bold;">{{number_format($total_pix,2,',','.')}}</td></tr>
+                        <tr><td></td><td style=" text-align:right;"><i class="fa-solid fa-money-check"></i></td><td style=" text-align:left;">Em Cheque:</td><td style="font-weight: bold;">{{number_format($total_che,2,',','.')}}</td></tr>
+                        <tr><td></td><td style=" text-align:right;"><i class="fa-brands fa-pix"></i></td><td style=" text-align:left;">Em Pix:</td><td style="font-weight: bold;">{{number_format($total_pix,2,',','.')}}</td></tr>
                         <tr style="text-align:right;font-size:15px;font-weight:bold;">
                         <td></td><td>TOTAL VENDIDO NO PERÍODO -></td><td></td>
                         <td style="text-align:right;font-size:15px;">{{number_format($total_pag,2,',','.')}}</td>

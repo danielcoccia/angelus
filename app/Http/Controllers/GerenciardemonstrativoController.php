@@ -11,7 +11,7 @@ use phpDocumentor\Reflection\Types\Float_;
 
 class GerenciardemonstrativoController extends Controller{
 
-    
+
     public function index($id){
 
         ///Soma o total de itens da lista
@@ -20,7 +20,7 @@ class GerenciardemonstrativoController extends Controller{
         ->leftjoin('item_material', 'venda_item_material.id_item_material', '=', 'item_material.id')
         ->where ('id_venda', '=', $id)
         ->sum('item_material.valor_venda');
-            
+
 
         ///Conta o número de itens da lista
         $total_itens = DB::table ('venda_item_material')
@@ -48,13 +48,13 @@ class GerenciardemonstrativoController extends Controller{
         left join tipo_genero tg on (tg.id = im.id_tp_genero)
         where v.id=$id
         ");
-     
+
         $vendas = DB::select ("
         Select
         distinct (v.id) idv,
         pe.cpf,
         pe.nome as nomepes,
-        v.data        
+        v.data
         from venda v
         left join pagamento p on (v.id = p.id_venda)
         left join pessoa pe on (pe.id = v.id_pessoa)
@@ -63,7 +63,7 @@ class GerenciardemonstrativoController extends Controller{
         ");
 
         ///Pagamentos vinculados em uma venda
-        $pagamentos= DB::select (" 
+        $pagamentos= DB::select ("
         Select
         v.id as idv,
         p.id as pid,
@@ -72,8 +72,8 @@ class GerenciardemonstrativoController extends Controller{
         tp.nome
         from pagamento p
         left join venda v on (v.id = p.id_venda)
-        left join tipo_pagamento tp on (p.id_tipo_pagamento = tp.id)  
-        where v.id=$id        
+        left join tipo_pagamento tp on (p.id_tipo_pagamento = tp.id)
+        where v.id=$id
         ");
 
         ///Soma TOTAL dos pagamentos
@@ -83,16 +83,20 @@ class GerenciardemonstrativoController extends Controller{
 
         ///Cálculo de possível troco
 
-        $troco = $total_pago - $total_preco; 
+        $troco = $total_pago - $total_preco;
 
         return view ('relatorios/demonstrativo', compact('vendas', 'total_itens', 'total_preco', 'total_pago', 'troco',
          'itens_compra', 'pagamentos'));
-        
-   
-   
-
 
     }
 
-    
+    public function imprimir($id){
+
+        $print = Product::all();
+
+    return \PDF::loadView('site.certificate.certificate', compact('print'))
+                // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+                ->download('nome-arquivo-pdf-gerado.pdf');
+    }
+
 }

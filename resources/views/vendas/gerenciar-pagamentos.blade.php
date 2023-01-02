@@ -79,6 +79,9 @@
                         </div>
                         <div class="col col-lg-6">
                         <h6 class="font-weight-bold" style="color: blue;">REGISTRAR PAGAMENTOS</h6>
+                        <div>
+                            <a href="#" class="btn btn-outline-warning btn-md btn-block" data-toggle="modal" data-target="#ModalCreate" ><span style="color: #f1f1f1"></span>Calcular troco</a>
+                        </div>
                         @foreach($vendas as $v)
                         <form class="form-horizontal mt-4" method="POST" action="/gerenciar-pagamentos/{{$v->idv}}">
                         @csrf
@@ -95,7 +98,7 @@
                             </select>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" style="font-size:18px;" step="any" min="0" class="form-control" id="valor" name="valor" placeholder="Valor">
+                            <input type="numeric" style="font-size:18px;" step="any" min="0" class="form-control" id="valor" name="valor" value="0.00" onchange="this.value = this.value.replace(/,/g, '.')">
                                 <div class="input-group-append">
                                 <button type="submit"  style="background-color: #ffb40a; font-size:18px;" class="btn btn-outline-secundary" id="button-addon2">>>Confirmar Valor</button>
                         </form>
@@ -129,9 +132,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div>
-                                <a href="#" class="btn btn-outline-warning btn-md btn-block" data-toggle="modal" data-target="#ModalCreate" ><span style="color: #f1f1f1"></span>Calcular troco</a>
-                            </div>
                             <br>
                             <div class="input-group mb-3">
                                 <table class="table table-bordered">
@@ -140,7 +140,14 @@
                                         <td style="text-align:left;">Descontos:</td><td style="text-align:left;">R$</td></tr>
                                         <tr style="text-align:left;"><td>Pagamentos realizados:</td><td style="text-align:left;">{{number_format($total_pago,2,',','.')}}</td></tr>
                                         </tr>
-                                        <tr style="background-color: #FFFF00; text-align:right;font-weight:bold;"><td>Total da venda:</td><td style="text-align:left;font-size:18px;">{{number_format($total_preco,2,',','.')}}</td></tr>
+                                        @if ($total_preco > $total_pago)
+                                        <tr style="background-color: #ffcbd3; text-align:right;font-weight:bold;">
+                                        @elseif ($total_preco = $total_pago)
+                                        <tr style="background-color:#a8ecbf; text-align:right;font-weight:bold;">
+                                            @endif
+
+                                        <td>Total da venda:</td><td style="text-align:left;font-size:18px;">
+                                        {{number_format($total_preco,2,',','.')}}</td></tr>
                                     </tbody>
                                 </table>
                             </div>

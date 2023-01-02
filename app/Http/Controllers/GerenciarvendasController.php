@@ -159,22 +159,37 @@ class GerenciarVendasController extends Controller
         ->where ('id', '=', $id)
         ->value('id_tp_situacao_venda');
 
-        if ($sit_ven == 1 or $sit_ven == 2 or $valor > $pago){
+        if ($sit_ven == 1){
 
-            //return redirect()->back()
-            //return redirect()->route('pagamentos.inserir')
-            //->with('warning', 'Este item não pode ser modificado porque não está mais em estoque');
-            return view ('vendas/alerta-venda', compact('alerta'));
 
-        } elseif ($sit_ven == 4 && $total_preco == $valor) {
+            return redirect()
+            ->back()
+            ->with('warning', 'Altere a situação para "Pagar" clicando em "Finalizar" na tela de "Alterar venda.');
+            //return view ('vendas/alerta-venda', compact('alerta'));
+
+        }elseif ($valor > $pago){
+
+                return redirect()
+                ->back()
+                ->with('warning', 'Existe um erro entre o valor da venda e o valor pago.');
+                //return view ('vendas/alerta-venda', compact('alerta'));
+
+
+        } elseif ($sit_ven == 3 && $total_preco == $valor) {
 
             return view ('vendas/alerta-venda2', compact('alerta'));
 
-        } elseif ($sit_ven == 3 && $total_preco == $valor){
+            return redirect()
+                ->back()
+                ->with('warning', 'Esta venda foi finalizada e não pode ser paga novamente.');
+
+        } elseif ($sit_ven == 2 && $total_preco == $valor){
 
             DB::table ('venda')
             ->where('id', $id)
-            ->update(['valor' => $total_preco,'id_tp_situacao_venda' => 4]);
+            ->update(['valor' => $total_preco,'id_tp_situacao_venda' => 3]);
+
+
 
            $teste = DB::table ('item_material')
             ->select('item_material.id')
@@ -182,6 +197,9 @@ class GerenciarVendasController extends Controller
             ->where('venda_item_material.id_venda', $id)
             ->update(['item_material.id_tipo_situacao' => 2]);
 
+            return redirect()
+                ->action('GerenciarvendasController@index')
+                ->with('message', 'O pagamento foi realizado com sucesso e a venda finalizada.');
 
         }
 

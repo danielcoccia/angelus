@@ -167,7 +167,8 @@ class GerenciarpagamentoController extends Controller
                     ]);
         } else{
 
-          return view ('vendas/alerta-pagamento', compact('vendas'));
+                return redirect()->back()
+                ->with('warning', 'O valor selecionado ultrapassa a soma do valor dos itens.');
 
         }
 

@@ -2,6 +2,7 @@
 <html lang="pt-br" style="color: #000">
 
 <head style="color:black;">
+<script src="https://kit.fontawesome.com/a944918be8.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
         function Atualizar() {
             window.location.reload();

@@ -70,7 +70,7 @@
                                 <td>{{number_format($results->valor,2,',','.')}}</td>
                                 <td>{{$results->sit_venda}}</td>
                                 <td>
-                                    @if ($results->id_tp_situacao_venda == 4)
+                                    @if ($results->id_tp_situacao_venda == 3)
                                     <a href="/registrar-venda-editar/{{$results->id}}"><input class="btn btn-warning" type="button" style="font-size:11px;" value="Alterar" disabled="">
                                     </a>
                                     <a href="/gerenciar-vendas/excluir/{{$results->id}}"><input class="btn btn-danger" type="button" style="font-size:11px;" value="Excluir" data-toggle="modal" data-target="#modalExemplo" disabled="">

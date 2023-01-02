@@ -198,6 +198,7 @@ Route::name('vendas')->middleware('validaUsuario')->group(function () {
   Route::get('/gerenciar-vendas/excluir/{id}', 'GerenciarvendasController@delete');
   Route::get('/gerenciar-vendas/finalizar/{id}', 'GerenciarvendasController@finalizar')->name('finalizarvenda.update');
   Route::get('/gerenciar-vendas/demonstrativo/{id}', 'GerenciarvendasController@update');
+  Route::get('/gerenciar-vendas/demonstrativo/{id}', 'GerenciarvendasController@imprimir');
 
 
 
@@ -216,8 +217,8 @@ Route::name('vendas')->middleware('validaUsuario')->group(function () {
 });
 
 Route::name('pagamentos')->middleware('validaUsuario')->group(function (){
-  Route::get('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@show');
-  Route::post('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@inserir')->name('pagamento.inserir');
+  Route::get('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@show')->name('pagamento.show');
+  Route::post('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@inserir');
   Route::delete('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@destroy');
   Route::get('/alerta-pagamento', 'GerenciarpagamentoController@inserir');
 
