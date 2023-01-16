@@ -93,6 +93,7 @@
                             <ul class="sub-menu" aria-expanded="false">
                                <li><a href="/gerenciar-vendas" class="waves-effect"><span>Gerenciar vendas</span></a></li>
                                <li><a href="/registrar-venda" class="waves-effect"><span>Registrar Venda</span></a></li>
+                               <li><a href="/gerenciar-desconto" class="waves-effect"><span>Gerenciar Descontos</span></a></li>
                             </ul>
                         </li>
                         @endif

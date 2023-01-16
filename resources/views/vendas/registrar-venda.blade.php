@@ -25,7 +25,7 @@
                                             </div>
                                             <div class="col-sm">
                                             <label for="data_venda">Data</label>
-                                                <input class="form-control" value="{{date('d-m-Y')}}" type="text" name="data_venda" id="data_venda" placeholder="Data Venda" readonly>
+                                                <input class="form-control" value="{{ \Carbon\Carbon::now()->settings(['timezone' => 'UTC'])}}" type="text" name="data_venda" id="data_venda" placeholder="Data Venda" readonly>
                                             </div>
                                             <div class="col-sm">
                                                 <label for="nome_usuário">Usuário</label>

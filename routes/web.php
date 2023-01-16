@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\GerenciarVendasController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 
 /*
@@ -146,6 +147,13 @@ Route::get('/cad-genero/excluir/{id}', 'GeneroController@destroy')->middleware('
 Route::get('/cad-genero/alterar/{id}', 'GeneroController@edit')->middleware('validaUsuario');
 Route::put('/cad-genero/atualizar/{id}', 'GeneroController@update')->middleware('validaUsuario');
 
+Route::get('/cad-tipo-material', 'TipoMaterialController@index')->middleware('validaUsuario');
+Route::post('/cad-tipo-material/inserir', 'TipoMaterialController@store')->middleware('validaUsuario');
+Route::get('/cad-tipo-material/excluir/{id}', 'TipoMaterialController@destroy')->middleware('validaUsuario');
+Route::get('/cad-tipo-material/alterar/{id}', 'TipoMaterialController@edit')->middleware('validaUsuario');
+Route::put('/cad-tipo-material/atualizar/{id}', 'TipoMaterialController@update')->middleware('validaUsuario');
+
+
 
 Route::name('localizador')->middleware('validaUsuario')->group(function () {
   Route::get('/localizador', 'LocalizadorController@index');
@@ -218,15 +226,15 @@ Route::name('vendas')->middleware('validaUsuario')->group(function () {
 
 Route::name('pagamentos')->middleware('validaUsuario')->group(function (){
   Route::get('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@show')->name('pagamento.show');
-  Route::post('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@inserir');
-  Route::delete('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@destroy');
+  Route::post('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@inserir')->middleware('validaUsuario');
+  Route::delete('/gerenciar-pagamentos/{id}', 'GerenciarpagamentoController@destroy')->middleware('validaUsuario');
   Route::get('/alerta-pagamento', 'GerenciarpagamentoController@inserir');
 
-  Route::get('/cad-pagamento', 'TipoPagamentoController@index');
-  Route::post('/cad-pagamento/inserir', 'TipoPagamentoController@store');
-  Route::get('/cad-pagamento/excluir/{id}', 'TipoPagamentoController@destroy');
-  Route::get('/cad-pagamento/alterar/{id}', 'TipoPagamentoController@edit');
-  Route::put('/cad-pagamento/atualizar/{id}', 'TipoPagamentoController@update');
+  Route::get('/cad-pagamento', 'TipoPagamentoController@index')->middleware('validaUsuario');
+  Route::post('/cad-pagamento/inserir', 'TipoPagamentoController@store')->middleware('validaUsuario');
+  Route::get('/cad-pagamento/excluir/{id}', 'TipoPagamentoController@destroy')->middleware('validaUsuario');
+  Route::get('/cad-pagamento/alterar/{id}', 'TipoPagamentoController@edit')->middleware('validaUsuario');
+  Route::put('/cad-pagamento/atualizar/{id}', 'TipoPagamentoController@update')->middleware('validaUsuario');
 
   Route::get('/demonstrativo/{id}', 'GerenciardemonstrativoController@index');
   Route::get('/relatorio-vendas', 'RelatoriosController@index');
@@ -235,19 +243,25 @@ Route::name('pagamentos')->middleware('validaUsuario')->group(function (){
 });
 
 Route::name('valor-avariado')->middleware('validaUsuario')->group(function () {
-  Route::get('/cad-valor-avariado', 'RegistrarAvariaController@index');
-  Route::post('/cad-valor-avariado/inserir', 'RegistrarAvariaController@insert');
-  Route::get('/cad-valor-avariado/excluir/{id}', 'RegistrarAvariaController@destroy');
-  Route::get('/cad-valor-avariado/alterar/{id}', 'RegistrarAvariaController@edit');
-  Route::any('/alterar-valor-avariado/atualizar/{id}', 'RegistrarAvariaController@update');
+  Route::get('/cad-valor-avariado', 'RegistrarAvariaController@index')->middleware('validaUsuario');
+  Route::post('/cad-valor-avariado/inserir', 'RegistrarAvariaController@insert')->middleware('validaUsuario');
+  Route::get('/cad-valor-avariado/excluir/{id}', 'RegistrarAvariaController@destroy')->middleware('validaUsuario');
+  Route::get('/cad-valor-avariado/alterar/{id}', 'RegistrarAvariaController@edit')->middleware('validaUsuario');
+  Route::any('/alterar-valor-avariado/atualizar/{id}', 'RegistrarAvariaController@update'->middleware('validaUsuario'));
+
+
+  Route::get('/gerenciar-desconto', 'DescontoController@index')->middleware('validaUsuario');
+  Route::get('/criar-desconto', 'DescontoController@create')->middleware('validaUsuario');
+  Route::post('/incluir-desconto', 'DescontoController@store')->middleware('validaUsuario');
+  Route::get('/desconto-alterar/{id}', 'DescontoController@edit')->middleware('validaUsuario');
+  Route::post('/modifica-desconto/{id}', 'DescontoController@update')->middleware('validaUsuario');
+  Route::get('/desconto/excluir/{id}', 'DescontoController@destroy')->middleware('validaUsuario');
+  Route::get('/desconto/ativar/{id}', 'DescontoController@active')->middleware('validaUsuario');
+  Route::get('/desconto/inativar/{id}', 'DescontoController@inactive')->middleware('validaUsuario');
+
 });
 
 Route::get('/calculos/Calculadora/{id}', 'CalculadoraController@calcular');
 
 
-Route::get('/cad-tipo-material', 'TipoMaterialController@index')->middleware('validaUsuario');
-Route::post('/cad-tipo-material/inserir', 'TipoMaterialController@store')->middleware('validaUsuario');
-Route::get('/cad-tipo-material/excluir/{id}', 'TipoMaterialController@destroy')->middleware('validaUsuario');
-Route::get('/cad-tipo-material/alterar/{id}', 'TipoMaterialController@edit')->middleware('validaUsuario');
-Route::put('/cad-tipo-material/atualizar/{id}', 'TipoMaterialController@update')->middleware('validaUsuario');
 
