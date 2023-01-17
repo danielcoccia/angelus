@@ -43,13 +43,8 @@
                 <td>{{$listaItemVendas->nome}}</td>
                 <!-- <td>0</td> -->
                 <td>{{$listaItemVendas->qtd}}</td>
-                @if (floatval($listaItemVendas->valor_venda_promocional)>0)
-                <?php $tot += floatval($listaItemVendas->valor_venda_promocional); $qtde++; ?>
-                <td>{{$listaItemVendas->valor_venda_promocional}}</td>
-                @else
                 <?php $tot += floatval($listaItemVendas->valor_venda); $qtde++; ?>
                 <td>R$ {{$listaItemVendas->valor_venda}}</td>
-                @endif
                 <td>
                     <button type="button" value="{{$listaItemVendas->id}}"  class="btn btn-danger btn-custom btnRemoveItem"><i class="far fa-trash-alt"></i></button>
                 </td>

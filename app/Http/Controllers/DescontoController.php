@@ -97,12 +97,33 @@ class DescontoController extends Controller
 
     public function destroy($id){
 
+        $desconto = DB::table('descontos')
+                    ->where('id',$id)
+                    ->value('porcentagem');
+
+        $categoria = DB::table('descontos')
+                    ->where('id',$id)
+                    ->value('id_tp_categoria');
+
+
+        DB::table('item_material')
+        ->leftjoin('item_catalogo_material', 'item_material.id_item_catalogo_material', 'item_catalogo_material.id')
+        ->leftJoin('tipo_categoria_material', 'item_catalogo_material.id_categoria_material', 'tipo_categoria_material.id')
+        ->leftJoin('descontos', 'tipo_categoria_material.id', 'descontos.id_tp_categoria')
+        ->where('descontos.id',$id)
+        ->where('item_catalogo_material.id_categoria_material', $categoria)
+        ->where ('descontos.porcentagem', $desconto)
+        ->where ('item_material.id_tipo_situacao','<', 2)
+        ->update([
+        'item_material.valor_venda_promocional' => 0,
+        ]);
+
         DB::table('descontos')
         ->where('id', $id)
         ->delete();
 
         return redirect()->action('DescontoController@index')
-        ->with('message', 'A configuração do desconto foi excluida com sucesso!');
+        ->with('danger', 'A configuração do desconto foi excluida com sucesso!');
 
 
     }
@@ -131,6 +152,10 @@ class DescontoController extends Controller
                     ->where('id',$id)
                     ->value('data_fim');
 
+        $usuario = $request->session()->get('usuario.id_usuario');
+
+        $data_atual = (\Carbon\carbon::now()->toDateTimeString());
+
 
         if ($data_inicio == null && $data_fim == null){
 
@@ -149,9 +174,9 @@ class DescontoController extends Controller
             $teste = DB::table('descontos')
                 ->where('descontos.id',$id)
                 ->update([
-                    'ativo' => 'true'
-                    //'id_usuario' => $request->input(session()->get('usuario.id_usuario')),
-                    //'data_registro' => $request->input(\Carbon\carbon::now()->toDateTimeString() . PHP_EOL)
+                    'ativo' => 'true',
+                    'id_usuario' => $usuario,
+                    'data_registro' => $data_atual
                     ]);
 
 
@@ -178,9 +203,9 @@ class DescontoController extends Controller
              DB::table('descontos')
              ->where('descontos.id',$id)
              ->update([
-                        'ativo' => 'true'
-                        //'id_usuario' => $request->input('id_usuario'),
-                        //'data_registro' => $request->input('data_registro')
+                        'ativo' => 'true',
+                        'id_usuario' => $usuario,
+                        'data_registro' => $data_atual
                  ]);
 
 
@@ -205,9 +230,9 @@ class DescontoController extends Controller
            DB::table('descontos')
            ->where('descontos.id',$id)
            ->update([
-                'ativo' => 'true'
-                //'id_usuario' => $request->input('id_usuario'),
-                //'data_registro' => $request->input('data_registro')
+                'ativo' => 'true',
+                'id_usuario' => $usuario,
+                'data_registro' => $data_atual
                ]);
 
 
@@ -234,9 +259,9 @@ class DescontoController extends Controller
             DB::table('descontos')
             ->where('descontos.id',$id)
             ->update([
-                'ativo' => 'true'
-                //'id_usuario' => $request->input('id_usuario'),
-                //'data_registro' => $request->input('data_registro')
+                'ativo' => 'true',
+                'id_usuario' => $usuario,
+                'data_registro' => $data_atual
                 ]);
 
             return redirect()->action('DescontoController@index')
@@ -264,6 +289,10 @@ class DescontoController extends Controller
                     ->where('id',$id)
                     ->value('data_fim');
 
+        $usuario = $request->session()->get('usuario.id_usuario');
+
+        $data_atual = (\Carbon\carbon::now()->toDateTimeString());
+
 
         if ($data_inicio == null && $data_fim == null){
 
@@ -282,9 +311,9 @@ class DescontoController extends Controller
             DB::table('descontos')
                 ->where('descontos.id',$id)
                 ->update([
-                    'ativo' => 'false'
-                    //'id_usuario' => $request->input('id_usuario'),
-                    //'data_registro' => $request->input('data_registro')
+                    'ativo' => 'false',
+                    'id_usuario' => $usuario,
+                    'data_registro' => $data_atual
                     ]);
 
 
@@ -310,9 +339,9 @@ class DescontoController extends Controller
              DB::table('descontos')
              ->where('descontos.id',$id)
              ->update([
-                'ativo' => 'false'
-                //'id_usuario' => $request->input('id_usuario'),
-                //'data_registro' => $request->input('data_registro')
+                'ativo' => 'false',
+                'id_usuario' => $usuario,
+                'data_registro' => $data_atual
                  ]);
 
 
@@ -338,9 +367,9 @@ class DescontoController extends Controller
            DB::table('descontos')
            ->where('descontos.id',$id)
            ->update([
-            'ativo' => 'false'
-                    //'id_usuario' => $request->input('id_usuario'),
-                    //'data_registro' => $request->input('data_registro')
+                'ativo' => 'false',
+                'id_usuario' => $usuario,
+                'data_registro' => $data_atual
                ]);
 
 
@@ -368,9 +397,9 @@ class DescontoController extends Controller
             DB::table('descontos')
             ->where('descontos.id',$id)
             ->update([
-                'ativo' => 'false'
-                //'id_usuario' => $request->input('id_usuario'),
-                //'data_registro' => $request->input('data_registro')
+                'ativo' => 'false',
+                'id_usuario' => $usuario,
+                'data_registro' => $data_atual
                 ]);
 
 

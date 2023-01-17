@@ -247,7 +247,7 @@ Route::name('valor-avariado')->middleware('validaUsuario')->group(function () {
   Route::post('/cad-valor-avariado/inserir', 'RegistrarAvariaController@insert')->middleware('validaUsuario');
   Route::get('/cad-valor-avariado/excluir/{id}', 'RegistrarAvariaController@destroy')->middleware('validaUsuario');
   Route::get('/cad-valor-avariado/alterar/{id}', 'RegistrarAvariaController@edit')->middleware('validaUsuario');
-  Route::any('/alterar-valor-avariado/atualizar/{id}', 'RegistrarAvariaController@update'->middleware('validaUsuario'));
+  Route::any('/alterar-valor-avariado/atualizar/{id}', 'RegistrarAvariaController@update')->middleware('validaUsuario');
 
 
   Route::get('/gerenciar-desconto', 'DescontoController@index')->middleware('validaUsuario');

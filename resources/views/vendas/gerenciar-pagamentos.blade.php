@@ -44,7 +44,7 @@
                 <hr>
                 <div class="container">
                     <div class="row">
-                        <div class="col col-lg-6">
+                        <div class="col col-7">
                         <h6 class="font-weight-bold" style="color: blue;">LISTA DE COMPRAS</h6>
                             <table class="table-sm table-bordered">
                                 <thead class="thead-light">
@@ -59,25 +59,25 @@
                             <table class="table-sm col-12 table-bordered">
                                 <thead class="table-success" style= "text-align:center; background-color:#f1f1f1;">
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">PRODUTO</th>
-                                        <th scope="col">DESCONTO</th>
-                                        <th scope="col">VALOR</th>
+                                        <th scope="col" class="col-1" style= "text-align:center;">CÓDIGO</th>
+                                        <th scope="col" class="col-2" style= "text-align:center;">PRODUTOS</th>
+                                        <th scope="col" class="col-1" style= "text-align:center;">DESCONTOS</th>
+                                        <th scope="col" class="col-1" style= "text-align:center;">VALOR</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($itens_compra as $ic)
                                     <tr>
-                                        <td>{{$ic->id_item_material}}</td>
+                                        <td style= "text-align:center;">{{$ic->id_item_material}}</td>
                                         <td>{{$ic->nomemat}}</td>
-                                        <td></td>
-                                        <td>{{number_format($ic->valor_venda,2,',','.')}}</td>
+                                        <td style= "text-align:center;">{{number_format($ic->desconto,2,',','.')}}</td>
+                                        <td style= "text-align:center;">{{number_format($ic->valor_venda,2,',','.')}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col col-lg-6">
+                        <div class="col col-5">
                         <h6 class="font-weight-bold" style="color: blue;">REGISTRAR PAGAMENTOS</h6>
                         <div>
                             <a href="#" class="btn btn-outline-warning btn-md btn-block" data-toggle="modal" data-target="#ModalCreate" ><span style="color: #f1f1f1"></span>Calcular troco</a>
@@ -109,7 +109,7 @@
                                 <h6 class="font-weight-bold" style="color: blue;">PAGAMENTOS REALIZADOS</h6>
                                     <thead class="table-success" style="text-align:center;vertical-align:middle; background: #f1f1f1";>
                                         <tr>
-                                            <th scope="col">ID</th>
+                                            <th scope="col">CÓDIGO</th>
                                             <th scope="col">ESPECIFICAÇÃO</th>
                                             <th scope="col">VALOR</th>
                                             <th scope="col">AÇÕES</th>
@@ -137,8 +137,10 @@
                                 <table class="table table-bordered">
                                     <tbody style='text-align:center;vertical-align:middle; font-size:15px;'>
                                         <tr>
-                                        <td style="text-align:left;">Descontos:</td><td style="text-align:left;">R$</td></tr>
-                                        <tr style="text-align:left;"><td>Pagamentos realizados:</td><td style="text-align:left;">{{number_format($total_pago,2,',','.')}}</td></tr>
+
+                                        <td style="text-align:left;">Descontos:</td><td style="text-align:left;">R$ {{number_format($desconto,2,',','.')}}</td></tr>
+
+                                        <tr style="text-align:left;"><td>Pagamentos realizados:</td><td style="text-align:left;">R$ {{number_format($total_pago,2,',','.')}}</td></tr>
                                         </tr>
                                         @if ($total_preco > $total_pago)
                                         <tr style="background-color: #ffcbd3; text-align:right;font-weight:bold;">
@@ -146,7 +148,7 @@
                                         <tr style="background-color:#a8ecbf; text-align:right;font-weight:bold;">
                                             @endif
 
-                                        <td>Total da venda:</td><td style="text-align:left;font-size:18px;">
+                                        <td>Total da venda:</td><td style="text-align:left;font-size:19px;">
                                         {{number_format($total_preco,2,',','.')}}</td></tr>
                                     </tbody>
                                 </table>

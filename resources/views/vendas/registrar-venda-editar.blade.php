@@ -100,17 +100,11 @@
                                                         <td>{{$itens->nome}}</td>
                                                         <!-- <td>0</td> -->
                                                         <td>{{1}}</td>
-                                                        @if (floatval(number_format($itens->valor_venda_promocional,2,'.','.'))>0)
-                                                        <?php $tot += floatval($itens->valor_venda_promocional); $qtde++; ?>
-                                                        <td>{{number_format($itens->valor_venda_promocional,2,'.','.')}}</td>
-                                                        @else
                                                         <?php $tot += floatval($itens->valor_venda); $qtde++; ?>
                                                         <td>{{number_format($itens->valor_venda,2,'.','.')}}</td>
-                                                        @endif
                                                         <td>
                                                             <button type="button" value="{{$itens->id_item_material}}"  class="btn btn-danger btn-custom btnRemoveItem" onclick="setInterval('Atualizar()',1000)"><i class="far fa-trash-alt"></i></button>
                                                         </td>
-
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
