@@ -26,7 +26,7 @@
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="text-align:center; border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
+                                                <th>CÓDIGO</th>
                                                 <th>CNPJ</th>
                                                 <th>NOME FANTASIA</th>
                                                 <th>EMAIL</th>
@@ -45,12 +45,12 @@
                                                 <td>{{$results->nome_fantasia}}</td>
                                                 <td>{{$results->email_contato}}</td>
                                                 <td>{{$results->nome_contato}}</td>
-                                                 <td>
+                                                 <td class="col-2">
                                                     <a href="/entidade/alterar/{{$results->id}}">
-                                                        <input class="btn btn-warning" type="button" value="Alterar">
+                                                        <input class="btn btn-warning btn-sm" type="button" value="Alterar">
                                                     </a>
                                                     <a href="/entidade/excluir/{{$results->id}}">
-                                                        <input class="btn btn-danger" type="button" value="Excluir">
+                                                        <input class="btn btn-danger btn-sm" type="button" value="Excluir">
                                                     </a>
                                                 </td>
                                             </tr>

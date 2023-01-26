@@ -8,6 +8,9 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <div>
+                    <h5 class="modal-title mt-0" id="title-calcular" style="color:rgb(255, 0, 0); text-align:center;">Primeiro registre o pagamento em dinheiro</h5>
+                </div>
                 <div class="modal-body">
                     <div class="container">
                                 <div class="row align-items-center">
@@ -21,7 +24,7 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col" style ="text-align:right; font-size: 15px; color:#000; ">Recebido em dinheiro R$</div>
+                                    <div class="col" style ="text-align:right; font-size: 15px; color:#000; ">Recebido em espécie R$</div>
                                     <div class="col"><input style = "width: 100px; color:#000; background-color:rgb(255, 255, 255); font-size: 16px; text-align:center; font-weight:bold;" type="numeric" value="0.00" id="campo1" /></div>
                                 </div>
                                 <br>
@@ -32,7 +35,8 @@
                                     function calcular (){
                                         var num1 = parseFloat(document.getElementById("campo1").value);
 			                            var num2 = parseFloat(document.getElementById("campo2").value);
-			                            document.getElementById("total").value = num1 - num2;
+			                            document.getElementById("total").value = (num1.toFixed(2)) - (num2.toFixed(2));
+
 
                                     }
 

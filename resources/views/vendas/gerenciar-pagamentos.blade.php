@@ -51,8 +51,8 @@
                                     <tr style="background-color: #f1f1f1; text-align:center; ">
                                     <td style=text-align:right>QUANTIDADE:</td>
                                     <td style=font-size:18px;>{{$total_itens}}</td>
-                                    <td style=text-align:right>VALOR TOTAL:</td>
-                                    <td style=font-size:18px;>{{number_format($total_preco,2,',','.')}}</td>
+                                    <td style=text-align:right>TOTAL ORIGINAL:</td>
+                                    <td style=font-size:18px;>{{number_format($total_original,2,',','.')}}</td>
                                     </tr>
                                 </thead>
                             </table>
@@ -135,12 +135,12 @@
                             <br>
                             <div class="input-group mb-3">
                                 <table class="table table-bordered">
-                                    <tbody style='text-align:center;vertical-align:middle; font-size:15px;'>
+                                    <tbody style="color:#000; text-align:center;vertical-align:middle; font-size:15px;">
                                         <tr>
 
-                                        <td style="text-align:left;">Descontos:</td><td style="text-align:left;">R$ {{number_format($desconto,2,',','.')}}</td></tr>
+                                        <td style="text-align:left;">Total em descontos:</td><td style="text-align:left;">R$ {{number_format($desconto,2,',','.')}}</td></tr>
 
-                                        <tr style="text-align:left;"><td>Pagamentos realizados:</td><td style="text-align:left;">R$ {{number_format($total_pago,2,',','.')}}</td></tr>
+                                        <tr style="text-align:left;"><td>Total em pagamentos:</td><td style="text-align:left;">R$ {{number_format($total_pago,2,',','.')}}</td></tr>
                                         </tr>
                                         @if ($total_preco > $total_pago)
                                         <tr style="background-color: #ffcbd3; text-align:right;font-weight:bold;">

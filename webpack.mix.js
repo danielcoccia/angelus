@@ -140,7 +140,7 @@ const folder = {
     var out = folder.dist_assets + "fonts";
     mix.copyDirectory(folder.src + "fonts", out);
 
-    // copy all images 
+    // copy all images
     var out = folder.dist_assets + "images";
     mix.copyDirectory(folder.src + "images", out);
 

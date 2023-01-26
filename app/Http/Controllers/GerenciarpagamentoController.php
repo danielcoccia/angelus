@@ -95,6 +95,9 @@ class GerenciarpagamentoController extends Controller
                 ->sum(DB::raw('item_material.valor_venda * item_material.valor_venda_promocional'));
 
         ///Cálculo do total do preço da venda com desconto se houver
+        $total_original = $total_venda;
+
+        ///Cálculo do total do preço da venda com desconto se houver
         $total_preco = $total_venda - $desconto;
 
         ///Cálculo de possível troco
@@ -134,7 +137,7 @@ class GerenciarpagamentoController extends Controller
                         ");
 
         return view ('vendas/gerenciar-pagamentos', compact('pagamentos','vendas','total_itens', 'total_preco', 'itens_compra',
-        'tipos_pagamento', 'total_pago', 'troco', 'total_especie', 'devolver', 'desconto'));
+        'tipos_pagamento', 'total_pago', 'troco', 'total_especie', 'devolver', 'desconto', 'total_original'));
 
     }
 

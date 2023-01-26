@@ -57,7 +57,7 @@
                                 <th>VENDEDOR</th>
                                 <th>VALOR</th>
                                 <th>SITUAÇÃO</th>
-                                <th>AÇÕES</th>
+                                <th class="col-3">AÇÕES</th>
                             </tr>
                         </thead>
                         <tbody style='text-align:center;vertical-align:middle'>
@@ -71,23 +71,23 @@
                                 <td>{{$results->sit_venda}}</td>
                                 <td>
                                     @if ($results->id_tp_situacao_venda == 3)
-                                    <a href="/registrar-venda-editar/{{$results->id}}"><input class="btn btn-warning" type="button" style="font-size:11px;" value="Alterar" disabled="">
+                                    <a href="/registrar-venda-editar/{{$results->id}}"><input class="btn btn-warning btn-sm" type="button" style="font-size:11px;" value="Alterar" disabled="">
                                     </a>
-                                    <a href="/gerenciar-vendas/excluir/{{$results->id}}"><input class="btn btn-danger" type="button" style="font-size:11px;" value="Excluir" data-toggle="modal" data-target="#modalExemplo" disabled="">
+                                    <a href="/gerenciar-vendas/excluir/{{$results->id}}"><input class="btn btn-danger btn-sm" type="button" style="font-size:11px;" value="Excluir" data-toggle="modal" data-target="#modalExemplo" disabled="">
                                     </a>
                                     <a>
-                                        <a href="/gerenciar-pagamentos/{{$results->id}}"><input class="btn btn-success" type="button" style="font-size:11px;" value="Pagar" disabled="">
+                                        <a href="/gerenciar-pagamentos/{{$results->id}}"><input class="btn btn-success btn-sm" type="button" style="font-size:11px;" value="Pagar" disabled="">
                                     </a>
-                                    <a href="/demonstrativo/{{$results->id}}"  type="button" style="font-size:11px;" class="btn btn-info">Recibo</a>
+                                    <a href="/demonstrativo/{{$results->id}}"  type="button" style="font-size:11px;" class="btn btn-info btn-sm">Recibo</a>
                                     @else
-                                    <a href="/registrar-venda-editar/{{$results->id}}"><input class="btn btn-warning" type="button" style="font-size:11px;" value="Alterar">
+                                    <a href="/registrar-venda-editar/{{$results->id}}"><input class="btn btn-warning btn-sm" type="button" style="font-size:11px;" value="Alterar">
                                     </a>
-                                    <a href="/gerenciar-vendas/excluir/{{$results->id}}"><input class="btn btn-danger" type="button" style="font-size:11px;" value="Excluir" data-toggle="modal" data-target="#modalExemplo">
+                                    <a href="/gerenciar-vendas/excluir/{{$results->id}}"><input class="btn btn-danger btn-sm" type="button" style="font-size:11px;" value="Excluir" data-toggle="modal" data-target="#modalExemplo">
                                     </a>
                                     <a>
-                                        <a href="/gerenciar-pagamentos/{{$results->id}}"><input class="btn btn-success" type="button" style="font-size:11px;" value="Pagar">
+                                        <a href="/gerenciar-pagamentos/{{$results->id}}"><input class="btn btn-success btn-sm" type="button" style="font-size:11px;" value="Pagar">
                                     </a>
-                                    <a href="/demonstrativo/{{$results->id}}"  type="button" style="font-size:11px;" class="btn btn-info">Recibo</a>
+                                    <a href="/demonstrativo/{{$results->id}}"  type="button" style="font-size:11px;" class="btn btn-info btn-sm">Recibo</a>
                                     @endif
 
                                     @endforeach

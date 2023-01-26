@@ -64,8 +64,10 @@
                             </div>
                         </div>
                         <div class="col-12 mt-3" style="text-align: right;">
+                            <a href="/criar-desconto">
+                                    <input class="btn btn-danger" type="button" value="Limpar">
+                            </a>
 
-                            <button type="button" class="btn btn-danger">Limpar</button>
                             <button type="submit" class="btn btn-success">Confirmar</button>
                         </div>
                     </form>

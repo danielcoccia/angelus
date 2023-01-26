@@ -56,11 +56,12 @@
                     <table class="table table-sm table-striped table-bordered">
                         <thead style='font-size:12px; background:#ffffff; text-align:center;vertical-align:middle'>
                             <tr>
-                                <th colspan="1">Cod venda</th>
-                                <th colspan="1">Dt Venda</th>
-                                <th colspan="1">Cliente</th>
-                                <th colspan="1">Desconto</th>
-                                <th colspan="1">Vlr Venda</th>
+                                <th colspan="1">CÓDIGO</th>
+                                <th colspan="1">DATA</th>
+                                <th colspan="1">CLIENTE</th>
+                                <th colspan="1">VALOR ORIGINAL</th>
+                                <th colspan="1">VALOR DESCONTO</th>
+                                <th colspan="1">VALOR FINAL</th>
                             </tr>
                         </thead>
                         <tbody style='font-size:10px; text-align:center;vertical-align:middle'>
@@ -69,8 +70,9 @@
                                 <td>{{$ra->idv}}</td>
                                 <td>{{ date( 'd/m/Y' , strtotime($ra->data))}}</td>
                                 <td>{{$ra->nomep}}</td>
-                                <td>Porcentagem</td>
-                                <td>{{number_format($ra->valor_venda,2,',','.')}}</td>
+                                <td>{{number_format($ra->vlr_original,2,',','.')}}</td>
+                                <td>{{number_format($ra->desconto,2,',','.')}}</td>
+                                <td>{{number_format($ra->vlr_final,2,',','.')}}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -79,8 +81,9 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th style="text-align:right;font-size:15px;font-weight: bold;">TOTAL</th>
-                                <td style="text-align:center;font-size:15px;font-weight: bold;">{{number_format($total_vendas,2,',','.')}}</td>
+                                <th style="text-align:right;font-size:12px;font-weight: bold;">TOTAL</th>
+                                <th style="text-align:center;font-size:12px;font-weight: bold;">{{number_format($total_desconto,2,',','.')}}</th>
+                                <td style="text-align:center;font-size:12px;font-weight: bold;">{{number_format($total1,2,',','.')}}</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -92,18 +95,18 @@
             <div class="row">
                 <table class="table table-sm table-striped">
                     <h6 class="font-weight-bold" style="color: blue;">CÁLCULOS DO PERÍODO</h6>
-                    <tbody style='text-align:center;vertical-align:middle; font-size:12px;'>
+                    <tbody style='text-align:center;vertical-align:middle; font-size:10px;'>
                         <tr>
-                            <td></td><td style="text-align:right; font-weight: bold;">DESCONTOS -></td><td></td><td style="text-align:center;"></td></tr>
-                        <tr style="text-align:right;"><td></td><td style="font-weight: bold;">DISCRIMINAÇÃO DOS PAGAMENTOS  -></td><td style="text-align:right; font-weight: bold;"></td></tr>
-                        <tr><td></td><td  style=" text-align:right;"><i class="fa-solid fa-money-bill-1-wave"></i></td><td  style=" text-align:left;">Em Dinheiro:</td><td style="font-weight: bold;">{{number_format($total_din,2,',','.')}}</td></tr>
-                        <tr><td></td><td style=" text-align:right;"><i class="fab fa-cc-mastercard"></i></td><td style=" text-align:left;">No Débito:</td><td style="font-weight: bold;">{{number_format($total_deb,2,',','.')}}</td></tr>
-                        <tr><td></td><td style=" text-align:right;"><i class="fab fa-cc-visa"></i></td><td style=" text-align:left;">No Crédito:</td><td style="font-weight: bold;">{{number_format($total_cre,2,',','.')}}</td></tr>
-                        <tr><td></td><td style=" text-align:right;"><i class="fa-solid fa-money-check"></i></td><td style=" text-align:left;">Em Cheque:</td><td style="font-weight: bold;">{{number_format($total_che,2,',','.')}}</td></tr>
-                        <tr><td></td><td style=" text-align:right;"><i class="fa-brands fa-pix"></i></td><td style=" text-align:left;">Em Pix:</td><td style="font-weight: bold;">{{number_format($total_pix,2,',','.')}}</td></tr>
-                        <tr style="text-align:right;font-size:15px;font-weight:bold;">
-                        <td></td><td>TOTAL VENDIDO NO PERÍODO -></td><td></td>
-                        <td style="text-align:right;font-size:15px;">{{number_format($total_pag,2,',','.')}}</td>
+                            <td></td><td></td><td  style="text-align:right; font-weight: bold;">TOTAL DESCONTOS -></td><td style="text-align:center;">{{number_format($total_desconto,2,',','.')}}</td></tr>
+                        <tr style="text-align:right;"><td></td><td style="font-weight: bold;"></td><td style="text-align:right; font-weight: bold;">DISCRIMINAÇÃO DOS PAGAMENTOS</td></tr>
+                        <tr><td></td><td  style=" text-align:right;"></td><td style=" text-align:right;"><i class="fa-solid fa-money-bill-1-wave"></i> Em Dinheiro:</td><td style="font-weight: bold;">{{number_format($total_din,2,',','.')}}</td></tr>
+                        <tr><td></td><td style=" text-align:right;"></td><td style=" text-align:right;"><i class="fab fa-cc-mastercard"></i> No Débito:</td><td style="font-weight: bold;">{{number_format($total_deb,2,',','.')}}</td></tr>
+                        <tr><td></td><td style=" text-align:right;"></td><td style=" text-align:right;"><i class="fab fa-cc-visa"></i> No Crédito:</td><td style="font-weight: bold;">{{number_format($total_cre,2,',','.')}}</td></tr>
+                        <tr><td></td><td style=" text-align:right;"></td><td style=" text-align:right;"><i class="fa-solid fa-money-check"></i> Em Cheque:</td><td style="font-weight: bold;">{{number_format($total_che,2,',','.')}}</td></tr>
+                        <tr><td></td><td style=" text-align:right;"></td><td style=" text-align:right;"><i class="fa-brands fa-pix"></i> Em Pix:</td><td style="font-weight: bold;">{{number_format($total_pix,2,',','.')}}</td></tr>
+                        <tr style="text-align:right;font-size:12px;font-weight:bold;">
+                        <td></td><td></td><td>TOTAL VENDIDO NO PERÍODO -></td>
+                        <td style="text-align:right;font-size:12px;">{{number_format($total_pag,2,',','.')}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -111,7 +114,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <h6 class="font-weight-bold" style="font-size:12px; color: blue;  margin-left: 10px; text-align: right;">O relatório foi extraído em <span class="badge badge-secondary">{{ \Carbon\Carbon::today()->locale('pt')->isoFormat('dddd, Do MMMM YYYY, HH:mm:ss')}}</span> </h6>
+                    <h6 class="font-weight-bold" style="font-size:12px; color: blue;  margin-left: 10px; text-align: right;">O relatório foi extraído em <span class="badge badge-secondary">{{ \Carbon\carbon::now()->subHour(1)->format('d / m / Y H:i:s')}}</span> </h6>
                 </div>
 
             </div>

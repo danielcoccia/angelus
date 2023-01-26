@@ -18166,8 +18166,8 @@ File: Icons Css File
   transform: rotate(225deg);
 }
 
-.mdi-rotate-270 {
-  /*
+/*.mdi-rotate-270 {
+
         // Not included in production
         &.mdi-flip-h:before {
             -webkit-transform: scaleX(-1) rotate(270deg);
@@ -18182,15 +18182,15 @@ File: Icons Css File
             filter: FlipV;
             -ms-filter: "FlipV";
         }
-        */
-}
+
+}*/
 
 .mdi-rotate-270:before {
   transform: rotate(270deg);
 }
 
-.mdi-rotate-315 {
-  /*
+/*.mdi-rotate-315 {
+
         // Not included in production
         &.mdi-flip-h:before {
             -webkit-transform: scaleX(-1) rotate(315deg);
@@ -18205,8 +18205,8 @@ File: Icons Css File
             filter: FlipV;
             -ms-filter: "FlipV";
         }
-        */
-}
+
+}*/
 
 .mdi-rotate-315:before {
   transform: rotate(315deg);
@@ -29790,7 +29790,7 @@ readers do not read off random characters that represent icons */
   font-family: "typicons";
   font-style: normal;
   font-weight: normal;
-  speak: none;
+  speak-as: none;
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
@@ -29798,7 +29798,7 @@ readers do not read off random characters that represent icons */
   font-size: 1em;
   text-align: center;
   -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+  font-synthesis: antialiased;
   text-rendering: optimizeLegibility;
 }
 

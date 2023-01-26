@@ -87,7 +87,7 @@
                     </tr>
                 </tfoot>
             </table>
-            <h6 class="col-12  font-weight-bold" style="color: blue; margin-left: 10px; text-align:right;">O relatório foi impresso em <span class="badge badge-secondary">{{ \Carbon\Carbon::today()->locale('pt')->isoFormat('dddd, Do MMMM YYYY, HH:mm:ss')}}</span> </h6>
+            <h6 class="col-12  font-weight-bold" style="color: blue; margin-left: 10px; text-align:right;">O relatório foi impresso em <span class="badge badge-secondary">{{ \Carbon\Carbon::today()->locale('pt')->isoFormat('DD MMMM YYYY')}}</span> </h6>
         </div>
     </div>
 </div>
