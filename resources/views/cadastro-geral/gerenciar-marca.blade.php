@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') @endsection
+@section('title')Gerenciar marca @endsection
 
 @section('content')
     <div class="row">

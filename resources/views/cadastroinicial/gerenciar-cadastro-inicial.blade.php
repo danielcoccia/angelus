@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Data Tables @endsection
+@section('title') Gerenciar Cadastro inicial @endsection
 
 @section('content')
 @section('content')

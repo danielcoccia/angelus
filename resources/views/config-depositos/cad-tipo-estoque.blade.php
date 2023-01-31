@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') @endsection
+@section('title')Cadastrar tipo estoque @endsection
 
 @section('content')
     <div class="row">

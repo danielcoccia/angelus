@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Form Elements @endsection
+@section('title') Cadastrar entidade @endsection
 
 @section('content')
 

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') @endsection
+@section('title')Gerenciar fase etária @endsection
 
 @section('content')
     <div class="row">
@@ -9,13 +9,13 @@
                 <div class="card-body">
 
                     <h4 class="card-title">Cadastro de Fase Etária</h4>
-                    <hr>                    
+                    <hr>
                     <form class="form-horizontal mt-4" method="POST" action="/fase-etaria/inserir">
-                    @csrf                                 
+                    @csrf
                         <div class="form-group">
-                            <div class="row">                                
+                            <div class="row">
                                 <label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
-                                <div class="col-4">                                    
+                                <div class="col-4">
                                         <select class="form-control select2" id="categoria" name="categoria" required oninvalid="this.setCustomValidity('Campo requerido')">
                                                 <option value="null">Selecione </option>
                                             @Foreach ($resultCategoria as $resultCategorias)
@@ -35,14 +35,14 @@
                             <!-- <div class="row mt-3">
                                 <label for="sigla" class="col-sm-2 col-form-label">Ativo</label>
                                 <div class="col-4">
-                                    <input class="" type="checkbox" id="ativo_marca" name="ativo_marca" checked="">                                
+                                    <input class="" type="checkbox" id="ativo_marca" name="ativo_marca" checked="">
                                 </div>
                             </div> -->
                         </div>
                         <div class="row">
                             <div class="col-6 mt-3" style="text-align: right;">
-                                <button type="submit" class="btn btn-primary">CADASTRAR</button>                        
-                            </div>    
+                                <button type="submit" class="btn btn-primary">CADASTRAR</button>
+                            </div>
                         </div>
                     </form>
                     <br><br><hr>
@@ -51,7 +51,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    
+
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
@@ -74,7 +74,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            @endForeach                                           
+                                            @endForeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -84,7 +84,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
     @include('cadastro-geral/popUp-alterar')
 @endsection
 
@@ -93,7 +93,7 @@
             <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-           
+
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/gerenciar-fase-etaria.init.js')}}"></script>

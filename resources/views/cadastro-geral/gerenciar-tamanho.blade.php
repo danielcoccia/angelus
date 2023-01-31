@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') @endsection
+@section('title')Gerenciar tamanhos @endsection
 
 @section('content')
     <div class="row">

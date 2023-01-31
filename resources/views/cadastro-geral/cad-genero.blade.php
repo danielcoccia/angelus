@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title')  @endsection
+@section('title')Cadastro de gênero  @endsection
 
 @section('content')
 

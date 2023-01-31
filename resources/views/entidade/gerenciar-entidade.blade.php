@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Incuir Entidade @endsection
+@section('title')Gerenciar Entidades @endsection
 
 @section('content')
                     <div class="row">

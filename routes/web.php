@@ -36,7 +36,7 @@ Route::get('/logout', 'LexaAdmin@logout');
 // });
 
 Route::get('/', 'LoginController@index');
-Route::post('/login/valida', 'LoginController@valida');
+Route::post('/login/valida', 'LoginController@valida')->name('home.post');
 Route::get('/email/remessa-email', 'RecuperaSenhaController@index');
 Route::post('/email/remessa-email', 'RecuperaSenhaController@validar');
 
@@ -236,10 +236,10 @@ Route::name('pagamentos')->middleware('validaUsuario')->group(function (){
   Route::get('/cad-pagamento/alterar/{id}', 'TipoPagamentoController@edit')->middleware('validaUsuario');
   Route::put('/cad-pagamento/atualizar/{id}', 'TipoPagamentoController@update')->middleware('validaUsuario');
 
-  Route::get('/demonstrativo/{id}', 'GerenciardemonstrativoController@index');
-  Route::get('/relatorio-vendas', 'RelatoriosController@index');
-  Route::get('/relatorio-entrada', 'RelatoriosController@entrada');
-  Route::get('/inventarios', 'GerenciarInventariosController@index');
+  Route::get('/demonstrativo/{id}', 'GerenciardemonstrativoController@index')->middleware('validaUsuario');
+  Route::get('/relatorio-vendas', 'RelatoriosController@index')->middleware('validaUsuario');
+  Route::get('/relatorio-entrada', 'RelatoriosController@entrada')->middleware('validaUsuario');
+  Route::get('/inventarios', 'GerenciarInventariosController@index')->middleware('validaUsuario');
 });
 
 Route::name('valor-avariado')->middleware('validaUsuario')->group(function () {
@@ -248,8 +248,9 @@ Route::name('valor-avariado')->middleware('validaUsuario')->group(function () {
   Route::get('/cad-valor-avariado/excluir/{id}', 'RegistrarAvariaController@destroy')->middleware('validaUsuario');
   Route::get('/cad-valor-avariado/alterar/{id}', 'RegistrarAvariaController@edit')->middleware('validaUsuario');
   Route::any('/alterar-valor-avariado/atualizar/{id}', 'RegistrarAvariaController@update')->middleware('validaUsuario');
+});
 
-
+Route::name('descontos')->middleware('validaUsuario')->group(function () {
   Route::get('/gerenciar-desconto', 'DescontoController@index')->middleware('validaUsuario');
   Route::get('/criar-desconto', 'DescontoController@create')->middleware('validaUsuario');
   Route::post('/incluir-desconto', 'DescontoController@store')->middleware('validaUsuario');

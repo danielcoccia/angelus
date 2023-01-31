@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Form Elements @endsection
+@section('title') Editar entidade @endsection
 
 @section('content')
 
@@ -9,15 +9,15 @@
  <!-- start page title -->
                     <div class="row">
 <!--                 @component('common-components.breadcrumb')
-                     @slot('title') Cadastro de Usuario  @endslot                     
+                     @slot('title') Cadastro de Usuario  @endslot
                      @slot('li1') Lexa  @endslot
                      @slot('li2') Forms  @endslot
                      @slot('li3') Form Elements @endslot
                 @endcomponent -->
-                
-                   
+
+
                     </div>
-                    <!-- end page title -->                    
+                    <!-- end page title -->
 
                     <div class="row">
                         <div class="col-12">
@@ -27,7 +27,7 @@
                                     <h4 class="card-title">Cadastro de Entidade</h4>
                                     <hr>
                                     <!-- <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->
-                                    <form class="form-horizontal mt-4" method="POST" action="/entidade-atualizar/{{$result[0]->id}}"> 
+                                    <form class="form-horizontal mt-4" method="POST" action="/entidade-atualizar/{{$result[0]->id}}">
                                     @method('PUT')
                                     @csrf
                                         <div class="form-group row">
@@ -90,9 +90,9 @@
                                         <div class="row mt-10">
                                             <div class="col-md-4">
                                                 <label for="cep" class="form-label">Cep</label>
-                                                <input type="text" class="form-control cep-mask" value="{{$result[0]->cep}}"  id="cep" name="cep">                                            
+                                                <input type="text" class="form-control cep-mask" value="{{$result[0]->cep}}"  id="cep" name="cep">
 
-                                            </div>                                            
+                                            </div>
                                         </div>
 
                                         <div class="row">
@@ -103,17 +103,17 @@
                                              <div class="col-md-4">
                                                 <label for="cidade" class="form-label">Cidade</label>
                                                 <input type="text" class="form-control" id="cidade" value="{{$result[0]->localidade}}" name="cidade">
-                                            </div>  
+                                            </div>
                                             <div class="col-md-4">
                                                 <label for="bairro" class="form-label">Bairro</label>
                                                 <input type="text" class="form-control" id="bairro" value="{{$result[0]->bairro}}" name="bairro">
-                                            </div>                                        
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label for="logradouro" class="form-label">Logradouro</label>
                                                 <input type="text" class="form-control" id="logradouro" value="{{$result[0]->logradouro}}" name="logradouro">
-                                            </div>                                                                             
+                                            </div>
                                             <div class="col-md-4">
                                                 <label for="numero" class="form-label">numero</label>
                                                 <input type="text" class="form-control" id="numero" value="{{$result[0]->numero}}" name="numero">
@@ -126,7 +126,7 @@
                                             <input type="hidden"  id="gia" name="gia" value="{{$result[0]->gia}}">
                                         </div>
 
-                                        
+
 
                                         <div class="col-12 mt-3" style="text-align: right;">
                                             <button type="submit" class="btn btn-primary">Atualizar</button>
@@ -141,7 +141,7 @@
 @endsection
 
 @section('footerScript')
-            <script src="{{ URL::asset('/js/pages/busca-cep.init.js')}}"></script>            
+            <script src="{{ URL::asset('/js/pages/busca-cep.init.js')}}"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 @endsection
 

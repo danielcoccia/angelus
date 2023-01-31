@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title')  @endsection
+@section('title') Cadastrar valor avariado  @endsection
 
 @section('content')
 

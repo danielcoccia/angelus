@@ -10,7 +10,6 @@
     </script>
 
     <meta charset="utf-8" />
-    <!-- <title> @yield('title')  | Lexa - Responsive Bootstrap 4 Admin Dashboard</title> -->
     <title> @yield('title') </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Lexa Premium Multipurpose Admin & Dashboard Template" name="description" />
@@ -46,9 +45,9 @@
 
 
 
-            <div class="page-content" style="color: #000; padding-top: 70px;">
+                <div class="page-content" style="color: #000; padding-top: 70px;">
 
-                <div class="container-fluid" style="color: #000;">
+                    <div class="container-fluid" style="color: #000;">
 
                   <!-- content -->
 

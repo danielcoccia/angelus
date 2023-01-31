@@ -83,20 +83,25 @@
                             </a>
                         </li>
 
-                        @if(!$perfil_vol)
+
                         {{-- Vendas de material --}}
+
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="mdi mdi-cart-outline"></i>
                                 <span>Vendas de material</span>
                             </a>
+
                             <ul class="sub-menu" aria-expanded="false">
+                               @if(!$perfil_vol)
                                <li><a href="/gerenciar-vendas" class="waves-effect"><span>Gerenciar vendas</span></a></li>
                                <li><a href="/registrar-venda" class="waves-effect"><span>Registrar Venda</span></a></li>
+                               @endif
+                               @if($perfil_ger)
                                <li><a href="/gerenciar-desconto" class="waves-effect"><span>Gerenciar Descontos</span></a></li>
+                               @endif
                             </ul>
                         </li>
-                        @endif
 
                         {{-- Documentos --}}
                         @if(!$perfil_vol)

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Form Elements @endsection
+@section('title') Alterar senha @endsection
 
 @section('content')
 
@@ -11,7 +11,7 @@
                     <div class="card overflow-hidden">
                         <div class="card-body pt-0">
                             <div class="p-3">
-                                <h4 class="text-muted font-size-18 mb-1 text-center">Alterar Senha</h4>
+                                <h4 class="text-muted font-size-18 mb-1 text-center" style="color:#f90505 !important; font-weight: bold;">ALTERAR SENHA</h4>
                                 <!-- <p class="text-muted text-center">Sign in to continue to Lexa.</p> -->
                                 <form method="POST" class="form-horizontal mt-4" action="/usuario/gravaSenha">
                                        @csrf
@@ -60,7 +60,7 @@
                                             </div> -->
                                         </div>
                                         <div class="col-6 text-right">
-                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Altera Senha</button>
+                                            <button class="btn btn-success w-md waves-effect waves-light" type="submit">Confirmar</button>
                                         </div>
                                     </div>
                                     <!-- <div class="form-group mb-0 row">

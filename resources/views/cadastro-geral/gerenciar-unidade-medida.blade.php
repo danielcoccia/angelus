@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') @endsection
+@section('title')Gerenciar unidade medida @endsection
 
 @section('content')
     <div class="row">

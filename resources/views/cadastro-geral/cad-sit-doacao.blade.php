@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title')  @endsection
+@section('title')Situação doação  @endsection
 
 @section('content')
 

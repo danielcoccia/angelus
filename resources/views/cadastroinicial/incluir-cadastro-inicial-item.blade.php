@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Form Elements @endsection
+@section('title') Incluir Cadastro Inicial @endsection
 
 @section('headerCss')
     <link href="{{ URL::asset('/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
@@ -13,8 +13,8 @@
             <div class="card-body">
 
                 <h4 class="card-title">Cadastro Inicial de Item</h4>
-                <hr>                
-                <form class="form-horizontal mt-4" method="POST" action="/cad-inicial-material/inserir"> 
+                <hr>
+                <form class="form-horizontal mt-4" method="POST" action="/cad-inicial-material/inserir">
                 @csrf
                     <div class="form-group row">
                         <div class="col-sm-6">
@@ -30,7 +30,7 @@
                             <div id="DivFormComplemento"></div>
                             <hr>
                             <div id="DivValor"></div>
-                            
+
                         </div>
 
                         <div class="col-sm-6">
@@ -46,7 +46,7 @@
                             <div id="divComboMarca"></div>
                         </div>
                     </div>
-                </form>           
+                </form>
         </div>
     </div>
     <!-- end col -->
@@ -59,15 +59,15 @@
                 <h5 class="modal-title mt-0" id="myLargeModalLabel">Composição de Itens</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <div class="modal-body" id="divComposicao">                
+            <div class="modal-body" id="divComposicao">
             </div>
-        </div>        
-    </div>    
+        </div>
+    </div>
 </div>
 @endsection
 
 @section('footerScript')
-            <script src="{{ URL::asset('/js/pages/mascaras.init.js')}}"></script>            
+            <script src="{{ URL::asset('/js/pages/mascaras.init.js')}}"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
             <script src="{{ URL::asset('/libs/select2/select2.min.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/form-advanced.init.js')}}"></script>

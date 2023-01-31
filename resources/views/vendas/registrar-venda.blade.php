@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Form Elements @endsection
+@section('title') Registrar venda @endsection
 
 @section('headerCss')
     <link href="{{ URL::asset('/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />

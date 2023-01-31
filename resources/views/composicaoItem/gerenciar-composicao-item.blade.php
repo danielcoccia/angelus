@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') @endsection
+@section('title')Gerenciar Composição @endsection
 
 @section('content')
 
@@ -18,7 +18,7 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    
+
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
@@ -29,7 +29,7 @@
                                                 <th>Valor Medio</th>
                                                 <th>Valor Máximo</th>
                                                 <th>Item Composição</th>
-                                                <th>Ativo</th>                           
+                                                <th>Ativo</th>
                                             </tr>
                                         </thead>
 
@@ -41,7 +41,7 @@
                                                 <td>{{$results->nome_categoria}}</td>
                                                 <td>{{$results->valor_minimo}}</td>
                                                 <td>{{$results->valor_medio}}</td>
-                                                <td>{{$results->valor_maximo}}</td>                                                
+                                                <td>{{$results->valor_maximo}}</td>
                                                 <td>{{$results->composicao ? 'sim' : 'não' }}</td>
                                                 <td>{{$results->ativo ? 'sim' : 'não' }}</td>
                                                 <td>
@@ -56,7 +56,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            @endforeach     
+                                            @endforeach
                                         </tbody>
                                     </table>
 
@@ -67,7 +67,7 @@
                     </div>
                         <!-- end col -->
                     </div>
-                                    
+
                 </div>
             </div>
             <!-- end col -->
@@ -80,7 +80,7 @@
            <script src="{{ URL::asset('/libs/datatables/datatables.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/jszip/jszip.min.js')}}"></script>
             <script src="{{ URL::asset('/libs/pdfmake/pdfmake.min.js')}}"></script>
-           
+
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/libs/select2/select2.min.js')}}"></script>

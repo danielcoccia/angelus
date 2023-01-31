@@ -1,6 +1,6 @@
 @extends('layouts.auth-master')
 
-@section('title', 'Login')
+@section('title') Ângelus @endsection
 
 @section('content')
  <div class="account-pages my-5 pt-sm-5">

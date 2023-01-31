@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Gerenciar usuário @endsection
+@section('title') Gerenciar usuários @endsection
 
 @section('content')
                     <div class="row">

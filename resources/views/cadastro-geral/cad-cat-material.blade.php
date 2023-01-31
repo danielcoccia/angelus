@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title')  @endsection
+@section('title')Cadastro categoria  @endsection
 
 @section('content')
 

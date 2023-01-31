@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title')Demonstrativo @endsection
+
 @section('content')
 
 
