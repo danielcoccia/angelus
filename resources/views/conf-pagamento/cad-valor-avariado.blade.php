@@ -16,7 +16,7 @@
                         <div class="form-group row">
                             <label for="valor_avariado" class="col-sm-2 col-form-label">Novo Valor</label>
                             <div class="col-sm-4">
-                                <input class="form-control" type="numeric" value="" id="valor" name="valor" required oninvalid="this.setCustomValidity('Campo requerido')">
+                                <input class="form-control" type="number" value="" id="valor" name="valor" required>
                             </div>
                         </div>
 
@@ -47,7 +47,7 @@
                                                 <td>{{$results->valor}}</td>
                                                  <td>
                                                     <button type="button" value="{{$results->id}}" id="btnAlterarValor" class="btn btn-warning waves-effect waves-light classBtnAlterar" data-toggle="modal" data-target=".bs-example-modal-lg">Alterar</button>
-                                                    <a href="/cad-valor-avariado/{{$results->id}}">
+                                                    <a href="/cad-valor-avariado/excluir/{{$results->id}}">
                                                         <input class="btn btn-danger" type="button" value="Excluir">
                                                     </a>
                                                 </td>
@@ -75,4 +75,10 @@
             <!-- Datatable init js -->
             <script src="{{ URL::asset('/js/pages/datatables.init.js')}}"></script>
             <script src="{{ URL::asset('/js/pages/gerenciar-avariado.init.js')}}"></script>
+
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="jquery.bsAlerts.js"></script>
+
+
 @endsection

@@ -31,9 +31,12 @@ class RegistrarAvariaController extends Controller{
     public function insert(Request $request)
     {
         $result = $request->input('valor');
-        DB::insert('insert into valor_avariado (valor) values (?)', [$result]);
+        DB::insert('insert into valor_avariado (valor) values (?)', [number_format($result,2,'.','.')]);
         $result = $this->objValorAvariado->all();
-        return view('/conf-pagamento/cad-valor-avariado',['resultavariado'=>$result]);
+
+        return redirect()
+        ->action('RegistrarAvariaController@index')
+        ->with('message', 'sucesso ao criar a valor avaria');
     }
 
     public function show($id)
@@ -63,8 +66,11 @@ class RegistrarAvariaController extends Controller{
     public function destroy($id)
     {
        $deleted = DB::delete('delete from valor_avariado where id= ?', [$id] );
-       $resultavariado= $this->objValorAvariado->all();
+       $result= $this->objValorAvariado->all();
 
-       return view('/conf-pagamento/cad-valor-avariado',['resultavariado'=>$resultavariado]);
+       return redirect()
+        ->action('RegistrarAvariaController@index')
+        ->with('message', 'sucesso ao excluir valor avariado');
+      
     }
 }

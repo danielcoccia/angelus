@@ -21,7 +21,7 @@
 
 </head>
 
-<body data-sidebar="dark" data-keep-enlarged="true" class="vertical-collpsed">
+<body data-sidebar="dark" data-keep-enlarged="true" class="vertical-collpsed-false">
 
     <!-- Begin page -->
     <div id="layout-wrapper">

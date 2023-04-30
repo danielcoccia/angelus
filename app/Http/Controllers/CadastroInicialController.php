@@ -394,7 +394,7 @@ class CadastroInicialController extends Controller
             DB::table('item_material')->insert([
             'id_item_catalogo_material' => $request->input('item_material'),
             'observacao' => $request->input('observacao'),
-            'data_cadastro' => date("d/m/Y"),
+            'data_cadastro' => date("m-d-Y"),
             'id_usuario_cadastro'=> session()->get('usuario.id_usuario'),
             'id_tipo_embalagem' => $request->input('embalagem'),
             'id_tipo_unidade_medida' => $request->input('und_med'),

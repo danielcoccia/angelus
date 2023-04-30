@@ -37,6 +37,7 @@ class CatMaterialController extends Controller
         $tipoMat = $request->input('tipoMat');
         DB::insert('insert into tipo_categoria_material (nome) values (?)', [$tipoMat]);
         $result= $this->objTpMat->all();
+
         return redirect()
         ->route('cadcat.index')
         ->with('message', 'sucesso ao criar a categoria');

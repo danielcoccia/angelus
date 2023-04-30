@@ -243,7 +243,7 @@ Route::name('pagamentos')->middleware('validaUsuario')->group(function (){
 });
 
 Route::name('valor-avariado')->middleware('validaUsuario')->group(function () {
-  Route::get('/cad-valor-avariado', 'RegistrarAvariaController@index')->middleware('validaUsuario');
+  Route::get('/cad-valor-avariado', 'RegistrarAvariaController@index')->middleware('validaUsuario')->name('cadavaria.index');
   Route::post('/cad-valor-avariado/inserir', 'RegistrarAvariaController@insert')->middleware('validaUsuario');
   Route::get('/cad-valor-avariado/excluir/{id}', 'RegistrarAvariaController@destroy')->middleware('validaUsuario');
   Route::get('/cad-valor-avariado/alterar/{id}', 'RegistrarAvariaController@edit')->middleware('validaUsuario');

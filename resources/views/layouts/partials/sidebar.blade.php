@@ -49,7 +49,7 @@
                                 <i class="mdi mdi-wrench"></i>
                                 <span>Configurações</span>
                             </a>
-                            <ul class="sub-menu" aria-expanded="false">
+                            <ul class="sub-menu" aria-expanded="true">
                                 <!-- <li><a href="/produtos/cad-inicial-prod" class="waves-effect"><span>Inicial</span></a></li> -->
                                 <li><a href="/cad-cat-material" class="waves-effect"><span>Categoria Material</span></a></li>
                                 @if($perfil_adm || $perfil_ger)
