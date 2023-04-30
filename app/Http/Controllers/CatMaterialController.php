@@ -39,7 +39,6 @@ class CatMaterialController extends Controller
         $result= $this->objTpMat->all();
         return redirect()
         ->route('cadcat.index')
-        //('/cadastro-geral/cad-cat-material',['result'=>$result])
         ->with('message', 'sucesso ao criar a categoria');
 
     }
