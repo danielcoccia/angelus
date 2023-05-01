@@ -1,6 +1,6 @@
 @extends('layouts.auth-master')
 
-@section('title') Ângelus @endsection
+@section('title') Angelus @endsection
 
 @section('content')
  <div class="account-pages my-5 pt-sm-5">
@@ -25,14 +25,15 @@
                                     @endif
 
                                     <div class="form-group">
-                                        <label for="username">E-Mail</label>
-                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="">
-                                        @error('email')
+                                        <label for="username">CPF</label>
+                                         <!--<input id="cpf" type="numeric" class="form-control @error('cpf') is-invalid @enderror" name="cpf" value="{{ old('cpf') }}" required autocomplete="cpf" autofocus placeholder="">-->
+                                         <input id="cpf" type="numeric" class="form-control mascara_cpf @error('cpf') is-invalid @enderror" name="cpf" placeholder="Ex.: 000.000.000-00"  value="{{ old('cpf') }}">
+                                        @error('cpf')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                         @enderror
-
+                                       
                                     </div>
                                     <div class="form-group">
                                         <label for="userpassword">Senha</label>
@@ -55,7 +56,7 @@
                                         </div>
                                         {{--<div class="form-group mb-0 row">
                                             <div class="col-12 mt-3">
-                                                <a href="/email/remessa-email" class="text-danger" type="button"><i class="mdi mdi-lock"></i>Esqueci minha senha</a>
+                                                <a href="#" class="text-danger" type="button"><i class="mdi mdi-lock"></i>Esqueci minha senha</a>
                                             </div>
                                         </div>--}}
                                     </div>
@@ -74,3 +75,4 @@
         </div>
     </div>
 @stop
+

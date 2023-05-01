@@ -28,7 +28,7 @@
     <link href="{{ URL::asset('/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
 </head>
 
-<body data-sidebar="dark" style="font-family: consolas; background:#fff;  color:black;">
+<body class="vertical-collpsed" data-sidebar="dark" style="font-family: consolas; background:#fff;  color:black;">
 
 
     <!-- Begin page -->

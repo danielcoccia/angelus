@@ -23,7 +23,7 @@
                             </a>
                         </div>
     
-                        <button type="button" class="btn btn-sm px-3 font-size-24 d-lg-none header-item waves-effect waves-light" data-toggle="collapse" data-target="#topnav-menu-content">
+                        <button type="button" class="btn btn-sm px-3 font-size-24 d-lg-none header-item waves-effect waves-light" data-toggle="collapse-hide" data-target="#topnav-menu-content">
                             <i class="mdi mdi-menu"></i>
                         </button>
                     </div>
@@ -39,7 +39,7 @@
                         </form>
 
                         <div class="dropdown d-none d-lg-inline-block ml-2">
-                            <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <img class="mr-2" src="{{ URL::asset('/images/flags/us_flag.jpg')}}" alt="Header Language" height="16"> English <span class="mdi mdi-chevron-down"></span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">

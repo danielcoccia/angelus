@@ -20,8 +20,10 @@ class LoginController extends Controller
     public function valida(Request $request)
     {
 
-        $email = $request->input('email');
+        $cpf = $request->input('cpf');
         $senha = $request->input('senha');
+
+        //dd($cpf);
 
         // $result=DB::table('usuario')->
         //             join('pessoa', 'usuario.id_pessoa', '=', 'pessoa.id')->
@@ -42,7 +44,7 @@ class LoginController extends Controller
                         left join pessoa p on u.id_pessoa = p.id
                         left join usuario_perfil u_p on u.id = u_p.id_usuario
                         left join usuario_deposito u_d on u.id = u_d.id_usuario
-                        where u.ativo is true and p.email ='$email'
+                        where u.ativo is true and p.cpf ='$cpf'
                         group by u.id, p.id
                         ");
 
